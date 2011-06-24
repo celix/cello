@@ -1,0 +1,756 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+AsyncClient	gen-java/Echo.java	/^    public AsyncClient(org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.async.TAsyncClientManager clientManager, org.apache.thrift.transport.TNonblockingTransport transport) {$/;"	m	class:Echo.AsyncClient
+AsyncClient	gen-java/Echo.java	/^  public static class AsyncClient extends org.apache.thrift.async.TAsyncClient implements AsyncIface {$/;"	c	class:Echo
+AsyncIface	gen-java/Echo.java	/^  public interface AsyncIface {$/;"	i	class:Echo
+BOOST_DIR	Makefile	/^BOOST_DIR = \/usr\/include\/boost$/;"	m
+Client	gen-java/Echo.java	/^    public Client(org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot)$/;"	m	class:Echo.Client
+Client	gen-java/Echo.java	/^    public Client(org.apache.thrift.protocol.TProtocol prot)$/;"	m	class:Echo.Client
+Client	gen-java/Echo.java	/^  public static class Client implements org.apache.thrift.TServiceClient, Iface {$/;"	c	class:Echo
+Client	gen-py/echo/Echo.py	/^class Client(Iface):$/;"	c
+Echo	gen-java/Echo.java	/^public class Echo {$/;"	c
+EchoClient	gen-cpp/Echo.h	/^  EchoClient(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> iprot, boost::shared_ptr< ::apache::thrift::protocol::TProtocol> oprot) :$/;"	f	class:EchoClient
+EchoClient	gen-cpp/Echo.h	/^  EchoClient(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> prot) :$/;"	f	class:EchoClient
+EchoClient	gen-cpp/Echo.h	/^class EchoClient : virtual public EchoIf {$/;"	c
+EchoHandler	gen-cpp/Echo_server.skeleton.cpp	/^  EchoHandler() {$/;"	f	class:EchoHandler
+EchoHandler	gen-cpp/Echo_server.skeleton.cpp	/^class EchoHandler : virtual public EchoIf {$/;"	c	file:
+EchoHandler	server.cpp	/^class EchoHandler : public EchoIf {$/;"	c	file:
+EchoIf	gen-cpp/Echo.h	/^class EchoIf {$/;"	c
+EchoMultiface	gen-cpp/Echo.h	/^  EchoMultiface() {}$/;"	f	class:EchoMultiface
+EchoMultiface	gen-cpp/Echo.h	/^  EchoMultiface(std::vector<boost::shared_ptr<EchoIf> >& ifaces) : ifaces_(ifaces) {$/;"	f	class:EchoMultiface
+EchoMultiface	gen-cpp/Echo.h	/^class EchoMultiface : virtual public EchoIf {$/;"	c
+EchoNull	gen-cpp/Echo.h	/^class EchoNull : virtual public EchoIf {$/;"	c
+EchoProcessor	gen-cpp/Echo.h	/^  EchoProcessor(boost::shared_ptr<EchoIf> iface) :$/;"	f	class:EchoProcessor
+EchoProcessor	gen-cpp/Echo.h	/^class EchoProcessor : virtual public ::apache::thrift::TProcessor {$/;"	c
+Echo_GetInfo_args	gen-cpp/Echo.h	/^  Echo_GetInfo_args() {$/;"	f	class:Echo_GetInfo_args
+Echo_GetInfo_args	gen-cpp/Echo.h	/^class Echo_GetInfo_args {$/;"	c
+Echo_GetInfo_pargs	gen-cpp/Echo.h	/^class Echo_GetInfo_pargs {$/;"	c
+Echo_GetInfo_presult	gen-cpp/Echo.h	/^class Echo_GetInfo_presult {$/;"	c
+Echo_GetInfo_result	gen-cpp/Echo.h	/^  Echo_GetInfo_result() {$/;"	f	class:Echo_GetInfo_result
+Echo_GetInfo_result	gen-cpp/Echo.h	/^class Echo_GetInfo_result {$/;"	c
+Echo_GetIntAsync_args	gen-cpp/Echo.h	/^  Echo_GetIntAsync_args() : num(0) {$/;"	f	class:Echo_GetIntAsync_args
+Echo_GetIntAsync_args	gen-cpp/Echo.h	/^class Echo_GetIntAsync_args {$/;"	c
+Echo_GetIntAsync_pargs	gen-cpp/Echo.h	/^class Echo_GetIntAsync_pargs {$/;"	c
+Echo_GetIntAsync_presult	gen-cpp/Echo.h	/^class Echo_GetIntAsync_presult {$/;"	c
+Echo_GetIntAsync_result	gen-cpp/Echo.h	/^  Echo_GetIntAsync_result() : success(0) {$/;"	f	class:Echo_GetIntAsync_result
+Echo_GetIntAsync_result	gen-cpp/Echo.h	/^class Echo_GetIntAsync_result {$/;"	c
+Echo_GetInt_args	gen-cpp/Echo.h	/^  Echo_GetInt_args() : num(0) {$/;"	f	class:Echo_GetInt_args
+Echo_GetInt_args	gen-cpp/Echo.h	/^class Echo_GetInt_args {$/;"	c
+Echo_GetInt_pargs	gen-cpp/Echo.h	/^class Echo_GetInt_pargs {$/;"	c
+Echo_GetInt_presult	gen-cpp/Echo.h	/^class Echo_GetInt_presult {$/;"	c
+Echo_GetInt_result	gen-cpp/Echo.h	/^  Echo_GetInt_result() : success(0) {$/;"	f	class:Echo_GetInt_result
+Echo_GetInt_result	gen-cpp/Echo.h	/^class Echo_GetInt_result {$/;"	c
+Echo_GetString_args	gen-cpp/Echo.h	/^  Echo_GetString_args() : str("") {$/;"	f	class:Echo_GetString_args
+Echo_GetString_args	gen-cpp/Echo.h	/^class Echo_GetString_args {$/;"	c
+Echo_GetString_pargs	gen-cpp/Echo.h	/^class Echo_GetString_pargs {$/;"	c
+Echo_GetString_presult	gen-cpp/Echo.h	/^class Echo_GetString_presult {$/;"	c
+Echo_GetString_result	gen-cpp/Echo.h	/^  Echo_GetString_result() : success("") {$/;"	f	class:Echo_GetString_result
+Echo_GetString_result	gen-cpp/Echo.h	/^class Echo_GetString_result {$/;"	c
+Echo_H	gen-cpp/Echo.h	7;"	d
+Factory	gen-java/Echo.java	/^      public Factory() {}$/;"	m	class:Echo.Client.Factory
+Factory	gen-java/Echo.java	/^      public Factory(org.apache.thrift.async.TAsyncClientManager clientManager, org.apache.thrift.protocol.TProtocolFactory protocolFactory) {$/;"	m	class:Echo.AsyncClient.Factory
+Factory	gen-java/Echo.java	/^    public static class Factory implements org.apache.thrift.TServiceClientFactory<Client> {$/;"	c	class:Echo.Client
+Factory	gen-java/Echo.java	/^    public static class Factory implements org.apache.thrift.async.TAsyncClientFactory<AsyncClient> {$/;"	c	class:Echo.AsyncClient
+GEN_SRC	Makefile	/^GEN_SRC = .\/gen-cpp\/Echo.cpp .\/gen-cpp\/echo_types.cpp$/;"	m
+GetInfo	gen-cpp/Echo.cpp	/^void EchoClient::GetInfo(Info& _return)$/;"	f	class:EchoClient
+GetInfo	gen-cpp/Echo.h	/^  void GetInfo(Info& \/* _return *\/) {$/;"	f	class:EchoNull
+GetInfo	gen-cpp/Echo.h	/^  void GetInfo(Info& _return) {$/;"	f	class:EchoMultiface
+GetInfo	gen-cpp/Echo_server.skeleton.cpp	/^  void GetInfo(Info& _return) {$/;"	f	class:EchoHandler
+GetInfo	gen-java/Echo.java	/^    private class GetInfo implements ProcessFunction {$/;"	c	class:Echo.Processor
+GetInfo	gen-java/Echo.java	/^    public Info GetInfo() throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+GetInfo	gen-java/Echo.java	/^    public Info GetInfo() throws org.apache.thrift.TException;$/;"	m	interface:Echo.Iface
+GetInfo	gen-java/Echo.java	/^    public void GetInfo(org.apache.thrift.async.AsyncMethodCallback<AsyncClient.GetInfo_call> resultHandler) throws org.apache.thrift.TException;$/;"	m	interface:Echo.AsyncIface
+GetInfo	gen-java/Echo.java	/^    public void GetInfo(org.apache.thrift.async.AsyncMethodCallback<GetInfo_call> resultHandler) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient
+GetInfo_args	gen-java/Echo.java	/^    public GetInfo_args() {$/;"	m	class:Echo.GetInfo_args
+GetInfo_args	gen-java/Echo.java	/^    public GetInfo_args(GetInfo_args other) {$/;"	m	class:Echo.GetInfo_args
+GetInfo_args	gen-java/Echo.java	/^  public static class GetInfo_args implements org.apache.thrift.TBase<GetInfo_args, GetInfo_args._Fields>, java.io.Serializable, Cloneable   {$/;"	c	class:Echo
+GetInfo_call	gen-java/Echo.java	/^      public GetInfo_call(org.apache.thrift.async.AsyncMethodCallback<GetInfo_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetInfo_call
+GetInfo_call	gen-java/Echo.java	/^    public static class GetInfo_call extends org.apache.thrift.async.TAsyncMethodCall {$/;"	c	class:Echo.AsyncClient
+GetInfo_result	gen-java/Echo.java	/^    public GetInfo_result($/;"	m	class:Echo.GetInfo_result
+GetInfo_result	gen-java/Echo.java	/^    public GetInfo_result() {$/;"	m	class:Echo.GetInfo_result
+GetInfo_result	gen-java/Echo.java	/^    public GetInfo_result(GetInfo_result other) {$/;"	m	class:Echo.GetInfo_result
+GetInfo_result	gen-java/Echo.java	/^  public static class GetInfo_result implements org.apache.thrift.TBase<GetInfo_result, GetInfo_result._Fields>, java.io.Serializable, Cloneable   {$/;"	c	class:Echo
+GetInt	gen-cpp/Echo.cpp	/^int32_t EchoClient::GetInt(const int32_t num)$/;"	f	class:EchoClient
+GetInt	gen-cpp/Echo.h	/^  int32_t GetInt(const int32_t \/* num *\/) {$/;"	f	class:EchoNull
+GetInt	gen-cpp/Echo.h	/^  int32_t GetInt(const int32_t num) {$/;"	f	class:EchoMultiface
+GetInt	gen-cpp/Echo_server.skeleton.cpp	/^  int32_t GetInt(const int32_t num) {$/;"	f	class:EchoHandler
+GetInt	gen-java/Echo.java	/^    private class GetInt implements ProcessFunction {$/;"	c	class:Echo.Processor
+GetInt	gen-java/Echo.java	/^    public int GetInt(int num) throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+GetInt	gen-java/Echo.java	/^    public int GetInt(int num) throws org.apache.thrift.TException;$/;"	m	interface:Echo.Iface
+GetInt	gen-java/Echo.java	/^    public void GetInt(int num, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.GetInt_call> resultHandler) throws org.apache.thrift.TException;$/;"	m	interface:Echo.AsyncIface
+GetInt	gen-java/Echo.java	/^    public void GetInt(int num, org.apache.thrift.async.AsyncMethodCallback<GetInt_call> resultHandler) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient
+GetInt	gen-py/echo/Echo.py	/^  def GetInt(self, num):$/;"	m	class:Client
+GetInt	gen-py/echo/Echo.py	/^  def GetInt(self, num):$/;"	m	class:Iface
+GetInt	server.cpp	/^    int GetInt(int num) {$/;"	f	class:EchoHandler
+GetIntAsync	gen-cpp/Echo.cpp	/^int32_t EchoClient::GetIntAsync(const int32_t num)$/;"	f	class:EchoClient
+GetIntAsync	gen-cpp/Echo.h	/^  int32_t GetIntAsync(const int32_t \/* num *\/) {$/;"	f	class:EchoNull
+GetIntAsync	gen-cpp/Echo.h	/^  int32_t GetIntAsync(const int32_t num) {$/;"	f	class:EchoMultiface
+GetIntAsync	gen-cpp/Echo_server.skeleton.cpp	/^  int32_t GetIntAsync(const int32_t num) {$/;"	f	class:EchoHandler
+GetIntAsync	gen-java/Echo.java	/^    private class GetIntAsync implements ProcessFunction {$/;"	c	class:Echo.Processor
+GetIntAsync	gen-java/Echo.java	/^    public int GetIntAsync(int num) throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+GetIntAsync	gen-java/Echo.java	/^    public int GetIntAsync(int num) throws org.apache.thrift.TException;$/;"	m	interface:Echo.Iface
+GetIntAsync	gen-java/Echo.java	/^    public void GetIntAsync(int num, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.GetIntAsync_call> resultHandler) throws org.apache.thrift.TException;$/;"	m	interface:Echo.AsyncIface
+GetIntAsync	gen-java/Echo.java	/^    public void GetIntAsync(int num, org.apache.thrift.async.AsyncMethodCallback<GetIntAsync_call> resultHandler) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient
+GetIntAsync	server.cpp	/^    int GetIntAsync(int num) {$/;"	f	class:EchoHandler
+GetIntAsync_args	gen-java/Echo.java	/^    public GetIntAsync_args($/;"	m	class:Echo.GetIntAsync_args
+GetIntAsync_args	gen-java/Echo.java	/^    public GetIntAsync_args() {$/;"	m	class:Echo.GetIntAsync_args
+GetIntAsync_args	gen-java/Echo.java	/^    public GetIntAsync_args(GetIntAsync_args other) {$/;"	m	class:Echo.GetIntAsync_args
+GetIntAsync_args	gen-java/Echo.java	/^  public static class GetIntAsync_args implements org.apache.thrift.TBase<GetIntAsync_args, GetIntAsync_args._Fields>, java.io.Serializable, Cloneable   {$/;"	c	class:Echo
+GetIntAsync_call	gen-java/Echo.java	/^      public GetIntAsync_call(int num, org.apache.thrift.async.AsyncMethodCallback<GetIntAsync_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetIntAsync_call
+GetIntAsync_call	gen-java/Echo.java	/^    public static class GetIntAsync_call extends org.apache.thrift.async.TAsyncMethodCall {$/;"	c	class:Echo.AsyncClient
+GetIntAsync_result	gen-java/Echo.java	/^    public GetIntAsync_result($/;"	m	class:Echo.GetIntAsync_result
+GetIntAsync_result	gen-java/Echo.java	/^    public GetIntAsync_result() {$/;"	m	class:Echo.GetIntAsync_result
+GetIntAsync_result	gen-java/Echo.java	/^    public GetIntAsync_result(GetIntAsync_result other) {$/;"	m	class:Echo.GetIntAsync_result
+GetIntAsync_result	gen-java/Echo.java	/^  public static class GetIntAsync_result implements org.apache.thrift.TBase<GetIntAsync_result, GetIntAsync_result._Fields>, java.io.Serializable, Cloneable   {$/;"	c	class:Echo
+GetInt_args	gen-java/Echo.java	/^    public GetInt_args($/;"	m	class:Echo.GetInt_args
+GetInt_args	gen-java/Echo.java	/^    public GetInt_args() {$/;"	m	class:Echo.GetInt_args
+GetInt_args	gen-java/Echo.java	/^    public GetInt_args(GetInt_args other) {$/;"	m	class:Echo.GetInt_args
+GetInt_args	gen-java/Echo.java	/^  public static class GetInt_args implements org.apache.thrift.TBase<GetInt_args, GetInt_args._Fields>, java.io.Serializable, Cloneable   {$/;"	c	class:Echo
+GetInt_args	gen-py/echo/Echo.py	/^class GetInt_args:$/;"	c
+GetInt_call	gen-java/Echo.java	/^      public GetInt_call(int num, org.apache.thrift.async.AsyncMethodCallback<GetInt_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetInt_call
+GetInt_call	gen-java/Echo.java	/^    public static class GetInt_call extends org.apache.thrift.async.TAsyncMethodCall {$/;"	c	class:Echo.AsyncClient
+GetInt_result	gen-java/Echo.java	/^    public GetInt_result($/;"	m	class:Echo.GetInt_result
+GetInt_result	gen-java/Echo.java	/^    public GetInt_result() {$/;"	m	class:Echo.GetInt_result
+GetInt_result	gen-java/Echo.java	/^    public GetInt_result(GetInt_result other) {$/;"	m	class:Echo.GetInt_result
+GetInt_result	gen-java/Echo.java	/^  public static class GetInt_result implements org.apache.thrift.TBase<GetInt_result, GetInt_result._Fields>, java.io.Serializable, Cloneable   {$/;"	c	class:Echo
+GetInt_result	gen-py/echo/Echo.py	/^class GetInt_result:$/;"	c
+GetString	gen-cpp/Echo.cpp	/^void EchoClient::GetString(std::string& _return, const std::string& str)$/;"	f	class:EchoClient
+GetString	gen-cpp/Echo.h	/^  void GetString(std::string& \/* _return *\/, const std::string& \/* str *\/) {$/;"	f	class:EchoNull
+GetString	gen-cpp/Echo.h	/^  void GetString(std::string& _return, const std::string& str) {$/;"	f	class:EchoMultiface
+GetString	gen-cpp/Echo_server.skeleton.cpp	/^  void GetString(std::string& _return, const std::string& str) {$/;"	f	class:EchoHandler
+GetString	gen-java/Echo.java	/^    private class GetString implements ProcessFunction {$/;"	c	class:Echo.Processor
+GetString	gen-java/Echo.java	/^    public String GetString(String str) throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+GetString	gen-java/Echo.java	/^    public String GetString(String str) throws org.apache.thrift.TException;$/;"	m	interface:Echo.Iface
+GetString	gen-java/Echo.java	/^    public void GetString(String str, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.GetString_call> resultHandler) throws org.apache.thrift.TException;$/;"	m	interface:Echo.AsyncIface
+GetString	gen-java/Echo.java	/^    public void GetString(String str, org.apache.thrift.async.AsyncMethodCallback<GetString_call> resultHandler) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient
+GetString	gen-py/echo/Echo.py	/^  def GetString(self, str):$/;"	m	class:Client
+GetString	gen-py/echo/Echo.py	/^  def GetString(self, str):$/;"	m	class:Iface
+GetString	server.cpp	/^    void GetString(string& _return, const string& str) {$/;"	f	class:EchoHandler
+GetString_args	gen-java/Echo.java	/^    public GetString_args($/;"	m	class:Echo.GetString_args
+GetString_args	gen-java/Echo.java	/^    public GetString_args() {$/;"	m	class:Echo.GetString_args
+GetString_args	gen-java/Echo.java	/^    public GetString_args(GetString_args other) {$/;"	m	class:Echo.GetString_args
+GetString_args	gen-java/Echo.java	/^  public static class GetString_args implements org.apache.thrift.TBase<GetString_args, GetString_args._Fields>, java.io.Serializable, Cloneable   {$/;"	c	class:Echo
+GetString_args	gen-py/echo/Echo.py	/^class GetString_args:$/;"	c
+GetString_call	gen-java/Echo.java	/^      public GetString_call(String str, org.apache.thrift.async.AsyncMethodCallback<GetString_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetString_call
+GetString_call	gen-java/Echo.java	/^    public static class GetString_call extends org.apache.thrift.async.TAsyncMethodCall {$/;"	c	class:Echo.AsyncClient
+GetString_result	gen-java/Echo.java	/^    public GetString_result($/;"	m	class:Echo.GetString_result
+GetString_result	gen-java/Echo.java	/^    public GetString_result() {$/;"	m	class:Echo.GetString_result
+GetString_result	gen-java/Echo.java	/^    public GetString_result(GetString_result other) {$/;"	m	class:Echo.GetString_result
+GetString_result	gen-java/Echo.java	/^  public static class GetString_result implements org.apache.thrift.TBase<GetString_result, GetString_result._Fields>, java.io.Serializable, Cloneable   {$/;"	c	class:Echo
+GetString_result	gen-py/echo/Echo.py	/^class GetString_result:$/;"	c
+ID	gen-java/Info.java	/^    ID((short)1, "id"),$/;"	e	enum:Info._Fields	file:
+ID_FIELD_DESC	gen-java/Info.java	/^  private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I64, (short)1);$/;"	f	class:Info	file:
+Iface	gen-java/Echo.java	/^  public interface Iface {$/;"	i	class:Echo
+Iface	gen-py/echo/Echo.py	/^class Iface:$/;"	c
+Info	gen-cpp/echo_types.h	/^  Info() : id(0), name(""), size(0) {$/;"	f	class:Info
+Info	gen-cpp/echo_types.h	/^class Info {$/;"	c
+Info	gen-java/Info.java	/^  public Info($/;"	m	class:Info
+Info	gen-java/Info.java	/^  public Info() {$/;"	m	class:Info
+Info	gen-java/Info.java	/^  public Info(Info other) {$/;"	m	class:Info
+Info	gen-java/Info.java	/^public class Info implements org.apache.thrift.TBase<Info, Info._Fields>, java.io.Serializable, Cloneable {$/;"	c
+LIB_DIR	Makefile	/^LIB_DIR = \/usr\/lib$/;"	m
+LOGGER	gen-java/Echo.java	/^    private static final Logger LOGGER = LoggerFactory.getLogger(Processor.class.getName());$/;"	f	class:Echo.Processor	file:
+NAME	gen-java/Info.java	/^    NAME((short)2, "name"),$/;"	e	enum:Info._Fields	file:
+NAME_FIELD_DESC	gen-java/Info.java	/^  private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)2);$/;"	f	class:Info	file:
+NUM	gen-java/Echo.java	/^      NUM((short)1, "num");$/;"	e	enum:Echo.GetIntAsync_args._Fields	file:
+NUM	gen-java/Echo.java	/^      NUM((short)1, "num");$/;"	e	enum:Echo.GetInt_args._Fields	file:
+NUM_FIELD_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TField NUM_FIELD_DESC = new org.apache.thrift.protocol.TField("num", org.apache.thrift.protocol.TType.I32, (short)1);$/;"	f	class:Echo.GetIntAsync_args	file:
+NUM_FIELD_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TField NUM_FIELD_DESC = new org.apache.thrift.protocol.TField("num", org.apache.thrift.protocol.TType.I32, (short)1);$/;"	f	class:Echo.GetInt_args	file:
+ProcessFunction	gen-java/Echo.java	/^    protected static interface ProcessFunction {$/;"	i	class:Echo.Processor
+Processor	gen-java/Echo.java	/^    public Processor(Iface iface)$/;"	m	class:Echo.Processor
+Processor	gen-java/Echo.java	/^  public static class Processor implements org.apache.thrift.TProcessor {$/;"	c	class:Echo
+Processor	gen-py/echo/Echo.py	/^class Processor(Iface, TProcessor):$/;"	c
+SIZE	gen-java/Info.java	/^    SIZE((short)3, "size");$/;"	e	enum:Info._Fields	file:
+SIZE_FIELD_DESC	gen-java/Info.java	/^  private static final org.apache.thrift.protocol.TField SIZE_FIELD_DESC = new org.apache.thrift.protocol.TField("size", org.apache.thrift.protocol.TType.I32, (short)3);$/;"	f	class:Info	file:
+STR	gen-java/Echo.java	/^      STR((short)1, "str");$/;"	e	enum:Echo.GetString_args._Fields	file:
+STRUCT_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("GetInfo_args");$/;"	f	class:Echo.GetInfo_args	file:
+STRUCT_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("GetInfo_result");$/;"	f	class:Echo.GetInfo_result	file:
+STRUCT_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("GetIntAsync_args");$/;"	f	class:Echo.GetIntAsync_args	file:
+STRUCT_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("GetIntAsync_result");$/;"	f	class:Echo.GetIntAsync_result	file:
+STRUCT_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("GetInt_args");$/;"	f	class:Echo.GetInt_args	file:
+STRUCT_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("GetInt_result");$/;"	f	class:Echo.GetInt_result	file:
+STRUCT_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("GetString_args");$/;"	f	class:Echo.GetString_args	file:
+STRUCT_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("GetString_result");$/;"	f	class:Echo.GetString_result	file:
+STRUCT_DESC	gen-java/Info.java	/^  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("Info");$/;"	f	class:Info	file:
+STR_FIELD_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TField STR_FIELD_DESC = new org.apache.thrift.protocol.TField("str", org.apache.thrift.protocol.TType.STRING, (short)1);$/;"	f	class:Echo.GetString_args	file:
+SUCCESS	gen-java/Echo.java	/^      SUCCESS((short)0, "success");$/;"	e	enum:Echo.GetInfo_result._Fields	file:
+SUCCESS	gen-java/Echo.java	/^      SUCCESS((short)0, "success");$/;"	e	enum:Echo.GetIntAsync_result._Fields	file:
+SUCCESS	gen-java/Echo.java	/^      SUCCESS((short)0, "success");$/;"	e	enum:Echo.GetInt_result._Fields	file:
+SUCCESS	gen-java/Echo.java	/^      SUCCESS((short)0, "success");$/;"	e	enum:Echo.GetString_result._Fields	file:
+SUCCESS_FIELD_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);$/;"	f	class:Echo.GetIntAsync_result	file:
+SUCCESS_FIELD_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);$/;"	f	class:Echo.GetInt_result	file:
+SUCCESS_FIELD_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRING, (short)0);$/;"	f	class:Echo.GetString_result	file:
+SUCCESS_FIELD_DESC	gen-java/Echo.java	/^    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);$/;"	f	class:Echo.GetInfo_result	file:
+THRIFT_DIR	Makefile	/^THRIFT_DIR = \/usr\/include\/thrift$/;"	m
+_Echo_GetInfo_presult__isset	gen-cpp/Echo.h	/^  _Echo_GetInfo_presult__isset() : success(false) {}$/;"	f	struct:_Echo_GetInfo_presult__isset
+_Echo_GetInfo_presult__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetInfo_presult__isset {$/;"	s
+_Echo_GetInfo_presult__isset	gen-cpp/Echo.h	/^} _Echo_GetInfo_presult__isset;$/;"	t	typeref:struct:_Echo_GetInfo_presult__isset
+_Echo_GetInfo_result__isset	gen-cpp/Echo.h	/^  _Echo_GetInfo_result__isset() : success(false) {}$/;"	f	struct:_Echo_GetInfo_result__isset
+_Echo_GetInfo_result__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetInfo_result__isset {$/;"	s
+_Echo_GetInfo_result__isset	gen-cpp/Echo.h	/^} _Echo_GetInfo_result__isset;$/;"	t	typeref:struct:_Echo_GetInfo_result__isset
+_Echo_GetIntAsync_args__isset	gen-cpp/Echo.h	/^  _Echo_GetIntAsync_args__isset() : num(false) {}$/;"	f	struct:_Echo_GetIntAsync_args__isset
+_Echo_GetIntAsync_args__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetIntAsync_args__isset {$/;"	s
+_Echo_GetIntAsync_args__isset	gen-cpp/Echo.h	/^} _Echo_GetIntAsync_args__isset;$/;"	t	typeref:struct:_Echo_GetIntAsync_args__isset
+_Echo_GetIntAsync_presult__isset	gen-cpp/Echo.h	/^  _Echo_GetIntAsync_presult__isset() : success(false) {}$/;"	f	struct:_Echo_GetIntAsync_presult__isset
+_Echo_GetIntAsync_presult__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetIntAsync_presult__isset {$/;"	s
+_Echo_GetIntAsync_presult__isset	gen-cpp/Echo.h	/^} _Echo_GetIntAsync_presult__isset;$/;"	t	typeref:struct:_Echo_GetIntAsync_presult__isset
+_Echo_GetIntAsync_result__isset	gen-cpp/Echo.h	/^  _Echo_GetIntAsync_result__isset() : success(false) {}$/;"	f	struct:_Echo_GetIntAsync_result__isset
+_Echo_GetIntAsync_result__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetIntAsync_result__isset {$/;"	s
+_Echo_GetIntAsync_result__isset	gen-cpp/Echo.h	/^} _Echo_GetIntAsync_result__isset;$/;"	t	typeref:struct:_Echo_GetIntAsync_result__isset
+_Echo_GetInt_args__isset	gen-cpp/Echo.h	/^  _Echo_GetInt_args__isset() : num(false) {}$/;"	f	struct:_Echo_GetInt_args__isset
+_Echo_GetInt_args__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetInt_args__isset {$/;"	s
+_Echo_GetInt_args__isset	gen-cpp/Echo.h	/^} _Echo_GetInt_args__isset;$/;"	t	typeref:struct:_Echo_GetInt_args__isset
+_Echo_GetInt_presult__isset	gen-cpp/Echo.h	/^  _Echo_GetInt_presult__isset() : success(false) {}$/;"	f	struct:_Echo_GetInt_presult__isset
+_Echo_GetInt_presult__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetInt_presult__isset {$/;"	s
+_Echo_GetInt_presult__isset	gen-cpp/Echo.h	/^} _Echo_GetInt_presult__isset;$/;"	t	typeref:struct:_Echo_GetInt_presult__isset
+_Echo_GetInt_result__isset	gen-cpp/Echo.h	/^  _Echo_GetInt_result__isset() : success(false) {}$/;"	f	struct:_Echo_GetInt_result__isset
+_Echo_GetInt_result__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetInt_result__isset {$/;"	s
+_Echo_GetInt_result__isset	gen-cpp/Echo.h	/^} _Echo_GetInt_result__isset;$/;"	t	typeref:struct:_Echo_GetInt_result__isset
+_Echo_GetString_args__isset	gen-cpp/Echo.h	/^  _Echo_GetString_args__isset() : str(false) {}$/;"	f	struct:_Echo_GetString_args__isset
+_Echo_GetString_args__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetString_args__isset {$/;"	s
+_Echo_GetString_args__isset	gen-cpp/Echo.h	/^} _Echo_GetString_args__isset;$/;"	t	typeref:struct:_Echo_GetString_args__isset
+_Echo_GetString_presult__isset	gen-cpp/Echo.h	/^  _Echo_GetString_presult__isset() : success(false) {}$/;"	f	struct:_Echo_GetString_presult__isset
+_Echo_GetString_presult__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetString_presult__isset {$/;"	s
+_Echo_GetString_presult__isset	gen-cpp/Echo.h	/^} _Echo_GetString_presult__isset;$/;"	t	typeref:struct:_Echo_GetString_presult__isset
+_Echo_GetString_result__isset	gen-cpp/Echo.h	/^  _Echo_GetString_result__isset() : success(false) {}$/;"	f	struct:_Echo_GetString_result__isset
+_Echo_GetString_result__isset	gen-cpp/Echo.h	/^typedef struct _Echo_GetString_result__isset {$/;"	s
+_Echo_GetString_result__isset	gen-cpp/Echo.h	/^} _Echo_GetString_result__isset;$/;"	t	typeref:struct:_Echo_GetString_result__isset
+_Fields	gen-java/Echo.java	/^      _Fields(short thriftId, String fieldName) {$/;"	m	class:Echo.GetInfo_args._Fields
+_Fields	gen-java/Echo.java	/^      _Fields(short thriftId, String fieldName) {$/;"	m	class:Echo.GetInfo_result._Fields
+_Fields	gen-java/Echo.java	/^      _Fields(short thriftId, String fieldName) {$/;"	m	class:Echo.GetIntAsync_args._Fields
+_Fields	gen-java/Echo.java	/^      _Fields(short thriftId, String fieldName) {$/;"	m	class:Echo.GetIntAsync_result._Fields
+_Fields	gen-java/Echo.java	/^      _Fields(short thriftId, String fieldName) {$/;"	m	class:Echo.GetInt_args._Fields
+_Fields	gen-java/Echo.java	/^      _Fields(short thriftId, String fieldName) {$/;"	m	class:Echo.GetInt_result._Fields
+_Fields	gen-java/Echo.java	/^      _Fields(short thriftId, String fieldName) {$/;"	m	class:Echo.GetString_args._Fields
+_Fields	gen-java/Echo.java	/^      _Fields(short thriftId, String fieldName) {$/;"	m	class:Echo.GetString_result._Fields
+_Fields	gen-java/Echo.java	/^    public enum _Fields implements org.apache.thrift.TFieldIdEnum {$/;"	g	class:Echo.GetInfo_args
+_Fields	gen-java/Echo.java	/^    public enum _Fields implements org.apache.thrift.TFieldIdEnum {$/;"	g	class:Echo.GetInfo_result
+_Fields	gen-java/Echo.java	/^    public enum _Fields implements org.apache.thrift.TFieldIdEnum {$/;"	g	class:Echo.GetIntAsync_args
+_Fields	gen-java/Echo.java	/^    public enum _Fields implements org.apache.thrift.TFieldIdEnum {$/;"	g	class:Echo.GetIntAsync_result
+_Fields	gen-java/Echo.java	/^    public enum _Fields implements org.apache.thrift.TFieldIdEnum {$/;"	g	class:Echo.GetInt_args
+_Fields	gen-java/Echo.java	/^    public enum _Fields implements org.apache.thrift.TFieldIdEnum {$/;"	g	class:Echo.GetInt_result
+_Fields	gen-java/Echo.java	/^    public enum _Fields implements org.apache.thrift.TFieldIdEnum {$/;"	g	class:Echo.GetString_args
+_Fields	gen-java/Echo.java	/^    public enum _Fields implements org.apache.thrift.TFieldIdEnum {$/;"	g	class:Echo.GetString_result
+_Fields	gen-java/Info.java	/^    _Fields(short thriftId, String fieldName) {$/;"	m	class:Info._Fields
+_Fields	gen-java/Info.java	/^  public enum _Fields implements org.apache.thrift.TFieldIdEnum {$/;"	g	class:Info
+_Info__isset	gen-cpp/echo_types.h	/^  _Info__isset() : id(false), name(false), size(false) {}$/;"	f	struct:_Info__isset
+_Info__isset	gen-cpp/echo_types.h	/^typedef struct _Info__isset {$/;"	s
+_Info__isset	gen-cpp/echo_types.h	/^} _Info__isset;$/;"	t	typeref:struct:_Info__isset
+__ID_ISSET_ID	gen-java/Info.java	/^  private static final int __ID_ISSET_ID = 0;$/;"	f	class:Info	file:
+__NUM_ISSET_ID	gen-java/Echo.java	/^    private static final int __NUM_ISSET_ID = 0;$/;"	f	class:Echo.GetIntAsync_args	file:
+__NUM_ISSET_ID	gen-java/Echo.java	/^    private static final int __NUM_ISSET_ID = 0;$/;"	f	class:Echo.GetInt_args	file:
+__SIZE_ISSET_ID	gen-java/Info.java	/^  private static final int __SIZE_ISSET_ID = 1;$/;"	f	class:Info	file:
+__SUCCESS_ISSET_ID	gen-java/Echo.java	/^    private static final int __SUCCESS_ISSET_ID = 0;$/;"	f	class:Echo.GetIntAsync_result	file:
+__SUCCESS_ISSET_ID	gen-java/Echo.java	/^    private static final int __SUCCESS_ISSET_ID = 0;$/;"	f	class:Echo.GetInt_result	file:
+__eq__	gen-py/echo/Echo.py	/^  def __eq__(self, other):$/;"	m	class:GetInt_args	file:
+__eq__	gen-py/echo/Echo.py	/^  def __eq__(self, other):$/;"	m	class:GetInt_result	file:
+__eq__	gen-py/echo/Echo.py	/^  def __eq__(self, other):$/;"	m	class:GetString_args	file:
+__eq__	gen-py/echo/Echo.py	/^  def __eq__(self, other):$/;"	m	class:GetString_result	file:
+__init__	gen-py/echo/Echo.py	/^  def __init__(self, handler):$/;"	m	class:Processor
+__init__	gen-py/echo/Echo.py	/^  def __init__(self, iprot, oprot=None):$/;"	m	class:Client
+__init__	gen-py/echo/Echo.py	/^  def __init__(self, num=None,):$/;"	m	class:GetInt_args
+__init__	gen-py/echo/Echo.py	/^  def __init__(self, str=None,):$/;"	m	class:GetString_args
+__init__	gen-py/echo/Echo.py	/^  def __init__(self, success=None,):$/;"	m	class:GetInt_result
+__init__	gen-py/echo/Echo.py	/^  def __init__(self, success=None,):$/;"	m	class:GetString_result
+__isset	gen-cpp/Echo.h	/^  _Echo_GetInfo_presult__isset __isset;$/;"	m	class:Echo_GetInfo_presult
+__isset	gen-cpp/Echo.h	/^  _Echo_GetInfo_result__isset __isset;$/;"	m	class:Echo_GetInfo_result
+__isset	gen-cpp/Echo.h	/^  _Echo_GetIntAsync_args__isset __isset;$/;"	m	class:Echo_GetIntAsync_args
+__isset	gen-cpp/Echo.h	/^  _Echo_GetIntAsync_presult__isset __isset;$/;"	m	class:Echo_GetIntAsync_presult
+__isset	gen-cpp/Echo.h	/^  _Echo_GetIntAsync_result__isset __isset;$/;"	m	class:Echo_GetIntAsync_result
+__isset	gen-cpp/Echo.h	/^  _Echo_GetInt_args__isset __isset;$/;"	m	class:Echo_GetInt_args
+__isset	gen-cpp/Echo.h	/^  _Echo_GetInt_presult__isset __isset;$/;"	m	class:Echo_GetInt_presult
+__isset	gen-cpp/Echo.h	/^  _Echo_GetInt_result__isset __isset;$/;"	m	class:Echo_GetInt_result
+__isset	gen-cpp/Echo.h	/^  _Echo_GetString_args__isset __isset;$/;"	m	class:Echo_GetString_args
+__isset	gen-cpp/Echo.h	/^  _Echo_GetString_presult__isset __isset;$/;"	m	class:Echo_GetString_presult
+__isset	gen-cpp/Echo.h	/^  _Echo_GetString_result__isset __isset;$/;"	m	class:Echo_GetString_result
+__isset	gen-cpp/echo_types.h	/^  _Info__isset __isset;$/;"	m	class:Info
+__isset_bit_vector	gen-java/Echo.java	/^    private BitSet __isset_bit_vector = new BitSet(1);$/;"	f	class:Echo.GetIntAsync_args	file:
+__isset_bit_vector	gen-java/Echo.java	/^    private BitSet __isset_bit_vector = new BitSet(1);$/;"	f	class:Echo.GetIntAsync_result	file:
+__isset_bit_vector	gen-java/Echo.java	/^    private BitSet __isset_bit_vector = new BitSet(1);$/;"	f	class:Echo.GetInt_args	file:
+__isset_bit_vector	gen-java/Echo.java	/^    private BitSet __isset_bit_vector = new BitSet(1);$/;"	f	class:Echo.GetInt_result	file:
+__isset_bit_vector	gen-java/Info.java	/^  private BitSet __isset_bit_vector = new BitSet(2);$/;"	f	class:Info	file:
+__ne__	gen-py/echo/Echo.py	/^  def __ne__(self, other):$/;"	m	class:GetInt_args	file:
+__ne__	gen-py/echo/Echo.py	/^  def __ne__(self, other):$/;"	m	class:GetInt_result	file:
+__ne__	gen-py/echo/Echo.py	/^  def __ne__(self, other):$/;"	m	class:GetString_args	file:
+__ne__	gen-py/echo/Echo.py	/^  def __ne__(self, other):$/;"	m	class:GetString_result	file:
+__repr__	gen-py/echo/Echo.py	/^  def __repr__(self):$/;"	m	class:GetInt_args	file:
+__repr__	gen-py/echo/Echo.py	/^  def __repr__(self):$/;"	m	class:GetInt_result	file:
+__repr__	gen-py/echo/Echo.py	/^  def __repr__(self):$/;"	m	class:GetString_args	file:
+__repr__	gen-py/echo/Echo.py	/^  def __repr__(self):$/;"	m	class:GetString_result	file:
+_fieldName	gen-java/Echo.java	/^      private final String _fieldName;$/;"	f	class:Echo.GetInfo_args._Fields	file:
+_fieldName	gen-java/Echo.java	/^      private final String _fieldName;$/;"	f	class:Echo.GetInfo_result._Fields	file:
+_fieldName	gen-java/Echo.java	/^      private final String _fieldName;$/;"	f	class:Echo.GetIntAsync_args._Fields	file:
+_fieldName	gen-java/Echo.java	/^      private final String _fieldName;$/;"	f	class:Echo.GetIntAsync_result._Fields	file:
+_fieldName	gen-java/Echo.java	/^      private final String _fieldName;$/;"	f	class:Echo.GetInt_args._Fields	file:
+_fieldName	gen-java/Echo.java	/^      private final String _fieldName;$/;"	f	class:Echo.GetInt_result._Fields	file:
+_fieldName	gen-java/Echo.java	/^      private final String _fieldName;$/;"	f	class:Echo.GetString_args._Fields	file:
+_fieldName	gen-java/Echo.java	/^      private final String _fieldName;$/;"	f	class:Echo.GetString_result._Fields	file:
+_fieldName	gen-java/Info.java	/^    private final String _fieldName;$/;"	f	class:Info._Fields	file:
+_thriftId	gen-java/Echo.java	/^      private final short _thriftId;$/;"	f	class:Echo.GetInfo_args._Fields	file:
+_thriftId	gen-java/Echo.java	/^      private final short _thriftId;$/;"	f	class:Echo.GetInfo_result._Fields	file:
+_thriftId	gen-java/Echo.java	/^      private final short _thriftId;$/;"	f	class:Echo.GetIntAsync_args._Fields	file:
+_thriftId	gen-java/Echo.java	/^      private final short _thriftId;$/;"	f	class:Echo.GetIntAsync_result._Fields	file:
+_thriftId	gen-java/Echo.java	/^      private final short _thriftId;$/;"	f	class:Echo.GetInt_args._Fields	file:
+_thriftId	gen-java/Echo.java	/^      private final short _thriftId;$/;"	f	class:Echo.GetInt_result._Fields	file:
+_thriftId	gen-java/Echo.java	/^      private final short _thriftId;$/;"	f	class:Echo.GetString_args._Fields	file:
+_thriftId	gen-java/Echo.java	/^      private final short _thriftId;$/;"	f	class:Echo.GetString_result._Fields	file:
+_thriftId	gen-java/Info.java	/^    private final short _thriftId;$/;"	f	class:Info._Fields	file:
+add	gen-cpp/Echo.h	/^  void add(boost::shared_ptr<EchoIf> iface) {$/;"	f	class:EchoMultiface
+ascii_fingerprint	gen-cpp/echo_types.cpp	/^const char* Info::ascii_fingerprint = "FA14FF3C297F6EBE2FC46FD846FF0E76";$/;"	m	class:Info	file:
+ascii_fingerprint	gen-cpp/echo_types.h	/^  static const char* ascii_fingerprint; \/\/ = "FA14FF3C297F6EBE2FC46FD846FF0E76";$/;"	m	class:Info
+binary_fingerprint	gen-cpp/echo_types.cpp	/^const uint8_t Info::binary_fingerprint[16] = {0xFA,0x14,0xFF,0x3C,0x29,0x7F,0x6E,0xBE,0x2F,0xC4,0x6F,0xD8,0x46,0xFF,0x0E,0x76};$/;"	m	class:Info	file:
+binary_fingerprint	gen-cpp/echo_types.h	/^  static const uint8_t binary_fingerprint[16]; \/\/ = {0xFA,0x14,0xFF,0x3C,0x29,0x7F,0x6E,0xBE,0x2F,0xC4,0x6F,0xD8,0x46,0xFF,0x0E,0x76};$/;"	m	class:Info
+byName	gen-java/Echo.java	/^      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();$/;"	f	class:Echo.GetInfo_args._Fields	file:
+byName	gen-java/Echo.java	/^      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();$/;"	f	class:Echo.GetInfo_result._Fields	file:
+byName	gen-java/Echo.java	/^      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();$/;"	f	class:Echo.GetIntAsync_args._Fields	file:
+byName	gen-java/Echo.java	/^      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();$/;"	f	class:Echo.GetIntAsync_result._Fields	file:
+byName	gen-java/Echo.java	/^      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();$/;"	f	class:Echo.GetInt_args._Fields	file:
+byName	gen-java/Echo.java	/^      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();$/;"	f	class:Echo.GetInt_result._Fields	file:
+byName	gen-java/Echo.java	/^      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();$/;"	f	class:Echo.GetString_args._Fields	file:
+byName	gen-java/Echo.java	/^      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();$/;"	f	class:Echo.GetString_result._Fields	file:
+byName	gen-java/Info.java	/^    private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();$/;"	f	class:Info._Fields	file:
+clear	gen-java/Echo.java	/^    public void clear() {$/;"	m	class:Echo.GetInfo_args
+clear	gen-java/Echo.java	/^    public void clear() {$/;"	m	class:Echo.GetInfo_result
+clear	gen-java/Echo.java	/^    public void clear() {$/;"	m	class:Echo.GetIntAsync_args
+clear	gen-java/Echo.java	/^    public void clear() {$/;"	m	class:Echo.GetIntAsync_result
+clear	gen-java/Echo.java	/^    public void clear() {$/;"	m	class:Echo.GetInt_args
+clear	gen-java/Echo.java	/^    public void clear() {$/;"	m	class:Echo.GetInt_result
+clear	gen-java/Echo.java	/^    public void clear() {$/;"	m	class:Echo.GetString_args
+clear	gen-java/Echo.java	/^    public void clear() {$/;"	m	class:Echo.GetString_result
+clear	gen-java/Info.java	/^  public void clear() {$/;"	m	class:Info
+clientManager	gen-java/Echo.java	/^      private org.apache.thrift.async.TAsyncClientManager clientManager;$/;"	f	class:Echo.AsyncClient.Factory	file:
+compareTo	gen-java/Echo.java	/^    public int compareTo(GetInfo_args other) {$/;"	m	class:Echo.GetInfo_args
+compareTo	gen-java/Echo.java	/^    public int compareTo(GetInfo_result other) {$/;"	m	class:Echo.GetInfo_result
+compareTo	gen-java/Echo.java	/^    public int compareTo(GetIntAsync_args other) {$/;"	m	class:Echo.GetIntAsync_args
+compareTo	gen-java/Echo.java	/^    public int compareTo(GetIntAsync_result other) {$/;"	m	class:Echo.GetIntAsync_result
+compareTo	gen-java/Echo.java	/^    public int compareTo(GetInt_args other) {$/;"	m	class:Echo.GetInt_args
+compareTo	gen-java/Echo.java	/^    public int compareTo(GetInt_result other) {$/;"	m	class:Echo.GetInt_result
+compareTo	gen-java/Echo.java	/^    public int compareTo(GetString_args other) {$/;"	m	class:Echo.GetString_args
+compareTo	gen-java/Echo.java	/^    public int compareTo(GetString_result other) {$/;"	m	class:Echo.GetString_result
+compareTo	gen-java/Info.java	/^  public int compareTo(Info other) {$/;"	m	class:Info
+deepCopy	gen-java/Echo.java	/^    public GetInfo_args deepCopy() {$/;"	m	class:Echo.GetInfo_args
+deepCopy	gen-java/Echo.java	/^    public GetInfo_result deepCopy() {$/;"	m	class:Echo.GetInfo_result
+deepCopy	gen-java/Echo.java	/^    public GetIntAsync_args deepCopy() {$/;"	m	class:Echo.GetIntAsync_args
+deepCopy	gen-java/Echo.java	/^    public GetIntAsync_result deepCopy() {$/;"	m	class:Echo.GetIntAsync_result
+deepCopy	gen-java/Echo.java	/^    public GetInt_args deepCopy() {$/;"	m	class:Echo.GetInt_args
+deepCopy	gen-java/Echo.java	/^    public GetInt_result deepCopy() {$/;"	m	class:Echo.GetInt_result
+deepCopy	gen-java/Echo.java	/^    public GetString_args deepCopy() {$/;"	m	class:Echo.GetString_args
+deepCopy	gen-java/Echo.java	/^    public GetString_result deepCopy() {$/;"	m	class:Echo.GetString_result
+deepCopy	gen-java/Info.java	/^  public Info deepCopy() {$/;"	m	class:Info
+echoConstants	gen-cpp/echo_constants.cpp	/^echoConstants::echoConstants() {$/;"	f	class:echoConstants
+echoConstants	gen-cpp/echo_constants.h	/^class echoConstants {$/;"	c
+echo_CONSTANTS_H	gen-cpp/echo_constants.h	7;"	d
+echo_TYPES_H	gen-cpp/echo_types.h	7;"	d
+equals	gen-java/Echo.java	/^    public boolean equals(GetInfo_args that) {$/;"	m	class:Echo.GetInfo_args
+equals	gen-java/Echo.java	/^    public boolean equals(GetInfo_result that) {$/;"	m	class:Echo.GetInfo_result
+equals	gen-java/Echo.java	/^    public boolean equals(GetIntAsync_args that) {$/;"	m	class:Echo.GetIntAsync_args
+equals	gen-java/Echo.java	/^    public boolean equals(GetIntAsync_result that) {$/;"	m	class:Echo.GetIntAsync_result
+equals	gen-java/Echo.java	/^    public boolean equals(GetInt_args that) {$/;"	m	class:Echo.GetInt_args
+equals	gen-java/Echo.java	/^    public boolean equals(GetInt_result that) {$/;"	m	class:Echo.GetInt_result
+equals	gen-java/Echo.java	/^    public boolean equals(GetString_args that) {$/;"	m	class:Echo.GetString_args
+equals	gen-java/Echo.java	/^    public boolean equals(GetString_result that) {$/;"	m	class:Echo.GetString_result
+equals	gen-java/Echo.java	/^    public boolean equals(Object that) {$/;"	m	class:Echo.GetInfo_args
+equals	gen-java/Echo.java	/^    public boolean equals(Object that) {$/;"	m	class:Echo.GetInfo_result
+equals	gen-java/Echo.java	/^    public boolean equals(Object that) {$/;"	m	class:Echo.GetIntAsync_args
+equals	gen-java/Echo.java	/^    public boolean equals(Object that) {$/;"	m	class:Echo.GetIntAsync_result
+equals	gen-java/Echo.java	/^    public boolean equals(Object that) {$/;"	m	class:Echo.GetInt_args
+equals	gen-java/Echo.java	/^    public boolean equals(Object that) {$/;"	m	class:Echo.GetInt_result
+equals	gen-java/Echo.java	/^    public boolean equals(Object that) {$/;"	m	class:Echo.GetString_args
+equals	gen-java/Echo.java	/^    public boolean equals(Object that) {$/;"	m	class:Echo.GetString_result
+equals	gen-java/Info.java	/^  public boolean equals(Info that) {$/;"	m	class:Info
+equals	gen-java/Info.java	/^  public boolean equals(Object that) {$/;"	m	class:Info
+fieldForId	gen-java/Echo.java	/^    public _Fields fieldForId(int fieldId) {$/;"	m	class:Echo.GetInfo_args
+fieldForId	gen-java/Echo.java	/^    public _Fields fieldForId(int fieldId) {$/;"	m	class:Echo.GetInfo_result
+fieldForId	gen-java/Echo.java	/^    public _Fields fieldForId(int fieldId) {$/;"	m	class:Echo.GetIntAsync_args
+fieldForId	gen-java/Echo.java	/^    public _Fields fieldForId(int fieldId) {$/;"	m	class:Echo.GetIntAsync_result
+fieldForId	gen-java/Echo.java	/^    public _Fields fieldForId(int fieldId) {$/;"	m	class:Echo.GetInt_args
+fieldForId	gen-java/Echo.java	/^    public _Fields fieldForId(int fieldId) {$/;"	m	class:Echo.GetInt_result
+fieldForId	gen-java/Echo.java	/^    public _Fields fieldForId(int fieldId) {$/;"	m	class:Echo.GetString_args
+fieldForId	gen-java/Echo.java	/^    public _Fields fieldForId(int fieldId) {$/;"	m	class:Echo.GetString_result
+fieldForId	gen-java/Info.java	/^  public _Fields fieldForId(int fieldId) {$/;"	m	class:Info
+findByName	gen-java/Echo.java	/^      public static _Fields findByName(String name) {$/;"	m	class:Echo.GetInfo_args._Fields
+findByName	gen-java/Echo.java	/^      public static _Fields findByName(String name) {$/;"	m	class:Echo.GetInfo_result._Fields
+findByName	gen-java/Echo.java	/^      public static _Fields findByName(String name) {$/;"	m	class:Echo.GetIntAsync_args._Fields
+findByName	gen-java/Echo.java	/^      public static _Fields findByName(String name) {$/;"	m	class:Echo.GetIntAsync_result._Fields
+findByName	gen-java/Echo.java	/^      public static _Fields findByName(String name) {$/;"	m	class:Echo.GetInt_args._Fields
+findByName	gen-java/Echo.java	/^      public static _Fields findByName(String name) {$/;"	m	class:Echo.GetInt_result._Fields
+findByName	gen-java/Echo.java	/^      public static _Fields findByName(String name) {$/;"	m	class:Echo.GetString_args._Fields
+findByName	gen-java/Echo.java	/^      public static _Fields findByName(String name) {$/;"	m	class:Echo.GetString_result._Fields
+findByName	gen-java/Info.java	/^    public static _Fields findByName(String name) {$/;"	m	class:Info._Fields
+findByThriftId	gen-java/Echo.java	/^      public static _Fields findByThriftId(int fieldId) {$/;"	m	class:Echo.GetInfo_args._Fields
+findByThriftId	gen-java/Echo.java	/^      public static _Fields findByThriftId(int fieldId) {$/;"	m	class:Echo.GetInfo_result._Fields
+findByThriftId	gen-java/Echo.java	/^      public static _Fields findByThriftId(int fieldId) {$/;"	m	class:Echo.GetIntAsync_args._Fields
+findByThriftId	gen-java/Echo.java	/^      public static _Fields findByThriftId(int fieldId) {$/;"	m	class:Echo.GetIntAsync_result._Fields
+findByThriftId	gen-java/Echo.java	/^      public static _Fields findByThriftId(int fieldId) {$/;"	m	class:Echo.GetInt_args._Fields
+findByThriftId	gen-java/Echo.java	/^      public static _Fields findByThriftId(int fieldId) {$/;"	m	class:Echo.GetInt_result._Fields
+findByThriftId	gen-java/Echo.java	/^      public static _Fields findByThriftId(int fieldId) {$/;"	m	class:Echo.GetString_args._Fields
+findByThriftId	gen-java/Echo.java	/^      public static _Fields findByThriftId(int fieldId) {$/;"	m	class:Echo.GetString_result._Fields
+findByThriftId	gen-java/Info.java	/^    public static _Fields findByThriftId(int fieldId) {$/;"	m	class:Info._Fields
+findByThriftIdOrThrow	gen-java/Echo.java	/^      public static _Fields findByThriftIdOrThrow(int fieldId) {$/;"	m	class:Echo.GetInfo_args._Fields
+findByThriftIdOrThrow	gen-java/Echo.java	/^      public static _Fields findByThriftIdOrThrow(int fieldId) {$/;"	m	class:Echo.GetInfo_result._Fields
+findByThriftIdOrThrow	gen-java/Echo.java	/^      public static _Fields findByThriftIdOrThrow(int fieldId) {$/;"	m	class:Echo.GetIntAsync_args._Fields
+findByThriftIdOrThrow	gen-java/Echo.java	/^      public static _Fields findByThriftIdOrThrow(int fieldId) {$/;"	m	class:Echo.GetIntAsync_result._Fields
+findByThriftIdOrThrow	gen-java/Echo.java	/^      public static _Fields findByThriftIdOrThrow(int fieldId) {$/;"	m	class:Echo.GetInt_args._Fields
+findByThriftIdOrThrow	gen-java/Echo.java	/^      public static _Fields findByThriftIdOrThrow(int fieldId) {$/;"	m	class:Echo.GetInt_result._Fields
+findByThriftIdOrThrow	gen-java/Echo.java	/^      public static _Fields findByThriftIdOrThrow(int fieldId) {$/;"	m	class:Echo.GetString_args._Fields
+findByThriftIdOrThrow	gen-java/Echo.java	/^      public static _Fields findByThriftIdOrThrow(int fieldId) {$/;"	m	class:Echo.GetString_result._Fields
+findByThriftIdOrThrow	gen-java/Info.java	/^    public static _Fields findByThriftIdOrThrow(int fieldId) {$/;"	m	class:Info._Fields
+g_echo_constants	gen-cpp/echo_constants.cpp	/^const echoConstants g_echo_constants;$/;"	v
+getAsyncClient	gen-java/Echo.java	/^      public AsyncClient getAsyncClient(org.apache.thrift.transport.TNonblockingTransport transport) {$/;"	m	class:Echo.AsyncClient.Factory
+getClient	gen-java/Echo.java	/^      public Client getClient(org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) {$/;"	m	class:Echo.Client.Factory
+getClient	gen-java/Echo.java	/^      public Client getClient(org.apache.thrift.protocol.TProtocol prot) {$/;"	m	class:Echo.Client.Factory
+getFieldName	gen-java/Echo.java	/^      public String getFieldName() {$/;"	m	class:Echo.GetInfo_args._Fields
+getFieldName	gen-java/Echo.java	/^      public String getFieldName() {$/;"	m	class:Echo.GetInfo_result._Fields
+getFieldName	gen-java/Echo.java	/^      public String getFieldName() {$/;"	m	class:Echo.GetIntAsync_args._Fields
+getFieldName	gen-java/Echo.java	/^      public String getFieldName() {$/;"	m	class:Echo.GetIntAsync_result._Fields
+getFieldName	gen-java/Echo.java	/^      public String getFieldName() {$/;"	m	class:Echo.GetInt_args._Fields
+getFieldName	gen-java/Echo.java	/^      public String getFieldName() {$/;"	m	class:Echo.GetInt_result._Fields
+getFieldName	gen-java/Echo.java	/^      public String getFieldName() {$/;"	m	class:Echo.GetString_args._Fields
+getFieldName	gen-java/Echo.java	/^      public String getFieldName() {$/;"	m	class:Echo.GetString_result._Fields
+getFieldName	gen-java/Info.java	/^    public String getFieldName() {$/;"	m	class:Info._Fields
+getFieldValue	gen-java/Echo.java	/^    public Object getFieldValue(_Fields field) {$/;"	m	class:Echo.GetInfo_args
+getFieldValue	gen-java/Echo.java	/^    public Object getFieldValue(_Fields field) {$/;"	m	class:Echo.GetInfo_result
+getFieldValue	gen-java/Echo.java	/^    public Object getFieldValue(_Fields field) {$/;"	m	class:Echo.GetIntAsync_args
+getFieldValue	gen-java/Echo.java	/^    public Object getFieldValue(_Fields field) {$/;"	m	class:Echo.GetIntAsync_result
+getFieldValue	gen-java/Echo.java	/^    public Object getFieldValue(_Fields field) {$/;"	m	class:Echo.GetInt_args
+getFieldValue	gen-java/Echo.java	/^    public Object getFieldValue(_Fields field) {$/;"	m	class:Echo.GetInt_result
+getFieldValue	gen-java/Echo.java	/^    public Object getFieldValue(_Fields field) {$/;"	m	class:Echo.GetString_args
+getFieldValue	gen-java/Echo.java	/^    public Object getFieldValue(_Fields field) {$/;"	m	class:Echo.GetString_result
+getFieldValue	gen-java/Info.java	/^  public Object getFieldValue(_Fields field) {$/;"	m	class:Info
+getId	gen-java/Info.java	/^  public long getId() {$/;"	m	class:Info
+getInputProtocol	gen-cpp/Echo.h	/^  boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getInputProtocol() {$/;"	f	class:EchoClient
+getInputProtocol	gen-java/Echo.java	/^    public org.apache.thrift.protocol.TProtocol getInputProtocol()$/;"	m	class:Echo.Client
+getName	gen-java/Info.java	/^  public String getName() {$/;"	m	class:Info
+getNum	gen-java/Echo.java	/^    public int getNum() {$/;"	m	class:Echo.GetIntAsync_args
+getNum	gen-java/Echo.java	/^    public int getNum() {$/;"	m	class:Echo.GetInt_args
+getOutputProtocol	gen-cpp/Echo.h	/^  boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {$/;"	f	class:EchoClient
+getOutputProtocol	gen-java/Echo.java	/^    public org.apache.thrift.protocol.TProtocol getOutputProtocol()$/;"	m	class:Echo.Client
+getResult	gen-java/Echo.java	/^      public Info getResult() throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetInfo_call
+getResult	gen-java/Echo.java	/^      public String getResult() throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetString_call
+getResult	gen-java/Echo.java	/^      public int getResult() throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetIntAsync_call
+getResult	gen-java/Echo.java	/^      public int getResult() throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetInt_call
+getSize	gen-java/Info.java	/^  public int getSize() {$/;"	m	class:Info
+getStr	gen-java/Echo.java	/^    public String getStr() {$/;"	m	class:Echo.GetString_args
+getSuccess	gen-java/Echo.java	/^    public Info getSuccess() {$/;"	m	class:Echo.GetInfo_result
+getSuccess	gen-java/Echo.java	/^    public String getSuccess() {$/;"	m	class:Echo.GetString_result
+getSuccess	gen-java/Echo.java	/^    public int getSuccess() {$/;"	m	class:Echo.GetIntAsync_result
+getSuccess	gen-java/Echo.java	/^    public int getSuccess() {$/;"	m	class:Echo.GetInt_result
+getThriftFieldId	gen-java/Echo.java	/^      public short getThriftFieldId() {$/;"	m	class:Echo.GetInfo_args._Fields
+getThriftFieldId	gen-java/Echo.java	/^      public short getThriftFieldId() {$/;"	m	class:Echo.GetInfo_result._Fields
+getThriftFieldId	gen-java/Echo.java	/^      public short getThriftFieldId() {$/;"	m	class:Echo.GetIntAsync_args._Fields
+getThriftFieldId	gen-java/Echo.java	/^      public short getThriftFieldId() {$/;"	m	class:Echo.GetIntAsync_result._Fields
+getThriftFieldId	gen-java/Echo.java	/^      public short getThriftFieldId() {$/;"	m	class:Echo.GetInt_args._Fields
+getThriftFieldId	gen-java/Echo.java	/^      public short getThriftFieldId() {$/;"	m	class:Echo.GetInt_result._Fields
+getThriftFieldId	gen-java/Echo.java	/^      public short getThriftFieldId() {$/;"	m	class:Echo.GetString_args._Fields
+getThriftFieldId	gen-java/Echo.java	/^      public short getThriftFieldId() {$/;"	m	class:Echo.GetString_result._Fields
+getThriftFieldId	gen-java/Info.java	/^    public short getThriftFieldId() {$/;"	m	class:Info._Fields
+hashCode	gen-java/Echo.java	/^    public int hashCode() {$/;"	m	class:Echo.GetInfo_args
+hashCode	gen-java/Echo.java	/^    public int hashCode() {$/;"	m	class:Echo.GetInfo_result
+hashCode	gen-java/Echo.java	/^    public int hashCode() {$/;"	m	class:Echo.GetIntAsync_args
+hashCode	gen-java/Echo.java	/^    public int hashCode() {$/;"	m	class:Echo.GetIntAsync_result
+hashCode	gen-java/Echo.java	/^    public int hashCode() {$/;"	m	class:Echo.GetInt_args
+hashCode	gen-java/Echo.java	/^    public int hashCode() {$/;"	m	class:Echo.GetInt_result
+hashCode	gen-java/Echo.java	/^    public int hashCode() {$/;"	m	class:Echo.GetString_args
+hashCode	gen-java/Echo.java	/^    public int hashCode() {$/;"	m	class:Echo.GetString_result
+hashCode	gen-java/Info.java	/^  public int hashCode() {$/;"	m	class:Info
+id	gen-cpp/echo_types.h	/^  bool id;$/;"	m	struct:_Info__isset
+id	gen-cpp/echo_types.h	/^  int64_t id;$/;"	m	class:Info
+id	gen-java/Info.java	/^  public long id;$/;"	f	class:Info
+iface_	gen-cpp/Echo.h	/^  boost::shared_ptr<EchoIf> iface_;$/;"	m	class:EchoProcessor
+iface_	gen-java/Echo.java	/^    private Iface iface_;$/;"	f	class:Echo.Processor	file:
+ifaces_	gen-cpp/Echo.h	/^  std::vector<boost::shared_ptr<EchoIf> > ifaces_;$/;"	m	class:EchoMultiface
+iprot_	gen-cpp/Echo.h	/^  ::apache::thrift::protocol::TProtocol* iprot_;$/;"	m	class:EchoClient
+iprot_	gen-java/Echo.java	/^    protected org.apache.thrift.protocol.TProtocol iprot_;$/;"	f	class:Echo.Client
+isSet	gen-java/Echo.java	/^    public boolean isSet(_Fields field) {$/;"	m	class:Echo.GetInfo_args
+isSet	gen-java/Echo.java	/^    public boolean isSet(_Fields field) {$/;"	m	class:Echo.GetInfo_result
+isSet	gen-java/Echo.java	/^    public boolean isSet(_Fields field) {$/;"	m	class:Echo.GetIntAsync_args
+isSet	gen-java/Echo.java	/^    public boolean isSet(_Fields field) {$/;"	m	class:Echo.GetIntAsync_result
+isSet	gen-java/Echo.java	/^    public boolean isSet(_Fields field) {$/;"	m	class:Echo.GetInt_args
+isSet	gen-java/Echo.java	/^    public boolean isSet(_Fields field) {$/;"	m	class:Echo.GetInt_result
+isSet	gen-java/Echo.java	/^    public boolean isSet(_Fields field) {$/;"	m	class:Echo.GetString_args
+isSet	gen-java/Echo.java	/^    public boolean isSet(_Fields field) {$/;"	m	class:Echo.GetString_result
+isSet	gen-java/Info.java	/^  public boolean isSet(_Fields field) {$/;"	m	class:Info
+isSetId	gen-java/Info.java	/^  public boolean isSetId() {$/;"	m	class:Info
+isSetName	gen-java/Info.java	/^  public boolean isSetName() {$/;"	m	class:Info
+isSetNum	gen-java/Echo.java	/^    public boolean isSetNum() {$/;"	m	class:Echo.GetIntAsync_args
+isSetNum	gen-java/Echo.java	/^    public boolean isSetNum() {$/;"	m	class:Echo.GetInt_args
+isSetSize	gen-java/Info.java	/^  public boolean isSetSize() {$/;"	m	class:Info
+isSetStr	gen-java/Echo.java	/^    public boolean isSetStr() {$/;"	m	class:Echo.GetString_args
+isSetSuccess	gen-java/Echo.java	/^    public boolean isSetSuccess() {$/;"	m	class:Echo.GetInfo_result
+isSetSuccess	gen-java/Echo.java	/^    public boolean isSetSuccess() {$/;"	m	class:Echo.GetIntAsync_result
+isSetSuccess	gen-java/Echo.java	/^    public boolean isSetSuccess() {$/;"	m	class:Echo.GetInt_result
+isSetSuccess	gen-java/Echo.java	/^    public boolean isSetSuccess() {$/;"	m	class:Echo.GetString_result
+main	client.cpp	/^int main(int argc, char** argv) {$/;"	f
+main	gen-cpp/Echo_server.skeleton.cpp	/^int main(int argc, char **argv) {$/;"	f
+main	server.cpp	/^int main() {$/;"	f
+metaDataMap	gen-java/Echo.java	/^    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;$/;"	f	class:Echo.GetInfo_args
+metaDataMap	gen-java/Echo.java	/^    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;$/;"	f	class:Echo.GetInfo_result
+metaDataMap	gen-java/Echo.java	/^    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;$/;"	f	class:Echo.GetIntAsync_args
+metaDataMap	gen-java/Echo.java	/^    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;$/;"	f	class:Echo.GetIntAsync_result
+metaDataMap	gen-java/Echo.java	/^    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;$/;"	f	class:Echo.GetInt_args
+metaDataMap	gen-java/Echo.java	/^    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;$/;"	f	class:Echo.GetInt_result
+metaDataMap	gen-java/Echo.java	/^    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;$/;"	f	class:Echo.GetString_args
+metaDataMap	gen-java/Echo.java	/^    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;$/;"	f	class:Echo.GetString_result
+metaDataMap	gen-java/Info.java	/^  public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;$/;"	f	class:Info
+name	gen-cpp/echo_types.h	/^  bool name;$/;"	m	struct:_Info__isset
+name	gen-cpp/echo_types.h	/^  std::string name;$/;"	m	class:Info
+name	gen-java/Info.java	/^  public String name;$/;"	f	class:Info
+num	gen-cpp/Echo.h	/^  bool num;$/;"	m	struct:_Echo_GetIntAsync_args__isset
+num	gen-cpp/Echo.h	/^  bool num;$/;"	m	struct:_Echo_GetInt_args__isset
+num	gen-cpp/Echo.h	/^  const int32_t* num;$/;"	m	class:Echo_GetIntAsync_pargs
+num	gen-cpp/Echo.h	/^  const int32_t* num;$/;"	m	class:Echo_GetInt_pargs
+num	gen-cpp/Echo.h	/^  int32_t num;$/;"	m	class:Echo_GetIntAsync_args
+num	gen-cpp/Echo.h	/^  int32_t num;$/;"	m	class:Echo_GetInt_args
+num	gen-java/Echo.java	/^      private int num;$/;"	f	class:Echo.AsyncClient.GetIntAsync_call	file:
+num	gen-java/Echo.java	/^      private int num;$/;"	f	class:Echo.AsyncClient.GetInt_call	file:
+num	gen-java/Echo.java	/^    public int num;$/;"	f	class:Echo.GetIntAsync_args
+num	gen-java/Echo.java	/^    public int num;$/;"	f	class:Echo.GetInt_args
+operator !=	gen-cpp/Echo.h	/^  bool operator != (const Echo_GetInfo_args &rhs) const {$/;"	f	class:Echo_GetInfo_args
+operator !=	gen-cpp/Echo.h	/^  bool operator != (const Echo_GetInfo_result &rhs) const {$/;"	f	class:Echo_GetInfo_result
+operator !=	gen-cpp/Echo.h	/^  bool operator != (const Echo_GetIntAsync_args &rhs) const {$/;"	f	class:Echo_GetIntAsync_args
+operator !=	gen-cpp/Echo.h	/^  bool operator != (const Echo_GetIntAsync_result &rhs) const {$/;"	f	class:Echo_GetIntAsync_result
+operator !=	gen-cpp/Echo.h	/^  bool operator != (const Echo_GetInt_args &rhs) const {$/;"	f	class:Echo_GetInt_args
+operator !=	gen-cpp/Echo.h	/^  bool operator != (const Echo_GetInt_result &rhs) const {$/;"	f	class:Echo_GetInt_result
+operator !=	gen-cpp/Echo.h	/^  bool operator != (const Echo_GetString_args &rhs) const {$/;"	f	class:Echo_GetString_args
+operator !=	gen-cpp/Echo.h	/^  bool operator != (const Echo_GetString_result &rhs) const {$/;"	f	class:Echo_GetString_result
+operator !=	gen-cpp/echo_types.h	/^  bool operator != (const Info &rhs) const {$/;"	f	class:Info
+operator ==	gen-cpp/Echo.h	/^  bool operator == (const Echo_GetInfo_args & \/* rhs *\/) const$/;"	f	class:Echo_GetInfo_args
+operator ==	gen-cpp/Echo.h	/^  bool operator == (const Echo_GetInfo_result & rhs) const$/;"	f	class:Echo_GetInfo_result
+operator ==	gen-cpp/Echo.h	/^  bool operator == (const Echo_GetIntAsync_args & rhs) const$/;"	f	class:Echo_GetIntAsync_args
+operator ==	gen-cpp/Echo.h	/^  bool operator == (const Echo_GetIntAsync_result & rhs) const$/;"	f	class:Echo_GetIntAsync_result
+operator ==	gen-cpp/Echo.h	/^  bool operator == (const Echo_GetInt_args & rhs) const$/;"	f	class:Echo_GetInt_args
+operator ==	gen-cpp/Echo.h	/^  bool operator == (const Echo_GetInt_result & rhs) const$/;"	f	class:Echo_GetInt_result
+operator ==	gen-cpp/Echo.h	/^  bool operator == (const Echo_GetString_args & rhs) const$/;"	f	class:Echo_GetString_args
+operator ==	gen-cpp/Echo.h	/^  bool operator == (const Echo_GetString_result & rhs) const$/;"	f	class:Echo_GetString_result
+operator ==	gen-cpp/echo_types.h	/^  bool operator == (const Info & rhs) const$/;"	f	class:Info
+oprot_	gen-cpp/Echo.h	/^  ::apache::thrift::protocol::TProtocol* oprot_;$/;"	m	class:EchoClient
+oprot_	gen-java/Echo.java	/^    protected org.apache.thrift.protocol.TProtocol oprot_;$/;"	f	class:Echo.Client
+piprot_	gen-cpp/Echo.h	/^  boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;$/;"	m	class:EchoClient
+poprot_	gen-cpp/Echo.h	/^  boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;$/;"	m	class:EchoClient
+process	gen-cpp/Echo.cpp	/^bool EchoProcessor::process(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot, boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot, void* callContext) {$/;"	f	class:EchoProcessor
+process	gen-java/Echo.java	/^      public void process(int seqid, org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException$/;"	m	class:Echo.Processor.GetInfo
+process	gen-java/Echo.java	/^      public void process(int seqid, org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException$/;"	m	class:Echo.Processor.GetInt
+process	gen-java/Echo.java	/^      public void process(int seqid, org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException$/;"	m	class:Echo.Processor.GetIntAsync
+process	gen-java/Echo.java	/^      public void process(int seqid, org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException$/;"	m	class:Echo.Processor.GetString
+process	gen-java/Echo.java	/^      public void process(int seqid, org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException;$/;"	m	interface:Echo.Processor.ProcessFunction
+process	gen-java/Echo.java	/^    public boolean process(org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException$/;"	m	class:Echo.Processor
+process	gen-py/echo/Echo.py	/^  def process(self, iprot, oprot):$/;"	m	class:Processor
+processMap_	gen-cpp/Echo.h	/^  std::map<std::string, void (EchoProcessor::*)(int32_t, ::apache::thrift::protocol::TProtocol*, ::apache::thrift::protocol::TProtocol*, void*)> processMap_;$/;"	m	class:EchoProcessor
+processMap_	gen-java/Echo.java	/^    protected final HashMap<String,ProcessFunction> processMap_ = new HashMap<String,ProcessFunction>();$/;"	f	class:Echo.Processor
+process_GetInfo	gen-cpp/Echo.cpp	/^void EchoProcessor::process_GetInfo(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)$/;"	f	class:EchoProcessor
+process_GetInt	gen-cpp/Echo.cpp	/^void EchoProcessor::process_GetInt(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)$/;"	f	class:EchoProcessor
+process_GetInt	gen-py/echo/Echo.py	/^  def process_GetInt(self, seqid, iprot, oprot):$/;"	m	class:Processor
+process_GetIntAsync	gen-cpp/Echo.cpp	/^void EchoProcessor::process_GetIntAsync(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)$/;"	f	class:EchoProcessor
+process_GetString	gen-cpp/Echo.cpp	/^void EchoProcessor::process_GetString(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)$/;"	f	class:EchoProcessor
+process_GetString	gen-py/echo/Echo.py	/^  def process_GetString(self, seqid, iprot, oprot):$/;"	m	class:Processor
+process_fn	gen-cpp/Echo.cpp	/^bool EchoProcessor::process_fn(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, std::string& fname, int32_t seqid, void* callContext) {$/;"	f	class:EchoProcessor
+protocolFactory	gen-java/Echo.java	/^      private org.apache.thrift.protocol.TProtocolFactory protocolFactory;$/;"	f	class:Echo.AsyncClient.Factory	file:
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInfo_args::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetInfo_args
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInfo_presult::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetInfo_presult
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInfo_result::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetInfo_result
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetIntAsync_args::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetIntAsync_args
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetIntAsync_presult::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetIntAsync_presult
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetIntAsync_result::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetIntAsync_result
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInt_args::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetInt_args
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInt_presult::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetInt_presult
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInt_result::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetInt_result
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetString_args::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetString_args
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetString_presult::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetString_presult
+read	gen-cpp/Echo.cpp	/^uint32_t Echo_GetString_result::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Echo_GetString_result
+read	gen-cpp/echo_types.cpp	/^uint32_t Info::read(::apache::thrift::protocol::TProtocol* iprot) {$/;"	f	class:Info
+read	gen-java/Echo.java	/^    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInfo_args
+read	gen-java/Echo.java	/^    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInfo_result
+read	gen-java/Echo.java	/^    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetIntAsync_args
+read	gen-java/Echo.java	/^    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetIntAsync_result
+read	gen-java/Echo.java	/^    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInt_args
+read	gen-java/Echo.java	/^    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInt_result
+read	gen-java/Echo.java	/^    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetString_args
+read	gen-java/Echo.java	/^    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetString_result
+read	gen-java/Info.java	/^  public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {$/;"	m	class:Info
+read	gen-py/echo/Echo.py	/^  def read(self, iprot):$/;"	m	class:GetInt_args
+read	gen-py/echo/Echo.py	/^  def read(self, iprot):$/;"	m	class:GetInt_result
+read	gen-py/echo/Echo.py	/^  def read(self, iprot):$/;"	m	class:GetString_args
+read	gen-py/echo/Echo.py	/^  def read(self, iprot):$/;"	m	class:GetString_result
+readObject	gen-java/Echo.java	/^    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {$/;"	m	class:Echo.GetInfo_args	file:
+readObject	gen-java/Echo.java	/^    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {$/;"	m	class:Echo.GetInfo_result	file:
+readObject	gen-java/Echo.java	/^    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {$/;"	m	class:Echo.GetIntAsync_args	file:
+readObject	gen-java/Echo.java	/^    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {$/;"	m	class:Echo.GetIntAsync_result	file:
+readObject	gen-java/Echo.java	/^    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {$/;"	m	class:Echo.GetInt_args	file:
+readObject	gen-java/Echo.java	/^    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {$/;"	m	class:Echo.GetInt_result	file:
+readObject	gen-java/Echo.java	/^    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {$/;"	m	class:Echo.GetString_args	file:
+readObject	gen-java/Echo.java	/^    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {$/;"	m	class:Echo.GetString_result	file:
+readObject	gen-java/Info.java	/^  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {$/;"	m	class:Info	file:
+recv_GetInfo	gen-cpp/Echo.cpp	/^void EchoClient::recv_GetInfo(Info& _return)$/;"	f	class:EchoClient
+recv_GetInfo	gen-java/Echo.java	/^    public Info recv_GetInfo() throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+recv_GetInt	gen-cpp/Echo.cpp	/^int32_t EchoClient::recv_GetInt()$/;"	f	class:EchoClient
+recv_GetInt	gen-java/Echo.java	/^    public int recv_GetInt() throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+recv_GetInt	gen-py/echo/Echo.py	/^  def recv_GetInt(self, ):$/;"	m	class:Client
+recv_GetIntAsync	gen-cpp/Echo.cpp	/^int32_t EchoClient::recv_GetIntAsync()$/;"	f	class:EchoClient
+recv_GetIntAsync	gen-java/Echo.java	/^    public int recv_GetIntAsync() throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+recv_GetString	gen-cpp/Echo.cpp	/^void EchoClient::recv_GetString(std::string& _return)$/;"	f	class:EchoClient
+recv_GetString	gen-java/Echo.java	/^    public String recv_GetString() throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+recv_GetString	gen-py/echo/Echo.py	/^  def recv_GetString(self, ):$/;"	m	class:Client
+send_GetInfo	gen-cpp/Echo.cpp	/^void EchoClient::send_GetInfo()$/;"	f	class:EchoClient
+send_GetInfo	gen-java/Echo.java	/^    public void send_GetInfo() throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+send_GetInt	gen-cpp/Echo.cpp	/^void EchoClient::send_GetInt(const int32_t num)$/;"	f	class:EchoClient
+send_GetInt	gen-java/Echo.java	/^    public void send_GetInt(int num) throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+send_GetInt	gen-py/echo/Echo.py	/^  def send_GetInt(self, num):$/;"	m	class:Client
+send_GetIntAsync	gen-cpp/Echo.cpp	/^void EchoClient::send_GetIntAsync(const int32_t num)$/;"	f	class:EchoClient
+send_GetIntAsync	gen-java/Echo.java	/^    public void send_GetIntAsync(int num) throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+send_GetString	gen-cpp/Echo.cpp	/^void EchoClient::send_GetString(const std::string& str)$/;"	f	class:EchoClient
+send_GetString	gen-java/Echo.java	/^    public void send_GetString(String str) throws org.apache.thrift.TException$/;"	m	class:Echo.Client
+send_GetString	gen-py/echo/Echo.py	/^  def send_GetString(self, str):$/;"	m	class:Client
+seqid_	gen-java/Echo.java	/^    protected int seqid_;$/;"	f	class:Echo.Client
+setFieldValue	gen-java/Echo.java	/^    public void setFieldValue(_Fields field, Object value) {$/;"	m	class:Echo.GetInfo_args
+setFieldValue	gen-java/Echo.java	/^    public void setFieldValue(_Fields field, Object value) {$/;"	m	class:Echo.GetInfo_result
+setFieldValue	gen-java/Echo.java	/^    public void setFieldValue(_Fields field, Object value) {$/;"	m	class:Echo.GetIntAsync_args
+setFieldValue	gen-java/Echo.java	/^    public void setFieldValue(_Fields field, Object value) {$/;"	m	class:Echo.GetIntAsync_result
+setFieldValue	gen-java/Echo.java	/^    public void setFieldValue(_Fields field, Object value) {$/;"	m	class:Echo.GetInt_args
+setFieldValue	gen-java/Echo.java	/^    public void setFieldValue(_Fields field, Object value) {$/;"	m	class:Echo.GetInt_result
+setFieldValue	gen-java/Echo.java	/^    public void setFieldValue(_Fields field, Object value) {$/;"	m	class:Echo.GetString_args
+setFieldValue	gen-java/Echo.java	/^    public void setFieldValue(_Fields field, Object value) {$/;"	m	class:Echo.GetString_result
+setFieldValue	gen-java/Info.java	/^  public void setFieldValue(_Fields field, Object value) {$/;"	m	class:Info
+setId	gen-java/Info.java	/^  public Info setId(long id) {$/;"	m	class:Info
+setIdIsSet	gen-java/Info.java	/^  public void setIdIsSet(boolean value) {$/;"	m	class:Info
+setName	gen-java/Info.java	/^  public Info setName(String name) {$/;"	m	class:Info
+setNameIsSet	gen-java/Info.java	/^  public void setNameIsSet(boolean value) {$/;"	m	class:Info
+setNum	gen-java/Echo.java	/^    public GetIntAsync_args setNum(int num) {$/;"	m	class:Echo.GetIntAsync_args
+setNum	gen-java/Echo.java	/^    public GetInt_args setNum(int num) {$/;"	m	class:Echo.GetInt_args
+setNumIsSet	gen-java/Echo.java	/^    public void setNumIsSet(boolean value) {$/;"	m	class:Echo.GetIntAsync_args
+setNumIsSet	gen-java/Echo.java	/^    public void setNumIsSet(boolean value) {$/;"	m	class:Echo.GetInt_args
+setSize	gen-java/Info.java	/^  public Info setSize(int size) {$/;"	m	class:Info
+setSizeIsSet	gen-java/Info.java	/^  public void setSizeIsSet(boolean value) {$/;"	m	class:Info
+setStr	gen-java/Echo.java	/^    public GetString_args setStr(String str) {$/;"	m	class:Echo.GetString_args
+setStrIsSet	gen-java/Echo.java	/^    public void setStrIsSet(boolean value) {$/;"	m	class:Echo.GetString_args
+setSuccess	gen-java/Echo.java	/^    public GetInfo_result setSuccess(Info success) {$/;"	m	class:Echo.GetInfo_result
+setSuccess	gen-java/Echo.java	/^    public GetIntAsync_result setSuccess(int success) {$/;"	m	class:Echo.GetIntAsync_result
+setSuccess	gen-java/Echo.java	/^    public GetInt_result setSuccess(int success) {$/;"	m	class:Echo.GetInt_result
+setSuccess	gen-java/Echo.java	/^    public GetString_result setSuccess(String success) {$/;"	m	class:Echo.GetString_result
+setSuccessIsSet	gen-java/Echo.java	/^    public void setSuccessIsSet(boolean value) {$/;"	m	class:Echo.GetInfo_result
+setSuccessIsSet	gen-java/Echo.java	/^    public void setSuccessIsSet(boolean value) {$/;"	m	class:Echo.GetIntAsync_result
+setSuccessIsSet	gen-java/Echo.java	/^    public void setSuccessIsSet(boolean value) {$/;"	m	class:Echo.GetInt_result
+setSuccessIsSet	gen-java/Echo.java	/^    public void setSuccessIsSet(boolean value) {$/;"	m	class:Echo.GetString_result
+size	gen-cpp/echo_types.h	/^  bool size;$/;"	m	struct:_Info__isset
+size	gen-cpp/echo_types.h	/^  int32_t size;$/;"	m	class:Info
+size	gen-java/Info.java	/^  public int size;$/;"	f	class:Info
+str	gen-cpp/Echo.h	/^  bool str;$/;"	m	struct:_Echo_GetString_args__isset
+str	gen-cpp/Echo.h	/^  const std::string* str;$/;"	m	class:Echo_GetString_pargs
+str	gen-cpp/Echo.h	/^  std::string str;$/;"	m	class:Echo_GetString_args
+str	gen-java/Echo.java	/^      private String str;$/;"	f	class:Echo.AsyncClient.GetString_call	file:
+str	gen-java/Echo.java	/^    public String str;$/;"	f	class:Echo.GetString_args
+success	gen-cpp/Echo.h	/^  Info success;$/;"	m	class:Echo_GetInfo_result
+success	gen-cpp/Echo.h	/^  Info* success;$/;"	m	class:Echo_GetInfo_presult
+success	gen-cpp/Echo.h	/^  bool success;$/;"	m	struct:_Echo_GetInfo_presult__isset
+success	gen-cpp/Echo.h	/^  bool success;$/;"	m	struct:_Echo_GetInfo_result__isset
+success	gen-cpp/Echo.h	/^  bool success;$/;"	m	struct:_Echo_GetIntAsync_presult__isset
+success	gen-cpp/Echo.h	/^  bool success;$/;"	m	struct:_Echo_GetIntAsync_result__isset
+success	gen-cpp/Echo.h	/^  bool success;$/;"	m	struct:_Echo_GetInt_presult__isset
+success	gen-cpp/Echo.h	/^  bool success;$/;"	m	struct:_Echo_GetInt_result__isset
+success	gen-cpp/Echo.h	/^  bool success;$/;"	m	struct:_Echo_GetString_presult__isset
+success	gen-cpp/Echo.h	/^  bool success;$/;"	m	struct:_Echo_GetString_result__isset
+success	gen-cpp/Echo.h	/^  int32_t success;$/;"	m	class:Echo_GetIntAsync_result
+success	gen-cpp/Echo.h	/^  int32_t success;$/;"	m	class:Echo_GetInt_result
+success	gen-cpp/Echo.h	/^  int32_t* success;$/;"	m	class:Echo_GetIntAsync_presult
+success	gen-cpp/Echo.h	/^  int32_t* success;$/;"	m	class:Echo_GetInt_presult
+success	gen-cpp/Echo.h	/^  std::string success;$/;"	m	class:Echo_GetString_result
+success	gen-cpp/Echo.h	/^  std::string* success;$/;"	m	class:Echo_GetString_presult
+success	gen-java/Echo.java	/^    public Info success;$/;"	f	class:Echo.GetInfo_result
+success	gen-java/Echo.java	/^    public String success;$/;"	f	class:Echo.GetString_result
+success	gen-java/Echo.java	/^    public int success;$/;"	f	class:Echo.GetIntAsync_result
+success	gen-java/Echo.java	/^    public int success;$/;"	f	class:Echo.GetInt_result
+toString	gen-java/Echo.java	/^    public String toString() {$/;"	m	class:Echo.GetInfo_args
+toString	gen-java/Echo.java	/^    public String toString() {$/;"	m	class:Echo.GetInfo_result
+toString	gen-java/Echo.java	/^    public String toString() {$/;"	m	class:Echo.GetIntAsync_args
+toString	gen-java/Echo.java	/^    public String toString() {$/;"	m	class:Echo.GetIntAsync_result
+toString	gen-java/Echo.java	/^    public String toString() {$/;"	m	class:Echo.GetInt_args
+toString	gen-java/Echo.java	/^    public String toString() {$/;"	m	class:Echo.GetInt_result
+toString	gen-java/Echo.java	/^    public String toString() {$/;"	m	class:Echo.GetString_args
+toString	gen-java/Echo.java	/^    public String toString() {$/;"	m	class:Echo.GetString_result
+toString	gen-java/Info.java	/^  public String toString() {$/;"	m	class:Info
+unsetId	gen-java/Info.java	/^  public void unsetId() {$/;"	m	class:Info
+unsetName	gen-java/Info.java	/^  public void unsetName() {$/;"	m	class:Info
+unsetNum	gen-java/Echo.java	/^    public void unsetNum() {$/;"	m	class:Echo.GetIntAsync_args
+unsetNum	gen-java/Echo.java	/^    public void unsetNum() {$/;"	m	class:Echo.GetInt_args
+unsetSize	gen-java/Info.java	/^  public void unsetSize() {$/;"	m	class:Info
+unsetStr	gen-java/Echo.java	/^    public void unsetStr() {$/;"	m	class:Echo.GetString_args
+unsetSuccess	gen-java/Echo.java	/^    public void unsetSuccess() {$/;"	m	class:Echo.GetInfo_result
+unsetSuccess	gen-java/Echo.java	/^    public void unsetSuccess() {$/;"	m	class:Echo.GetIntAsync_result
+unsetSuccess	gen-java/Echo.java	/^    public void unsetSuccess() {$/;"	m	class:Echo.GetInt_result
+unsetSuccess	gen-java/Echo.java	/^    public void unsetSuccess() {$/;"	m	class:Echo.GetString_result
+validate	gen-java/Echo.java	/^    public void validate() throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInfo_args
+validate	gen-java/Echo.java	/^    public void validate() throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInfo_result
+validate	gen-java/Echo.java	/^    public void validate() throws org.apache.thrift.TException {$/;"	m	class:Echo.GetIntAsync_args
+validate	gen-java/Echo.java	/^    public void validate() throws org.apache.thrift.TException {$/;"	m	class:Echo.GetIntAsync_result
+validate	gen-java/Echo.java	/^    public void validate() throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInt_args
+validate	gen-java/Echo.java	/^    public void validate() throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInt_result
+validate	gen-java/Echo.java	/^    public void validate() throws org.apache.thrift.TException {$/;"	m	class:Echo.GetString_args
+validate	gen-java/Echo.java	/^    public void validate() throws org.apache.thrift.TException {$/;"	m	class:Echo.GetString_result
+validate	gen-java/Info.java	/^  public void validate() throws org.apache.thrift.TException {$/;"	m	class:Info
+validate	gen-py/echo/Echo.py	/^    def validate(self):$/;"	f	function:GetInt_args.write
+validate	gen-py/echo/Echo.py	/^    def validate(self):$/;"	f	function:GetInt_result.write
+validate	gen-py/echo/Echo.py	/^    def validate(self):$/;"	f	function:GetString_args.write
+validate	gen-py/echo/Echo.py	/^    def validate(self):$/;"	f	function:GetString_result.write
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInfo_args::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetInfo_args
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInfo_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetInfo_pargs
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInfo_result::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetInfo_result
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetIntAsync_args::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetIntAsync_args
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetIntAsync_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetIntAsync_pargs
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetIntAsync_result::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetIntAsync_result
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInt_args::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetInt_args
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInt_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetInt_pargs
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetInt_result::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetInt_result
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetString_args::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetString_args
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetString_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetString_pargs
+write	gen-cpp/Echo.cpp	/^uint32_t Echo_GetString_result::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Echo_GetString_result
+write	gen-cpp/echo_types.cpp	/^uint32_t Info::write(::apache::thrift::protocol::TProtocol* oprot) const {$/;"	f	class:Info
+write	gen-java/Echo.java	/^    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInfo_args
+write	gen-java/Echo.java	/^    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInfo_result
+write	gen-java/Echo.java	/^    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetIntAsync_args
+write	gen-java/Echo.java	/^    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetIntAsync_result
+write	gen-java/Echo.java	/^    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInt_args
+write	gen-java/Echo.java	/^    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetInt_result
+write	gen-java/Echo.java	/^    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetString_args
+write	gen-java/Echo.java	/^    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {$/;"	m	class:Echo.GetString_result
+write	gen-java/Info.java	/^  public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {$/;"	m	class:Info
+write	gen-py/echo/Echo.py	/^  def write(self, oprot):$/;"	m	class:GetInt_args
+write	gen-py/echo/Echo.py	/^  def write(self, oprot):$/;"	m	class:GetInt_result
+write	gen-py/echo/Echo.py	/^  def write(self, oprot):$/;"	m	class:GetString_args
+write	gen-py/echo/Echo.py	/^  def write(self, oprot):$/;"	m	class:GetString_result
+writeObject	gen-java/Echo.java	/^    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {$/;"	m	class:Echo.GetInfo_args	file:
+writeObject	gen-java/Echo.java	/^    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {$/;"	m	class:Echo.GetInfo_result	file:
+writeObject	gen-java/Echo.java	/^    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {$/;"	m	class:Echo.GetIntAsync_args	file:
+writeObject	gen-java/Echo.java	/^    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {$/;"	m	class:Echo.GetIntAsync_result	file:
+writeObject	gen-java/Echo.java	/^    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {$/;"	m	class:Echo.GetInt_args	file:
+writeObject	gen-java/Echo.java	/^    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {$/;"	m	class:Echo.GetInt_result	file:
+writeObject	gen-java/Echo.java	/^    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {$/;"	m	class:Echo.GetString_args	file:
+writeObject	gen-java/Echo.java	/^    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {$/;"	m	class:Echo.GetString_result	file:
+writeObject	gen-java/Info.java	/^  private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {$/;"	m	class:Info	file:
+write_args	gen-java/Echo.java	/^      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetInfo_call
+write_args	gen-java/Echo.java	/^      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetIntAsync_call
+write_args	gen-java/Echo.java	/^      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetInt_call
+write_args	gen-java/Echo.java	/^      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {$/;"	m	class:Echo.AsyncClient.GetString_call
+~EchoIf	gen-cpp/Echo.h	/^  virtual ~EchoIf() {}$/;"	f	class:EchoIf
+~EchoMultiface	gen-cpp/Echo.h	/^  virtual ~EchoMultiface() {}$/;"	f	class:EchoMultiface
+~EchoNull	gen-cpp/Echo.h	/^  virtual ~EchoNull() {}$/;"	f	class:EchoNull
+~EchoProcessor	gen-cpp/Echo.h	/^  virtual ~EchoProcessor() {}$/;"	f	class:EchoProcessor
+~Echo_GetInfo_args	gen-cpp/Echo.h	/^  virtual ~Echo_GetInfo_args() throw() {}$/;"	f	class:Echo_GetInfo_args
+~Echo_GetInfo_pargs	gen-cpp/Echo.h	/^  virtual ~Echo_GetInfo_pargs() throw() {}$/;"	f	class:Echo_GetInfo_pargs
+~Echo_GetInfo_presult	gen-cpp/Echo.h	/^  virtual ~Echo_GetInfo_presult() throw() {}$/;"	f	class:Echo_GetInfo_presult
+~Echo_GetInfo_result	gen-cpp/Echo.h	/^  virtual ~Echo_GetInfo_result() throw() {}$/;"	f	class:Echo_GetInfo_result
+~Echo_GetIntAsync_args	gen-cpp/Echo.h	/^  virtual ~Echo_GetIntAsync_args() throw() {}$/;"	f	class:Echo_GetIntAsync_args
+~Echo_GetIntAsync_pargs	gen-cpp/Echo.h	/^  virtual ~Echo_GetIntAsync_pargs() throw() {}$/;"	f	class:Echo_GetIntAsync_pargs
+~Echo_GetIntAsync_presult	gen-cpp/Echo.h	/^  virtual ~Echo_GetIntAsync_presult() throw() {}$/;"	f	class:Echo_GetIntAsync_presult
+~Echo_GetIntAsync_result	gen-cpp/Echo.h	/^  virtual ~Echo_GetIntAsync_result() throw() {}$/;"	f	class:Echo_GetIntAsync_result
+~Echo_GetInt_args	gen-cpp/Echo.h	/^  virtual ~Echo_GetInt_args() throw() {}$/;"	f	class:Echo_GetInt_args
+~Echo_GetInt_pargs	gen-cpp/Echo.h	/^  virtual ~Echo_GetInt_pargs() throw() {}$/;"	f	class:Echo_GetInt_pargs
+~Echo_GetInt_presult	gen-cpp/Echo.h	/^  virtual ~Echo_GetInt_presult() throw() {}$/;"	f	class:Echo_GetInt_presult
+~Echo_GetInt_result	gen-cpp/Echo.h	/^  virtual ~Echo_GetInt_result() throw() {}$/;"	f	class:Echo_GetInt_result
+~Echo_GetString_args	gen-cpp/Echo.h	/^  virtual ~Echo_GetString_args() throw() {}$/;"	f	class:Echo_GetString_args
+~Echo_GetString_pargs	gen-cpp/Echo.h	/^  virtual ~Echo_GetString_pargs() throw() {}$/;"	f	class:Echo_GetString_pargs
+~Echo_GetString_presult	gen-cpp/Echo.h	/^  virtual ~Echo_GetString_presult() throw() {}$/;"	f	class:Echo_GetString_presult
+~Echo_GetString_result	gen-cpp/Echo.h	/^  virtual ~Echo_GetString_result() throw() {}$/;"	f	class:Echo_GetString_result
+~Info	gen-cpp/echo_types.h	/^  virtual ~Info() throw() {}$/;"	f	class:Info
