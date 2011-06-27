@@ -1,13 +1,9 @@
 #include "gtest/gtest.h"
-#include "get_ip.h"
-#include <iostream>
-
-using std::cout;
-using std::endl;
+#include "include/get_ip.h"
 
 TEST(TestGetIP, All) {
     string ip = GetIP();
-    cout << ip << endl;
+    EXPECT_EQ("10.5.0.174", ip);
 }
 
 int main(int argc, char ** argv) {

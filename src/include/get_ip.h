@@ -1,3 +1,6 @@
+#ifndef SRC_INCLUDE_GET_IP_H
+#define SRC_INCLUDE_GET_IP_H
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -45,3 +48,4 @@ string GetIP() {
     return ip;
 }
 
+#endif
