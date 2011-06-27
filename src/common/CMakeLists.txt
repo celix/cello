@@ -15,3 +15,9 @@ ADD_EXECUTABLE(rwlock_test rwlock_test.cpp)
 TARGET_LINK_LIBRARIES(rwlock_test libgtest.a)
 TARGET_LINK_LIBRARIES(rwlock_test libglog.a)
 TARGET_LINK_LIBRARIES(rwlock_test pthread)
+
+ADD_EXECUTABLE(block_queue_test block_queue_test.cpp cond.cpp)
+
+TARGET_LINK_LIBRARIES(block_queue_test libgtest.a)
+TARGET_LINK_LIBRARIES(block_queue_test libglog.a)
+TARGET_LINK_LIBRARIES(block_queue_test pthread)
