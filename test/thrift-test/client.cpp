@@ -1,33 +1,35 @@
 #include <iostream>
-
+#if 0
 #include "protocol/TBinaryProtocol.h"
 #include "transport/TSocket.h"
 #include "transport/TTransportUtils.h"
-
+#endif
 #include "./gen-cpp/Echo.h"
-
+#if 0
 using namespace std;
 using namespace apache::thrift;
 using namespace apache::thrift::protocol;
 using namespace apache::thrift::transport;
 
 using namespace boost;
+#endif
+#include "common/rpc.h"
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 int main(int argc, char** argv) {
-    TSocket* sc = new TSocket("10.5.0.174", 9888);
-    sc->setRecvTimeout(10000);
-    shared_ptr<TTransport> socket(sc);
-    shared_ptr<TTransport> transport(new TBufferedTransport(socket));
-    shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
-    EchoClient client(protocol);
+    shared_ptr<TTransport> transport;
+    EchoClient proxy = Rpc<EchoClient>::GetProxy("10.5.0.174", 9999, 10000, &transport);
 
     try {
         transport->open();
-        cout << client.GetInt(10) << endl;
+        cout << proxy.GetInt(10) << endl;
         
-        cout << client.GetIntAsync(10) << endl;
+        cout << proxy.GetIntAsync(10) << endl;
         string ss;
-        client.GetString(ss, "test");
+        proxy.GetString(ss, "test");
         cout << ss << endl;
         transport->close();
     } catch (TException &tx) {

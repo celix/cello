@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "include/get_ip.h"
+#include "common/get_ip.h"
 
 TEST(TestGetIP, All) {
     string ip = GetIP();

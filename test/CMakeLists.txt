@@ -1,11 +1,13 @@
 SET(THIRD_PARTY "../third_party")
+SET(SRC "../src")
 
 INCLUDE_DIRECTORIES(${THIRD_PARTY}/glog/include
                     ${THIRD_PARTY}/gflags/include
                     ${THIRD_PARTY}/gtest/include
                     ${THIRD_PARTY}/classad/include
                     ${THIRD_PARTY}/thrift/include/thrift
-                    ${THIRD_PARTY}/boost/include)
+                    ${THIRD_PARTY}/boost/include
+                    ${SRC}/)
 
 LINK_DIRECTORIES(${THIRD_PARTY}/glog/lib
                  ${THIRD_PARTY}/gflags/lib

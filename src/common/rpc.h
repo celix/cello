@@ -9,8 +9,12 @@
 #include "server/TThreadedServer.h"
 #include "transport/TServerSocket.h"
 #include "transport/TTransportUtils.h"
+#include "transport/TSocket.h"
 
 #include "glog/logging.h"
+#include <string>
+
+using std::string;
 
 using namespace apache::thrift;
 using namespace apache::thrift::protocol;
@@ -34,15 +38,16 @@ public:
         server.serve();
     }
 
-    static T GetProxy(const string& ip, int port, int timeout
-            shared_ptr<TTransport>& connection) {
+    static T GetProxy(const string& ip, int port, int timeout,
+            shared_ptr<TTransport>* connection) {
         TSocket* sc = new TSocket(ip, port);
         sc->setRecvTimeout(timeout);
         shared_ptr<TTransport> socket(sc);
         shared_ptr<TTransport> transport(new TBufferedTransport(socket));
         shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
         EchoClient client(protocol);
-        connection = transport;
+        *connection = transport;
+        LOG(INFO) << "Get Service: " << ip << ":" << port;
         return client;
     }
 };

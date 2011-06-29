@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+#if 0
 #include "concurrency/ThreadManager.h"
 #include "concurrency/PosixThreadFactory.h"
 #include "protocol/TBinaryProtocol.h"
@@ -9,19 +10,24 @@
 #include "server/TThreadedServer.h"
 #include "transport/TServerSocket.h"
 #include "transport/TTransportUtils.h"
+#endif
 
 #include "gen-cpp/Echo.h"
+
+#include "common/rpc.h"
 
 using std::string;
 using std::cout;
 using std::endl;
 
+#if 0
 using namespace apache::thrift;
 using namespace apache::thrift::protocol;
 using namespace apache::thrift::transport;
 using namespace apache::thrift::server;
 
 using namespace boost;
+#endif
 
 class EchoHandler : public EchoIf {
 public:
@@ -46,7 +52,8 @@ public:
 };
 
 int main() {
-    int port = 9888;
+    Rpc<EchoHandler>::Listen(9999);
+#if 0
     shared_ptr<EchoHandler> handler(new EchoHandler);
     shared_ptr<TProcessor> processor(new EchoProcessor(handler));
     shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
@@ -57,5 +64,6 @@ int main() {
     cout << "Starting the server" << endl;
     server.serve();
     cout << "Done" << endl;
+#endif
     return 0;
 }
