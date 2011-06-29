@@ -52,7 +52,7 @@ public:
 };
 
 int main() {
-    Rpc<EchoHandler>::Listen(9999);
+    Rpc<EchoHandler, EchoProcessor>::Listen(9999);
 #if 0
     shared_ptr<EchoHandler> handler(new EchoHandler);
     shared_ptr<TProcessor> processor(new EchoProcessor(handler));

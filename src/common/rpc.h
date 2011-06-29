@@ -20,20 +20,31 @@ using namespace apache::thrift;
 using namespace apache::thrift::protocol;
 using namespace apache::thrift::transport;
 using namespace apache::thrift::server;
+using namespace apache::thrift::concurrency;
 
 using namespace boost;
 
-template <typename T>
+template <typename T, typename P>
 class Rpc {
 public:
+    enum {DEFAULT_THREAD_NUM = 2};
+
     static void Listen(int port) {
         shared_ptr<T> handler(new T);
-        shared_ptr<TProcessor> processor(new EchoProcessor(handler));
+        shared_ptr<TProcessor> processor(new P(handler));
         shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
         shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
         shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
-        TSimpleServer server(processor, serverTransport, transportFactory,
-                             protocolFactory);
+        shared_ptr<ThreadManager> threadManager =
+            ThreadManager::newSimpleThreadManager(DEFAULT_THREAD_NUM);
+        shared_ptr<PosixThreadFactory> thread_factory(new PosixThreadFactory());
+        threadManager->threadFactory(thread_factory);
+        threadManager->start();
+        TThreadPoolServer server(processor,
+                                 serverTransport,
+                                 transportFactory,
+                                 protocolFactory,
+                                 threadManager);
         LOG(INFO) << "Starting the rpc server.";
         server.serve();
     }
@@ -45,7 +56,7 @@ public:
         shared_ptr<TTransport> socket(sc);
         shared_ptr<TTransport> transport(new TBufferedTransport(socket));
         shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
-        EchoClient client(protocol);
+        T client(protocol);
         *connection = transport;
         LOG(INFO) << "Get Service: " << ip << ":" << port;
         return client;

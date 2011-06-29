@@ -7,18 +7,20 @@ template <typename T>
 class Singleton {
 public:
     static T* Instance() {
-        MutexLocker locker(m_locker);
+        MutexLocker locker(m_lock);
         if (m_instance == NULL)
             m_instance = new T;
         return m_instance;
     }
+
 private:
     static Mutex m_lock;
     static T* m_instance;
 };
 
 template <typename T>
-T* Singleton::m_instance = NULL;
-Mutex Singleton::m_lock;
+T* Singleton<T>::m_instance = NULL;
+template <typename T>
+Mutex Singleton<T>::m_lock;
 
 #endif
