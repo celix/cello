@@ -10,8 +10,13 @@ void* EventProcesseor(void* unused) {
 
 }
 
-void* TaskProcessor() {
+void* TaskProcessor(void* unused) {
     while(true) {
-        Singleton<BlockQueue<Task*> 
+        TaskPtr task;
+        // fetch a task from buffer
+        TaskBuffer::Instance()->PopFront(&task);
+        // add task into correspond framework
+        FrameworkMgr::Instance()->AddTask(task);
     }
+    return NULL;
 }

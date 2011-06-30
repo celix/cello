@@ -8,6 +8,7 @@
 #include "common/rpc.h"
 
 DEFINE_int32(port, 10000, "scheduler port");
+DEFINE_string(framework_file, "", "the configuration file of framework");
 
 int main(int argc, char ** argv) {
 

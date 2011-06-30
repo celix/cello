@@ -6,6 +6,10 @@ SET(SCHEDULER_RPC_SOURCE
 
 SET(SRC
     ${SCHEDULER_RPC_SOURCE}
+    task.cpp
+    framework.cpp
+    work_thread.cpp
+    task_pool.cpp
     main.cpp)
 
 ADD_EXECUTABLE(scheduler ${SRC})
