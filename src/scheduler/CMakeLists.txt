@@ -4,17 +4,27 @@ SET(SCHEDULER_RPC_SOURCE
     ${SCHEDULER_PROXY}/scheduler_types.cpp
     ${SCHEDULER_PROXY}/scheduler_constants.cpp)
 
+SET(COMMON_SOURCE
+    ../common/cond.cpp
+    ../common/block_queue.cpp)
+
 SET(SRC
     ${SCHEDULER_RPC_SOURCE}
+    ${COMMON_SOURCE}
     task.cpp
+    task_queue.cpp
     framework.cpp
     work_thread.cpp
     task_pool.cpp
+    framework_pool.cpp
     main.cpp)
 
 ADD_EXECUTABLE(scheduler ${SRC})
 
-TARGET_LINK_LIBRARIES(scheduler libglog.a)
+TARGET_LINK_LIBRARIES(scheduler glog)
 TARGET_LINK_LIBRARIES(scheduler pthread)
 TARGET_LINK_LIBRARIES(scheduler thrift)
-TARGET_LINK_LIBRARIES(scheduler libgflags.a)
+TARGET_LINK_LIBRARIES(scheduler gflags)
+TARGET_LINK_LIBRARIES(scheduler gflags)
+TARGET_LINK_LIBRARIES(scheduler classad)
+TARGET_LINK_LIBRARIES(scheduler xerces-c)

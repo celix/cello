@@ -11,7 +11,7 @@ using std::map;
 
 class TaskPool {
 public:
-    void Insert(TaskPtr task);
+    void Insert(const TaskPtr& task);
 
 private:
     RWLock m_lock;

@@ -13,15 +13,15 @@
 using std::string;
 using std::list;
 using std::tr1::function;
-using std::tr1::placeholder::_1;
-using std::tr1::placeholder::_2;
+using std::tr1::placeholders::_1;
+using std::tr1::placeholders::_2;
 
 
 class FrameworkPool {
 public:
     typedef function<void(Framework*)> FrameworkFunc;
 
-    void Init();
+    int Init(const string& conf_file);
     
     /// add the task into correspond framework
     void AddTask(const TaskPtr& task);

@@ -9,8 +9,8 @@ using std::string;
 
 class Framework {
 public:
-    Framework(const string& name) : m_framework_name(name),
-                                    m_quota(0) {}
+    Framework(const string& name, int quota) : m_framework_name(name),
+                                               m_quota(quota) {}
 
     /// @brief: get framework name 
     string GetName() const {

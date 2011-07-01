@@ -1,13 +1,14 @@
 #include "common/block_queue.h"
 #include "scheduler/task.h"
+#include "scheduler/framework_pool.h"
 
 /// choose a task and assign it to cellet
 void* ScheduleProcessor(void* unused) {
-
+    return NULL;
 }
 
 void* EventProcesseor(void* unused) {
-
+    return NULL;
 }
 
 void* TaskProcessor(void* unused) {

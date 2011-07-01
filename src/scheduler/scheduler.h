@@ -18,7 +18,7 @@ public:
             TaskBuffer::Instance()->PushBack(task);
             return task->GetId();
         } else {
-            return -1
+            return -1;
         }
     }
 

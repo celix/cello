@@ -29,13 +29,13 @@ public:
         return m_framework_name;
     }
 
-pirvate:
+private:
     ClassAd m_ad;
     int64_t m_id;
     string m_framework_name;
 };
 
 typedef shared_ptr<Task> TaskPtr;
-typedef Singleton<BlockQueue<TaskPtr>> TaskBuffer;
+typedef Singleton< BlockQueue<TaskPtr> > TaskBuffer;
 
 #endif
