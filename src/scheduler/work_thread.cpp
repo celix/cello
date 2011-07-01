@@ -4,15 +4,21 @@
 
 /// choose a task and assign it to cellet
 void* ScheduleProcessor(void* unused) {
+    while (true) {
+        
+    }
     return NULL;
 }
 
 void* EventProcesseor(void* unused) {
+    while (true) {
+    
+    }
     return NULL;
 }
 
 void* TaskProcessor(void* unused) {
-    while(true) {
+    while (true) {
         TaskPtr task;
         // fetch a task from buffer
         TaskBuffer::Instance()->PopFront(&task);
