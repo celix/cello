@@ -14,6 +14,7 @@ extern void* TaskProcessor(void* unused);
 
 DEFINE_int32(port, 10000, "scheduler port");
 DEFINE_string(framework_file, "", "the configuration file of framework");
+DEFINE_string(collector_endpoint, "", "collector endpoint");
 
 int main(int argc, char ** argv) {
 
@@ -36,7 +37,6 @@ int main(int argc, char ** argv) {
         LOG(ERROR) << "read framework file error";
         return -1;
     }
-    pthread_t 
     Rpc<Scheduler, SchedulerProcessor>::Listen(FLAGS_port);
     
     return 0;

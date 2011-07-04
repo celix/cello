@@ -26,6 +26,9 @@ public:
     /// add the task into correspond framework
     void AddTask(const TaskPtr& task);
     
+    /// @brief: pick a task
+    TaskPtr GetTask();
+    
     /// find the framework and do func on it
     /// find the framework return true, else return false
     bool FindToDo(const string& name, FrameworkFunc func);

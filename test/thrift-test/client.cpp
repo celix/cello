@@ -21,7 +21,7 @@ using std::endl;
 
 int main(int argc, char** argv) {
     shared_ptr<TTransport> transport;
-    EchoClient proxy = Rpc<EchoClient, EchoClient>::GetProxy("10.5.0.174", 9999, 10000, &transport);
+    EchoClient proxy = Rpc<EchoClient, EchoClient>::GetProxy("10.5.0.174:9999", 10000, &transport);
 
     try {
         transport->open();

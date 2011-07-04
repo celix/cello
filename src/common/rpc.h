@@ -49,8 +49,12 @@ public:
         server.serve();
     }
 
-    static T GetProxy(const string& ip, int port, int timeout,
+    static T GetProxy(const string& endpoint, int timeout,
             shared_ptr<TTransport>* connection) {
+        // split endpoint into ip and port
+        string ip = endpoint.substr(0, endpoint.find(":"));
+        string str_port = endpoint.substr(endpoint.find(":") + 1);
+        int port = atoi(str_port.c_str());
         TSocket* sc = new TSocket(ip, port);
         sc->setRecvTimeout(timeout);
         shared_ptr<TTransport> socket(sc);

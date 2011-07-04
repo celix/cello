@@ -72,3 +72,8 @@ bool FrameworkPool::FindToDo(const string& name, FrameworkFunc func) {
         }
     return false;
 }
+
+TaskPtr FrameworkPool::GetTask() {
+    TaskPtr ptr;
+    return ptr;
+}
