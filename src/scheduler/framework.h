@@ -4,6 +4,7 @@
 #include <string>
 
 #include "scheduler/task_queue.h"
+#include "scheduler/define.h"
 
 using std::string;
 
@@ -17,8 +18,11 @@ public:
         return m_framework_name;
     }
 
-    /// push task into wait queue
-    void AddWaitTask(const TaskPtr& task);
+    /// push task into queue
+    void PushTask(const TaskPtr& task, queue_type type);
+    
+    /// @brief: popfront a task
+    bool PopTask(TaskPtr* ptr);
 
 private:
     string m_framework_name;

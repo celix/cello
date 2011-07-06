@@ -1,29 +1,27 @@
 #include "common/block_queue.h"
 #include "scheduler/task.h"
+#include "scheduler/event.h"
 #include "scheduler/framework_pool.h"
-#include "scheduler/matcher.h"
-#include "scheduler/starter.h"
 
 /// choose a task and assign it to cellet
 void* ScheduleProcessor(void* unused) {
     while (true) {
         // pick a task from the framework pool
         TaskPtr task = FrameworkMgr::Instance()->GetTask();
-        string cellet_address;
-        // if match task success then start task
-        if (Matcher::MatchTask(task, &cellet_address)) {
-            // task start success
-            if (Starter::StartTask(cellet_address, task));
-        }
-        FrameworkMgr::Instance()->AddTask(task);
-        
+        // has wait task then begin to assign the task
+        if (task.get())
+            task->AssignTask();
+        usleep(1000*100);
     }
     return NULL;
 }
 
 void* EventProcesseor(void* unused) {
     while (true) {
-    
+        EventPtr event;
+        // fetch a event from event queue and handle with it
+        EventQueue::Instance()->PopFront(&event);
+        event->Handle();
     }
     return NULL;
 }

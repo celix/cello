@@ -8,7 +8,13 @@ struct TaskInfo {
 }
 
 service Scheduler {
+
+    // for api
     i64 Submit(1: TaskInfo task_info),
     TaskInfo Query(1: i64 task_id),           // not support now
-    i32 RemoveTask(1: i64 task_id)            // not support now
+    i32 RemoveTask(1: i64 task_id),           // not support now
+    
+    // for cellet
+    i32 TaskStarted(1: i64 task_id, 2: bool status),
+    i32 TaskFinished(1: i64 task_id, 2: bool status)
 }

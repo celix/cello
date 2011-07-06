@@ -5,6 +5,7 @@
 #include "glog/logging.h"
 #include "scheduler/task.h"
 #include "scheduler/task_pool.h"
+#include "scheduler/event.h"
 
 class Scheduler : public SchedulerIf {
 public:
@@ -29,6 +30,24 @@ public:
     /// not support now
     int32_t RemoveTask(int64_t task_id) {
         return 0;
+    }
+
+    // @brief: cellet report task start success or fail
+    int32_t TaskStarted(int64_t task_id, bool status) {
+        LOG(INFO) << "TaskStarted    ID:" << task_id << " STATUS:"
+                  << (status ? "success" : "failed");
+        // insert into event queue
+        EventPtr task_event(new StartEvent(task_id, status));
+        EventQueue::Instance()->PushBack(task_event);
+    }
+
+    // @brief: cellet report task finish success or fail
+    int32_t TaskFinished(int64_t task_id, bool status) {
+        LOG(INFO) << "TaskFinished    ID:" << task_id << " STATUS:"
+                  << (status ? "success" : "failed");
+        // insert into event queue
+        EventPtr task_event(new FinishEvent(task_id, status));
+        EventQueue::Instance()->PushBack(task_event);
     }
 
     void LogInfo(const TaskInfo& task_info) {

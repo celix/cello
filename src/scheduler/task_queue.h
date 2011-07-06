@@ -12,6 +12,8 @@ class TaskQueue {
 public:
     void PushBack(const TaskPtr& task);
     
+    void PopFront(TaskPtr* ptr);
+
     int Size();
 private:
     RWLock m_lock;

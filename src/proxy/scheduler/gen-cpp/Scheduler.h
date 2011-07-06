@@ -17,6 +17,8 @@ class SchedulerIf {
   virtual int64_t Submit(const TaskInfo& task_info) = 0;
   virtual void Query(TaskInfo& _return, const int64_t task_id) = 0;
   virtual int32_t RemoveTask(const int64_t task_id) = 0;
+  virtual int32_t TaskStarted(const int64_t task_id, const bool status) = 0;
+  virtual int32_t TaskFinished(const int64_t task_id, const bool status) = 0;
 };
 
 class SchedulerNull : virtual public SchedulerIf {
@@ -30,6 +32,14 @@ class SchedulerNull : virtual public SchedulerIf {
     return;
   }
   int32_t RemoveTask(const int64_t /* task_id */) {
+    int32_t _return = 0;
+    return _return;
+  }
+  int32_t TaskStarted(const int64_t /* task_id */, const bool /* status */) {
+    int32_t _return = 0;
+    return _return;
+  }
+  int32_t TaskFinished(const int64_t /* task_id */, const bool /* status */) {
     int32_t _return = 0;
     return _return;
   }
@@ -335,6 +345,216 @@ class Scheduler_RemoveTask_presult {
 
 };
 
+typedef struct _Scheduler_TaskStarted_args__isset {
+  _Scheduler_TaskStarted_args__isset() : task_id(false), status(false) {}
+  bool task_id;
+  bool status;
+} _Scheduler_TaskStarted_args__isset;
+
+class Scheduler_TaskStarted_args {
+ public:
+
+  Scheduler_TaskStarted_args() : task_id(0), status(0) {
+  }
+
+  virtual ~Scheduler_TaskStarted_args() throw() {}
+
+  int64_t task_id;
+  bool status;
+
+  _Scheduler_TaskStarted_args__isset __isset;
+
+  bool operator == (const Scheduler_TaskStarted_args & rhs) const
+  {
+    if (!(task_id == rhs.task_id))
+      return false;
+    if (!(status == rhs.status))
+      return false;
+    return true;
+  }
+  bool operator != (const Scheduler_TaskStarted_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const Scheduler_TaskStarted_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class Scheduler_TaskStarted_pargs {
+ public:
+
+
+  virtual ~Scheduler_TaskStarted_pargs() throw() {}
+
+  const int64_t* task_id;
+  const bool* status;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _Scheduler_TaskStarted_result__isset {
+  _Scheduler_TaskStarted_result__isset() : success(false) {}
+  bool success;
+} _Scheduler_TaskStarted_result__isset;
+
+class Scheduler_TaskStarted_result {
+ public:
+
+  Scheduler_TaskStarted_result() : success(0) {
+  }
+
+  virtual ~Scheduler_TaskStarted_result() throw() {}
+
+  int32_t success;
+
+  _Scheduler_TaskStarted_result__isset __isset;
+
+  bool operator == (const Scheduler_TaskStarted_result & rhs) const
+  {
+    if (!(success == rhs.success))
+      return false;
+    return true;
+  }
+  bool operator != (const Scheduler_TaskStarted_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const Scheduler_TaskStarted_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _Scheduler_TaskStarted_presult__isset {
+  _Scheduler_TaskStarted_presult__isset() : success(false) {}
+  bool success;
+} _Scheduler_TaskStarted_presult__isset;
+
+class Scheduler_TaskStarted_presult {
+ public:
+
+
+  virtual ~Scheduler_TaskStarted_presult() throw() {}
+
+  int32_t* success;
+
+  _Scheduler_TaskStarted_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
+typedef struct _Scheduler_TaskFinished_args__isset {
+  _Scheduler_TaskFinished_args__isset() : task_id(false), status(false) {}
+  bool task_id;
+  bool status;
+} _Scheduler_TaskFinished_args__isset;
+
+class Scheduler_TaskFinished_args {
+ public:
+
+  Scheduler_TaskFinished_args() : task_id(0), status(0) {
+  }
+
+  virtual ~Scheduler_TaskFinished_args() throw() {}
+
+  int64_t task_id;
+  bool status;
+
+  _Scheduler_TaskFinished_args__isset __isset;
+
+  bool operator == (const Scheduler_TaskFinished_args & rhs) const
+  {
+    if (!(task_id == rhs.task_id))
+      return false;
+    if (!(status == rhs.status))
+      return false;
+    return true;
+  }
+  bool operator != (const Scheduler_TaskFinished_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const Scheduler_TaskFinished_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class Scheduler_TaskFinished_pargs {
+ public:
+
+
+  virtual ~Scheduler_TaskFinished_pargs() throw() {}
+
+  const int64_t* task_id;
+  const bool* status;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _Scheduler_TaskFinished_result__isset {
+  _Scheduler_TaskFinished_result__isset() : success(false) {}
+  bool success;
+} _Scheduler_TaskFinished_result__isset;
+
+class Scheduler_TaskFinished_result {
+ public:
+
+  Scheduler_TaskFinished_result() : success(0) {
+  }
+
+  virtual ~Scheduler_TaskFinished_result() throw() {}
+
+  int32_t success;
+
+  _Scheduler_TaskFinished_result__isset __isset;
+
+  bool operator == (const Scheduler_TaskFinished_result & rhs) const
+  {
+    if (!(success == rhs.success))
+      return false;
+    return true;
+  }
+  bool operator != (const Scheduler_TaskFinished_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const Scheduler_TaskFinished_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _Scheduler_TaskFinished_presult__isset {
+  _Scheduler_TaskFinished_presult__isset() : success(false) {}
+  bool success;
+} _Scheduler_TaskFinished_presult__isset;
+
+class Scheduler_TaskFinished_presult {
+ public:
+
+
+  virtual ~Scheduler_TaskFinished_presult() throw() {}
+
+  int32_t* success;
+
+  _Scheduler_TaskFinished_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
 class SchedulerClient : virtual public SchedulerIf {
  public:
   SchedulerClient(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> prot) :
@@ -364,6 +584,12 @@ class SchedulerClient : virtual public SchedulerIf {
   int32_t RemoveTask(const int64_t task_id);
   void send_RemoveTask(const int64_t task_id);
   int32_t recv_RemoveTask();
+  int32_t TaskStarted(const int64_t task_id, const bool status);
+  void send_TaskStarted(const int64_t task_id, const bool status);
+  int32_t recv_TaskStarted();
+  int32_t TaskFinished(const int64_t task_id, const bool status);
+  void send_TaskFinished(const int64_t task_id, const bool status);
+  int32_t recv_TaskFinished();
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
@@ -380,12 +606,16 @@ class SchedulerProcessor : virtual public ::apache::thrift::TProcessor {
   void process_Submit(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_Query(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_RemoveTask(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_TaskStarted(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_TaskFinished(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
  public:
   SchedulerProcessor(boost::shared_ptr<SchedulerIf> iface) :
     iface_(iface) {
     processMap_["Submit"] = &SchedulerProcessor::process_Submit;
     processMap_["Query"] = &SchedulerProcessor::process_Query;
     processMap_["RemoveTask"] = &SchedulerProcessor::process_RemoveTask;
+    processMap_["TaskStarted"] = &SchedulerProcessor::process_TaskStarted;
+    processMap_["TaskFinished"] = &SchedulerProcessor::process_TaskFinished;
   }
 
   virtual bool process(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot, boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot, void* callContext);
@@ -434,6 +664,28 @@ class SchedulerMultiface : virtual public SchedulerIf {
         return ifaces_[i]->RemoveTask(task_id);
       } else {
         ifaces_[i]->RemoveTask(task_id);
+      }
+    }
+  }
+
+  int32_t TaskStarted(const int64_t task_id, const bool status) {
+    uint32_t sz = ifaces_.size();
+    for (uint32_t i = 0; i < sz; ++i) {
+      if (i == sz - 1) {
+        return ifaces_[i]->TaskStarted(task_id, status);
+      } else {
+        ifaces_[i]->TaskStarted(task_id, status);
+      }
+    }
+  }
+
+  int32_t TaskFinished(const int64_t task_id, const bool status) {
+    uint32_t sz = ifaces_.size();
+    for (uint32_t i = 0; i < sz; ++i) {
+      if (i == sz - 1) {
+        return ifaces_[i]->TaskFinished(task_id, status);
+      } else {
+        ifaces_[i]->TaskFinished(task_id, status);
       }
     }
   }

@@ -35,6 +35,16 @@ class SchedulerHandler : virtual public SchedulerIf {
     printf("RemoveTask\n");
   }
 
+  int32_t TaskStarted(const int64_t task_id, const bool status) {
+    // Your implementation goes here
+    printf("TaskStarted\n");
+  }
+
+  int32_t TaskFinished(const int64_t task_id, const bool status) {
+    // Your implementation goes here
+    printf("TaskFinished\n");
+  }
+
 };
 
 int main(int argc, char **argv) {

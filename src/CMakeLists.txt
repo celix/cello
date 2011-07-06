@@ -7,6 +7,7 @@ INCLUDE_DIRECTORIES(${THIRD_PARTY}/glog/include
                     ${THIRD_PARTY}/classad/include
                     ${THIRD_PARTY}/thrift/include/thrift
                     ${THIRD_PARTY}/xerces/include
+                    ${THIRD_PARTY}/boost/include
                     ${SRC}/)
 
 LINK_DIRECTORIES(${THIRD_PARTY}/glog/lib
@@ -19,4 +20,4 @@ LINK_DIRECTORIES(${THIRD_PARTY}/glog/lib
 ADD_SUBDIRECTORY(cellet)
 ADD_SUBDIRECTORY(collector)
 ADD_SUBDIRECTORY(common)
-ADD_SUBDIRECTORY(scheduler)
+#ADD_SUBDIRECTORY(scheduler)
