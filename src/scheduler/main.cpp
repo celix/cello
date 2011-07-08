@@ -37,6 +37,11 @@ int main(int argc, char ** argv) {
         LOG(ERROR) << "read framework file error";
         return -1;
     }
+    pthread_t schedule_t, event_t, task_t;
+    pthread_create(&schedule_t, NULL, ScheduleProcessor, NULL);
+    pthread_create(&event_t, NULL, EventProcesseor, NULL);
+    pthread_create(&task_t, NULL, TaskProcessor, NULL);
+
     Rpc<Scheduler, SchedulerProcessor>::Listen(FLAGS_port);
     
     return 0;

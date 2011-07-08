@@ -15,3 +15,15 @@ void TaskQueue::PopFront(TaskPtr* ptr) {
     *ptr = m_list.front();
     m_list.pop_front();
 }
+
+bool TaskQueue::Erase(int64_t task_id) {
+    WriteLocker locker(m_lock);
+    for (list<TaskPtr>::iterator it = m_list.begin(); it != m_list.end(); ++it)
+        // find the task
+        if (task_id == (*it)->GetId()) {
+            m_list.erase(it);
+            return true;
+        }
+    // not found return false
+    return false;
+}

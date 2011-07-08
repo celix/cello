@@ -2,7 +2,7 @@
 #define SRC_SCHEDULER_DEFINE_H
 
 enum queue_type {
-    WAIT_QUEUE = 0,
+    WAIT_QUEUE,
     RUN_QUEUE
 };
 

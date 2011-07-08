@@ -22,7 +22,10 @@ public:
     void PushTask(const TaskPtr& task, queue_type type);
     
     /// @brief: popfront a task
-    bool PopTask(TaskPtr* ptr);
+    bool PopTask(TaskPtr* ptr, queue_type type);
+    
+    /// @brief: remove task by id
+    bool RemoveTask(int64_t task_id, queue_type type);
 
 private:
     string m_framework_name;

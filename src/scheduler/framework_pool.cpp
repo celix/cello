@@ -56,7 +56,7 @@ int FrameworkPool::Init(const string& conf_file) {
 }
 
 void FrameworkPool::AddTask(const TaskPtr& task) {
-    // create the bind function for AddWaitTask
+    // create the bind function for PushTask
     FrameworkFunc func = bind(&Framework::PushTask, _1, task,
                               task->GetQueueType());
     FindToDo(task->GetFrameworkName(), func);
@@ -80,8 +80,15 @@ TaskPtr FrameworkPool::GetTask() {
     for (list<Framework>::iterator it = m_framework_pool.begin();
          it != m_framework_pool.end(); ++it) {
         // find a wait task
-        if (it->PopWaitTask(&task))
+        if (it->PopTask(&task, WAIT_QUEUE))
             break;
     }
     return task;
+}
+
+void FrameworkPool::RemoveTask(const TaskPtr& task) {
+    // create the bind function for RemoveTask
+    FrameworkFunc func = bind(&Framework::RemoveTask, _1, task->GetId(),
+                              task->GetQueueType());
+    FindToDo(task->GetFrameworkName(), func);
 }

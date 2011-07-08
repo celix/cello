@@ -19,29 +19,25 @@ void Task::ChangeState(State* state) {
 }
 
 void Task::TaskAssigned() {
-    return m_state->TaskAssigned();
+    return m_state->TaskAssigned(this);
 }
 
-void Task::AssignTask() {
+bool Task::AssignTask() {
     WriteLocker locker(m_lock);
     string cellet_address;
     // if match task success then start task
-    if (Matcher::MatchTask(*this, &cellet_address))
+    if (Matcher::MatchTask(*this, &cellet_address)) {
         // task start success
-        if (Starter::StartTask(cellet_address, *this))
+        if (Starter::StartTask(cellet_address, *this)) {
             TaskAssigned();
+            return true;
+        }
+        return false;
+    }
+    return false;
 }
 
 queue_type Task::GetQueueType() {
     ReadLocker locker(m_lock);
-    // task in wait
-    if (typeid(m_state) == typeid(WaitState*))
-        return WAIT_QUEUE;
-    else if (typeid(m_state) == typeid(RunState*))
-        return RUN_QUEUE;
-    else {
-        LOG(ERROR) << "invalid state for Task::GetQueueType" << typeid(m_state);
-        return -1;
-    }
-        
+    return m_state->GetQueueType();
 }

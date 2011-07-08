@@ -9,11 +9,14 @@
 #include "common/block_queue.h"
 #include "common/rwlock.h"
 #include "scheduler/state.h"
+#include "scheduler/define.h"
 
 #include "proxy/scheduler/gen-cpp/scheduler_types.h"
 
 using std::string;
 using boost::shared_ptr;
+
+class State;
 
 class Task {
 public:
@@ -43,9 +46,9 @@ public:
     queue_type GetQueueType();
 
     /// @brief: assgin the task
-    void AssignTask();
+    bool AssignTask();
 
-private:
+protected:
     /// @brief: change task state
     void ChangeState(State* state);
 
@@ -55,6 +58,7 @@ private:
     string m_framework_name;
     time_t m_submit_time;
     State* m_state;
+    friend class State;
     friend class WaitState;
     friend class RunState;
     friend class FinishState;

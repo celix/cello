@@ -26,6 +26,7 @@ SET(SRC
     ${CELLET_RPC_SOURCE}
     ${COMMON_SOURCE}
     task.cpp
+    state.cpp
     event.cpp
     task_queue.cpp
     framework.cpp

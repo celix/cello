@@ -16,7 +16,7 @@ class Matcher {
 public:
 
     /// @brief: get proper machine from collector
-    static bool MatchTask(const TaskPtr task, string* endpoint_str) {
+    static bool MatchTask(const Task& task, string* endpoint_str) {
         shared_ptr<TTransport> transport;
         // get collector proxy
         CollectorClient proxy = Rpc<CollectorClient, CollectorClient>::GetProxy(
@@ -24,12 +24,14 @@ public:
         bool ret = false;
         try {
             transport->open();
-            ClassAd task_ad = task->GetClassAd();
+            ClassAd task_ad = task.GetClassAd();
             string str_ad = adToString(&task_ad);
             proxy.Match(*endpoint_str, str_ad);
             transport->close();
             // if the return address is not empty, then return true
             ret = !(*endpoint_str).empty();
+            if (!ret)
+                LOG(WARNING) << "match machine failed: " << str_ad;
         } catch (TException &tx) {
             LOG(ERROR) << "match task to collector error: " << tx.what();
         }

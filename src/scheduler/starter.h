@@ -11,7 +11,7 @@
 
 class Starter {
 public:
-    static bool StartTask(const string& endpoint, const TaskPtr& task) {
+    static bool StartTask(const string& endpoint, const Task& task) {
         shared_ptr<TTransport> transport;
         // get collector proxy
         CelletClient proxy = Rpc<CelletClient, CelletClient>::GetProxy(
@@ -19,7 +19,7 @@ public:
         bool ret = false;
         try {
             transport->open();
-            ClassAd task_ad = task->GetClassAd();
+            ClassAd task_ad = task.GetClassAd();
             string str_ad = adToString(&task_ad);
             ret = proxy.StartTask(str_ad);
             transport->close();

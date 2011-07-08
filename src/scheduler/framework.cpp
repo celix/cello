@@ -1,13 +1,17 @@
+#include <assert.h>
+
 #include "scheduler/framework.h"
 
-void Framework::PushTask(const TaskPtr& task queue_type type) {
+void Framework::PushTask(const TaskPtr& task, queue_type type) {
+    assert(type == WAIT_QUEUE || type == RUN_QUEUE);
     if (type == WAIT_QUEUE)
         m_wait_queue.PushBack(task);
-    else if (type == RUN_QUEUE)
+    else
         m_run_queue.PushBack(task);
 }
 
 bool Framework::PopTask(TaskPtr* ptr, queue_type type) {
+    assert(type == WAIT_QUEUE || type == RUN_QUEUE);
     if (type == WAIT_QUEUE) {
         if (m_wait_queue.Size() <= 0)
             return false;
@@ -19,4 +23,12 @@ bool Framework::PopTask(TaskPtr* ptr, queue_type type) {
         m_run_queue.PopFront(ptr);
         return true;
     }
+}
+
+bool Framework::RemoveTask(int64_t task_id, queue_type type) {
+    assert(type == WAIT_QUEUE || type == RUN_QUEUE);
+    if (type == WAIT_QUEUE)
+        return m_wait_queue.Erase(task_id);
+    else
+        return m_run_queue.Erase(task_id);
 }

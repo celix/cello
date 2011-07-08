@@ -16,7 +16,7 @@ using std::tr1::placeholders::_2;
 
 class TaskPool {
 public:
-    typedef function<void(TaskPtr)> TaskFunc;
+    typedef function<void(const TaskPtr&)> TaskFunc;
 
     void Insert(const TaskPtr& task);
     

@@ -21,11 +21,15 @@ class FrameworkPool {
 public:
     typedef function<void(Framework*)> FrameworkFunc;
 
+    /// @brief: read information from xml file, and init all the framwork
     int Init(const string& conf_file);
     
     /// add the task into correspond framework
     void AddTask(const TaskPtr& task);
     
+    /// @brief: remove task from its framework task queue
+    void RemoveTask(const TaskPtr& task);
+
     /// @brief: pick a task
     TaskPtr GetTask();
     

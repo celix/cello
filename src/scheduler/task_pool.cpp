@@ -25,6 +25,7 @@ bool TaskPool::FindToDo(int64_t task_id, TaskFunc func) {
     map<int64_t, TaskPtr>::iterator it = m_task_map.find(task_id);
     if (it != m_task_map.end()) {
         func(it->second);
+        return true;
     }
     return false;
 }

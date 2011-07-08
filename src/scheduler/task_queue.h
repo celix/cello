@@ -13,6 +13,8 @@ public:
     void PushBack(const TaskPtr& task);
     
     void PopFront(TaskPtr* ptr);
+    
+    bool Erase(int64_t task_id);
 
     int Size();
 private:

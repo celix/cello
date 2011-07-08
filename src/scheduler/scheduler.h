@@ -39,6 +39,7 @@ public:
         // insert into event queue
         EventPtr task_event(new StartEvent(task_id, status));
         EventQueue::Instance()->PushBack(task_event);
+        return 0;
     }
 
     // @brief: cellet report task finish success or fail
@@ -48,6 +49,7 @@ public:
         // insert into event queue
         EventPtr task_event(new FinishEvent(task_id, status));
         EventQueue::Instance()->PushBack(task_event);
+        return 0;
     }
 
     void LogInfo(const TaskInfo& task_info) {

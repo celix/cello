@@ -13,7 +13,15 @@ class Event {
 public:
     explicit Event(int64_t id, bool status) : m_task_id(id),
                                               m_status(status) {}
-    virtual ~Event();
+    int64_t GetId() const {
+        return m_task_id;
+    }
+
+    bool GetStatus() const {
+        return m_status;
+    }
+
+    virtual ~Event() {}
     virtual void Handle() = 0;
 
 private:
