@@ -9,7 +9,7 @@
 #include "common/block_queue.h"
 #include "common/rwlock.h"
 #include "scheduler/state.h"
-#include "scheduler/define.h"
+#include "include/type.h"
 
 #include "proxy/scheduler/gen-cpp/scheduler_types.h"
 
@@ -30,6 +30,10 @@ public:
     /// get task id
     int64_t GetId() const {
         return m_id;
+    }
+
+    TaskInfo GetTaskInfo {
+        return m_task_info;
     }
 
     /// get framework name
@@ -53,6 +57,7 @@ protected:
     void ChangeState(State* state);
 
 private:
+    TaskInfo m_task_info;
     ClassAd m_ad;
     int64_t m_id;
     string m_framework_name;

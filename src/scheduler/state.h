@@ -3,7 +3,7 @@
 
 #include "common/singleton.h"
 #include "scheduler/task.h"
-#include "scheduler/define.h"
+#include "include/type.h"
 
 class Task;
 

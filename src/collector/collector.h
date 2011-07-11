@@ -13,19 +13,19 @@ class Collector : public CollectorIf {
 public:
     
     void Match(string& result, const string& str_ad) {
-        list<Machine> candidate_machine;
+        list<MachinePtr> candidate_machine;
         MachinePool::MachineFunc func = bind(&Filter::Filtration, _1, str_ad,
                                              &candidate_machine);
         Pool::Instance()->MapToDo(func);
         // TODO: @chenjing
         // compute the rank for candidate machine and choose the best one
         if (candidate_machine.size() > 0)
-            result = candidate_machine.front().GetEndpoint();
+            result = candidate_machine.front()->GetEndpoint();
     }
 
     void Heartbeat(const MachineInfo& info) {
-        Machine machine(info);
-        Pool::Instance()->Insert(machine);
+        MachinePtr ptr( new machine(info));
+        Pool::Instance()->Insert(ptr);
     }
 
 };

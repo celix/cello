@@ -22,27 +22,30 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("TaskInfo");
 
   private static final org.apache.thrift.protocol.TField FRAMEWORK_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("framework_name", org.apache.thrift.protocol.TType.STRING, (short)1);
-  private static final org.apache.thrift.protocol.TField CMD_FIELD_DESC = new org.apache.thrift.protocol.TField("cmd", org.apache.thrift.protocol.TType.STRING, (short)2);
-  private static final org.apache.thrift.protocol.TField ARGUMENTS_FIELD_DESC = new org.apache.thrift.protocol.TField("arguments", org.apache.thrift.protocol.TType.STRING, (short)3);
-  private static final org.apache.thrift.protocol.TField CANDIDATE_IPS_FIELD_DESC = new org.apache.thrift.protocol.TField("candidate_ips", org.apache.thrift.protocol.TType.STRING, (short)4);
-  private static final org.apache.thrift.protocol.TField CPU_FIELD_DESC = new org.apache.thrift.protocol.TField("cpu", org.apache.thrift.protocol.TType.DOUBLE, (short)5);
-  private static final org.apache.thrift.protocol.TField MEMORY_FIELD_DESC = new org.apache.thrift.protocol.TField("memory", org.apache.thrift.protocol.TType.DOUBLE, (short)6);
+  private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I64, (short)2);
+  private static final org.apache.thrift.protocol.TField CMD_FIELD_DESC = new org.apache.thrift.protocol.TField("cmd", org.apache.thrift.protocol.TType.STRING, (short)3);
+  private static final org.apache.thrift.protocol.TField ARGUMENTS_FIELD_DESC = new org.apache.thrift.protocol.TField("arguments", org.apache.thrift.protocol.TType.STRING, (short)4);
+  private static final org.apache.thrift.protocol.TField CANDIDATE_IPS_FIELD_DESC = new org.apache.thrift.protocol.TField("candidate_ips", org.apache.thrift.protocol.TType.STRING, (short)5);
+  private static final org.apache.thrift.protocol.TField NEED_CPU_FIELD_DESC = new org.apache.thrift.protocol.TField("need_cpu", org.apache.thrift.protocol.TType.DOUBLE, (short)6);
+  private static final org.apache.thrift.protocol.TField NEED_MEMORY_FIELD_DESC = new org.apache.thrift.protocol.TField("need_memory", org.apache.thrift.protocol.TType.DOUBLE, (short)7);
 
   public String framework_name;
+  public long id;
   public String cmd;
   public String arguments;
   public String candidate_ips;
-  public double cpu;
-  public double memory;
+  public double need_cpu;
+  public double need_memory;
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
     FRAMEWORK_NAME((short)1, "framework_name"),
-    CMD((short)2, "cmd"),
-    ARGUMENTS((short)3, "arguments"),
-    CANDIDATE_IPS((short)4, "candidate_ips"),
-    CPU((short)5, "cpu"),
-    MEMORY((short)6, "memory");
+    ID((short)2, "id"),
+    CMD((short)3, "cmd"),
+    ARGUMENTS((short)4, "arguments"),
+    CANDIDATE_IPS((short)5, "candidate_ips"),
+    NEED_CPU((short)6, "need_cpu"),
+    NEED_MEMORY((short)7, "need_memory");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -59,16 +62,18 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
       switch(fieldId) {
         case 1: // FRAMEWORK_NAME
           return FRAMEWORK_NAME;
-        case 2: // CMD
+        case 2: // ID
+          return ID;
+        case 3: // CMD
           return CMD;
-        case 3: // ARGUMENTS
+        case 4: // ARGUMENTS
           return ARGUMENTS;
-        case 4: // CANDIDATE_IPS
+        case 5: // CANDIDATE_IPS
           return CANDIDATE_IPS;
-        case 5: // CPU
-          return CPU;
-        case 6: // MEMORY
-          return MEMORY;
+        case 6: // NEED_CPU
+          return NEED_CPU;
+        case 7: // NEED_MEMORY
+          return NEED_MEMORY;
         default:
           return null;
       }
@@ -109,24 +114,27 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
   }
 
   // isset id assignments
-  private static final int __CPU_ISSET_ID = 0;
-  private static final int __MEMORY_ISSET_ID = 1;
-  private BitSet __isset_bit_vector = new BitSet(2);
+  private static final int __ID_ISSET_ID = 0;
+  private static final int __NEED_CPU_ISSET_ID = 1;
+  private static final int __NEED_MEMORY_ISSET_ID = 2;
+  private BitSet __isset_bit_vector = new BitSet(3);
 
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
     tmpMap.put(_Fields.FRAMEWORK_NAME, new org.apache.thrift.meta_data.FieldMetaData("framework_name", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     tmpMap.put(_Fields.CMD, new org.apache.thrift.meta_data.FieldMetaData("cmd", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.ARGUMENTS, new org.apache.thrift.meta_data.FieldMetaData("arguments", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.CANDIDATE_IPS, new org.apache.thrift.meta_data.FieldMetaData("candidate_ips", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.CPU, new org.apache.thrift.meta_data.FieldMetaData("cpu", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+    tmpMap.put(_Fields.NEED_CPU, new org.apache.thrift.meta_data.FieldMetaData("need_cpu", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
-    tmpMap.put(_Fields.MEMORY, new org.apache.thrift.meta_data.FieldMetaData("memory", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+    tmpMap.put(_Fields.NEED_MEMORY, new org.apache.thrift.meta_data.FieldMetaData("need_memory", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TaskInfo.class, metaDataMap);
@@ -137,10 +145,13 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
 
   public TaskInfo(
     String framework_name,
+    long id,
     String cmd)
   {
     this();
     this.framework_name = framework_name;
+    this.id = id;
+    setIdIsSet(true);
     this.cmd = cmd;
   }
 
@@ -153,6 +164,7 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     if (other.isSetFramework_name()) {
       this.framework_name = other.framework_name;
     }
+    this.id = other.id;
     if (other.isSetCmd()) {
       this.cmd = other.cmd;
     }
@@ -162,8 +174,8 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     if (other.isSetCandidate_ips()) {
       this.candidate_ips = other.candidate_ips;
     }
-    this.cpu = other.cpu;
-    this.memory = other.memory;
+    this.need_cpu = other.need_cpu;
+    this.need_memory = other.need_memory;
   }
 
   public TaskInfo deepCopy() {
@@ -173,13 +185,15 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
   @Override
   public void clear() {
     this.framework_name = null;
+    setIdIsSet(false);
+    this.id = 0;
     this.cmd = null;
     this.arguments = null;
     this.candidate_ips = null;
-    setCpuIsSet(false);
-    this.cpu = 0.0;
-    setMemoryIsSet(false);
-    this.memory = 0.0;
+    setNeed_cpuIsSet(false);
+    this.need_cpu = 0.0;
+    setNeed_memoryIsSet(false);
+    this.need_memory = 0.0;
   }
 
   public String getFramework_name() {
@@ -204,6 +218,29 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     if (!value) {
       this.framework_name = null;
     }
+  }
+
+  public long getId() {
+    return this.id;
+  }
+
+  public TaskInfo setId(long id) {
+    this.id = id;
+    setIdIsSet(true);
+    return this;
+  }
+
+  public void unsetId() {
+    __isset_bit_vector.clear(__ID_ISSET_ID);
+  }
+
+  /** Returns true if field id is set (has been assigned a value) and false otherwise */
+  public boolean isSetId() {
+    return __isset_bit_vector.get(__ID_ISSET_ID);
+  }
+
+  public void setIdIsSet(boolean value) {
+    __isset_bit_vector.set(__ID_ISSET_ID, value);
   }
 
   public String getCmd() {
@@ -278,50 +315,50 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     }
   }
 
-  public double getCpu() {
-    return this.cpu;
+  public double getNeed_cpu() {
+    return this.need_cpu;
   }
 
-  public TaskInfo setCpu(double cpu) {
-    this.cpu = cpu;
-    setCpuIsSet(true);
+  public TaskInfo setNeed_cpu(double need_cpu) {
+    this.need_cpu = need_cpu;
+    setNeed_cpuIsSet(true);
     return this;
   }
 
-  public void unsetCpu() {
-    __isset_bit_vector.clear(__CPU_ISSET_ID);
+  public void unsetNeed_cpu() {
+    __isset_bit_vector.clear(__NEED_CPU_ISSET_ID);
   }
 
-  /** Returns true if field cpu is set (has been assigned a value) and false otherwise */
-  public boolean isSetCpu() {
-    return __isset_bit_vector.get(__CPU_ISSET_ID);
+  /** Returns true if field need_cpu is set (has been assigned a value) and false otherwise */
+  public boolean isSetNeed_cpu() {
+    return __isset_bit_vector.get(__NEED_CPU_ISSET_ID);
   }
 
-  public void setCpuIsSet(boolean value) {
-    __isset_bit_vector.set(__CPU_ISSET_ID, value);
+  public void setNeed_cpuIsSet(boolean value) {
+    __isset_bit_vector.set(__NEED_CPU_ISSET_ID, value);
   }
 
-  public double getMemory() {
-    return this.memory;
+  public double getNeed_memory() {
+    return this.need_memory;
   }
 
-  public TaskInfo setMemory(double memory) {
-    this.memory = memory;
-    setMemoryIsSet(true);
+  public TaskInfo setNeed_memory(double need_memory) {
+    this.need_memory = need_memory;
+    setNeed_memoryIsSet(true);
     return this;
   }
 
-  public void unsetMemory() {
-    __isset_bit_vector.clear(__MEMORY_ISSET_ID);
+  public void unsetNeed_memory() {
+    __isset_bit_vector.clear(__NEED_MEMORY_ISSET_ID);
   }
 
-  /** Returns true if field memory is set (has been assigned a value) and false otherwise */
-  public boolean isSetMemory() {
-    return __isset_bit_vector.get(__MEMORY_ISSET_ID);
+  /** Returns true if field need_memory is set (has been assigned a value) and false otherwise */
+  public boolean isSetNeed_memory() {
+    return __isset_bit_vector.get(__NEED_MEMORY_ISSET_ID);
   }
 
-  public void setMemoryIsSet(boolean value) {
-    __isset_bit_vector.set(__MEMORY_ISSET_ID, value);
+  public void setNeed_memoryIsSet(boolean value) {
+    __isset_bit_vector.set(__NEED_MEMORY_ISSET_ID, value);
   }
 
   public void setFieldValue(_Fields field, Object value) {
@@ -331,6 +368,14 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
         unsetFramework_name();
       } else {
         setFramework_name((String)value);
+      }
+      break;
+
+    case ID:
+      if (value == null) {
+        unsetId();
+      } else {
+        setId((Long)value);
       }
       break;
 
@@ -358,19 +403,19 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
       }
       break;
 
-    case CPU:
+    case NEED_CPU:
       if (value == null) {
-        unsetCpu();
+        unsetNeed_cpu();
       } else {
-        setCpu((Double)value);
+        setNeed_cpu((Double)value);
       }
       break;
 
-    case MEMORY:
+    case NEED_MEMORY:
       if (value == null) {
-        unsetMemory();
+        unsetNeed_memory();
       } else {
-        setMemory((Double)value);
+        setNeed_memory((Double)value);
       }
       break;
 
@@ -382,6 +427,9 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     case FRAMEWORK_NAME:
       return getFramework_name();
 
+    case ID:
+      return new Long(getId());
+
     case CMD:
       return getCmd();
 
@@ -391,11 +439,11 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     case CANDIDATE_IPS:
       return getCandidate_ips();
 
-    case CPU:
-      return new Double(getCpu());
+    case NEED_CPU:
+      return new Double(getNeed_cpu());
 
-    case MEMORY:
-      return new Double(getMemory());
+    case NEED_MEMORY:
+      return new Double(getNeed_memory());
 
     }
     throw new IllegalStateException();
@@ -410,16 +458,18 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     switch (field) {
     case FRAMEWORK_NAME:
       return isSetFramework_name();
+    case ID:
+      return isSetId();
     case CMD:
       return isSetCmd();
     case ARGUMENTS:
       return isSetArguments();
     case CANDIDATE_IPS:
       return isSetCandidate_ips();
-    case CPU:
-      return isSetCpu();
-    case MEMORY:
-      return isSetMemory();
+    case NEED_CPU:
+      return isSetNeed_cpu();
+    case NEED_MEMORY:
+      return isSetNeed_memory();
     }
     throw new IllegalStateException();
   }
@@ -443,6 +493,15 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
       if (!(this_present_framework_name && that_present_framework_name))
         return false;
       if (!this.framework_name.equals(that.framework_name))
+        return false;
+    }
+
+    boolean this_present_id = true;
+    boolean that_present_id = true;
+    if (this_present_id || that_present_id) {
+      if (!(this_present_id && that_present_id))
+        return false;
+      if (this.id != that.id)
         return false;
     }
 
@@ -473,21 +532,21 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
         return false;
     }
 
-    boolean this_present_cpu = true && this.isSetCpu();
-    boolean that_present_cpu = true && that.isSetCpu();
-    if (this_present_cpu || that_present_cpu) {
-      if (!(this_present_cpu && that_present_cpu))
+    boolean this_present_need_cpu = true && this.isSetNeed_cpu();
+    boolean that_present_need_cpu = true && that.isSetNeed_cpu();
+    if (this_present_need_cpu || that_present_need_cpu) {
+      if (!(this_present_need_cpu && that_present_need_cpu))
         return false;
-      if (this.cpu != that.cpu)
+      if (this.need_cpu != that.need_cpu)
         return false;
     }
 
-    boolean this_present_memory = true && this.isSetMemory();
-    boolean that_present_memory = true && that.isSetMemory();
-    if (this_present_memory || that_present_memory) {
-      if (!(this_present_memory && that_present_memory))
+    boolean this_present_need_memory = true && this.isSetNeed_memory();
+    boolean that_present_need_memory = true && that.isSetNeed_memory();
+    if (this_present_need_memory || that_present_need_memory) {
+      if (!(this_present_need_memory && that_present_need_memory))
         return false;
-      if (this.memory != that.memory)
+      if (this.need_memory != that.need_memory)
         return false;
     }
 
@@ -513,6 +572,16 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     }
     if (isSetFramework_name()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.framework_name, typedOther.framework_name);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetId()).compareTo(typedOther.isSetId());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetId()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, typedOther.id);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -547,22 +616,22 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
         return lastComparison;
       }
     }
-    lastComparison = Boolean.valueOf(isSetCpu()).compareTo(typedOther.isSetCpu());
+    lastComparison = Boolean.valueOf(isSetNeed_cpu()).compareTo(typedOther.isSetNeed_cpu());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetCpu()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.cpu, typedOther.cpu);
+    if (isSetNeed_cpu()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.need_cpu, typedOther.need_cpu);
       if (lastComparison != 0) {
         return lastComparison;
       }
     }
-    lastComparison = Boolean.valueOf(isSetMemory()).compareTo(typedOther.isSetMemory());
+    lastComparison = Boolean.valueOf(isSetNeed_memory()).compareTo(typedOther.isSetNeed_memory());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetMemory()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.memory, typedOther.memory);
+    if (isSetNeed_memory()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.need_memory, typedOther.need_memory);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -591,39 +660,47 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
           }
           break;
-        case 2: // CMD
+        case 2: // ID
+          if (field.type == org.apache.thrift.protocol.TType.I64) {
+            this.id = iprot.readI64();
+            setIdIsSet(true);
+          } else { 
+            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+          }
+          break;
+        case 3: // CMD
           if (field.type == org.apache.thrift.protocol.TType.STRING) {
             this.cmd = iprot.readString();
           } else { 
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
           }
           break;
-        case 3: // ARGUMENTS
+        case 4: // ARGUMENTS
           if (field.type == org.apache.thrift.protocol.TType.STRING) {
             this.arguments = iprot.readString();
           } else { 
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
           }
           break;
-        case 4: // CANDIDATE_IPS
+        case 5: // CANDIDATE_IPS
           if (field.type == org.apache.thrift.protocol.TType.STRING) {
             this.candidate_ips = iprot.readString();
           } else { 
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
           }
           break;
-        case 5: // CPU
+        case 6: // NEED_CPU
           if (field.type == org.apache.thrift.protocol.TType.DOUBLE) {
-            this.cpu = iprot.readDouble();
-            setCpuIsSet(true);
+            this.need_cpu = iprot.readDouble();
+            setNeed_cpuIsSet(true);
           } else { 
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
           }
           break;
-        case 6: // MEMORY
+        case 7: // NEED_MEMORY
           if (field.type == org.apache.thrift.protocol.TType.DOUBLE) {
-            this.memory = iprot.readDouble();
-            setMemoryIsSet(true);
+            this.need_memory = iprot.readDouble();
+            setNeed_memoryIsSet(true);
           } else { 
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
           }
@@ -636,6 +713,9 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     iprot.readStructEnd();
 
     // check for required fields of primitive type, which can't be checked in the validate method
+    if (!isSetId()) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'id' was not found in serialized data! Struct: " + toString());
+    }
     validate();
   }
 
@@ -648,6 +728,9 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
       oprot.writeString(this.framework_name);
       oprot.writeFieldEnd();
     }
+    oprot.writeFieldBegin(ID_FIELD_DESC);
+    oprot.writeI64(this.id);
+    oprot.writeFieldEnd();
     if (this.cmd != null) {
       oprot.writeFieldBegin(CMD_FIELD_DESC);
       oprot.writeString(this.cmd);
@@ -667,14 +750,14 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
         oprot.writeFieldEnd();
       }
     }
-    if (isSetCpu()) {
-      oprot.writeFieldBegin(CPU_FIELD_DESC);
-      oprot.writeDouble(this.cpu);
+    if (isSetNeed_cpu()) {
+      oprot.writeFieldBegin(NEED_CPU_FIELD_DESC);
+      oprot.writeDouble(this.need_cpu);
       oprot.writeFieldEnd();
     }
-    if (isSetMemory()) {
-      oprot.writeFieldBegin(MEMORY_FIELD_DESC);
-      oprot.writeDouble(this.memory);
+    if (isSetNeed_memory()) {
+      oprot.writeFieldBegin(NEED_MEMORY_FIELD_DESC);
+      oprot.writeDouble(this.need_memory);
       oprot.writeFieldEnd();
     }
     oprot.writeFieldStop();
@@ -692,6 +775,10 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     } else {
       sb.append(this.framework_name);
     }
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("id:");
+    sb.append(this.id);
     first = false;
     if (!first) sb.append(", ");
     sb.append("cmd:");
@@ -721,16 +808,16 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
       }
       first = false;
     }
-    if (isSetCpu()) {
+    if (isSetNeed_cpu()) {
       if (!first) sb.append(", ");
-      sb.append("cpu:");
-      sb.append(this.cpu);
+      sb.append("need_cpu:");
+      sb.append(this.need_cpu);
       first = false;
     }
-    if (isSetMemory()) {
+    if (isSetNeed_memory()) {
       if (!first) sb.append(", ");
-      sb.append("memory:");
-      sb.append(this.memory);
+      sb.append("need_memory:");
+      sb.append(this.need_memory);
       first = false;
     }
     sb.append(")");
@@ -742,6 +829,7 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     if (framework_name == null) {
       throw new org.apache.thrift.protocol.TProtocolException("Required field 'framework_name' was not present! Struct: " + toString());
     }
+    // alas, we cannot check 'id' because it's a primitive and you chose the non-beans generator.
     if (cmd == null) {
       throw new org.apache.thrift.protocol.TProtocolException("Required field 'cmd' was not present! Struct: " + toString());
     }

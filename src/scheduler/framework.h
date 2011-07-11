@@ -4,7 +4,7 @@
 #include <string>
 
 #include "scheduler/task_queue.h"
-#include "scheduler/define.h"
+#include "include/type.h"
 
 using std::string;
 

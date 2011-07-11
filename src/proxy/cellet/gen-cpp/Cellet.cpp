@@ -28,9 +28,9 @@ uint32_t Cellet_StartTask_args::read(::apache::thrift::protocol::TProtocol* ipro
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->task_ad);
-          this->__isset.task_ad = true;
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->info.read(iprot);
+          this->__isset.info = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -50,8 +50,8 @@ uint32_t Cellet_StartTask_args::read(::apache::thrift::protocol::TProtocol* ipro
 uint32_t Cellet_StartTask_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   xfer += oprot->writeStructBegin("Cellet_StartTask_args");
-  xfer += oprot->writeFieldBegin("task_ad", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->task_ad);
+  xfer += oprot->writeFieldBegin("info", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += this->info.write(oprot);
   xfer += oprot->writeFieldEnd();
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -61,8 +61,8 @@ uint32_t Cellet_StartTask_args::write(::apache::thrift::protocol::TProtocol* opr
 uint32_t Cellet_StartTask_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   xfer += oprot->writeStructBegin("Cellet_StartTask_pargs");
-  xfer += oprot->writeFieldBegin("task_ad", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->task_ad)));
+  xfer += oprot->writeFieldBegin("info", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += (*(this->info)).write(oprot);
   xfer += oprot->writeFieldEnd();
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -165,19 +165,19 @@ uint32_t Cellet_StartTask_presult::read(::apache::thrift::protocol::TProtocol* i
   return xfer;
 }
 
-bool CelletClient::StartTask(const std::string& task_ad)
+bool CelletClient::StartTask(const TaskInfo& info)
 {
-  send_StartTask(task_ad);
+  send_StartTask(info);
   return recv_StartTask();
 }
 
-void CelletClient::send_StartTask(const std::string& task_ad)
+void CelletClient::send_StartTask(const TaskInfo& info)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("StartTask", ::apache::thrift::protocol::T_CALL, cseqid);
 
   Cellet_StartTask_pargs args;
-  args.task_ad = &task_ad;
+  args.info = &info;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -291,7 +291,7 @@ void CelletProcessor::process_StartTask(int32_t seqid, ::apache::thrift::protoco
 
   Cellet_StartTask_result result;
   try {
-    result.success = iface_->StartTask(args.task_ad);
+    result.success = iface_->StartTask(args.info);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (eventHandler_.get() != NULL) {

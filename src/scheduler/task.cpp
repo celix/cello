@@ -8,6 +8,9 @@ Task::Task(const TaskInfo& task_info) {
     m_framework_name = task_info.framework_name;
     m_submit_time = time(NULL);
     m_state = TaskWaiting::Instance();
+    m_task_info = task_info;
+    // set task id
+    m_task_info.id = m_id;
     // TODO @chenjing
     // add 
     

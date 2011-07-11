@@ -1,8 +1,11 @@
-SET(SCHEDULER_PROXY ../proxy/scheduler/gen-cpp)
-SET(SCHEDULER_RPC_SOURCE
-    ${SCHEDULER_PROXY}/Scheduler.cpp
-    ${SCHEDULER_PROXY}/scheduler_types.cpp
-    ${SCHEDULER_PROXY}/scheduler_constants.cpp)
+SET(CELLET_PROXY ../proxy/scheduler/gen-cpp)
+SET(CELLET_RPC_SOURCE
+    ${CELLET_PROXY}/Scheduler.cpp
+    ${CELLET_PROXY}/scheduler_types.cpp
+    ${CELLET_PROXY}/scheduler_constants.cpp
+    ${CELLET_PROXY}/Cellet.cpp
+    ${CELLET_PROXY}/cellet_types.cpp
+    ${CELLET_PROXY}/cellet_constants.cpp)
 
 SET(COLLECTOR_PROXY ../proxy/collector/gen-cpp)
 SET(COLLECTOR_RPC_SOURCE
@@ -11,7 +14,9 @@ SET(COLLECTOR_RPC_SOURCE
     ${COLLECTOR_PROXY}/collector_constants.cpp)
 
 SET(SRC
+    ${CELLET_RPC_SOURCE}
     ${COLLECTOR_RPC_SOURCE}
+    system.cpp
     main.cpp)
 
 ADD_EXECUTABLE(cellet ${SRC})

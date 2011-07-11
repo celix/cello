@@ -5,18 +5,27 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <errno.h>
+#include <string>
+
+using std::string;
 
 class MessageQueue {
 public:
     enum {MAXLEN = 256};
+    enum {QUEUE_TYPE = 1};
 
     /// message format
-    struct Msg {
+    struct Message {
         long int type;
-        char msg[MAXLEN];
-        Msg(): type(1) {
-            for (int i = 0; i< MAXLEN; ++i)
-                msg[i] = 0;
+        char content[MAXLEN];
+        
+        Message() : type(QUEUE_TYPE) {
+            memset(content, 0, MAXLEN);
+        }
+        
+        Message(const string& ss) : type(QUEUE_TYPE) {
+            memset(content, 0, MAXLEN);
+            strncpy(content, ss.c_str(), ss.size());
         }
     };
 

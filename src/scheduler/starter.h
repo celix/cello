@@ -4,8 +4,6 @@
 #include "include/type.h"
 #include "scheduler/task.h"
 #include "common/rpc.h"
-#include "classad/classad.h"
-#include "classad/matchClassad.h"
 
 #include "proxy/cellet/gen-cpp/Cellet.h"
 
@@ -19,9 +17,7 @@ public:
         bool ret = false;
         try {
             transport->open();
-            ClassAd task_ad = task.GetClassAd();
-            string str_ad = adToString(&task_ad);
-            ret = proxy.StartTask(str_ad);
+            ret = proxy.StartTask(task->GetTaskInfo());
             transport->close();
         } catch (TException &tx) {
             LOG(ERROR) << "start task error: " << tx.what();

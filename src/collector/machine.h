@@ -7,8 +7,11 @@
 
 #include "proxy/collector/gen-cpp/Collector.h"
 #include "classad/classad.h"
+#include "common/rwlock.h"
+#include "boost/shared_ptr.hpp"
 
 using std::list;
+using boost::shared_ptr;
 
 class Machine : public MachineInfo {
 public:
@@ -34,6 +37,11 @@ public:
         LOG(INFO) << "Available cpu cores: " << avail_cpu;
         LOG(INFO) << "Available memory: " << avail_memory;
     }
+
+private:
+    RWLock m_lock;
 };
+
+typedef shared_ptr<Machine> MachinePtr;
 
 #endif

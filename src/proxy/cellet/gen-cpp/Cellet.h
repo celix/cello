@@ -14,38 +14,38 @@
 class CelletIf {
  public:
   virtual ~CelletIf() {}
-  virtual bool StartTask(const std::string& task_ad) = 0;
+  virtual bool StartTask(const TaskInfo& info) = 0;
 };
 
 class CelletNull : virtual public CelletIf {
  public:
   virtual ~CelletNull() {}
-  bool StartTask(const std::string& /* task_ad */) {
+  bool StartTask(const TaskInfo& /* info */) {
     bool _return = false;
     return _return;
   }
 };
 
 typedef struct _Cellet_StartTask_args__isset {
-  _Cellet_StartTask_args__isset() : task_ad(false) {}
-  bool task_ad;
+  _Cellet_StartTask_args__isset() : info(false) {}
+  bool info;
 } _Cellet_StartTask_args__isset;
 
 class Cellet_StartTask_args {
  public:
 
-  Cellet_StartTask_args() : task_ad("") {
+  Cellet_StartTask_args() {
   }
 
   virtual ~Cellet_StartTask_args() throw() {}
 
-  std::string task_ad;
+  TaskInfo info;
 
   _Cellet_StartTask_args__isset __isset;
 
   bool operator == (const Cellet_StartTask_args & rhs) const
   {
-    if (!(task_ad == rhs.task_ad))
+    if (!(info == rhs.info))
       return false;
     return true;
   }
@@ -67,7 +67,7 @@ class Cellet_StartTask_pargs {
 
   virtual ~Cellet_StartTask_pargs() throw() {}
 
-  const std::string* task_ad;
+  const TaskInfo* info;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
@@ -146,8 +146,8 @@ class CelletClient : virtual public CelletIf {
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  bool StartTask(const std::string& task_ad);
-  void send_StartTask(const std::string& task_ad);
+  bool StartTask(const TaskInfo& info);
+  void send_StartTask(const TaskInfo& info);
   bool recv_StartTask();
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
@@ -185,13 +185,13 @@ class CelletMultiface : virtual public CelletIf {
     ifaces_.push_back(iface);
   }
  public:
-  bool StartTask(const std::string& task_ad) {
+  bool StartTask(const TaskInfo& info) {
     uint32_t sz = ifaces_.size();
     for (uint32_t i = 0; i < sz; ++i) {
       if (i == sz - 1) {
-        return ifaces_[i]->StartTask(task_ad);
+        return ifaces_[i]->StartTask(info);
       } else {
-        ifaces_[i]->StartTask(task_ad);
+        ifaces_[i]->StartTask(info);
       }
     }
   }

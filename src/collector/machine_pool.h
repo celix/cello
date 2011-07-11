@@ -21,7 +21,7 @@ public:
     typedef function<void(const Machine&)> MachineFunc;
 
     /// @brief: insert a machine into pool
-    void Insert(const Machine& machine_ad);
+    void Insert(const MachinePtr& machine_ptr);
 
     /// @brief: map a the pool and do func
     void MapToDo(MachineFunc func);
@@ -31,7 +31,7 @@ public:
 private:
 
     RWLock m_lock;
-    map<string, Machine> m_pool;
+    map<string, MachinePtr> m_pool;
 };
 
 typedef Singleton<MachinePool> Pool;

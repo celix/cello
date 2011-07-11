@@ -11,6 +11,7 @@
 #include <protocol/TProtocol.h>
 #include <transport/TTransport.h>
 
+#include "scheduler_types.h"
 
 
 

@@ -1,7 +1,7 @@
 #include "collector/machine_pool.h"
 
-void MachinePool::Insert(const Machine& machine) {
-    string endpoint = machine.GetEndpoint();
+void MachinePool::Insert(const MachinePtr& machine) {
+    string endpoint = machine->GetEndpoint();
     WriteLocker locker(m_lock);
     m_pool[endpoint] = machine;
 }
