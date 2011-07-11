@@ -8,10 +8,4 @@ enum queue_type {
     RUN_QUEUE
 };
 
-enum map_type {
-    WAIT_MAP,
-    RUN_MAP,
-    ALL_MAP
-};
-
 #endif

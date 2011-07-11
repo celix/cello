@@ -1,7 +1,7 @@
 #include "glog/logging.h"
 #include "gflags/gflags.h"
 
-#include "collector/cellet.h"
+#include "cellet/cellet.h"
 #include "common/rpc.h"
 
 DEFINE_int32(port, 9998, "cellet port");

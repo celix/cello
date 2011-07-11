@@ -5,9 +5,9 @@
 
 class Filter {
 public:
-    static void Filtration(const Machine& machine,
+    static void Filtration(const MachinePtr& machine,
                            const string& task_ad,
-                           list<Machine>* result) {
+                           list<MachinePtr>* result) {
         // TODO: @chenjing
         // classad match
         result->push_back(machine);    

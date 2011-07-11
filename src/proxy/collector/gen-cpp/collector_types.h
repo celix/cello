@@ -33,7 +33,7 @@ class MachineInfo {
   MachineInfo() : endpoint(""), load(0), cpu(0), memory(0), avail_cpu(0), avail_memory(0), task_num(0) {
   }
 
-  virtual ~MachineInfo() throw() {}
+  virtual ~MachineInfo() {}
 
   std::string endpoint;
   double load;

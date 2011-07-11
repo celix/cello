@@ -7,12 +7,12 @@ using std::string;
 
 TEST(NormalTest, All) {
    MessageQueue queue(9999);
-   MessageQueue::Msg data;
-   snprintf(data.msg, sizeof(data.msg), "TEST");
+   MessageQueue::Message data;
+   snprintf(data.content, sizeof(data.content), "TEST");
    queue.Send(&data);
-   MessageQueue::Msg info;
+   MessageQueue::Message info;
    queue.Receive(&info);
-   string ss(info.msg, strlen(info.msg));
+   string ss(info.content, strlen(info.content));
    EXPECT_EQ(ss, "TEST");
 }
 

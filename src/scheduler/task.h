@@ -32,7 +32,7 @@ public:
         return m_id;
     }
 
-    TaskInfo GetTaskInfo {
+    TaskInfo GetTaskInfo() const {
         return m_task_info;
     }
 

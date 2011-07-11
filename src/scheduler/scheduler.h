@@ -58,8 +58,8 @@ public:
         LOG(INFO) << "cmd: " << task_info.cmd;
         LOG(INFO) << "arguments: " << task_info.arguments;
         LOG(INFO) << "candidate ips: " << task_info.candidate_ips;
-        LOG(INFO) << "Cpu needs: " << task_info.cpu;
-        LOG(INFO) << "Memory needs: " << task_info.memory;
+        LOG(INFO) << "Cpu needs: " << task_info.need_cpu;
+        LOG(INFO) << "Memory needs: " << task_info.need_memory;
     }
 };
 

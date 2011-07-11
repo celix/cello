@@ -1,4 +1,4 @@
-SET(CELLET_PROXY ../proxy/scheduler/gen-cpp)
+SET(CELLET_PROXY ../proxy/cellet/gen-cpp)
 SET(CELLET_RPC_SOURCE
     ${CELLET_PROXY}/Scheduler.cpp
     ${CELLET_PROXY}/scheduler_types.cpp
@@ -17,6 +17,8 @@ SET(SRC
     ${CELLET_RPC_SOURCE}
     ${COLLECTOR_RPC_SOURCE}
     system.cpp
+    process.cpp
+    process_pool.cpp
     main.cpp)
 
 ADD_EXECUTABLE(cellet ${SRC})

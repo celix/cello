@@ -18,7 +18,7 @@ using std::tr1::placeholders::_2;
 class MachinePool {
 public:
     
-    typedef function<void(const Machine&)> MachineFunc;
+    typedef function<void(const MachinePtr&)> MachineFunc;
 
     /// @brief: insert a machine into pool
     void Insert(const MachinePtr& machine_ptr);

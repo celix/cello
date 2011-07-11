@@ -24,7 +24,7 @@ public:
     }
 
     void Heartbeat(const MachineInfo& info) {
-        MachinePtr ptr( new machine(info));
+        MachinePtr ptr(new Machine(info));
         Pool::Instance()->Insert(ptr);
     }
 

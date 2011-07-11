@@ -6,7 +6,9 @@
 using std::string;
 
 class ResourceManager {
-
+public:
+    void Init()
+    
 private:
     string m_endpoint;
     int m_total_cpu;

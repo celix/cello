@@ -62,8 +62,8 @@ int System::TotalMemory() {
 
 //  @return: used memory
 int System::UsedMemory() {
-    int total = sysapi_total_memory();
-    int free = sysapi_phys_memory();
+    int total = TotalMemory();
+    int free = PhysicalMemory();
     if (total == -1 || free == -1 || free > total)
         return -1;
     return total - free;

@@ -3,21 +3,25 @@
 
 #include <map>
 
-#include "include/type.h"
+#include "common/rwlock.h"
+#include "common/singleton.h"
 #include "cellet/process.h"
 
 using std::map;
 
 class ProcessPool {
 public:
-    /// @brief: find a process in specific map
-    bool Find(const ProcessPtr& ptr, map_type type);
+    /// @brief: find a process in process map
+    bool Find(const ProcessPtr& ptr);
     
-    void Insert(const ProcessPtr& ptr, map_type type);
+    /// @brief: insert a process in map
+    void Insert(const ProcessPtr& ptr);
 
 private:
-    map<int64_t, Process> m_wait_map;
-    map<int64_t, Process> m_run_map;
-}
+    RWLock m_lock;    
+    map<int64_t, ProcessPtr> m_process_map;
+};
+
+typedef Singleton<ProcessPool> ProcessMgr;
 
 #endif

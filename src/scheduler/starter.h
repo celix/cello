@@ -17,7 +17,7 @@ public:
         bool ret = false;
         try {
             transport->open();
-            ret = proxy.StartTask(task->GetTaskInfo());
+            ret = proxy.StartTask(task.GetTaskInfo());
             transport->close();
         } catch (TException &tx) {
             LOG(ERROR) << "start task error: " << tx.what();

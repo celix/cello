@@ -8,7 +8,7 @@ void MachinePool::Insert(const MachinePtr& machine) {
 
 void MachinePool::MapToDo(MachineFunc func) {
     ReadLocker locker(m_lock);
-    for (map<string, Machine>::iterator it = m_pool.begin();
+    for (map<string, MachinePtr>::iterator it = m_pool.begin();
          it != m_pool.end(); ++it)
         func(it->second);
 }

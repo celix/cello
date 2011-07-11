@@ -6,14 +6,14 @@
 
 class Cellet : public CelletIf {
 public:
-    bool StartTask(const TaskInfo info) {
+    bool StartTask(const TaskInfo& info) {
         ProcessPtr ptr(new Process(info));
         ptr->LogInfo();
-        if(ProcessMgr::Instance()->Find(ptr, ALL_MAP)) {
+        if(ProcessMgr::Instance()->Find(ptr)) {
             // task had exist in cellet, return false
             return false;
         } else {
-            ProcessMgr::Instance()->Insert(ptr, WAIT_MAP);
+            ProcessMgr::Instance()->Insert(ptr);
             return true;
         }
     }
