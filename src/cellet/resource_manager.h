@@ -7,7 +7,7 @@ using std::string;
 
 class ResourceManager {
 public:
-    void Init()
+    void Init();
     
 private:
     string m_endpoint;
@@ -16,6 +16,7 @@ private:
     int m_total_memory;
     int m_avail_memory;
     double m_load;
+    map<pid_t, Container> m_container_map;
 };
 
 #endif

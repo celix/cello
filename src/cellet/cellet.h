@@ -2,18 +2,18 @@
 #define SRC_CELLET_CELLET_H
 
 #include "proxy/cellet/gen-cpp/Cellet.h"
-#include "cellet/process_pool.h"
+#include "cellet/executor_pool.h"
 
 class Cellet : public CelletIf {
 public:
     bool StartTask(const TaskInfo& info) {
-        ProcessPtr ptr(new Process(info));
+        ExecutorPtr ptr(new Executor(info));
         ptr->LogInfo();
-        if(ProcessMgr::Instance()->Find(ptr)) {
+        if(ExecutorMgr::Instance()->Find(ptr)) {
             // task had exist in cellet, return false
             return false;
         } else {
-            ProcessMgr::Instance()->Insert(ptr);
+            ExecutorMgr::Instance()->Insert(ptr);
             return true;
         }
     }

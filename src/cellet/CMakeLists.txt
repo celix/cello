@@ -17,8 +17,11 @@ SET(SRC
     ${CELLET_RPC_SOURCE}
     ${COLLECTOR_RPC_SOURCE}
     system.cpp
-    process.cpp
-    process_pool.cpp
+    executor.cpp
+    executor_pool.cpp
+    message_manager.cpp
+    container.cpp
+    work_thread.cpp
     main.cpp)
 
 ADD_EXECUTABLE(cellet ${SRC})
