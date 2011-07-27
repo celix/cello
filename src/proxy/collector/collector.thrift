@@ -1,6 +1,6 @@
 struct MachineInfo {
     1: required string endpoint,
-    2: required double load,
+    2: required double usage,
     3: optional i32 cpu,
     4: optional i32 memory,
     5: optional double avail_cpu,

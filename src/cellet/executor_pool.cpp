@@ -24,3 +24,9 @@ void ExecutorPool::StartExecutor() {
         }
     }
 }
+
+bool ExecutorPool::FindToDo(int64_t id, ExecutorFunc func) {
+    ReadLocker locker(m_lock);
+    for (map<int64_t, ExecutorPtr>::iterator it = m_executor_map.begin();
+         it != m_executor_map.end(); ++it)
+}

@@ -4,10 +4,14 @@
 #include <vector>
 
 #include "glog/logging.h"
+#include "gflags/gflags.h"
 #include "cellet/container.h"
+#include "cellet/message_manager.h"
 #include "common/string_utility.h"
 
 using std::vector;
+
+DECLARE_string(work_directory);
 
 Container::Container(const MessageQueue::Message& msg) : m_pid(0) {
     vector<string> res;
@@ -22,6 +26,7 @@ Container::Container(const MessageQueue::Message& msg) : m_pid(0) {
     m_info.framework_name = res[3];
     m_info.need_cpu = need_cpu;
     m_info.need_memory = need_memory;
+    m_state = CONTAINER_INIT;
 }
 
 int Container::Init() {
@@ -37,7 +42,8 @@ int Container::Init() {
     }
     // create work directory
     char path[256] = {0};
-    snprintf(path, sizeof(path), "%s/%ld", framework_dir.c_str(), m_info.id);
+    snprintf(path, sizeof(path), "%s/%lld", framework_dir.c_str(), m_info.id);
+    m_work_diectory = path;
     if (mkdir(path, S_IRWXU|S_IRWXG|S_IROTH) < 0) {
         LOG(ERROR) << "create work directory error: " << path;
         return -1;
@@ -54,23 +60,51 @@ int Container::Init() {
 void Container::Execute() {
     vector<string> args;
     StringUtility::Split(m_info.arguments, ' ', &args);
-    // get cmd name;
-    char name[30] = {0};
-    strncpy(name, m_info.cmd.c_str(), m_info.cmd.length());
-    // create arg list
-    char* c_args[args.size() + 1] = {0};
-    // add cmd name as argv[0];
-    c_args[0] = name;
-    // get the arguments
-    for (int i = 0; i < args.size(); ++i)
-        c_args[i + 1] = args[i].c_str();
+    // add cmd as argv[0]
+    args.insert(args.begin(), m_info.cmd);
+    // convert string vector to string array
+    char ** c_args = NULL;
+    StringUtility::CreateArgArray(args, c_args);
     LOG(INFO) << "command argument list:";
-    for (int i = 0; i < args.size() + 1; ++i)
+    for (int i = 0; c_args[i]; ++i)
         LOG(INFO) << c_args[i];
     // child process
     m_pid = fork();
     if (m_pid == 0) {
         // find cmd path automatically
         execvp(m_info.cmd.c_str(), c_args);
+        // free memory space
+        StringUtility::DestoryArgArray(c_args);
+    } else {
+        ContainerStarted();
     }
+}
+
+void Container::Clean() {
+    // TODO: @chenjing
+    // clear the work directory
+}
+
+MessageQueue::Message Container::ToMessage() {
+    char data[MessageQueue::MAXLEN] = {0};
+    // convert executor information into a string with "\n" as separator
+    snprintf(data, sizeof(data), "%lld\n%d\n", m_info.id, m_state);
+    MessageQueue::Message msg(data);
+    return msg;
+}
+
+void Container::ContainerFinished() {
+    LOG(INFO) << "Container Finished  ID:" << m_info.id << " PID:" << m_pid;
+    m_state = CONTAINER_FINISHED;
+    Clean();
+    MessageQueue::Message msg = ToMessage();
+    MsgQueueMgr::Instance()->Get(EXECUTOR_STATE_KEY)->Send(&msg);
+}
+
+void Container::ContainerStarted() {
+    LOG(INFO) << "Container Started ID:" << m_info.id << " PID:" << m_pid;
+    m_state = CONTAINER_STARTED;
+    // report the message
+    MessageQueue::Message msg = ToMessage();
+    MsgQueueMgr::Instance()->Get(EXECUTOR_STATE_KEY)->Send(&msg);
 }

@@ -11,6 +11,8 @@ using std::map;
 
 class ExecutorPool {
 public:
+    
+    typedef ExectorFunc;
     /// @brief: find a executor in process map
     bool Find(const ExecutorPtr& ptr);
     
@@ -19,6 +21,8 @@ public:
     
     /// @brief: find a waitting executor, and start it
     void StartExecutor();
+
+    bool FindToDo(int64_t id, ExecutorFunc func);
 
 private:
     RWLock m_lock;    

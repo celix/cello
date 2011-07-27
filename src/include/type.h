@@ -5,9 +5,9 @@
 #include <sys/ipc.h>
 
 static const int TIME_OUT = 2000;
-static const key_t TASK_START_KEY = 7000;
-static const key_t TASK_STATE_KEY = 7001;
-static const key_t TASK_CONTROL_KEY = 7002;
+static const key_t EXECUTOR_START_KEY = 7000;
+static const key_t EXECUTOR_STATE_KEY = 7001;
+static const key_t EXECUTOR_CONTROL_KEY = 7002;
 static const key_t RESOURCE_INFO_KEY = 7003;
 
 enum queue_type {
@@ -17,7 +17,14 @@ enum queue_type {
 
 enum ExecutorState {
     EXECUTOR_WAIT,
-    EXECUTOR_RUN
+    EXECUTOR_RUN,
+    EXECUTOR_FINISHED
+};
+
+enum ContainerState {
+    CONTAINER_INIT = 0,
+    CONTAINER_STARTED,
+    CONTAINER_FINISHED
 };
 
 #endif

@@ -22,7 +22,7 @@ uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
   using ::apache::thrift::protocol::TProtocolException;
 
   bool isset_endpoint = false;
-  bool isset_load = false;
+  bool isset_usage = false;
 
   while (true)
   {
@@ -42,8 +42,8 @@ uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_DOUBLE) {
-          xfer += iprot->readDouble(this->load);
-          isset_load = true;
+          xfer += iprot->readDouble(this->usage);
+          isset_usage = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -99,7 +99,7 @@ uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   if (!isset_endpoint)
     throw TProtocolException(TProtocolException::INVALID_DATA);
-  if (!isset_load)
+  if (!isset_usage)
     throw TProtocolException(TProtocolException::INVALID_DATA);
   return xfer;
 }
@@ -110,8 +110,8 @@ uint32_t MachineInfo::write(::apache::thrift::protocol::TProtocol* oprot) const 
   xfer += oprot->writeFieldBegin("endpoint", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString(this->endpoint);
   xfer += oprot->writeFieldEnd();
-  xfer += oprot->writeFieldBegin("load", ::apache::thrift::protocol::T_DOUBLE, 2);
-  xfer += oprot->writeDouble(this->load);
+  xfer += oprot->writeFieldBegin("usage", ::apache::thrift::protocol::T_DOUBLE, 2);
+  xfer += oprot->writeDouble(this->usage);
   xfer += oprot->writeFieldEnd();
   if (this->__isset.cpu) {
     xfer += oprot->writeFieldBegin("cpu", ::apache::thrift::protocol::T_I32, 3);

@@ -19,13 +19,16 @@ public:
     int64_t GetId() {
         return m_info.id;
     }
-    
 
     ExecutorState GetStatus();
 
     void Start();
 
     void LogInfo();
+
+    void ExecutorStarted();
+    
+    void ExecutorFinshed();
 
 private:
 

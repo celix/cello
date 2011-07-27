@@ -17,7 +17,7 @@ void Executor::Start() {
     ReadLocker locker(m_lock);
     // send start information to resource manager process
     MessageQueue::Message msg = ToMessage();
-    MsgQueueMgr::Instance()->Get(TASK_START_KEY)->Send(&msg);
+    MsgQueueMgr::Instance()->Get(EXECUTOR_START_KEY)->Send(&msg);
 }
 
 ExecutorState Executor::GetStatus() {
@@ -33,4 +33,19 @@ MessageQueue::Message Executor::ToMessage() {
              m_info.need_cpu, m_info.need_memory);
     MessageQueue::Message msg(data);
     return msg;
+}
+
+void Executor::ExecutorStarted() {
+    LOG(INFO) << "Executor Start  Framework:" << m_info.framework_name
+              << "Id:" << m_info.id;
+    // change state
+    WriteLocker locker(m_lock);
+    m_state = EXECUTOR_RUN;
+}
+
+void Executor::ExecutorFinshed() {
+    LOG(INFO) << "Executor Finished  Framework:" << m_info.framework_name
+              << "Id:" << m_info.id;
+    WriteLocker locker(m_lock);
+    m_state = EXECUTOR_FINISHED;
 }

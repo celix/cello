@@ -30,13 +30,13 @@ class MachineInfo {
   static const char* ascii_fingerprint; // = "E42E0C004BE60620A39AF9F925B574C3";
   static const uint8_t binary_fingerprint[16]; // = {0xE4,0x2E,0x0C,0x00,0x4B,0xE6,0x06,0x20,0xA3,0x9A,0xF9,0xF9,0x25,0xB5,0x74,0xC3};
 
-  MachineInfo() : endpoint(""), load(0), cpu(0), memory(0), avail_cpu(0), avail_memory(0), task_num(0) {
+  MachineInfo() : endpoint(""), usage(0), cpu(0), memory(0), avail_cpu(0), avail_memory(0), task_num(0) {
   }
 
-  virtual ~MachineInfo() {}
+  virtual ~MachineInfo() throw() {}
 
   std::string endpoint;
-  double load;
+  double usage;
   int32_t cpu;
   int32_t memory;
   double avail_cpu;
@@ -49,7 +49,7 @@ class MachineInfo {
   {
     if (!(endpoint == rhs.endpoint))
       return false;
-    if (!(load == rhs.load))
+    if (!(usage == rhs.usage))
       return false;
     if (__isset.cpu != rhs.__isset.cpu)
       return false;

@@ -33,7 +33,7 @@ int System::CpuNum() {
         }
     }
 
-    /* Done reading; close the file */
+    // Done reading; close the file
     fclose(fp);
     return cpu_num ? cpu_num : 1;
 }
@@ -111,7 +111,7 @@ int System::VirtualMemory() {
         }
     }
 
-    /* Done reading; close the file */
+    // Done reading; close the file
     fclose(fp);
     free_swap /= 1024;
     return free_swap;

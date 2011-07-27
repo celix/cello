@@ -27,6 +27,9 @@ public:
             memset(content, 0, MAXLEN);
             strncpy(content, ss.c_str(), ss.size());
         }
+        char* Get() {
+            return content;
+        }
     };
 
     explicit MessageQueue(key_t key);
