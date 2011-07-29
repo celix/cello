@@ -5,7 +5,7 @@ struct TaskInfo {
     4: optional string arguments,
     5: optional string candidate_ips,         // not support now
     6: optional double need_cpu,              // not support now
-    7: optional double need_memory            // not support now
+    7: optional i32 need_memory               // not support now
 }
 
 service Scheduler {

@@ -7,8 +7,8 @@
 
 
 
-const char* TaskInfo::ascii_fingerprint = "90262498130E4F41F9B104F3535ABB76";
-const uint8_t TaskInfo::binary_fingerprint[16] = {0x90,0x26,0x24,0x98,0x13,0x0E,0x4F,0x41,0xF9,0xB1,0x04,0xF3,0x53,0x5A,0xBB,0x76};
+const char* TaskInfo::ascii_fingerprint = "CB4EC85350124CB04BE63BAC46B8B12F";
+const uint8_t TaskInfo::binary_fingerprint[16] = {0xCB,0x4E,0xC8,0x53,0x50,0x12,0x4C,0xB0,0x4B,0xE6,0x3B,0xAC,0x46,0xB8,0xB1,0x2F};
 
 uint32_t TaskInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
 
@@ -82,8 +82,8 @@ uint32_t TaskInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
         }
         break;
       case 7:
-        if (ftype == ::apache::thrift::protocol::T_DOUBLE) {
-          xfer += iprot->readDouble(this->need_memory);
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->need_memory);
           this->__isset.need_memory = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -135,8 +135,8 @@ uint32_t TaskInfo::write(::apache::thrift::protocol::TProtocol* oprot) const {
     xfer += oprot->writeFieldEnd();
   }
   if (this->__isset.need_memory) {
-    xfer += oprot->writeFieldBegin("need_memory", ::apache::thrift::protocol::T_DOUBLE, 7);
-    xfer += oprot->writeDouble(this->need_memory);
+    xfer += oprot->writeFieldBegin("need_memory", ::apache::thrift::protocol::T_I32, 7);
+    xfer += oprot->writeI32(this->need_memory);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();

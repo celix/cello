@@ -14,6 +14,13 @@
 DEFINE_int32(port, 9998, "cellet port");
 DEFINE_string(work_directory, "/tmp/cello", "cellet work directory");
 DEFINE_string(scheduler_endpoint, "10.5.0.170:9998", "scheduler endpoint");
+DEFINE_string(collector_endpoint, "10.5.0.170:9999", "collector endpoint");
+
+extern void* ResourceInfoSender(void* unused);
+extern void* ResourceInfoReceiver(void* unused);
+extern void* StartExecutorSender(void* unused);
+extern void* StartExecutorReceiver(void* unused);
+extern void* ExecutorStatusReceiver(void* unused);
 
 void ResourceManagerEntry() {
     // if temperory directory does not exist then create it
@@ -61,7 +68,7 @@ int main(int argc, char ** argv) {
         // resouce information 
         pthread_create(&res_info_recv_t, NULL, ResourceInfoReceiver, NULL);
         // receive executor status thread
-        pthread_create(&exec_status_recv_t, NULL, ExecutorStatusReceiver, NULL)
+        pthread_create(&exec_status_recv_t, NULL, ExecutorStatusReceiver, NULL);
         Rpc<Cellet, CelletProcessor>::Listen(FLAGS_port); 
         return 0;
     } else {

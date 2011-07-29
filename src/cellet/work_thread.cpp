@@ -1,16 +1,49 @@
 #include "common/message_queue.h"
 #include "common/string_utility.h"
-#include "common/rpc.h"
 #include "gflags/gflags.h"
-#include "cellet/container.h"
 #include "cellet/executor_pool.h"
 #include "cellet/container_pool.h"
 #include "cellet/message_manager.h"
 #include "cellet/resource_manager.h"
+#include "cellet/container.h"
 
 #include "proxy/scheduler/gen-cpp/Scheduler.h"
+#include "proxy/collector/gen-cpp/Collector.h"
+#include "common/rpc.h"
 
 DECLARE_string(scheduler_endpoint);
+DECLARE_string(collector_endpoint);
+
+void StateHandler(const ExecutorPtr& ptr, ContainerState state) {
+    assert(state == CONTAINER_FINISHED || state == CONTAINER_STARTED);
+    if (state == CONTAINER_STARTED) {
+        ptr->ExecutorStarted();
+        shared_ptr<TTransport> transport;
+        // get scheduler proxy, report task status to scheduler
+        SchedulerClient proxy = Rpc<SchedulerClient, SchedulerClient>::GetProxy(
+                FLAGS_scheduler_endpoint, TIME_OUT, &transport);
+        try {
+            transport->open();
+            proxy.TaskStarted(ptr->GetId(), true);
+            transport->close();
+        } catch (TException &tx) {
+            LOG(ERROR) << "report executor start error: " << tx.what();
+        }
+    } else {
+        ptr->ExecutorFinshed();
+        shared_ptr<TTransport> transport;
+        // get scheduler proxy, report task status to scheduler
+        SchedulerClient proxy = Rpc<SchedulerClient, SchedulerClient>::GetProxy(
+                FLAGS_scheduler_endpoint, TIME_OUT, &transport);
+        try {
+            transport->open();
+            proxy.TaskFinished(ptr->GetId(), true);
+            transport->close();
+        } catch (TException &tx) {
+            LOG(ERROR) << "report executor finished error: " << tx.what();
+        }
+    }
+}
 
 /// @brief: resource manager thread
 ///         --send resource info to master process
@@ -25,9 +58,23 @@ void* ResourceInfoSender(void* unused) {
 }
 
 void* ResourceInfoReceiver(void* unused) {
+    shared_ptr<TTransport> transport;
+    // get collector proxy, send heartbeat to collector
+    CollectorClient proxy = Rpc<CollectorClient, CollectorClient>::GetProxy(
+            FLAGS_collector_endpoint, TIME_OUT, &transport);
+    transport->open();
     while (true) {
-        
+        MessageQueue::Message msg;
+        MsgQueueMgr::Instance()->Get(RESOURCE_INFO_KEY)->Receive(&msg);
+        MachineInfo info(msg);
+        try {
+            // send heartbeat
+            proxy.Heartbeat(info);
+        } catch (TException &tx) {
+            LOG(ERROR) << "send heartbeat error: " << tx.what();
+        }
     }
+    transport->close();
     return NULL;
 }
 
@@ -66,9 +113,9 @@ void* ExecutorStatusReceiver(void* unused) {
         // get executor id
         vector<string> info;
         StringUtility::Split(msg.Get(), '\n', &info);
-        int64_t executor_id = atol(info[0]);
-        ContainerState state = atoi(info[1]);
-        ContainerFunc func = bind(&StateHandler, _1, state);
+        int64_t executor_id = atol(info[0].c_str());
+        ContainerState state = static_cast<ContainerState>(atoi(info[1].c_str()));
+        ExecutorPool::ExecutorFunc func = bind(&StateHandler, _1, state);
         if (ExecutorMgr::Instance()->FindToDo(executor_id, func)) {
             if (state == CONTAINER_FINISHED)
                 ExecutorMgr::Instance()->Delete(executor_id);
@@ -76,33 +123,3 @@ void* ExecutorStatusReceiver(void* unused) {
     }
 }
 
-void StateHandler(const ExecutorPtr& ptr, ContainerState state) {
-    assert(state == CONTAINER_FINISHED || state == CONTAINER_STARTED);
-    if (state == CONTAINER_STARTED) {
-        ptr->ExecutorStarted();
-        shared_ptr<TTransport> transport;
-        // get scheduler proxy, report task status to scheduler
-        SchedulerClient proxy = Rpc<SchedulerClient, SchedulerClient>::GetProxy(
-                FLAGS_scheduler_endpoint, TIME_OUT, &transport);
-        try {
-            transport->open();
-            proxy.TaskStarted(ptr->GetId(), true);
-            transport->close();
-        } catch (TException &tx) {
-            LOG(ERROR) << "report executor start error: " << tx.what();
-        }
-    } else {
-        ptr->ExecutorFinshed();
-        shared_ptr<TTransport> transport;
-        // get scheduler proxy, report task status to scheduler
-        SchedulerClient proxy = Rpc<SchedulerClient, SchedulerClient>::GetProxy(
-                FLAGS_scheduler_endpoint, TIME_OUT, &transport);
-        try {
-            transport->open();
-            proxy.TaskFinished(ptr->GetId(), true);
-            transport->close();
-        } catch (TException &tx) {
-            LOG(ERROR) << "report executor finished error: " << tx.what();
-        }
-    }
-}

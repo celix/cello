@@ -17,7 +17,7 @@ public:
     /// message format
     struct Message {
         long int type;
-        char content[MAXLEN];
+        mutable char content[MAXLEN];
         
         Message() : type(QUEUE_TYPE) {
             memset(content, 0, MAXLEN);
@@ -27,7 +27,7 @@ public:
             memset(content, 0, MAXLEN);
             strncpy(content, ss.c_str(), ss.size());
         }
-        char* Get() {
+        char* Get() const {
             return content;
         }
     };

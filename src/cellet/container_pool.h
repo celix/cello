@@ -24,7 +24,7 @@ public:
     bool FindToDo(pid_t pid, ContainerFunc func);
 
     /// @brief: map the container map and do sth
-    bool MapToDo(ContainerFunc func);
+    void MapToDo(ContainerFunc func);
 
 private:
     RWLock m_lock;

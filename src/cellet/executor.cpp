@@ -28,8 +28,9 @@ ExecutorState Executor::GetStatus() {
 MessageQueue::Message Executor::ToMessage() {
     char data[MessageQueue::MAXLEN] = {0};
     // convert executor information into a string with "\n" as separator
-    snprintf(data, sizeof(data), "%d\n%s\n%s\n%s\n%f\n%d\n", m_info.id,
-             m_info.cmd, m_info.arguments, m_info.framework_name,
+    snprintf(data, sizeof(data), "%lld\n%s\n%s\n%s\n%f\n%d\n", m_info.id,
+             m_info.cmd.c_str(), m_info.arguments.c_str(),
+             m_info.framework_name.c_str(),
              m_info.need_cpu, m_info.need_memory);
     MessageQueue::Message msg(data);
     return msg;

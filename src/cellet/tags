@@ -33,10 +33,12 @@ FindToDo	executor_pool.cpp	/^bool ExecutorPool::FindToDo(int64_t id, ExecutorFun
 Get	message_manager.cpp	/^MessageQueue* MessageManager::Get(key_t key) {$/;"	f	class:MessageManager
 GetId	executor.h	/^    int64_t GetId() {$/;"	f	class:Executor
 GetMachineInfo	resource_manager.cpp	/^MachineInfo ResourceManager::GetMachineInfo() {$/;"	f	class:ResourceManager
-GetNeedCpu	container.h	/^    double GetNeedCpu() {$/;"	f	class:Container
-GetNeedMem	container.h	/^    int GetNeedMem() {$/;"	f	class:Container
 GetPid	container.h	/^    pid_t GetPid() {$/;"	f	class:Container
+GetState	container.h	/^    ContainerState GetState() {$/;"	f	class:Container
 GetStatus	executor.cpp	/^ExecutorState Executor::GetStatus() {$/;"	f	class:Executor
+GetUsedCpu	container.h	/^    double GetUsedCpu() {$/;"	f	class:Container
+GetUsedMem	container.h	/^    int GetUsedMem() {$/;"	f	class:Container
+GetUsedResource	resource_manager.cpp	/^void ResourceManager::GetUsedResource(Conatiner* ptr) {$/;"	f	class:ResourceManager
 Init	container.cpp	/^int Container::Init() {$/;"	f	class:Container
 Init	message_manager.cpp	/^void MessageManager::Init() {$/;"	f	class:MessageManager
 Init	resource_manager.cpp	/^void ResourceManager::Init() {$/;"	f	class:ResourceManager
@@ -52,6 +54,7 @@ ResourceInfoReceiver	work_thread.cpp	/^void* ResourceInfoReceiver(void* unused) 
 ResourceInfoSender	work_thread.cpp	/^void* ResourceInfoSender(void* unused) {$/;"	f
 ResourceManager	resource_manager.h	/^class ResourceManager {$/;"	c
 ResourceManagerEntry	main.cpp	/^void ResourceManagerEntry() {$/;"	f
+ResourceMgr	resource_manager.h	/^typedef Singeleton<ResourceManager> ResourceMgr;$/;"	t
 SRC_CELLET_CELLET_H	cellet.h	2;"	d
 SRC_CELLET_CONTAINER_H	container.h	2;"	d
 SRC_CELLET_CONTAINER_POOL_H	container_pool.h	2;"	d
@@ -60,6 +63,7 @@ SRC_CELLET_EXECUTOR_POOL_H	executor_pool.h	2;"	d
 SRC_CELLET_MESSAGE_MANAGER_H	message_manager.h	2;"	d
 SRC_CELLET_RESOURCE_MANAGER	resource_manager.h	2;"	d
 SRC_CELLET_SYS_API_H	system.h	2;"	d
+SendData	resource_manager.cpp	/^void ResourceManager::SendData() {$/;"	f	class:ResourceManager
 Start	executor.cpp	/^void Executor::Start() {$/;"	f	class:Executor
 StartExecutor	executor_pool.cpp	/^void ExecutorPool::StartExecutor() {$/;"	f	class:ExecutorPool
 StartExecutorReceiver	work_thread.cpp	/^void* StartExecutorReceiver(void* unused) {$/;"	f
@@ -69,12 +73,12 @@ StateHandler	work_thread.cpp	/^void StateHandler(const ExecutorPtr& ptr, Contain
 System	system.h	/^class System {$/;"	c
 ToMessage	container.cpp	/^MessageQueue::Message Container::ToMessage() {$/;"	f	class:Container
 ToMessage	executor.cpp	/^MessageQueue::Message Executor::ToMessage() {$/;"	f	class:Executor
+ToMessage	resource_manager.cpp	/^MessageQueue::Message ResourceManager::ToMessage(const MachineInfo& info) {$/;"	f	class:ResourceManager
 TotalMemory	system.cpp	/^int System::TotalMemory() {$/;"	f	class:System
 UsedMemory	system.cpp	/^int System::UsedMemory() {$/;"	f	class:System
 VirtualMemory	system.cpp	/^int System::VirtualMemory() {$/;"	f	class:System
 m_avail_cpu	resource_manager.h	/^    double m_avail_cpu;$/;"	m	class:ResourceManager
 m_avail_memory	resource_manager.h	/^    int m_avail_memory;$/;"	m	class:ResourceManager
-m_container_map	resource_manager.h	/^    map<pid_t, Container> m_container_map;$/;"	m	class:ResourceManager
 m_container_pool	container_pool.h	/^    map<pid_t, ContainerPtr> m_container_pool;$/;"	m	class:ContainerPool
 m_cpu_usage	resource_manager.h	/^    double m_cpu_usage;$/;"	m	class:ResourceManager
 m_endpoint	resource_manager.h	/^    string m_endpoint;$/;"	m	class:ResourceManager

@@ -35,8 +35,8 @@ private:
     /// @brief: convert executor info into message for message queue
     MessageQueue::Message ToMessage();
 private:
-    ExecutorState m_state;
     TaskInfo m_info;
+    ExecutorState m_state;
     RWLock m_lock;
 };
 

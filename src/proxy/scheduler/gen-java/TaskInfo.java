@@ -27,7 +27,7 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
   private static final org.apache.thrift.protocol.TField ARGUMENTS_FIELD_DESC = new org.apache.thrift.protocol.TField("arguments", org.apache.thrift.protocol.TType.STRING, (short)4);
   private static final org.apache.thrift.protocol.TField CANDIDATE_IPS_FIELD_DESC = new org.apache.thrift.protocol.TField("candidate_ips", org.apache.thrift.protocol.TType.STRING, (short)5);
   private static final org.apache.thrift.protocol.TField NEED_CPU_FIELD_DESC = new org.apache.thrift.protocol.TField("need_cpu", org.apache.thrift.protocol.TType.DOUBLE, (short)6);
-  private static final org.apache.thrift.protocol.TField NEED_MEMORY_FIELD_DESC = new org.apache.thrift.protocol.TField("need_memory", org.apache.thrift.protocol.TType.DOUBLE, (short)7);
+  private static final org.apache.thrift.protocol.TField NEED_MEMORY_FIELD_DESC = new org.apache.thrift.protocol.TField("need_memory", org.apache.thrift.protocol.TType.I32, (short)7);
 
   public String framework_name;
   public long id;
@@ -35,7 +35,7 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
   public String arguments;
   public String candidate_ips;
   public double need_cpu;
-  public double need_memory;
+  public int need_memory;
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -135,7 +135,7 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     tmpMap.put(_Fields.NEED_CPU, new org.apache.thrift.meta_data.FieldMetaData("need_cpu", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
     tmpMap.put(_Fields.NEED_MEMORY, new org.apache.thrift.meta_data.FieldMetaData("need_memory", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TaskInfo.class, metaDataMap);
   }
@@ -193,7 +193,7 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     setNeed_cpuIsSet(false);
     this.need_cpu = 0.0;
     setNeed_memoryIsSet(false);
-    this.need_memory = 0.0;
+    this.need_memory = 0;
   }
 
   public String getFramework_name() {
@@ -338,11 +338,11 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     __isset_bit_vector.set(__NEED_CPU_ISSET_ID, value);
   }
 
-  public double getNeed_memory() {
+  public int getNeed_memory() {
     return this.need_memory;
   }
 
-  public TaskInfo setNeed_memory(double need_memory) {
+  public TaskInfo setNeed_memory(int need_memory) {
     this.need_memory = need_memory;
     setNeed_memoryIsSet(true);
     return this;
@@ -415,7 +415,7 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
       if (value == null) {
         unsetNeed_memory();
       } else {
-        setNeed_memory((Double)value);
+        setNeed_memory((Integer)value);
       }
       break;
 
@@ -443,7 +443,7 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
       return new Double(getNeed_cpu());
 
     case NEED_MEMORY:
-      return new Double(getNeed_memory());
+      return new Integer(getNeed_memory());
 
     }
     throw new IllegalStateException();
@@ -698,8 +698,8 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
           }
           break;
         case 7: // NEED_MEMORY
-          if (field.type == org.apache.thrift.protocol.TType.DOUBLE) {
-            this.need_memory = iprot.readDouble();
+          if (field.type == org.apache.thrift.protocol.TType.I32) {
+            this.need_memory = iprot.readI32();
             setNeed_memoryIsSet(true);
           } else { 
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
@@ -757,7 +757,7 @@ public class TaskInfo implements org.apache.thrift.TBase<TaskInfo, TaskInfo._Fie
     }
     if (isSetNeed_memory()) {
       oprot.writeFieldBegin(NEED_MEMORY_FIELD_DESC);
-      oprot.writeDouble(this.need_memory);
+      oprot.writeI32(this.need_memory);
       oprot.writeFieldEnd();
     }
     oprot.writeFieldStop();

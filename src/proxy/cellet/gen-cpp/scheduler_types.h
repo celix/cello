@@ -26,8 +26,8 @@ typedef struct _TaskInfo__isset {
 class TaskInfo {
  public:
 
-  static const char* ascii_fingerprint; // = "90262498130E4F41F9B104F3535ABB76";
-  static const uint8_t binary_fingerprint[16]; // = {0x90,0x26,0x24,0x98,0x13,0x0E,0x4F,0x41,0xF9,0xB1,0x04,0xF3,0x53,0x5A,0xBB,0x76};
+  static const char* ascii_fingerprint; // = "CB4EC85350124CB04BE63BAC46B8B12F";
+  static const uint8_t binary_fingerprint[16]; // = {0xCB,0x4E,0xC8,0x53,0x50,0x12,0x4C,0xB0,0x4B,0xE6,0x3B,0xAC,0x46,0xB8,0xB1,0x2F};
 
   TaskInfo() : framework_name(""), id(0), cmd(""), arguments(""), candidate_ips(""), need_cpu(0), need_memory(0) {
   }
@@ -40,7 +40,7 @@ class TaskInfo {
   std::string arguments;
   std::string candidate_ips;
   double need_cpu;
-  double need_memory;
+  int32_t need_memory;
 
   _TaskInfo__isset __isset;
 

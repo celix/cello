@@ -6,6 +6,7 @@
 
 #include "proxy/cellet/gen-cpp/scheduler_types.h"
 #include "common/message_queue.h"
+#include "common/rwlock.h"
 #include "include/type.h"
 #include "boost/shared_ptr.hpp"
 
@@ -42,16 +43,15 @@ public:
         return m_info.need_cpu;
     }
     
-    int GetUsedMem() {
+    int GetUsedMemory() {
         return m_info.need_memory;
     }
 
-    ContainerState GetState() {
-        return m_state;
-    }
+    ContainerState GetState();
 
 private:
     pid_t m_pid;
+    RWLock m_lock;
     TaskInfo m_info;
     ContainerState m_state;
     string m_work_diectory;

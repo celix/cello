@@ -13,6 +13,11 @@ void ExecutorPool::Insert(const ExecutorPtr& ptr) {
     m_executor_map[ptr->GetId()] = ptr;
 }
 
+void ExecutorPool::Delete(int64_t id) {
+    WriteLocker locker(m_lock);
+    m_executor_map.erase(id);
+}
+
 void ExecutorPool::StartExecutor() {
     ReadLocker locker(m_lock);
     for (map<int64_t, ExecutorPtr>::iterator it = m_executor_map.begin();
@@ -27,6 +32,11 @@ void ExecutorPool::StartExecutor() {
 
 bool ExecutorPool::FindToDo(int64_t id, ExecutorFunc func) {
     ReadLocker locker(m_lock);
-    for (map<int64_t, ExecutorPtr>::iterator it = m_executor_map.begin();
-         it != m_executor_map.end(); ++it)
+    map<int64_t, ExecutorPtr>::iterator it = m_executor_map.find(id);
+    // find the executor
+    if (it != m_executor_map.end()) {
+        func(it->second);
+        return true;
+    }
+    return false;
 }

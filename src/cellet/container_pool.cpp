@@ -24,5 +24,5 @@ void ContainerPool::MapToDo(ContainerFunc func) {
     ReadLocker locker(m_lock);
     for (map<pid_t, ContainerPtr>::iterator it = m_container_pool.begin();
          it != m_container_pool.end(); ++it)
-        func(it->get());
+        func((it->second).get());
 }

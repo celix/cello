@@ -95,16 +95,25 @@ MessageQueue::Message Container::ToMessage() {
 
 void Container::ContainerFinished() {
     LOG(INFO) << "Container Finished  ID:" << m_info.id << " PID:" << m_pid;
-    m_state = CONTAINER_FINISHED;
     Clean();
+    // change status
+    WriteLocker locker(m_lock);
     MessageQueue::Message msg = ToMessage();
     MsgQueueMgr::Instance()->Get(EXECUTOR_STATE_KEY)->Send(&msg);
+    m_state = CONTAINER_FINISHED;
 }
 
 void Container::ContainerStarted() {
     LOG(INFO) << "Container Started ID:" << m_info.id << " PID:" << m_pid;
+    // change status
+    WriteLocker locker(m_lock);
     m_state = CONTAINER_STARTED;
     // report the message
     MessageQueue::Message msg = ToMessage();
     MsgQueueMgr::Instance()->Get(EXECUTOR_STATE_KEY)->Send(&msg);
+}
+
+ContainerState Container::GetState() {
+    ReadLocker locker(m_lock);
+    return m_state;
 }

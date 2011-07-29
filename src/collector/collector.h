@@ -1,7 +1,6 @@
 #ifndef SRC_COLLECTOR_COLLECOTR_H
 #define SRC_COLLECTOR_COLLECOTR_H
 
-
 #include "collector/machine_pool.h"
 #include "collector/machine.h"
 #include "collector/filter.h"

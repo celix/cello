@@ -6,6 +6,8 @@
 #include "common/singleton.h"
 #include "proxy/collector/gen-cpp/Collector.h"
 
+#include "cellet/container.h"
+
 using std::string;
 
 class ResourceManager {
@@ -16,9 +18,11 @@ public:
     /// @brief: compute and get current machine information
     MachineInfo GetMachineInfo();
     
+    void GetUsedResource(Container* ptr);
+
     void SendData();
 private:
-    MessageQueue::Message ToMessage();
+    MessageQueue::Message ToMessage(const MachineInfo& info);
 private:
     string m_endpoint;
     int m_total_cpu;
@@ -28,6 +32,6 @@ private:
     double m_cpu_usage;
 };
 
-typedef Singeleton<ResourceManager> ResourceMgr;
+typedef Singleton<ResourceManager> ResourceMgr;
 
 #endif

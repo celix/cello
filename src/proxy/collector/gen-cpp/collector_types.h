@@ -11,8 +11,10 @@
 #include <protocol/TProtocol.h>
 #include <transport/TTransport.h>
 
-
-
+/// Add by @chenjing
+#include <vector>
+#include "common/message_queue.h"
+#include "common/string_utility.h"
 
 
 typedef struct _MachineInfo__isset {
@@ -32,9 +34,21 @@ class MachineInfo {
 
   MachineInfo() : endpoint(""), usage(0), cpu(0), memory(0), avail_cpu(0), avail_memory(0), task_num(0) {
   }
-
-  virtual ~MachineInfo() throw() {}
-
+  
+  /// Add by @chenjing
+  MachineInfo(const MessageQueue::Message& msg) {
+    vector<string> res;
+    StringUtility::Split(msg.Get(), '\n', &res);
+    endpoint = res[0];
+    usage = atof(res[1].c_str());
+    cpu = atoi(res[2].c_str());
+    memory = atoi(res[3].c_str());
+    avail_cpu = atof(res[4].c_str());
+    avail_memory = atoi(res[5].c_str());
+  }
+  /// Modify by @chenjing
+  //virtual ~MachineInfo() throw() {}
+  virtual ~MachineInfo() {}
   std::string endpoint;
   double usage;
   int32_t cpu;

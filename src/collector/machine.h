@@ -38,8 +38,8 @@ public:
         LOG(INFO) << "Available memory: " << avail_memory;
     }
 
-private:
-    RWLock m_lock;
+    /// @brief: 
+    bool IsMatch(ClassAd* condition_ad);
 };
 
 typedef shared_ptr<Machine> MachinePtr;

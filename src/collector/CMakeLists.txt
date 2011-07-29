@@ -7,6 +7,7 @@ SET(COLLECTOR_RPC_SOURCE
 SET(SRC
     ${COLLECTOR_RPC_SOURCE}
     machine_pool.cpp
+    machine.cpp
     main.cpp)
 
 SET(MOCK
@@ -15,6 +16,7 @@ SET(MOCK
 
 ADD_EXECUTABLE(collector ${SRC})
 ADD_EXECUTABLE(cellet_mock ${MOCK})
+ADD_EXECUTABLE(collector_test test.cpp)
 
 TARGET_LINK_LIBRARIES(collector glog)
 TARGET_LINK_LIBRARIES(collector pthread)

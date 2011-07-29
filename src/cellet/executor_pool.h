@@ -2,22 +2,31 @@
 #define SRC_CELLET_EXECUTOR_POOL_H
 
 #include <map>
+#include <tr1/memory>
+#include <tr1/functional>
 
 #include "common/rwlock.h"
 #include "common/singleton.h"
 #include "cellet/executor.h"
 
 using std::map;
+using std::tr1::function;
+using std::tr1::placeholders::_1;
+using std::tr1::placeholders::_2;
 
 class ExecutorPool {
 public:
     
-    typedef ExectorFunc;
+    typedef function<void(const ExecutorPtr&)> ExecutorFunc;
+
     /// @brief: find a executor in process map
     bool Find(const ExecutorPtr& ptr);
     
     /// @brief: insert a executor in map
     void Insert(const ExecutorPtr& ptr);
+
+    /// @brief: delete a executor
+    void Delete(int64_t id);
     
     /// @brief: find a waitting executor, and start it
     void StartExecutor();
