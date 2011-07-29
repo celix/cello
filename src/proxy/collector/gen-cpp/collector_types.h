@@ -11,14 +11,19 @@
 #include <protocol/TProtocol.h>
 #include <transport/TTransport.h>
 
-/// Add by @chenjing
+/// ADD BY @chenjing
 #include <vector>
 #include "common/message_queue.h"
 #include "common/string_utility.h"
+#include "glog/logging.h"
+
+
 
 
 typedef struct _MachineInfo__isset {
-  _MachineInfo__isset() : cpu(false), memory(false), avail_cpu(false), avail_memory(false), task_num(false) {}
+  _MachineInfo__isset() : endpoint(false), usage(false), cpu(false), memory(false), avail_cpu(false), avail_memory(false), task_num(false) {}
+  bool endpoint;
+  bool usage;
   bool cpu;
   bool memory;
   bool avail_cpu;
@@ -29,13 +34,13 @@ typedef struct _MachineInfo__isset {
 class MachineInfo {
  public:
 
-  static const char* ascii_fingerprint; // = "E42E0C004BE60620A39AF9F925B574C3";
-  static const uint8_t binary_fingerprint[16]; // = {0xE4,0x2E,0x0C,0x00,0x4B,0xE6,0x06,0x20,0xA3,0x9A,0xF9,0xF9,0x25,0xB5,0x74,0xC3};
+  static const char* ascii_fingerprint; // = "7A7F0F0A88E5B0DCF813F7BF09408C4C";
+  static const uint8_t binary_fingerprint[16]; // = {0x7A,0x7F,0x0F,0x0A,0x88,0xE5,0xB0,0xDC,0xF8,0x13,0xF7,0xBF,0x09,0x40,0x8C,0x4C};
 
   MachineInfo() : endpoint(""), usage(0), cpu(0), memory(0), avail_cpu(0), avail_memory(0), task_num(0) {
   }
-  
-  /// Add by @chenjing
+
+  /// ADD BY @chenjing
   MachineInfo(const MessageQueue::Message& msg) {
     vector<string> res;
     StringUtility::Split(msg.Get(), '\n', &res);
@@ -46,9 +51,11 @@ class MachineInfo {
     avail_cpu = atof(res[4].c_str());
     avail_memory = atoi(res[5].c_str());
   }
-  /// Modify by @chenjing
+  
+  /// MODIFY BY @chenjing
   //virtual ~MachineInfo() throw() {}
   virtual ~MachineInfo() {}
+
   std::string endpoint;
   double usage;
   int32_t cpu;
@@ -65,25 +72,15 @@ class MachineInfo {
       return false;
     if (!(usage == rhs.usage))
       return false;
-    if (__isset.cpu != rhs.__isset.cpu)
+    if (!(cpu == rhs.cpu))
       return false;
-    else if (__isset.cpu && !(cpu == rhs.cpu))
+    if (!(memory == rhs.memory))
       return false;
-    if (__isset.memory != rhs.__isset.memory)
+    if (!(avail_cpu == rhs.avail_cpu))
       return false;
-    else if (__isset.memory && !(memory == rhs.memory))
+    if (!(avail_memory == rhs.avail_memory))
       return false;
-    if (__isset.avail_cpu != rhs.__isset.avail_cpu)
-      return false;
-    else if (__isset.avail_cpu && !(avail_cpu == rhs.avail_cpu))
-      return false;
-    if (__isset.avail_memory != rhs.__isset.avail_memory)
-      return false;
-    else if (__isset.avail_memory && !(avail_memory == rhs.avail_memory))
-      return false;
-    if (__isset.task_num != rhs.__isset.task_num)
-      return false;
-    else if (__isset.task_num && !(task_num == rhs.task_num))
+    if (!(task_num == rhs.task_num))
       return false;
     return true;
   }

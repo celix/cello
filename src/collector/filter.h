@@ -3,17 +3,26 @@
 
 #include "classad/classad_distribution.h"
 #include "collector/machine_pool.h"
+#include "collector/rank_machine.h"
 
 class Filter {
 public:
     static void Filtration(const MachinePtr& machine,
                            const string& task_ad,
-                           list<MachinePtr>* result) {
+                           list<RankMachine>* result) {
         ClassAdParser parser;
         ClassAd* classad_ptr = parser.ParseClassAd(task_ad);
-        if (machine->IsMatch(classad_ptr))
-            result->push_back(machine);
+        RankMachine rank_machine;
+        if (machine->IsMatch(classad_ptr, &rank_machine))
+            result->push_back(rank_machine);
+        // sort the machine list with rank
+        result->sort(MachineCompare);
+    }
 
+private:
+    static bool MachineCompare(const RankMachine& first,
+                               const RankMachine& second) {
+        return first.GetRankValue() <= second.GetRankValue();
     }
 };
 

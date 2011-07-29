@@ -9,6 +9,7 @@
 #include "cellet/cellet.h"
 #include "cellet/message_manager.h"
 #include "cellet/container_pool.h"
+#include "cellet/resource_manager.h"
 #include "common/rpc.h"
 
 DEFINE_int32(port, 9998, "cellet port");
@@ -23,6 +24,8 @@ extern void* StartExecutorReceiver(void* unused);
 extern void* ExecutorStatusReceiver(void* unused);
 
 void ResourceManagerEntry() {
+    LOG(INFO) << "resource manager process begin";
+    ResourceMgr::Instance()->Init();
     // if temperory directory does not exist then create it
     if (access(FLAGS_work_directory.c_str(), F_OK) < 0)
         mkdir(FLAGS_work_directory.c_str(), S_IRWXU|S_IRWXG|S_IROTH);
@@ -33,13 +36,14 @@ void ResourceManagerEntry() {
     // wait pid for task execution finished
     pid_t pid;
     int status;
-    while((pid = waitpid(-1, &status, WNOHANG)) > 0) {
-        ContainerPool::ContainerFunc func = bind(&Container::ContainerFinished,
-                                                 _1);
-        // find the container and deal with the thing
-        if(ContainerMgr::Instance()->FindToDo(pid, func)) {
-            // remove the container since it has finished
-            ContainerMgr::Instance()->Delete(pid);
+    while (true) {
+        if ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
+            ContainerPool::ContainerFunc func = bind(&Container::ContainerFinished,
+                    _1);
+            // find the container and deal with the thing
+            if(ContainerMgr::Instance()->FindToDo(pid, func))
+                // remove the container since it has finished
+                ContainerMgr::Instance()->Delete(pid);
         }
     }
 } 
@@ -62,6 +66,7 @@ int main(int argc, char ** argv) {
     MsgQueueMgr::Instance()->Init();
     pid_t res_manager_pid = fork();
     if (res_manager_pid != 0) {
+        LOG(INFO) << "master process begin";
         pthread_t res_info_recv_t, start_exec_t, exec_status_recv_t;
         // start executor thread
         pthread_create(&start_exec_t, NULL, StartExecutorSender, NULL);

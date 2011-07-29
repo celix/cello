@@ -9,8 +9,9 @@
 DECLARE_int32(port);
 
 void ResourceManager::Init() {
-    m_endpoint = GetIP() + ":";
-    m_endpoint += FLAGS_port;
+    char data[30] = {0};
+    snprintf(data, sizeof(data), "%s:%d", GetIP().c_str(), FLAGS_port);
+    m_endpoint = data;
     m_total_cpu = System::CpuNum();
     m_total_memory = System::TotalMemory();
     // available cpu initialize as equal to total cpu

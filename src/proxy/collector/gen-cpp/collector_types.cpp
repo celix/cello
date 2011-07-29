@@ -7,8 +7,8 @@
 
 
 
-const char* MachineInfo::ascii_fingerprint = "E42E0C004BE60620A39AF9F925B574C3";
-const uint8_t MachineInfo::binary_fingerprint[16] = {0xE4,0x2E,0x0C,0x00,0x4B,0xE6,0x06,0x20,0xA3,0x9A,0xF9,0xF9,0x25,0xB5,0x74,0xC3};
+const char* MachineInfo::ascii_fingerprint = "7A7F0F0A88E5B0DCF813F7BF09408C4C";
+const uint8_t MachineInfo::binary_fingerprint[16] = {0x7A,0x7F,0x0F,0x0A,0x88,0xE5,0xB0,0xDC,0xF8,0x13,0xF7,0xBF,0x09,0x40,0x8C,0x4C};
 
 uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
 
@@ -21,8 +21,6 @@ uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   using ::apache::thrift::protocol::TProtocolException;
 
-  bool isset_endpoint = false;
-  bool isset_usage = false;
 
   while (true)
   {
@@ -35,7 +33,7 @@ uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->endpoint);
-          isset_endpoint = true;
+          this->__isset.endpoint = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -43,7 +41,7 @@ uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
       case 2:
         if (ftype == ::apache::thrift::protocol::T_DOUBLE) {
           xfer += iprot->readDouble(this->usage);
-          isset_usage = true;
+          this->__isset.usage = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -97,10 +95,6 @@ uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   xfer += iprot->readStructEnd();
 
-  if (!isset_endpoint)
-    throw TProtocolException(TProtocolException::INVALID_DATA);
-  if (!isset_usage)
-    throw TProtocolException(TProtocolException::INVALID_DATA);
   return xfer;
 }
 
@@ -113,31 +107,21 @@ uint32_t MachineInfo::write(::apache::thrift::protocol::TProtocol* oprot) const 
   xfer += oprot->writeFieldBegin("usage", ::apache::thrift::protocol::T_DOUBLE, 2);
   xfer += oprot->writeDouble(this->usage);
   xfer += oprot->writeFieldEnd();
-  if (this->__isset.cpu) {
-    xfer += oprot->writeFieldBegin("cpu", ::apache::thrift::protocol::T_I32, 3);
-    xfer += oprot->writeI32(this->cpu);
-    xfer += oprot->writeFieldEnd();
-  }
-  if (this->__isset.memory) {
-    xfer += oprot->writeFieldBegin("memory", ::apache::thrift::protocol::T_I32, 4);
-    xfer += oprot->writeI32(this->memory);
-    xfer += oprot->writeFieldEnd();
-  }
-  if (this->__isset.avail_cpu) {
-    xfer += oprot->writeFieldBegin("avail_cpu", ::apache::thrift::protocol::T_DOUBLE, 5);
-    xfer += oprot->writeDouble(this->avail_cpu);
-    xfer += oprot->writeFieldEnd();
-  }
-  if (this->__isset.avail_memory) {
-    xfer += oprot->writeFieldBegin("avail_memory", ::apache::thrift::protocol::T_I32, 6);
-    xfer += oprot->writeI32(this->avail_memory);
-    xfer += oprot->writeFieldEnd();
-  }
-  if (this->__isset.task_num) {
-    xfer += oprot->writeFieldBegin("task_num", ::apache::thrift::protocol::T_I32, 7);
-    xfer += oprot->writeI32(this->task_num);
-    xfer += oprot->writeFieldEnd();
-  }
+  xfer += oprot->writeFieldBegin("cpu", ::apache::thrift::protocol::T_I32, 3);
+  xfer += oprot->writeI32(this->cpu);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldBegin("memory", ::apache::thrift::protocol::T_I32, 4);
+  xfer += oprot->writeI32(this->memory);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldBegin("avail_cpu", ::apache::thrift::protocol::T_DOUBLE, 5);
+  xfer += oprot->writeDouble(this->avail_cpu);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldBegin("avail_memory", ::apache::thrift::protocol::T_I32, 6);
+  xfer += oprot->writeI32(this->avail_memory);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldBegin("task_num", ::apache::thrift::protocol::T_I32, 7);
+  xfer += oprot->writeI32(this->task_num);
+  xfer += oprot->writeFieldEnd();
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;

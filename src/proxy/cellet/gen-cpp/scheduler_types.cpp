@@ -7,8 +7,8 @@
 
 
 
-const char* TaskInfo::ascii_fingerprint = "CB4EC85350124CB04BE63BAC46B8B12F";
-const uint8_t TaskInfo::binary_fingerprint[16] = {0xCB,0x4E,0xC8,0x53,0x50,0x12,0x4C,0xB0,0x4B,0xE6,0x3B,0xAC,0x46,0xB8,0xB1,0x2F};
+const char* TaskInfo::ascii_fingerprint = "B7D24A3FEB0B14FB144E550AA4AE55B6";
+const uint8_t TaskInfo::binary_fingerprint[16] = {0xB7,0xD2,0x4A,0x3F,0xEB,0x0B,0x14,0xFB,0x14,0x4E,0x55,0x0A,0xA4,0xAE,0x55,0xB6};
 
 uint32_t TaskInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
 
@@ -21,9 +21,6 @@ uint32_t TaskInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   using ::apache::thrift::protocol::TProtocolException;
 
-  bool isset_framework_name = false;
-  bool isset_id = false;
-  bool isset_cmd = false;
 
   while (true)
   {
@@ -36,7 +33,7 @@ uint32_t TaskInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->framework_name);
-          isset_framework_name = true;
+          this->__isset.framework_name = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -44,7 +41,7 @@ uint32_t TaskInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
       case 2:
         if (ftype == ::apache::thrift::protocol::T_I64) {
           xfer += iprot->readI64(this->id);
-          isset_id = true;
+          this->__isset.id = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -52,7 +49,7 @@ uint32_t TaskInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
       case 3:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->cmd);
-          isset_cmd = true;
+          this->__isset.cmd = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -98,12 +95,6 @@ uint32_t TaskInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   xfer += iprot->readStructEnd();
 
-  if (!isset_framework_name)
-    throw TProtocolException(TProtocolException::INVALID_DATA);
-  if (!isset_id)
-    throw TProtocolException(TProtocolException::INVALID_DATA);
-  if (!isset_cmd)
-    throw TProtocolException(TProtocolException::INVALID_DATA);
   return xfer;
 }
 
@@ -119,26 +110,18 @@ uint32_t TaskInfo::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeFieldBegin("cmd", ::apache::thrift::protocol::T_STRING, 3);
   xfer += oprot->writeString(this->cmd);
   xfer += oprot->writeFieldEnd();
-  if (this->__isset.arguments) {
-    xfer += oprot->writeFieldBegin("arguments", ::apache::thrift::protocol::T_STRING, 4);
-    xfer += oprot->writeString(this->arguments);
-    xfer += oprot->writeFieldEnd();
-  }
-  if (this->__isset.candidate_ips) {
-    xfer += oprot->writeFieldBegin("candidate_ips", ::apache::thrift::protocol::T_STRING, 5);
-    xfer += oprot->writeString(this->candidate_ips);
-    xfer += oprot->writeFieldEnd();
-  }
-  if (this->__isset.need_cpu) {
-    xfer += oprot->writeFieldBegin("need_cpu", ::apache::thrift::protocol::T_DOUBLE, 6);
-    xfer += oprot->writeDouble(this->need_cpu);
-    xfer += oprot->writeFieldEnd();
-  }
-  if (this->__isset.need_memory) {
-    xfer += oprot->writeFieldBegin("need_memory", ::apache::thrift::protocol::T_I32, 7);
-    xfer += oprot->writeI32(this->need_memory);
-    xfer += oprot->writeFieldEnd();
-  }
+  xfer += oprot->writeFieldBegin("arguments", ::apache::thrift::protocol::T_STRING, 4);
+  xfer += oprot->writeString(this->arguments);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldBegin("candidate_ips", ::apache::thrift::protocol::T_STRING, 5);
+  xfer += oprot->writeString(this->candidate_ips);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldBegin("need_cpu", ::apache::thrift::protocol::T_DOUBLE, 6);
+  xfer += oprot->writeDouble(this->need_cpu);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldBegin("need_memory", ::apache::thrift::protocol::T_I32, 7);
+  xfer += oprot->writeI32(this->need_memory);
+  xfer += oprot->writeFieldEnd();
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;

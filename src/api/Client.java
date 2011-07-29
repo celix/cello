@@ -3,7 +3,9 @@ public class Client {
         TaskInfo info = new TaskInfo();
         info.cmd = "/bin/ls";
         info.framework_name = "Binos";
-        String address = "10.5.0.174:9999";
+        info.need_cpu = 0.2;
+        info.need_memory = 300;
+        String address = "10.5.0.174:9997";
         long id = Cello.Submit(address, info);
         System.out.println("submit success.task id is " + id);
     }

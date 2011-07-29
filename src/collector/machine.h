@@ -9,6 +9,7 @@
 #include "classad/classad.h"
 #include "common/rwlock.h"
 #include "boost/shared_ptr.hpp"
+#include "collector/rank_machine.h"
 
 using std::list;
 using boost::shared_ptr;
@@ -16,30 +17,23 @@ using boost::shared_ptr;
 class Machine : public MachineInfo {
 public:
     
-    explicit Machine(const MachineInfo& info) {
-        endpoint = info.endpoint;
-        avail_cpu = info.avail_cpu;
-        avail_memory = info.avail_memory;
-    }
+    explicit Machine(const MachineInfo& info);
     
     string GetEndpoint() const {
         return endpoint;
     }
     
     ClassAd GetClassAd() const {
-        ClassAd ad;
-        return ad;
+        return m_ad;
     }
     
-    void LogInfo() const {
-        LOG(INFO) << "Machine information:";
-        LOG(INFO) << "Endpoint: " << endpoint;
-        LOG(INFO) << "Available cpu cores: " << avail_cpu;
-        LOG(INFO) << "Available memory: " << avail_memory;
-    }
+    void LogInfo() const;
 
     /// @brief: 
-    bool IsMatch(ClassAd* condition_ad);
+    bool IsMatch(ClassAd* ptr, RankMachine* rank_ptr);
+
+private:
+    ClassAd m_ad;
 };
 
 typedef shared_ptr<Machine> MachinePtr;

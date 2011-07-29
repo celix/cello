@@ -16,7 +16,10 @@
 
 
 typedef struct _TaskInfo__isset {
-  _TaskInfo__isset() : arguments(false), candidate_ips(false), need_cpu(false), need_memory(false) {}
+  _TaskInfo__isset() : framework_name(false), id(false), cmd(false), arguments(false), candidate_ips(false), need_cpu(false), need_memory(false) {}
+  bool framework_name;
+  bool id;
+  bool cmd;
   bool arguments;
   bool candidate_ips;
   bool need_cpu;
@@ -26,8 +29,8 @@ typedef struct _TaskInfo__isset {
 class TaskInfo {
  public:
 
-  static const char* ascii_fingerprint; // = "CB4EC85350124CB04BE63BAC46B8B12F";
-  static const uint8_t binary_fingerprint[16]; // = {0xCB,0x4E,0xC8,0x53,0x50,0x12,0x4C,0xB0,0x4B,0xE6,0x3B,0xAC,0x46,0xB8,0xB1,0x2F};
+  static const char* ascii_fingerprint; // = "B7D24A3FEB0B14FB144E550AA4AE55B6";
+  static const uint8_t binary_fingerprint[16]; // = {0xB7,0xD2,0x4A,0x3F,0xEB,0x0B,0x14,0xFB,0x14,0x4E,0x55,0x0A,0xA4,0xAE,0x55,0xB6};
 
   TaskInfo() : framework_name(""), id(0), cmd(""), arguments(""), candidate_ips(""), need_cpu(0), need_memory(0) {
   }
@@ -52,21 +55,13 @@ class TaskInfo {
       return false;
     if (!(cmd == rhs.cmd))
       return false;
-    if (__isset.arguments != rhs.__isset.arguments)
+    if (!(arguments == rhs.arguments))
       return false;
-    else if (__isset.arguments && !(arguments == rhs.arguments))
+    if (!(candidate_ips == rhs.candidate_ips))
       return false;
-    if (__isset.candidate_ips != rhs.__isset.candidate_ips)
+    if (!(need_cpu == rhs.need_cpu))
       return false;
-    else if (__isset.candidate_ips && !(candidate_ips == rhs.candidate_ips))
-      return false;
-    if (__isset.need_cpu != rhs.__isset.need_cpu)
-      return false;
-    else if (__isset.need_cpu && !(need_cpu == rhs.need_cpu))
-      return false;
-    if (__isset.need_memory != rhs.__isset.need_memory)
-      return false;
-    else if (__isset.need_memory && !(need_memory == rhs.need_memory))
+    if (!(need_memory == rhs.need_memory))
       return false;
     return true;
   }

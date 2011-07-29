@@ -57,6 +57,16 @@ void* ResourceInfoSender(void* unused) {
     return NULL;
 }
 
+void LogInfo(const MachineInfo& info) {
+    LOG(INFO) << "Machine Information:";
+    LOG(INFO) << "Endpoint: " << info.endpoint;
+    LOG(INFO) << "Cpu Usage: " << info.usage;
+    LOG(INFO) << "Cpu Num: " << info.cpu;
+    LOG(INFO) << "Total Memory: " << info.memory;
+    LOG(INFO) << "Available cpu: " << info.avail_cpu;
+    LOG(INFO) << "Available memory: " << info.avail_memory;
+}
+
 void* ResourceInfoReceiver(void* unused) {
     shared_ptr<TTransport> transport;
     // get collector proxy, send heartbeat to collector
@@ -69,7 +79,9 @@ void* ResourceInfoReceiver(void* unused) {
         MachineInfo info(msg);
         try {
             // send heartbeat
+            LogInfo(info);        
             proxy.Heartbeat(info);
+            LOG(INFO) << "Send heartbeat success";
         } catch (TException &tx) {
             LOG(ERROR) << "send heartbeat error: " << tx.what();
         }

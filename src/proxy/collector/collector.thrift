@@ -1,11 +1,11 @@
 struct MachineInfo {
-    1: required string endpoint,
-    2: required double usage,
-    3: optional i32 cpu,
-    4: optional i32 memory,
-    5: optional double avail_cpu,
-    6: optional i32 avail_memory,
-    7: optional i32 task_num
+    1: string endpoint,
+    2: double usage,
+    3: i32 cpu,
+    4: i32 memory,
+    5: double avail_cpu,
+    6: i32 avail_memory,
+    7: i32 task_num
 }
 
 service Collector {

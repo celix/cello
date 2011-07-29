@@ -1,11 +1,11 @@
 struct TaskInfo {
-    1: required string framework_name,
-    2: required i64 id,
-    3: required string cmd,
-    4: optional string arguments,
-    5: optional string candidate_ips,         // not support now
-    6: optional double need_cpu,              // not support now
-    7: optional i32 need_memory               // not support now
+    1: string framework_name,
+    2: i64 id,
+    3: string cmd,
+    4: string arguments,
+    5: string candidate_ips, 
+    6: double need_cpu,
+    7: i32 need_memory
 }
 
 service Scheduler {
