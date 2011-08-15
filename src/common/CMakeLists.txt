@@ -5,7 +5,8 @@ SET (TEST
      get_ip_test
      block_queue_test
      fork_test
-     singleton_test)
+     singleton_test
+     string_utility_test)
 
 ADD_EXECUTABLE(message_queue_test message_queue_test.cpp message_queue.cpp)
 ADD_EXECUTABLE(mutex_test mutex_test.cpp)
@@ -14,6 +15,7 @@ ADD_EXECUTABLE(block_queue_test block_queue_test.cpp cond.cpp)
 ADD_EXECUTABLE(get_ip_test get_ip_test.cpp)
 ADD_EXECUTABLE(singleton_test singleton_test.cpp)
 ADD_EXECUTABLE(fork_test fork_test.cpp)
+ADD_EXECUTABLE(string_utility_test string_utility_test.cpp)
 
 FOREACH(t ${TEST})
     TARGET_LINK_LIBRARIES(${t} libgtest.a)

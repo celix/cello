@@ -9,11 +9,14 @@
 #include "cellet/message_manager.h"
 #include "common/string_utility.h"
 
+#include <iostream>
 using std::vector;
+using std::cout;
+using std::endl;
 
 DECLARE_string(work_directory);
 
-Container::Container(const MessageQueue::Message& msg) : m_pid(0) {
+Container::Container(const MessageQueue::Message& msg) : m_pid(0), m_c_args(0) {
     vector<string> res;
     StringUtility::Split(msg.content, '\n', &res);
     int64_t id = atol(res[0].c_str());
@@ -63,18 +66,21 @@ void Container::Execute() {
     // add cmd as argv[0]
     args.insert(args.begin(), m_info.cmd);
     // convert string vector to string array
-    char ** c_args = NULL;
-    StringUtility::CreateArgArray(args, c_args);
+    m_c_args = StringUtility::CreateArgArray(args);
     LOG(INFO) << "command argument list:";
-    for (int i = 0; c_args[i]; ++i)
-        LOG(INFO) << c_args[i];
+    for (int i = 0; m_c_args[i]; ++i)
+        LOG(INFO) << m_c_args[i];
+    LOG(INFO) << "Start Executor  ID:" << m_info.id;
     // child process
     m_pid = fork();
     if (m_pid == 0) {
         // find cmd path automatically
-        execvp(m_info.cmd.c_str(), c_args);
-        // free memory space
-        StringUtility::DestoryArgArray(c_args);
+        if(execvp(m_info.cmd.c_str(), m_c_args) < 0) {
+            LOG(ERROR) << "execute cmd error: " << m_info.cmd;
+            cout << "!!!!!" << endl;
+            // free memory
+            StringUtility::DestoryArgArray(m_c_args);
+        }
     } else {
         ContainerStarted();
     }
@@ -83,6 +89,7 @@ void Container::Execute() {
 void Container::Clean() {
     // TODO: @chenjing
     // clear the work directory
+    StringUtility::DestoryArgArray(m_c_args);
 }
 
 MessageQueue::Message Container::ToMessage() {
@@ -98,9 +105,9 @@ void Container::ContainerFinished() {
     Clean();
     // change status
     WriteLocker locker(m_lock);
+    m_state = CONTAINER_FINISHED;
     MessageQueue::Message msg = ToMessage();
     MsgQueueMgr::Instance()->Get(EXECUTOR_STATE_KEY)->Send(&msg);
-    m_state = CONTAINER_FINISHED;
 }
 
 void Container::ContainerStarted() {

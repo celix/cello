@@ -43,11 +43,7 @@ bool Task::AssignTask() {
     // if match task success then start task
     if (Matcher::MatchTask(*this, &cellet_address)) {
         // task start success
-        if (Starter::StartTask(cellet_address, *this)) {
-            TaskAssigned();
-            return true;
-        }
-        return false;
+        return Starter::StartTask(cellet_address, *this);
     }
     return false;
 }

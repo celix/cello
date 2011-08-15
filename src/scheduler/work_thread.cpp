@@ -11,8 +11,10 @@ void* ScheduleProcessor(void* unused) {
         // has wait task then begin to assign the task
         if (task.get())
             // task match failed then push the task back into pool
-            if (!(task->AssignTask()))
+            if (!(task->AssignTask())) {
+                task->TaskAssigned();
                 FrameworkMgr::Instance()->AddTask(task);
+            }
         usleep(1000*100);
     }
     return NULL;

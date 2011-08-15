@@ -12,19 +12,20 @@ class StringUtility {
 public:
     static void Split(const string& str, char ch, vector<string>* result) {
         for(size_t i = 0, k = 0; i <= str.length(); ++i) {
-            if(str[i] == ch || str.length() == i) {
+            if(str[i] == ch || (str.length() == i && k < i)) {
                 result->push_back(str.substr(k, i-k));
                 k = i + 1;
             }
         }
     }
 
-    static void CreateArgArray(const vector<string>& source, char ** dest) {
-        dest = new char*[source.size() + 1];
-        memset(dest, 0, source.size() + 1);
+    static char ** CreateArgArray(const vector<string>& source) {
+        char ** dest = new char*[source.size() + 1];
+        memset(dest, 0, (source.size() + 1)*sizeof(char**));
         assert(dest);
         for (size_t i = 0; i < source.size(); ++i)
             dest[i] = strnewcpy(source[i]);
+        return dest;
     }
 
     /// @brief: string copy with new memory space 

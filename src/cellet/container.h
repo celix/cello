@@ -55,6 +55,7 @@ private:
     TaskInfo m_info;
     ContainerState m_state;
     string m_work_diectory;
+    char** m_c_args;
 };
 
 typedef shared_ptr<Container> ContainerPtr;

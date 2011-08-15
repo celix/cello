@@ -112,6 +112,9 @@ void* StartExecutorReceiver(void* unused) {
             ptr->Execute();
             // insert into the container pool
             ContainerMgr::Instance()->Insert(ptr);
+        } else {
+            // executor init failed report the status to scheduler
+            ptr->ContainerFinished();
         }
     }
 }

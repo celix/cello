@@ -22,6 +22,7 @@ public:
         } catch (TException &tx) {
             LOG(ERROR) << "start task error: " << tx.what();
         }
+        LOG(INFO) << "StartTask   ID:" << task.GetId();
         return ret;
     }
 };

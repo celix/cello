@@ -1,7 +1,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <sys/prctl.h>
 #include <unistd.h>
+#include <string.h>
 
 #include "glog/logging.h"
 #include "gflags/gflags.h"
@@ -24,7 +26,13 @@ extern void* StartExecutorReceiver(void* unused);
 extern void* ExecutorStatusReceiver(void* unused);
 
 void ResourceManagerEntry() {
-    LOG(INFO) << "resource manager process begin";
+    // change process name
+    char buf[16] = {0};
+    prctl(PR_GET_NAME, buf);
+    char* name = "-resource";
+    strncat(buf, name, strlen(name));
+    prctl(PR_SET_NAME, buf);
+    LOG(INFO) << "resource manager process begin: " << buf;
     ResourceMgr::Instance()->Init();
     // if temperory directory does not exist then create it
     if (access(FLAGS_work_directory.c_str(), F_OK) < 0)
@@ -39,7 +47,7 @@ void ResourceManagerEntry() {
     while (true) {
         if ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
             ContainerPool::ContainerFunc func = bind(&Container::ContainerFinished,
-                    _1);
+                                                     _1);
             // find the container and deal with the thing
             if(ContainerMgr::Instance()->FindToDo(pid, func))
                 // remove the container since it has finished

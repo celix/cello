@@ -19,8 +19,12 @@ public:
         MachinePool::MachineFunc func = bind(&Filter::Filtration, _1, str_ad,
                                              &candidate_machine);
         Pool::Instance()->MapToDo(func);
-        if (candidate_machine.size() > 0)
+        if (candidate_machine.size() > 0) {
             result = candidate_machine.front().GetMachine()->GetEndpoint();
+            LOG(INFO) << "Match Task Success. Machine: " << result;
+        } else {
+            LOG(INFO) << "Match Task Failed";
+        }
     }
 
     void Heartbeat(const MachineInfo& info) {
