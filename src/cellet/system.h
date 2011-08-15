@@ -23,6 +23,9 @@ public:
 
     /// @brief: get cpu usage
     static double CpuUsage();
+
+    /// @brief: remove the directory
+    static void RemoveDir(const char* path);
 };
 
 #endif

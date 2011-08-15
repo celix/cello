@@ -41,8 +41,10 @@ MachineInfo ResourceManager::GetMachineInfo() {
 
 void ResourceManager::GetUsedResource(Container* ptr) {
     if (ptr->GetState() == CONTAINER_STARTED) {
+        LOG(ERROR) << "!!!!!!" << ptr->GetPid();
         m_avail_cpu -= ptr->GetUsedCpu();
         m_avail_memory -= ptr->GetUsedMemory();
+        LOG(ERROR) << m_avail_cpu << "||" << m_avail_memory;
     }
 }
 

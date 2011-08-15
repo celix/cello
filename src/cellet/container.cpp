@@ -7,6 +7,7 @@
 #include "gflags/gflags.h"
 #include "cellet/container.h"
 #include "cellet/message_manager.h"
+#include "cellet/system.h"
 #include "common/string_utility.h"
 
 #include <iostream>
@@ -18,10 +19,10 @@ DECLARE_string(work_directory);
 
 Container::Container(const MessageQueue::Message& msg) : m_pid(0), m_c_args(0) {
     vector<string> res;
-    StringUtility::Split(msg.content, '\n', &res);
+    StringUtility::Split(msg.Get(), '\n', &res);
     int64_t id = atol(res[0].c_str());
-    double need_cpu = atof(res[3].c_str());
-    int need_memory = atoi(res[4].c_str());
+    double need_cpu = atof(res[4].c_str());
+    int need_memory = atoi(res[5].c_str());
     // set task information
     m_info.id = id;
     m_info.cmd = res[1];
@@ -75,12 +76,8 @@ void Container::Execute() {
     m_pid = fork();
     if (m_pid == 0) {
         // find cmd path automatically
-        if(execvp(m_info.cmd.c_str(), m_c_args) < 0) {
-            LOG(ERROR) << "execute cmd error: " << m_info.cmd;
-            cout << "!!!!!" << endl;
-            // free memory
-            StringUtility::DestoryArgArray(m_c_args);
-        }
+        execvp(m_info.cmd.c_str(), m_c_args);
+        LOG(ERROR) << "execute cmd error: " << m_info.cmd;
     } else {
         ContainerStarted();
     }
@@ -88,8 +85,10 @@ void Container::Execute() {
 
 void Container::Clean() {
     // TODO: @chenjing
-    // clear the work directory
+    // free memory
     StringUtility::DestoryArgArray(m_c_args);
+    // clear the work directory
+    System::RemoveDir(m_work_diectory.c_str());
 }
 
 MessageQueue::Message Container::ToMessage() {

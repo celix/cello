@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <glog/logging.h>
 #include <sys/param.h>
+#include <dirent.h>
 
 #include "cellet/system.h"
 
@@ -185,4 +186,18 @@ double System::CpuUsage() {
     prev_total = total;
     fclose(fp);
     return cpu_usage;
+}
+
+void System::RemoveDir(const char* path) {
+    DIR* dp = opendir(path);
+    if (dp) {
+        dirent* ep = NULL;
+        while((ep = readdir(dp)) != NULL) {
+            char file[256] = {0};
+            snprintf(file, sizeof(file), "%s/%s", path, ep->d_name);
+            unlink(file);
+        }
+        rmdir(path);
+    }
+    closedir(dp);
 }
