@@ -21,12 +21,12 @@
     <description> Cello Client</description>
 
   <property name="src" location="src" />
-  <property name="gen" location="../proxy/scheduler/gen-java" />
+  <property name="gen" location="../../proxy/scheduler/gen-java" />
   <property name="build" location="build" />
 
   <path id="libs.classpath">
-      <pathelement path="../../third_party/thrift/lib/java/libthrift.jar" />
-      <fileset dir="../../third_party/thrift/lib/java">
+      <pathelement path="../../../third_party/thrift/lib/java/libthrift.jar" />
+      <fileset dir="../../../third_party/thrift/lib/java">
           <include name="*.jar" />
       </fileset>
   </path>

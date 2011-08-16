@@ -85,8 +85,9 @@ void Container::Execute() {
 }
 
 void Container::Clean() {
-    // free memory
-    StringUtility::DestoryArgArray(m_c_args);
+    // if have args then free args memory after container finished
+    if (m_c_args)
+        StringUtility::DestoryArgArray(m_c_args);
     // clear the work directory
     System::RemoveDir(m_work_diectory.c_str());
 }

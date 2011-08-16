@@ -24,6 +24,14 @@ TEST(TestSplit, All) {
     EXPECT_EQ(v4.size(), static_cast<unsigned int>(1));
 }
 
+TEST(ArrayTest, All) {
+    vector<string> vv(4, "test");
+    char ** array = StringUtility::CreateArgArray(vv);
+    for (int i = 0; i < 4; ++i)
+        EXPECT_STREQ("test", array[i]);
+    StringUtility::DestoryArgArray(array);
+}
+
 int main(int argc, char ** argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
