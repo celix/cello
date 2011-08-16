@@ -76,15 +76,15 @@ void Container::Execute() {
     m_pid = fork();
     if (m_pid == 0) {
         // find cmd path automatically
-        execvp(m_info.cmd.c_str(), m_c_args);
+        execv(m_info.cmd.c_str(), m_c_args);
         LOG(ERROR) << "execute cmd error: " << m_info.cmd;
+        exit(-1);
     } else {
         ContainerStarted();
     }
 }
 
 void Container::Clean() {
-    // TODO: @chenjing
     // free memory
     StringUtility::DestoryArgArray(m_c_args);
     // clear the work directory

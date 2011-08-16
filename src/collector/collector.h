@@ -23,7 +23,7 @@ public:
             result = candidate_machine.front().GetMachine()->GetEndpoint();
             LOG(INFO) << "Match Task Success. Machine: " << result;
         } else {
-            LOG(INFO) << "Match Task Failed";
+            LOG(WARNING) << "Match Task Failed";
         }
     }
 

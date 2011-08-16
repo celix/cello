@@ -68,11 +68,6 @@ void LogInfo(const MachineInfo& info) {
 }
 
 void* ResourceInfoReceiver(void* unused) {
-    shared_ptr<TTransport> transport;
-    // get collector proxy, send heartbeat to collector
-    CollectorClient proxy = Rpc<CollectorClient, CollectorClient>::GetProxy(
-            FLAGS_collector_endpoint, TIME_OUT, &transport);
-    transport->open();
     while (true) {
         MessageQueue::Message msg;
         MsgQueueMgr::Instance()->Get(RESOURCE_INFO_KEY)->Receive(&msg);
@@ -80,13 +75,18 @@ void* ResourceInfoReceiver(void* unused) {
         try {
             // send heartbeat
             LogInfo(info);        
+            shared_ptr<TTransport> transport;
+            // get collector proxy, send heartbeat to collector
+            CollectorClient proxy = Rpc<CollectorClient, CollectorClient>::GetProxy(
+                    FLAGS_collector_endpoint, TIME_OUT, &transport);
+            transport->open();
             proxy.Heartbeat(info);
+            transport->close();
             LOG(INFO) << "Send heartbeat success";
         } catch (TException &tx) {
             LOG(ERROR) << "send heartbeat error: " << tx.what();
         }
     }
-    transport->close();
     return NULL;
 }
 
