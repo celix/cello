@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<configuration>
+	<framework>
+		<name>Arbor</name>
+		<quota>20</quota>
+	</framework>
+	<framework>
+		<name>Binos</name>
+		<quota>10</quota>
+	</framework>
+</configuration>
