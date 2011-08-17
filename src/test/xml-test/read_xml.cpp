@@ -28,10 +28,10 @@ int main(int argc, char ** argv) {
     XMLCh tmp[50];
     XMLString::transcode("framework", tmp, 49);
     DOMNodeList* node_list = pdocument->getElementsByTagName(tmp);
-    for (int i = 0; i < node_list->getLength(); ++i) {
+    for (unsigned int i = 0; i < node_list->getLength(); ++i) {
         DOMNode* node = node_list->item(i);
         DOMNodeList* child_nodes = node->getChildNodes();
-        for (int j = 0; j < child_nodes->getLength(); ++j) {
+        for (unsigned int j = 0; j < child_nodes->getLength(); ++j) {
             DOMNode* fnode = child_nodes->item(j);
             XMLCh str1[10], str2[10];
             XMLString::transcode("name", str1, 9);

@@ -33,6 +33,14 @@ Container::Container(const MessageQueue::Message& msg) : m_pid(0), m_c_args(0) {
     m_state = CONTAINER_INIT;
 }
 
+Container::~Container() {
+    // if have args then free args memory after container finished
+    if (m_c_args)
+        StringUtility::DestoryArgArray(m_c_args);
+    // clear the work directory
+    if(!m_work_diectory.empty())
+        System::RemoveDir(m_work_diectory.c_str());
+}
 int Container::Init() {
     string framework_dir = FLAGS_work_directory + "/";
     framework_dir += m_info.framework_name;
@@ -47,11 +55,11 @@ int Container::Init() {
     // create work directory
     char path[256] = {0};
     snprintf(path, sizeof(path), "%s/%lld", framework_dir.c_str(), m_info.id);
-    m_work_diectory = path;
     if (mkdir(path, S_IRWXU|S_IRWXG|S_IROTH) < 0) {
         LOG(ERROR) << "create work directory error: " << path;
         return -1;
     }
+    m_work_diectory = path;
     LOG(INFO) << "create work directory: " << path;
     // switch work directory
     if (chdir(path) < 0) {
@@ -76,20 +84,12 @@ void Container::Execute() {
     m_pid = fork();
     if (m_pid == 0) {
         // find cmd path automatically
-        execv(m_info.cmd.c_str(), m_c_args);
+        execvp(m_info.cmd.c_str(), m_c_args);
         LOG(ERROR) << "execute cmd error: " << m_info.cmd;
         exit(-1);
     } else {
         ContainerStarted();
     }
-}
-
-void Container::Clean() {
-    // if have args then free args memory after container finished
-    if (m_c_args)
-        StringUtility::DestoryArgArray(m_c_args);
-    // clear the work directory
-    System::RemoveDir(m_work_diectory.c_str());
 }
 
 MessageQueue::Message Container::ToMessage() {
@@ -102,7 +102,6 @@ MessageQueue::Message Container::ToMessage() {
 
 void Container::ContainerFinished() {
     LOG(INFO) << "Container Finished  ID:" << m_info.id << " PID:" << m_pid;
-    Clean();
     // change status
     WriteLocker locker(m_lock);
     m_state = CONTAINER_FINISHED;

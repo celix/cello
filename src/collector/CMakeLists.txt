@@ -28,3 +28,6 @@ TARGET_LINK_LIBRARIES(collector classad)
 TARGET_LINK_LIBRARIES(cellet_mock thrift)
 TARGET_LINK_LIBRARIES(cellet_mock pthread)
 TARGET_LINK_LIBRARIES(cellet_mock glog)
+
+INSTALL(TARGETS collector RUNTIME DESTINATION bin)
+

@@ -16,15 +16,14 @@ using std::string;
 class Container {
 public:
     explicit Container(const MessageQueue::Message& msg);
+    
+    ~Container();
 
     /// @brief: set up enviroment
     int Init();
 
     /// @brief: fork process and execute cmd
     void Execute();
-    
-    /// @brief: clean the enviroment
-    void Clean();
     
     /// @brief: 
     MessageQueue::Message ToMessage();

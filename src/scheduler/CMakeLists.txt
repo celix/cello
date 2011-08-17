@@ -44,3 +44,6 @@ TARGET_LINK_LIBRARIES(scheduler gflags)
 TARGET_LINK_LIBRARIES(scheduler gflags)
 TARGET_LINK_LIBRARIES(scheduler classad)
 TARGET_LINK_LIBRARIES(scheduler xerces-c)
+
+INSTALL(TARGETS scheduler RUNTIME DESTINATION bin)
+

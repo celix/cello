@@ -16,3 +16,5 @@ TARGET_LINK_LIBRARIES(client libglog.a)
 TARGET_LINK_LIBRARIES(client thrift)
 TARGET_LINK_LIBRARIES(server thrift)
 TARGET_LINK_LIBRARIES(server libglog.a)
+
+INSTALL(TARGETS client server RUNTIME DESTINATION test/test)
