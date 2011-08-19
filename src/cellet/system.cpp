@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <time.h>
 #include <string.h>
 #include <stdio.h>
 #include <sys/utsname.h>
@@ -200,4 +201,12 @@ void System::RemoveDir(const char* path) {
         rmdir(path);
     }
     closedir(dp);
+}
+
+void System::GetCurrentTime(char* time_str, int len) {
+    time_t cur_time;
+    time(&cur_time);
+    tm* p = gmtime(&cur_time);
+    snprintf(time_str, len, "%d%d%d-%d%d%d", (1900 + p->tm_year),
+             (1 + p->tm_mon), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec);
 }

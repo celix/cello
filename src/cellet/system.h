@@ -26,6 +26,9 @@ public:
 
     /// @brief: remove the directory
     static void RemoveDir(const char* path);
+
+    /// @brief: get current time
+    static void GetCurrentTime(char* str, int len);
 };
 
 #endif

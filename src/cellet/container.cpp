@@ -1,5 +1,6 @@
 #include <sys/stat.h>
 #include <sys/unistd.h>
+#include <time.h>
 
 #include <vector>
 
@@ -74,6 +75,18 @@ void Container::Execute() {
     StringUtility::Split(m_info.arguments, ' ', &args);
     // add cmd as argv[0]
     args.insert(args.begin(), m_info.cmd);
+    // add log path
+    char timestamp[20] = {0};
+    System::GetCurrentTime(timestamp, sizeof(timestamp));
+    char log_name[100] = {0};
+    snprintf(log_name, sizeof(log_name), "%s_%lld_%s",
+             m_info.framework_name.c_str(), m_info.id, timestamp);
+    char log_path[200] = {0};
+    snprintf(log_path, sizeof(log_path), ">%s/%s", m_work_diectory.c_str(),
+             log_name);
+    string back = "2>&1";
+    args.push_back(back);
+    args.push_back(log_path);
     // convert string vector to string array
     m_c_args = StringUtility::CreateArgArray(args);
     LOG(INFO) << "command argument list:";
