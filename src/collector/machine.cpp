@@ -13,6 +13,7 @@ Machine::Machine(const MachineInfo& info) : MachineInfo(info) {
 void Machine::LogInfo() const {
     LOG(INFO) << "Machine information:";
     LOG(INFO) << "Endpoint: " << endpoint;
+    LOG(INFO) << "Cpu usage: " << usage;
     LOG(INFO) << "Available cpu cores: " << avail_cpu;
     LOG(INFO) << "Available memory: " << avail_memory;
 }

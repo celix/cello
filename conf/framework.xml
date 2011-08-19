@@ -8,5 +8,9 @@
 	<framework>
 		<name>Binos</name>
 		<quota>10</quota>
-	</framework>
+    </framework>
+	<framework>
+		<name>Hadoop</name>
+		<quota>30</quota>
+    </framework>
 </configuration>

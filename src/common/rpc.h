@@ -62,7 +62,6 @@ public:
         shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
         T client(protocol);
         *connection = transport;
-        LOG(INFO) << "Get Service: " << ip << ":" << port;
         return client;
     }
 };

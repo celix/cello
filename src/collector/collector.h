@@ -21,7 +21,7 @@ public:
         Pool::Instance()->MapToDo(func);
         if (candidate_machine.size() > 0) {
             result = candidate_machine.front().GetMachine()->GetEndpoint();
-            LOG(INFO) << "Match Task Success. Machine: " << result;
+            LOG(WARNING) << "Match Task Success. Machine: " << result;
         } else {
             LOG(WARNING) << "Match Task Failed";
         }

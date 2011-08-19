@@ -53,6 +53,7 @@ void ResourceManagerEntry() {
                 // remove the container since it has finished
                 ContainerMgr::Instance()->Delete(pid);
         }
+        sleep(1);
     }
 } 
 
