@@ -18,6 +18,7 @@ DEFINE_int32(port, 9998, "cellet port");
 DEFINE_string(work_directory, "/tmp/cello", "cellet work directory");
 DEFINE_string(scheduler_endpoint, "10.5.0.170:9997", "scheduler endpoint");
 DEFINE_string(collector_endpoint, "10.5.0.170:9998", "collector endpoint");
+DEFINE_string(log, "/tmp/log/cellet", "cellet log path");
 
 extern void* ResourceInfoSender(void* unused);
 extern void* ResourceInfoReceiver(void* unused);
@@ -66,10 +67,14 @@ int main(int argc, char ** argv) {
     
     // initilize log
     google::InitGoogleLogging(argv[0]);
-    google::SetLogDestination(google::INFO, "../log/cellet_info_");
-    google::SetLogDestination(google::WARNING, "../log/cellet_warning_");
-    google::SetLogDestination(google::ERROR, "../log/cellet_error_");
-    google::SetLogDestination(google::FATAL, "../log/cellet_fatal_");
+    string info_log = FLAGS_log + "/cellet_info_";
+    google::SetLogDestination(google::INFO, info_log.c_str());
+    string warning_log = FLAGS_log + "/cellet_warning_";
+    google::SetLogDestination(google::WARNING, warning_log.c_str());
+    string error_log = FLAGS_log + "/cellet_error_";
+    google::SetLogDestination(google::ERROR, error_log.c_str());
+    string fatal_log = FLAGS_log + "/cellet_fatal_";
+    google::SetLogDestination(google::FATAL, fatal_log.c_str());
     LOG(INFO) << "begin cellet";
     // init message queue
     MsgQueueMgr::Instance()->Init();

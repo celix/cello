@@ -74,7 +74,7 @@ void* ResourceInfoReceiver(void* unused) {
         MachineInfo info(msg);
         try {
             // send heartbeat
-            LogInfo(info);        
+            //LogInfo(info);        
             shared_ptr<TTransport> transport;
             // get collector proxy, send heartbeat to collector
             CollectorClient proxy = Rpc<CollectorClient, CollectorClient>::GetProxy(

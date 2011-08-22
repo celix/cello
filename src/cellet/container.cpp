@@ -1,8 +1,10 @@
 #include <sys/stat.h>
 #include <sys/unistd.h>
+#include <fcntl.h>
 #include <time.h>
 
 #include <vector>
+#include <sstream>
 
 #include "glog/logging.h"
 #include "gflags/gflags.h"
@@ -11,10 +13,8 @@
 #include "cellet/system.h"
 #include "common/string_utility.h"
 
-#include <iostream>
 using std::vector;
-using std::cout;
-using std::endl;
+using std::stringstream;
 
 DECLARE_string(work_directory);
 
@@ -42,6 +42,7 @@ Container::~Container() {
     if(!m_work_diectory.empty())
         System::RemoveDir(m_work_diectory.c_str());
 }
+
 int Container::Init() {
     string framework_dir = FLAGS_work_directory + "/";
     framework_dir += m_info.framework_name;
@@ -70,32 +71,41 @@ int Container::Init() {
     return 0;
 }
 
+void Container::RedirectLog() {
+    // create log name and path
+    char timestamp[20] = {0};
+    System::GetCurrentTime(timestamp, sizeof(timestamp));
+    char log_name[100] = {0};
+    snprintf(log_name, sizeof(log_name), "%s_%lld_%s",
+            m_info.framework_name.c_str(), m_info.id, timestamp);
+    char log_path[200] = {0};
+    snprintf(log_path, sizeof(log_path), "%s/%s", m_work_diectory.c_str(),
+            log_name);
+    DLOG(WARNING) << log_path;
+    // open the log file redirect stdout and stderr
+    int fd = open(log_path, (O_RDWR | O_CREAT), 0644);
+    dup2(fd, 1);
+    dup2(1, 2);
+    close(fd);
+}
+
 void Container::Execute() {
     vector<string> args;
     StringUtility::Split(m_info.arguments, ' ', &args);
     // add cmd as argv[0]
     args.insert(args.begin(), m_info.cmd);
-    // add log path
-    char timestamp[20] = {0};
-    System::GetCurrentTime(timestamp, sizeof(timestamp));
-    char log_name[100] = {0};
-    snprintf(log_name, sizeof(log_name), "%s_%lld_%s",
-             m_info.framework_name.c_str(), m_info.id, timestamp);
-    char log_path[200] = {0};
-    snprintf(log_path, sizeof(log_path), ">%s/%s", m_work_diectory.c_str(),
-             log_name);
-    string back = "2>&1";
-    args.push_back(back);
-    args.push_back(log_path);
     // convert string vector to string array
     m_c_args = StringUtility::CreateArgArray(args);
-    LOG(INFO) << "command argument list:";
+    LOG(WARNING) << "command argument list:";
+    stringstream oss;
     for (int i = 0; m_c_args[i]; ++i)
-        LOG(INFO) << m_c_args[i];
+        oss << m_c_args[i] << " ";
+    LOG(WARNING) << oss.str();
     LOG(INFO) << "Start Executor  ID:" << m_info.id;
     // child process
     m_pid = fork();
     if (m_pid == 0) {
+        RedirectLog();
         // find cmd path automatically
         execvp(m_info.cmd.c_str(), m_c_args);
         LOG(ERROR) << "execute cmd error: " << m_info.cmd;

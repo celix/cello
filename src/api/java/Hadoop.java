@@ -1,10 +1,9 @@
 public class Hadoop {
     public static void main(String[] args) {
         TaskInfo info = new TaskInfo();
-        info.cmd = "sh";
+        info.cmd = "bash";
         info.arguments = "/home/chris/hadoop-0.20.2/bin/hadoop ";
-        info.arguments += "--config /home/chris/hadoop-0.20.2/conf tasktracker ";
-        info.arguments += ">/tmp/cello/hadoop-log 2>&1";
+        info.arguments += "--config /home/chris/hadoop-0.20.2/conf tasktracker";
         info.framework_name = "Hadoop";
         info.need_cpu = 0.5;
         info.need_memory  = 500;

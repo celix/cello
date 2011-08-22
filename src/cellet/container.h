@@ -47,6 +47,8 @@ public:
     }
 
     ContainerState GetState();
+private:
+    void RedirectLog();
 
 private:
     pid_t m_pid;

@@ -16,7 +16,6 @@ SET(MOCK
 
 ADD_EXECUTABLE(collector ${SRC})
 ADD_EXECUTABLE(cellet_mock ${MOCK})
-ADD_EXECUTABLE(collector_test test.cpp)
 
 TARGET_LINK_LIBRARIES(collector glog)
 TARGET_LINK_LIBRARIES(collector pthread)
