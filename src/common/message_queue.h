@@ -5,6 +5,7 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <errno.h>
+#include <string.h>
 #include <string>
 
 using std::string;
@@ -23,6 +24,11 @@ public:
             memset(content, 0, MAXLEN);
         }
         
+        Message(const char* ptr) : type(QUEUE_TYPE) {
+            memset(content, 0, MAXLEN);
+            strncpy(content, ptr, strlen(ptr));
+        }
+
         Message(const string& ss) : type(QUEUE_TYPE) {
             memset(content, 0, MAXLEN);
             strncpy(content, ss.c_str(), ss.size());

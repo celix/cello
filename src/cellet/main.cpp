@@ -19,6 +19,7 @@ DEFINE_string(work_directory, "/tmp/cello", "cellet work directory");
 DEFINE_string(scheduler_endpoint, "10.5.0.170:9997", "scheduler endpoint");
 DEFINE_string(collector_endpoint, "10.5.0.170:9998", "collector endpoint");
 DEFINE_string(log, "/tmp/log/cellet", "cellet log path");
+DEFINE_string(cello_bin, "/home/chris/cello/bin", "cellet executable path");
 
 extern void* ResourceInfoSender(void* unused);
 extern void* ResourceInfoReceiver(void* unused);
@@ -26,13 +27,14 @@ extern void* StartExecutorSender(void* unused);
 extern void* StartExecutorReceiver(void* unused);
 extern void* ExecutorStatusReceiver(void* unused);
 
-void ResourceManagerEntry() {
+void ResourceManagerEntry(int argc, char ** argv) {
     // change process name
     char buf[16] = {0};
     prctl(PR_GET_NAME, buf);
-    char* name = "-resource";
+    const char name[] = "-resource";
     strncat(buf, name, strlen(name));
     prctl(PR_SET_NAME, buf);
+    LOG(ERROR) << "!!!!!!" << argv[0];
     LOG(INFO) << "resource manager process begin: " << buf;
     ResourceMgr::Instance()->Init();
     // if temperory directory does not exist then create it
@@ -92,6 +94,6 @@ int main(int argc, char ** argv) {
         return 0;
     } else {
         // resource manager process
-        ResourceManagerEntry();
+        ResourceManagerEntry(argc, argv);
     }
 }

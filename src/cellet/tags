@@ -3,9 +3,8 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.6	//
+!_TAG_PROGRAM_VERSION	5.8	//
 Cellet	cellet.h	/^class Cellet : public CelletIf {$/;"	c
-Clean	container.cpp	/^void Container::Clean() {$/;"	f	class:Container
 Container	container.cpp	/^Container::Container(const MessageQueue::Message& msg) : m_pid(0), m_c_args(0) {$/;"	f	class:Container
 Container	container.h	/^class Container {$/;"	c
 ContainerFinished	container.cpp	/^void Container::ContainerFinished() {$/;"	f	class:Container
@@ -32,6 +31,7 @@ Find	executor_pool.cpp	/^bool ExecutorPool::Find(const ExecutorPtr& ptr) {$/;"	f
 FindToDo	container_pool.cpp	/^bool ContainerPool::FindToDo(pid_t pid, ContainerFunc func) {$/;"	f	class:ContainerPool
 FindToDo	executor_pool.cpp	/^bool ExecutorPool::FindToDo(int64_t id, ExecutorFunc func) {$/;"	f	class:ExecutorPool
 Get	message_manager.cpp	/^MessageQueue* MessageManager::Get(key_t key) {$/;"	f	class:MessageManager
+GetCurrentTime	system.cpp	/^void System::GetCurrentTime(char* time_str, int len) {$/;"	f	class:System
 GetId	executor.h	/^    int64_t GetId() {$/;"	f	class:Executor
 GetMachineInfo	resource_manager.cpp	/^MachineInfo ResourceManager::GetMachineInfo() {$/;"	f	class:ResourceManager
 GetPid	container.h	/^    pid_t GetPid() {$/;"	f	class:Container
@@ -52,11 +52,14 @@ MapToDo	container_pool.cpp	/^void ContainerPool::MapToDo(ContainerFunc func) {$/
 MessageManager	message_manager.h	/^class MessageManager {$/;"	c
 MsgQueueMgr	message_manager.h	/^typedef Singleton<MessageManager> MsgQueueMgr;$/;"	t
 PhysicalMemory	system.cpp	/^int System::PhysicalMemory() {$/;"	f	class:System
+RedirectLog	container.cpp	/^void Container::RedirectLog() {$/;"	f	class:Container
+RemoveDir	system.cpp	/^void System::RemoveDir(const char* path) {$/;"	f	class:System
 ResourceInfoReceiver	work_thread.cpp	/^void* ResourceInfoReceiver(void* unused) {$/;"	f
 ResourceInfoSender	work_thread.cpp	/^void* ResourceInfoSender(void* unused) {$/;"	f
 ResourceManager	resource_manager.h	/^class ResourceManager {$/;"	c
 ResourceManagerEntry	main.cpp	/^void ResourceManagerEntry() {$/;"	f
 ResourceMgr	resource_manager.h	/^typedef Singleton<ResourceManager> ResourceMgr;$/;"	t
+RmDir	a.cpp	/^void RmDir(const string& path) {$/;"	f
 SRC_CELLET_CELLET_H	cellet.h	2;"	d
 SRC_CELLET_CONTAINER_H	container.h	2;"	d
 SRC_CELLET_CONTAINER_POOL_H	container_pool.h	2;"	d
@@ -101,7 +104,9 @@ m_total_cpu	resource_manager.h	/^    int m_total_cpu;$/;"	m	class:ResourceManage
 m_total_memory	resource_manager.h	/^    int m_total_memory;$/;"	m	class:ResourceManager
 m_work_diectory	container.h	/^    string m_work_diectory;$/;"	m	class:Container
 main	a.cpp	/^int main() {$/;"	f
+main	du.cpp	/^int main() {$/;"	f
 main	main.cpp	/^int main(int argc, char ** argv) {$/;"	f
 main	test.cpp	/^int main() {$/;"	f
 port	resource_manager.cpp	/^DECLARE_int32(port);$/;"	v
 scheduler_endpoint	work_thread.cpp	/^DECLARE_string(scheduler_endpoint);$/;"	v
+~Container	container.cpp	/^Container::~Container() {$/;"	f	class:Container

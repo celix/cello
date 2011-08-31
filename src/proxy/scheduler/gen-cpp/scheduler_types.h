@@ -11,8 +11,9 @@
 #include <protocol/TProtocol.h>
 #include <transport/TTransport.h>
 
-
-
+//ADD(@chenjing)
+#include "common/message_queue.h"
+#include "common/string_utility.h"
 
 
 typedef struct _TaskInfo__isset {
@@ -36,6 +37,9 @@ class TaskInfo {
   }
 
   virtual ~TaskInfo() throw() {}
+
+  // ADD(@chenjing)
+  MessageQueue::Message ToMessage(char seperator = '\n');
 
   std::string framework_name;
   int64_t id;

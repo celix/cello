@@ -25,39 +25,31 @@ MachineInfo ResourceManager::GetMachineInfo() {
     m_cpu_usage = System::CpuUsage();
     m_avail_memory = m_total_memory;
     m_avail_cpu = m_total_cpu;
-    // get free cpu and memory
-    ContainerPool::ContainerFunc func = bind(&ResourceManager::GetUsedResource,
-                                             this, _1);
-    ContainerMgr::Instance()->MapToDo(func);
     MachineInfo info;
     info.endpoint = m_endpoint;
     info.usage = m_cpu_usage;
     info.cpu = m_total_cpu;
     info.memory = m_total_memory;
+    // get every container current resource usage
+    // get free cpu and memory
+    ContainerPool::ContainerFunc func = bind(&ResourceManager::GetResource,
+                                              this, _1, &(info.executor_list));
+    ContainerMgr::Instance()->MapToDo(func);
     info.avail_cpu = m_avail_cpu;
     info.avail_memory = m_avail_memory;
     return info;
 }
 
-void ResourceManager::GetUsedResource(Container* ptr) {
+void ResourceManager::GetResource(Container* ptr, vector<ExecutorStat>* vector_ptr) {
     if (ptr->GetState() == CONTAINER_STARTED) {
-        m_avail_cpu -= ptr->GetUsedCpu();
-        m_avail_memory -= ptr->GetUsedMemory();
+        m_avail_cpu -= ptr->GetAllocatedCpu();
+        m_avail_memory -= ptr->GetAllocatedMemory();
+        vector_ptr->push_back(ptr->GetUsedResource());
     }
 }
 
 void ResourceManager::SendData() {
     MachineInfo info = GetMachineInfo();
-    MessageQueue::Message msg = ToMessage(info);
+    MessageQueue::Message msg = info.ToMessage();
     MsgQueueMgr::Instance()->Get(RESOURCE_INFO_KEY)->Send(&msg);
-}
-
-MessageQueue::Message ResourceManager::ToMessage(const MachineInfo& info) {
-    char data[MessageQueue::MAXLEN] = {0};
-    // convert executor information into a string with "\n" as separator
-    snprintf(data, sizeof(data), "%s\n%f\n%d\n%d\n%f\n%d\n",
-            info.endpoint.c_str(), info.usage, info.cpu, info.memory,
-            info.avail_cpu, info.avail_memory);
-    MessageQueue::Message msg(data);
-    return msg;
 }

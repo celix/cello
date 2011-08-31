@@ -5,8 +5,6 @@
  */
 #include "scheduler_types.h"
 
-
-
 const char* TaskInfo::ascii_fingerprint = "B7D24A3FEB0B14FB144E550AA4AE55B6";
 const uint8_t TaskInfo::binary_fingerprint[16] = {0xB7,0xD2,0x4A,0x3F,0xEB,0x0B,0x14,0xFB,0x14,0x4E,0x55,0x0A,0xA4,0xAE,0x55,0xB6};
 
@@ -127,4 +125,12 @@ uint32_t TaskInfo::write(::apache::thrift::protocol::TProtocol* oprot) const {
   return xfer;
 }
 
-
+MessageQueue::Message TaskInfo::ToMessage(char separator) {
+    char data[MessageQueue::MAXLEN] = {0};
+    // convert taskinfo into a string with "\n" as separator
+    snprintf(data, sizeof(data), "%lld%c%s%c%s%c%s%c%f%c%d", id, separator,
+             cmd.c_str(), separator, arguments.c_str(), separator,
+             framework_name.c_str(), separator, need_cpu,
+             separator, need_memory);
+    return data;
+}

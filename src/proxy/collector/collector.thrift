@@ -1,3 +1,9 @@
+struct ExecutorStat {
+    1: string fr_name,
+    2: double used_cpu,
+    3: i32 used_memory,
+}
+
 struct MachineInfo {
     1: string endpoint,
     2: double usage,
@@ -5,7 +11,7 @@ struct MachineInfo {
     4: i32 memory,
     5: double avail_cpu,
     6: i32 avail_memory,
-    7: i32 task_num
+    7: list<ExecutorStat> executor_list,
 }
 
 service Collector {

@@ -1,0 +1,12 @@
+bindir=/home/chris/cello/third_party/lxc/bin
+libdir=/home/chris/cello/third_party/lxc/lib
+localstatedir=/home/chris/cello/third_party/lxc/var/lib/lxc
+includedir=/home/chris/cello/third_party/lxc/include
+rootfsmountdir=/home/chris/cello/third_party/lxc/lib/lxc/rootfs
+
+Name: lxc
+Description: linux container tools
+Version: 0.7.5
+URL: http://lxc.sourceforge.net
+Libs: -L${libdir} -llxc -lutil
+Cflags: -I${includedir}

@@ -6,9 +6,113 @@
 #include "collector_types.h"
 
 
+ExecutorStat::ExecutorStat(const string& ss) {
+    vector<string> res;
+    StringUtility::Split(ss, '#', &res);
+    fr_name = res[0];
+    used_cpu = atof(res[1].c_str());
+    used_memory = atoi(res[2].c_str());
+}
 
-const char* MachineInfo::ascii_fingerprint = "7A7F0F0A88E5B0DCF813F7BF09408C4C";
-const uint8_t MachineInfo::binary_fingerprint[16] = {0x7A,0x7F,0x0F,0x0A,0x88,0xE5,0xB0,0xDC,0xF8,0x13,0xF7,0xBF,0x09,0x40,0x8C,0x4C};
+const char* ExecutorStat::ascii_fingerprint = "8C845A3AAF3585B0F962B641E472EE17";
+const uint8_t ExecutorStat::binary_fingerprint[16] = {0x8C,0x84,0x5A,0x3A,0xAF,0x35,0x85,0xB0,0xF9,0x62,0xB6,0x41,0xE4,0x72,0xEE,0x17};
+
+uint32_t ExecutorStat::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->fr_name);
+          this->__isset.fr_name = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_DOUBLE) {
+          xfer += iprot->readDouble(this->used_cpu);
+          this->__isset.used_cpu = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 3:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->used_memory);
+          this->__isset.used_memory = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t ExecutorStat::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  xfer += oprot->writeStructBegin("ExecutorStat");
+  xfer += oprot->writeFieldBegin("fr_name", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->fr_name);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldBegin("used_cpu", ::apache::thrift::protocol::T_DOUBLE, 2);
+  xfer += oprot->writeDouble(this->used_cpu);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldBegin("used_memory", ::apache::thrift::protocol::T_I32, 3);
+  xfer += oprot->writeI32(this->used_memory);
+  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+string ExecutorStat::ToString(char sepreator) {
+    char data[256] = {0};
+    snprintf(data, sizeof(data), "%s%c%f%c%d", fr_name.c_str(), sepreator,
+             used_cpu, sepreator, used_memory);
+    return data;
+}
+/// ADD(@chenjing)
+MachineInfo::MachineInfo(const MessageQueue::Message& msg) {
+    vector<string> res;
+    StringUtility::Split(msg.Get(), '\n', &res);
+    endpoint = res[0];
+    usage = atof(res[1].c_str());
+    cpu = atoi(res[2].c_str());
+    memory = atoi(res[3].c_str());
+    avail_cpu = atof(res[4].c_str());
+    avail_memory = atoi(res[5].c_str());
+    // executor stat information
+    vector<string> vs;
+    StringUtility::Split(res[6], '$', &vs);
+}
+
+const char* MachineInfo::ascii_fingerprint = "C7CB1954092B2778E02081E2D47F8BA4";
+const uint8_t MachineInfo::binary_fingerprint[16] = {0xC7,0xCB,0x19,0x54,0x09,0x2B,0x27,0x78,0xE0,0x20,0x81,0xE2,0xD4,0x7F,0x8B,0xA4};
 
 uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
 
@@ -79,9 +183,21 @@ uint32_t MachineInfo::read(::apache::thrift::protocol::TProtocol* iprot) {
         }
         break;
       case 7:
-        if (ftype == ::apache::thrift::protocol::T_I32) {
-          xfer += iprot->readI32(this->task_num);
-          this->__isset.task_num = true;
+        if (ftype == ::apache::thrift::protocol::T_LIST) {
+          {
+            this->executor_list.clear();
+            uint32_t _size0;
+            ::apache::thrift::protocol::TType _etype3;
+            iprot->readListBegin(_etype3, _size0);
+            this->executor_list.resize(_size0);
+            uint32_t _i4;
+            for (_i4 = 0; _i4 < _size0; ++_i4)
+            {
+              xfer += this->executor_list[_i4].read(iprot);
+            }
+            iprot->readListEnd();
+          }
+          this->__isset.executor_list = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -119,12 +235,30 @@ uint32_t MachineInfo::write(::apache::thrift::protocol::TProtocol* oprot) const 
   xfer += oprot->writeFieldBegin("avail_memory", ::apache::thrift::protocol::T_I32, 6);
   xfer += oprot->writeI32(this->avail_memory);
   xfer += oprot->writeFieldEnd();
-  xfer += oprot->writeFieldBegin("task_num", ::apache::thrift::protocol::T_I32, 7);
-  xfer += oprot->writeI32(this->task_num);
+  xfer += oprot->writeFieldBegin("executor_list", ::apache::thrift::protocol::T_LIST, 7);
+  {
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, this->executor_list.size());
+    std::vector<ExecutorStat> ::const_iterator _iter5;
+    for (_iter5 = this->executor_list.begin(); _iter5 != this->executor_list.end(); ++_iter5)
+    {
+      xfer += (*_iter5).write(oprot);
+    }
+    xfer += oprot->writeListEnd();
+  }
   xfer += oprot->writeFieldEnd();
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
-
+MessageQueue::Message MachineInfo::ToMessage(char sepreator) {
+    string ss;
+    for (vector<ExecutorStat>::iterator it = executor_list.begin();
+         it != executor_list.end(); ++it)
+        ss += it->ToString() + '$';
+    char data[1024] = {0};
+    snprintf(data, sizeof(data), "%s%c%f%c%d%c%d%c%f%c%d%c%s", endpoint.c_str(),
+             sepreator, usage, sepreator, cpu, sepreator, memory, sepreator,
+             avail_cpu, sepreator, avail_memory, sepreator, ss.c_str());
+    return data;   
+}

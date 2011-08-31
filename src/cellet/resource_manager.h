@@ -2,6 +2,7 @@
 #define SRC_CELLET_RESOURCE_MANAGER
 
 #include <string>
+#include <vector>
 
 #include "common/singleton.h"
 #include "proxy/collector/gen-cpp/Collector.h"
@@ -9,6 +10,7 @@
 #include "cellet/container.h"
 
 using std::string;
+using std::vector;
 
 class ResourceManager {
 public:
@@ -17,12 +19,11 @@ public:
     
     /// @brief: compute and get current machine information
     MachineInfo GetMachineInfo();
+   
+    /// @brief: get allocated resource in this machine
+    void GetResource(Container* ptr, vector<ExecutorStat>* vector_ptr);
     
-    void GetUsedResource(Container* ptr);
-
     void SendData();
-private:
-    MessageQueue::Message ToMessage(const MachineInfo& info);
 private:
     string m_endpoint;
     int m_total_cpu;

@@ -117,6 +117,7 @@ void* StartExecutorReceiver(void* unused) {
             ptr->ContainerFinished();
         }
     }
+    return NULL;
 }
 
 /// @brief: master thread
@@ -136,5 +137,5 @@ void* ExecutorStatusReceiver(void* unused) {
                 ExecutorMgr::Instance()->Delete(executor_id);
         }
     }
+    return NULL;
 }
-

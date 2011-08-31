@@ -11,48 +11,93 @@
 #include <protocol/TProtocol.h>
 #include <transport/TTransport.h>
 
-/// ADD BY @chenjing
+/// ADD(@chenjing)
 #include <vector>
 #include "common/message_queue.h"
 #include "common/string_utility.h"
 #include "glog/logging.h"
 
+using std::vector;
 
+typedef struct _ExecutorStat__isset {
+  _ExecutorStat__isset() : fr_name(false), used_cpu(false), used_memory(false) {}
+  bool fr_name;
+  bool used_cpu;
+  bool used_memory;
+} _ExecutorStat__isset;
 
+class ExecutorStat {
+ public:
+
+  static const char* ascii_fingerprint; // = "8C845A3AAF3585B0F962B641E472EE17";
+  static const uint8_t binary_fingerprint[16]; // = {0x8C,0x84,0x5A,0x3A,0xAF,0x35,0x85,0xB0,0xF9,0x62,0xB6,0x41,0xE4,0x72,0xEE,0x17};
+
+  ExecutorStat() : fr_name(""), used_cpu(0), used_memory(0) {
+  }
+
+  //ADD(@chenjing)
+  ExecutorStat(const string& ss);
+  ExecutorStat(const string& name, double cpu, int mem): fr_name(name),
+                                                         used_cpu(cpu),
+                                                         used_memory(mem) {
+  }
+  
+  virtual ~ExecutorStat() throw() {}
+
+  std::string fr_name;
+  double used_cpu;
+  int32_t used_memory;
+
+  _ExecutorStat__isset __isset;
+
+  bool operator == (const ExecutorStat & rhs) const
+  {
+    if (!(fr_name == rhs.fr_name))
+      return false;
+    if (!(used_cpu == rhs.used_cpu))
+      return false;
+    if (!(used_memory == rhs.used_memory))
+      return false;
+    return true;
+  }
+  bool operator != (const ExecutorStat &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const ExecutorStat & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+  //ADD(@chenjing)
+  string ToString(char sepreator = '#');
+};
 
 typedef struct _MachineInfo__isset {
-  _MachineInfo__isset() : endpoint(false), usage(false), cpu(false), memory(false), avail_cpu(false), avail_memory(false), task_num(false) {}
+  _MachineInfo__isset() : endpoint(false), usage(false), cpu(false), memory(false), avail_cpu(false), avail_memory(false), executor_list(false) {}
   bool endpoint;
   bool usage;
   bool cpu;
   bool memory;
   bool avail_cpu;
   bool avail_memory;
-  bool task_num;
+  bool executor_list;
 } _MachineInfo__isset;
 
 class MachineInfo {
  public:
 
-  static const char* ascii_fingerprint; // = "7A7F0F0A88E5B0DCF813F7BF09408C4C";
-  static const uint8_t binary_fingerprint[16]; // = {0x7A,0x7F,0x0F,0x0A,0x88,0xE5,0xB0,0xDC,0xF8,0x13,0xF7,0xBF,0x09,0x40,0x8C,0x4C};
+  static const char* ascii_fingerprint; // = "C7CB1954092B2778E02081E2D47F8BA4";
+  static const uint8_t binary_fingerprint[16]; // = {0xC7,0xCB,0x19,0x54,0x09,0x2B,0x27,0x78,0xE0,0x20,0x81,0xE2,0xD4,0x7F,0x8B,0xA4};
 
-  MachineInfo() : endpoint(""), usage(0), cpu(0), memory(0), avail_cpu(0), avail_memory(0), task_num(0) {
+  MachineInfo() : endpoint(""), usage(0), cpu(0), memory(0), avail_cpu(0), avail_memory(0) {
   }
-
-  /// ADD BY @chenjing
-  MachineInfo(const MessageQueue::Message& msg) {
-    vector<string> res;
-    StringUtility::Split(msg.Get(), '\n', &res);
-    endpoint = res[0];
-    usage = atof(res[1].c_str());
-    cpu = atoi(res[2].c_str());
-    memory = atoi(res[3].c_str());
-    avail_cpu = atof(res[4].c_str());
-    avail_memory = atoi(res[5].c_str());
-  }
+  /// ADD(@chenjing)
+  MachineInfo(const MessageQueue::Message& msg);
   
-  /// MODIFY BY @chenjing
+  MessageQueue::Message ToMessage(char sepreator = '\n');
+  
+  /// MODIFY(@chenjing)
   //virtual ~MachineInfo() throw() {}
   virtual ~MachineInfo() {}
 
@@ -62,7 +107,7 @@ class MachineInfo {
   int32_t memory;
   double avail_cpu;
   int32_t avail_memory;
-  int32_t task_num;
+  std::vector<ExecutorStat>  executor_list;
 
   _MachineInfo__isset __isset;
 
@@ -80,7 +125,7 @@ class MachineInfo {
       return false;
     if (!(avail_memory == rhs.avail_memory))
       return false;
-    if (!(task_num == rhs.task_num))
+    if (!(executor_list == rhs.executor_list))
       return false;
     return true;
   }

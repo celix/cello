@@ -3,11 +3,14 @@
 #include <fcntl.h>
 #include <time.h>
 
+
 #include <vector>
 #include <sstream>
 
 #include "glog/logging.h"
 #include "gflags/gflags.h"
+#include "lxc/lxc.h"
+#include "lxc/conf.h"
 #include "cellet/container.h"
 #include "cellet/message_manager.h"
 #include "cellet/system.h"
@@ -18,7 +21,9 @@ using std::stringstream;
 
 DECLARE_string(work_directory);
 
-Container::Container(const MessageQueue::Message& msg) : m_pid(0), m_c_args(0) {
+Container::Container(const MessageQueue::Message& msg) : m_pid(0),
+                                                         m_c_args(0),
+                                                         m_start_time(0) {
     vector<string> res;
     StringUtility::Split(msg.Get(), '\n', &res);
     int64_t id = atol(res[0].c_str());
@@ -43,7 +48,15 @@ Container::~Container() {
         System::RemoveDir(m_work_diectory.c_str());
 }
 
+void Container::SetName() {
+    char data[50] = {0};
+    snprintf(data, sizeof(data), "%s_%lld", m_info.framework_name.c_str(),
+             m_info.id);
+    m_name = data;
+}
+
 int Container::Init() {
+    SetName();
     string framework_dir = FLAGS_work_directory + "/";
     framework_dir += m_info.framework_name;
     // framework directory doesn't exist then create it
@@ -101,16 +114,19 @@ void Container::Execute() {
     for (int i = 0; m_c_args[i]; ++i)
         oss << m_c_args[i] << " ";
     LOG(WARNING) << oss.str();
-    LOG(INFO) << "Start Executor  ID:" << m_info.id;
+    LOG(INFO) << "Start Executor ID:" << m_info.id << " in container:" << m_name;
     // child process
     m_pid = fork();
     if (m_pid == 0) {
         RedirectLog();
-        // find cmd path automatically
-        execvp(m_info.cmd.c_str(), m_c_args);
-        LOG(ERROR) << "execute cmd error: " << m_info.cmd;
+        // use lxc api to execute cmd
+        lxc_conf* conf = lxc_conf_init();
+        lxc_start(m_name.c_str(), m_c_args, conf);
+        free(conf);
+        LOG(INFO) << "execute cmd terminate: " << m_info.cmd;
         exit(-1);
     } else {
+        SetResourceLimit();
         ContainerStarted();
     }
 }
@@ -119,8 +135,7 @@ MessageQueue::Message Container::ToMessage() {
     char data[MessageQueue::MAXLEN] = {0};
     // convert executor information into a string with "\n" as separator
     snprintf(data, sizeof(data), "%lld\n%d\n", m_info.id, m_state);
-    MessageQueue::Message msg(data);
-    return msg;
+    return data;
 }
 
 void Container::ContainerFinished() {
@@ -145,4 +160,44 @@ void Container::ContainerStarted() {
 ContainerState Container::GetState() {
     ReadLocker locker(m_lock);
     return m_state;
+}
+
+ExecutorStat Container::GetUsedResource() {
+    ReadLocker locker(m_lock);
+    // get cpu time
+    char str_value[64] = {0};
+    int len = 0;
+    lxc_cgroup_get(m_name.c_str(), "cpuacct.usage", str_value, len);
+    long long cpu_value = atoll(str_value);
+    memset(str_value, 0, len);
+    lxc_cgroup_get(m_name.c_str(), "cpuacct.usage", str_value, len);
+    long long mem_value = atoll(str_value);
+    double cpu_usage = 0;
+    // change cpu time into cpu usage
+    if (cpu_value > 0) {
+        // change nano sec into sec
+        cpu_value /= 1000 * 1000 * 1000;
+        time_t cur_time = time(0);
+        cpu_usage = cpu_value / (cur_time - m_start_time);
+    }
+        
+    // change byte into mega byte
+    if (mem_value > 0)
+        mem_value = mem_value / (1024 * 1024);
+    else
+        mem_value = 0;
+    ExecutorStat es(m_info.framework_name, cpu_usage, mem_value);
+    return es;
+}
+
+void Container::SetResourceLimit() {
+    // set memory
+    char data[32] = {0};
+    snprintf(data, sizeof(data), "%d", m_info.need_memory * 1024 * 1024);
+    lxc_cgroup_set(m_name.c_str(), "memory.limit_in_bytes", data);
+    memset(data, 0, sizeof(data));
+    // set cpu
+    snprintf(data, sizeof(data), "%d",
+             static_cast<int>(m_info.need_cpu * 1024 / DEFAULT_CPU_SHARE));
+    lxc_cgroup_set(m_name.c_str(), "cpu.shares", data);
 }

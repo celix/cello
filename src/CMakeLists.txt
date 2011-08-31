@@ -8,6 +8,7 @@ INCLUDE_DIRECTORIES(${THIRD_PARTY}/glog/include
                     ${THIRD_PARTY}/thrift/include/thrift
                     ${THIRD_PARTY}/xerces/include
                     ${THIRD_PARTY}/boost/include
+                    ${THIRD_PARTY}/lxc/include
                     ${SRC}/)
 
 LINK_DIRECTORIES(${THIRD_PARTY}/glog/lib
@@ -16,7 +17,8 @@ LINK_DIRECTORIES(${THIRD_PARTY}/glog/lib
                  ${THIRD_PARTY}/boost/lib
                  ${THIRD_PARTY}/thrift/lib
                  ${THIRD_PARTY}/classad/lib
-                 ${THIRD_PARTY}/xerces/lib)
+                 ${THIRD_PARTY}/xerces/lib
+                 ${THIRD_PARTY}/lxc/lib)
 
 ADD_SUBDIRECTORY(cellet)
 ADD_SUBDIRECTORY(collector)

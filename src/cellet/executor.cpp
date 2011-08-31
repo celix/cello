@@ -34,8 +34,7 @@ MessageQueue::Message Executor::ToMessage() {
              m_info.cmd.c_str(), m_info.arguments.c_str(),
              m_info.framework_name.c_str(),
              m_info.need_cpu, m_info.need_memory);
-    MessageQueue::Message msg(data);
-    return msg;
+    return data;
 }
 
 void Executor::ExecutorStarted() {
