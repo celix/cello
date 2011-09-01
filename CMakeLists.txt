@@ -17,8 +17,7 @@ SET(LIBRARY
     ${CMAKE_INSTALL_PREFIX}/third_party/gflags/lib
     ${CMAKE_INSTALL_PREFIX}/third_party/classad/lib
     ${CMAKE_INSTALL_PREFIX}/third_party/thrift/lib
-    ${CMAKE_INSTALL_PREFIX}/third_party/lxc/lib
-    /usr/local/lib)
+    ${CMAKE_INSTALL_PREFIX}/third_party/lxc/lib)
 
 # the RPATH to be used when installing, but only if it's not a system directory
 FOREACH(LIB ${LIBRARY})

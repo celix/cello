@@ -3,15 +3,20 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/ioctl.h>
 #include <arpa/inet.h>
+#include <net/if.h>
 #include <unistd.h>
 #include <netdb.h>
 #include <string>
+#include <errno.h>
 
 #include "glog/logging.h"
 
-using std::string;
+#define ETH_NAME    "eth0"
 
+using std::string;
+#if 0
 int get_ip(char* str) {
     addrinfo hint;
     memset(&hint, 0, sizeof(hint));
@@ -40,6 +45,28 @@ int get_ip(char* str) {
     } else {
         return -1;
     }
+}
+#endif
+int get_ip(char * ip)
+{   
+    int sock;
+    struct sockaddr_in sin;
+    struct ifreq ifr;
+    sock = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sock == -1) {
+        perror("socket");
+        return -1;      
+    }
+    strncpy(ifr.ifr_name, ETH_NAME, IFNAMSIZ);
+    ifr.ifr_name[IFNAMSIZ - 1] = 0;
+    if (ioctl(sock, SIOCGIFADDR, &ifr) < 0) {
+        perror("ioctl");
+        return -1;
+    }
+    memcpy(&sin, &ifr.ifr_addr, sizeof(sin));
+    char * tmp = inet_ntoa(sin.sin_addr);
+    strncpy(ip, tmp, strlen(tmp));
+    return 0;
 }
 
 string GetIP() {

@@ -32,6 +32,7 @@ class ExecutorStat {
   static const char* ascii_fingerprint; // = "8C845A3AAF3585B0F962B641E472EE17";
   static const uint8_t binary_fingerprint[16]; // = {0x8C,0x84,0x5A,0x3A,0xAF,0x35,0x85,0xB0,0xF9,0x62,0xB6,0x41,0xE4,0x72,0xEE,0x17};
 
+  static const char seperator = '#';
   ExecutorStat() : fr_name(""), used_cpu(0), used_memory(0) {
   }
 
@@ -70,7 +71,7 @@ class ExecutorStat {
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
   //ADD(@chenjing)
-  string ToString(char sepreator = '#');
+  string ToString() const;
 };
 
 typedef struct _MachineInfo__isset {
@@ -89,13 +90,14 @@ class MachineInfo {
 
   static const char* ascii_fingerprint; // = "C7CB1954092B2778E02081E2D47F8BA4";
   static const uint8_t binary_fingerprint[16]; // = {0xC7,0xCB,0x19,0x54,0x09,0x2B,0x27,0x78,0xE0,0x20,0x81,0xE2,0xD4,0x7F,0x8B,0xA4};
+  static const char seperator = '\n';
 
   MachineInfo() : endpoint(""), usage(0), cpu(0), memory(0), avail_cpu(0), avail_memory(0) {
   }
   /// ADD(@chenjing)
   MachineInfo(const MessageQueue::Message& msg);
   
-  MessageQueue::Message ToMessage(char sepreator = '\n');
+  MessageQueue::Message ToMessage();
   
   /// MODIFY(@chenjing)
   //virtual ~MachineInfo() throw() {}

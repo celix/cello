@@ -59,6 +59,8 @@ private:
     /// @brief: set container resource limit
     void SetResourceLimit();
 
+    /// @brief: close all the fd inherited from parent according to /proc/pid/fd
+    void CloseInheritedFD();
 
 private:
     static const double DEFAULT_CPU_SHARE = 0.2;

@@ -1,6 +1,9 @@
+#include <vector>
 #include "collector/machine.h"
 #include "classad/classad_distribution.h"
 #include "include/attributes.h"
+
+using std::vector;
 
 Machine::Machine(const MachineInfo& info) : MachineInfo(info) {
     m_ad.InsertAttr(ATTR_CPU_USAGE, usage);
@@ -16,6 +19,10 @@ void Machine::LogInfo() const {
     LOG(INFO) << "Cpu usage: " << usage;
     LOG(INFO) << "Available cpu cores: " << avail_cpu;
     LOG(INFO) << "Available memory: " << avail_memory;
+    LOG(INFO) << "framework resource usage list:";
+    for(vector<ExecutorStat>::const_iterator it = executor_list.begin();
+        it != executor_list.end(); ++it)
+        LOG(INFO) << it->ToString();
 }
 
 bool Machine::IsMatch(ClassAd* ptr, RankMachine* rank_ptr) {

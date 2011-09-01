@@ -8,7 +8,7 @@
 
 ExecutorStat::ExecutorStat(const string& ss) {
     vector<string> res;
-    StringUtility::Split(ss, '#', &res);
+    StringUtility::Split(ss, seperator, &res);
     fr_name = res[0];
     used_cpu = atof(res[1].c_str());
     used_memory = atoi(res[2].c_str());
@@ -90,10 +90,10 @@ uint32_t ExecutorStat::write(::apache::thrift::protocol::TProtocol* oprot) const
   return xfer;
 }
 
-string ExecutorStat::ToString(char sepreator) {
+string ExecutorStat::ToString() const {
     char data[256] = {0};
-    snprintf(data, sizeof(data), "%s%c%f%c%d", fr_name.c_str(), sepreator,
-             used_cpu, sepreator, used_memory);
+    snprintf(data, sizeof(data), "%s%c%f%c%d", fr_name.c_str(), seperator,
+             used_cpu, seperator, used_memory);
     return data;
 }
 /// ADD(@chenjing)
@@ -107,8 +107,12 @@ MachineInfo::MachineInfo(const MessageQueue::Message& msg) {
     avail_cpu = atof(res[4].c_str());
     avail_memory = atoi(res[5].c_str());
     // executor stat information
-    vector<string> vs;
-    StringUtility::Split(res[6], '$', &vs);
+    if (res.size() > 6) {
+        vector<string> vs;
+        StringUtility::Split(res[6], '$', &vs);
+        for (vector<string>::iterator it = vs.begin(); it != vs.end(); ++it)
+            executor_list.push_back(*it);
+    }
 }
 
 const char* MachineInfo::ascii_fingerprint = "C7CB1954092B2778E02081E2D47F8BA4";
@@ -251,14 +255,14 @@ uint32_t MachineInfo::write(::apache::thrift::protocol::TProtocol* oprot) const 
   return xfer;
 }
 
-MessageQueue::Message MachineInfo::ToMessage(char sepreator) {
+MessageQueue::Message MachineInfo::ToMessage() {
     string ss;
     for (vector<ExecutorStat>::iterator it = executor_list.begin();
          it != executor_list.end(); ++it)
         ss += it->ToString() + '$';
     char data[1024] = {0};
     snprintf(data, sizeof(data), "%s%c%f%c%d%c%d%c%f%c%d%c%s", endpoint.c_str(),
-             sepreator, usage, sepreator, cpu, sepreator, memory, sepreator,
-             avail_cpu, sepreator, avail_memory, sepreator, ss.c_str());
+             seperator, usage, seperator, cpu, seperator, memory, seperator,
+             avail_cpu, seperator, avail_memory, seperator, ss.c_str());
     return data;   
 }

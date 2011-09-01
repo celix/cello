@@ -1,4 +1,5 @@
 #include <sys/stat.h>
+#include <dirent.h>
 #include <sys/unistd.h>
 #include <fcntl.h>
 #include <time.h>
@@ -102,6 +103,23 @@ void Container::RedirectLog() {
     close(fd);
 }
 
+void Container::CloseInheritedFD() {
+    char path[30] = {0};
+    // get proc directory path
+    snprintf(path, sizeof(path), "/proc/%d/fd", getpid());
+    DIR* dp = opendir(path);
+    if (dp) {
+        dirent* ep = NULL;
+        while ((ep = readdir(dp))) {
+            int fd = atoi(ep->d_name);
+            // get rid of stdin, stdout, stderr which is 0,1,2
+            if (fd > 2)
+                close(fd);
+        }
+    }
+    closedir(dp);
+}
+
 void Container::Execute() {
     vector<string> args;
     StringUtility::Split(m_info.arguments, ' ', &args);
@@ -118,6 +136,8 @@ void Container::Execute() {
     // child process
     m_pid = fork();
     if (m_pid == 0) {
+        // close all the fd inherited from parent
+        CloseInheritedFD();
         RedirectLog();
         // use lxc api to execute cmd
         lxc_conf* conf = lxc_conf_init();
@@ -126,7 +146,7 @@ void Container::Execute() {
         LOG(INFO) << "execute cmd terminate: " << m_info.cmd;
         exit(-1);
     } else {
-        SetResourceLimit();
+        sleep(1);
         ContainerStarted();
     }
 }
@@ -149,6 +169,8 @@ void Container::ContainerFinished() {
 
 void Container::ContainerStarted() {
     LOG(INFO) << "Container Started ID:" << m_info.id << " PID:" << m_pid;
+    // set resource limit
+    SetResourceLimit();
     // change status
     WriteLocker locker(m_lock);
     m_state = CONTAINER_STARTED;
@@ -166,27 +188,33 @@ ExecutorStat Container::GetUsedResource() {
     ReadLocker locker(m_lock);
     // get cpu time
     char str_value[64] = {0};
-    int len = 0;
+    int len = 100;
     lxc_cgroup_get(m_name.c_str(), "cpuacct.usage", str_value, len);
-    long long cpu_value = atoll(str_value);
-    memset(str_value, 0, len);
-    lxc_cgroup_get(m_name.c_str(), "cpuacct.usage", str_value, len);
-    long long mem_value = atoll(str_value);
+    long long value = atoll(str_value);
     double cpu_usage = 0;
     // change cpu time into cpu usage
-    if (cpu_value > 0) {
+    if (value > 0) {
         // change nano sec into sec
-        cpu_value /= 1000 * 1000 * 1000;
+        double cpu_time = static_cast<double>(value) / 1000 * 1000 * 1000;
         time_t cur_time = time(0);
-        cpu_usage = cpu_value / (cur_time - m_start_time);
+        cpu_usage = value / (cur_time - m_start_time);
     }
-        
+    DLOG(INFO) << "framework:" << m_info.framework_name
+               << " used cpu usage:" << cpu_usage;
+    memset(str_value, 0, sizeof(str_value));
+
+    // get memory usage
+    len = 100;
+    lxc_cgroup_get(m_name.c_str(), "memory.usage_in_bytes", str_value, len);
+    value = atoll(str_value);
     // change byte into mega byte
-    if (mem_value > 0)
-        mem_value = mem_value / (1024 * 1024);
+    if (value > 0)
+        value = value / (1024 * 1024);
     else
-        mem_value = 0;
-    ExecutorStat es(m_info.framework_name, cpu_usage, mem_value);
+        value = 0;
+    DLOG(INFO) << "framework:" << m_info.framework_name
+               << " used memory:" << value;
+    ExecutorStat es(m_info.framework_name, cpu_usage, value);
     return es;
 }
 
