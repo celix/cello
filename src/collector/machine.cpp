@@ -14,6 +14,7 @@ Machine::Machine(const MachineInfo& info) : MachineInfo(info) {
 }
 
 void Machine::LogInfo() const {
+    LOG(INFO) << "====================================";
     LOG(INFO) << "Machine information:";
     LOG(INFO) << "Endpoint: " << endpoint;
     LOG(INFO) << "Cpu usage: " << usage;
@@ -23,6 +24,7 @@ void Machine::LogInfo() const {
     for(vector<ExecutorStat>::const_iterator it = executor_list.begin();
         it != executor_list.end(); ++it)
         LOG(INFO) << it->ToString();
+    LOG(INFO) << "====================================";
 }
 
 bool Machine::FrameworkExist(const ClassAd* ptr) {
