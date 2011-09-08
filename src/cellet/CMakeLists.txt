@@ -20,6 +20,7 @@ SET(SRC
     ${CELLET_RPC_SOURCE}
     ${COLLECTOR_RPC_SOURCE}
     ${COMMON_SOURCE}
+    config.cpp
     system.cpp
     executor.cpp
     executor_pool.cpp
@@ -31,6 +32,9 @@ SET(SRC
     main.cpp)
 
 ADD_EXECUTABLE(cellet ${SRC})
+ADD_EXECUTABLE(system_test system.cpp system_test.cpp)
+ADD_EXECUTABLE(container_test container.cpp container_test.cpp system.cpp
+                              config.cpp message_manager.cpp ${COMMON_SOURCE})
 
 TARGET_LINK_LIBRARIES(cellet glog)
 TARGET_LINK_LIBRARIES(cellet pthread)
@@ -39,5 +43,9 @@ TARGET_LINK_LIBRARIES(cellet gflags)
 TARGET_LINK_LIBRARIES(cellet classad)
 TARGET_LINK_LIBRARIES(cellet lxc)
 
-INSTALL(TARGETS cellet RUNTIME DESTINATION bin)
+TARGET_LINK_LIBRARIES(system_test gtest pthread)
 
+TARGET_LINK_LIBRARIES(container_test gtest pthread glog lxc gflags)
+
+INSTALL(TARGETS cellet RUNTIME DESTINATION bin)
+INSTALL(TARGETS system_test RUNTIME DESTINATION test/cellet)

@@ -24,6 +24,11 @@ public:
     void GetResource(Container* ptr, vector<ExecutorStat>* vector_ptr);
     
     void SendData();
+
+    int GetTotalCpus() const {
+        return m_total_cpu;
+    }
+
 private:
     string m_endpoint;
     int m_total_cpu;

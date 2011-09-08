@@ -26,6 +26,8 @@ Task::Task(const TaskInfo& task_info) {
             ATTR_NEED_CPU + "<" + ATTR_AVAIL_CPU + " && " +
             ATTR_NEED_MEMORY + "<" + ATTR_AVAIL_MEMORY);
     m_ad.Insert(ATTR_TASK_REQUIREMENT, re_expr);
+    //insert framework name
+    m_ad.InsertAttr(ATTR_FRAMEWORK, m_framework_name);
 }
 
 void Task::ChangeState(State* state) {

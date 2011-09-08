@@ -25,12 +25,26 @@ void Machine::LogInfo() const {
         LOG(INFO) << it->ToString();
 }
 
+bool Machine::FrameworkExist(const ClassAd* ptr) {
+    string framework;
+    ptr->EvaluateAttrString(ATTR_FRAMEWORK, framework);
+    for(vector<ExecutorStat>::iterator it = executor_list.begin();
+        it != executor_list.end(); ++it) {
+        if (framework == it->GetFramework())
+            return true;
+    }
+    return false;
+}
+
 bool Machine::IsMatch(ClassAd* ptr, RankMachine* rank_ptr) {
-    double d_value = 0.0;
-    bool b_value;
+    // framework has exist in this machine
+    if (FrameworkExist(ptr))
+        return false;
     ptr->alternateScope = &m_ad;
     bool is_match = false;
     ptr->EvaluateAttrBool(ATTR_TASK_REQUIREMENT, is_match);
+    double d_value = 0.0;
+    bool b_value;
     // match success
     if (is_match) {
         // check rank value is double

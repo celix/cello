@@ -16,6 +16,11 @@ using std::string;
 
 class Container {
 public:
+    Container() : m_pid(0),
+                             m_c_args(0),
+                             m_first(true),
+                             m_prev_cpu(0.0),
+                             m_prev_total(0.0) {}
     explicit Container(const MessageQueue::Message& msg);
     
     ~Container();
@@ -50,6 +55,8 @@ public:
     ExecutorStat GetUsedResource();
 
     ContainerState GetState();
+
+    uint64_t ParseTime(const char* str);
 private:
     void RedirectLog();
 
@@ -62,6 +69,12 @@ private:
     /// @brief: close all the fd inherited from parent according to /proc/pid/fd
     void CloseInheritedFD();
 
+    /// @brief: get used cpu
+    double GetCpuUsage();
+
+    /// @brief: get used memory
+    int GetMemory();
+
 private:
     static const double DEFAULT_CPU_SHARE = 0.2;
 private:
@@ -73,6 +86,12 @@ private:
     string m_work_diectory;
     char** m_c_args;
     time_t m_start_time;
+    /// is first report resource
+    bool m_first;
+    /// container cpu time in heartbeat
+    double m_prev_cpu;
+    /// total cpu time in heartbeat
+    double m_prev_total;
 };
 
 typedef shared_ptr<Container> ContainerPtr;

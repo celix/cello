@@ -15,11 +15,8 @@ public:
         RankMachine rank_machine;
         if (machine->IsMatch(classad_ptr, &rank_machine))
             result->push_back(rank_machine);
-        // sort the machine list with rank
-        result->sort(MachineCompare);
     }
 
-private:
     static bool MachineCompare(const RankMachine& first,
                                const RankMachine& second) {
         return first.GetRankValue() <= second.GetRankValue();

@@ -189,14 +189,56 @@ double System::CpuUsage() {
     return cpu_usage;
 }
 
+
+// @return: cpu usage
+uint64_t System::CpuTime() {
+    FILE *fp;
+    char line[8192];
+    if ((fp = fopen("/proc/stat", "r")) == NULL) {
+        return -1;
+    }
+
+    uint64_t cpu_user = 0;
+    uint64_t cpu_nice = 0;
+    uint64_t cpu_sys = 0;
+    uint64_t cpu_idle = 0;
+    uint64_t cpu_iowait = 0;
+    uint64_t cpu_hardirq = 0;
+    uint64_t cpu_softirq = 0;
+    uint64_t total = 0;
+    while (fgets(line, 8192, fp) != NULL) {
+        if (!strncmp(line, "cpu ", 4)) {
+            sscanf(line + 5, "%llu %llu %llu %llu %llu %llu %llu",
+                    &cpu_user, &cpu_nice, &cpu_sys, &cpu_idle,
+                    &cpu_iowait, &cpu_hardirq, &cpu_softirq);
+            total = cpu_user + cpu_nice + cpu_sys +
+                   cpu_iowait + cpu_hardirq + cpu_softirq + cpu_idle;
+            break;
+        }
+    }
+
+    fclose(fp);
+    return total;
+}
+
 void System::RemoveDir(const char* path) {
     DIR* dp = opendir(path);
     if (dp) {
         dirent* ep = NULL;
         while((ep = readdir(dp)) != NULL) {
-            char file[256] = {0};
-            snprintf(file, sizeof(file), "%s/%s", path, ep->d_name);
-            unlink(file);
+            // get rid of .. and .
+            if (strcmp("..", ep->d_name) != 0 &&
+                strcmp(".", ep->d_name) != 0) {
+                char file[256] = {0};
+                snprintf(file, sizeof(file), "%s/%s", path, ep->d_name);
+                struct stat info;
+                stat(file, &info);
+                // directory or file
+                if (S_ISDIR(info.st_mode))
+                    RemoveDir(file);
+                else
+                    unlink(file);
+            }
         }
         rmdir(path);
     }

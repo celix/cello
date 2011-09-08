@@ -4,7 +4,6 @@
 #include <fcntl.h>
 #include <time.h>
 
-
 #include <vector>
 #include <sstream>
 
@@ -15,6 +14,7 @@
 #include "cellet/container.h"
 #include "cellet/message_manager.h"
 #include "cellet/system.h"
+#include "cellet/resource_manager.h"
 #include "common/string_utility.h"
 
 using std::vector;
@@ -24,7 +24,9 @@ DECLARE_string(work_directory);
 
 Container::Container(const MessageQueue::Message& msg) : m_pid(0),
                                                          m_c_args(0),
-                                                         m_start_time(0) {
+                                                         m_first(true),
+                                                         m_prev_cpu(0.0),
+                                                         m_prev_total(0.0) {
     vector<string> res;
     StringUtility::Split(msg.Get(), '\n', &res);
     int64_t id = atol(res[0].c_str());
@@ -186,36 +188,61 @@ ContainerState Container::GetState() {
 
 ExecutorStat Container::GetUsedResource() {
     ReadLocker locker(m_lock);
-    // get cpu time
+    int used_memory = GetMemory();
+    double cpu_usage = GetCpuUsage();
+    ExecutorStat es(m_info.framework_name, cpu_usage, used_memory);
+    return es;
+}
+
+int Container::GetMemory() {
     char str_value[64] = {0};
     int len = 100;
-    lxc_cgroup_get(m_name.c_str(), "cpuacct.usage", str_value, len);
-    long long value = atoll(str_value);
+    // get memory
+    lxc_cgroup_get(m_name.c_str(), "memory.usage_in_bytes", str_value, len);
+    uint64_t value = atoll(str_value);
+    DLOG(WARNING) << "USED MEMORY:" << value;
+    int memory;
+    // change byte into mega byte
+    if (value > 0)
+        memory = value / (1024 * 1024);
+    else
+        memory = 0;
+    DLOG(INFO) << "framework:" << m_info.framework_name
+               << " used memory:" << memory;
+    return memory;
+}
+
+double Container::GetCpuUsage() {
+    // get cpu time
+    char str_value[256] = {0};
+    lxc_cgroup_get(m_name.c_str(), "cpuacct.stat", str_value, sizeof(str_value));
+    // USER_HZ unit
+    uint64_t cur_cpu = ParseTime(str_value);
     double cpu_usage = 0;
     // change cpu time into cpu usage
-    if (value > 0) {
-        // change nano sec into sec
-        double cpu_time = static_cast<double>(value) / 1000 * 1000 * 1000;
-        time_t cur_time = time(0);
-        cpu_usage = value / (cur_time - m_start_time);
+    if (cur_cpu > 0) {
+        if (m_first) {
+            m_first = false;
+            m_prev_cpu = cur_cpu;
+            m_prev_total = System::CpuTime();
+            DLOG(WARNING) << "CURRENT CPU : " << m_prev_cpu
+                          << "CURRENT TOTAL: " << m_prev_total;
+            return 0.0;
+        }
+        uint64_t cur_total = System::CpuTime();
+        cpu_usage = static_cast<double>
+                    (cur_cpu - m_prev_cpu) / (cur_total - m_prev_total);
+        m_prev_cpu = cur_cpu;
+        m_prev_total = cur_total;
+        DLOG(WARNING) << "CURRENT CPU : " << m_prev_cpu
+                      << "CURRENT TOTAL: " << m_prev_total;
+    } else {
+        DLOG(ERROR) << "Get cpu time error";
+        cpu_usage = 0.0;
     }
     DLOG(INFO) << "framework:" << m_info.framework_name
                << " used cpu usage:" << cpu_usage;
-    memset(str_value, 0, sizeof(str_value));
-
-    // get memory usage
-    len = 100;
-    lxc_cgroup_get(m_name.c_str(), "memory.usage_in_bytes", str_value, len);
-    value = atoll(str_value);
-    // change byte into mega byte
-    if (value > 0)
-        value = value / (1024 * 1024);
-    else
-        value = 0;
-    DLOG(INFO) << "framework:" << m_info.framework_name
-               << " used memory:" << value;
-    ExecutorStat es(m_info.framework_name, cpu_usage, value);
-    return es;
+    return cpu_usage;
 }
 
 void Container::SetResourceLimit() {
@@ -228,4 +255,10 @@ void Container::SetResourceLimit() {
     snprintf(data, sizeof(data), "%d",
              static_cast<int>(m_info.need_cpu * 1024 / DEFAULT_CPU_SHARE));
     lxc_cgroup_set(m_name.c_str(), "cpu.shares", data);
+}
+
+uint64_t Container::ParseTime(const char* str) {
+    uint64_t user, system;
+    sscanf(str, "user %llu\nsystem %llu", &user, &system);
+    return user + system;
 }

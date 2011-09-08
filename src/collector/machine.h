@@ -33,6 +33,9 @@ public:
     bool IsMatch(ClassAd* ptr, RankMachine* rank_ptr);
 
 private:
+    /// @brief: check framework exists in the machine
+    bool FrameworkExist(const ClassAd* ptr);
+private:
     ClassAd m_ad;
 };
 

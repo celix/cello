@@ -42,8 +42,12 @@ class ExecutorStat {
                                                          used_cpu(cpu),
                                                          used_memory(mem) {
   }
-  
+
   virtual ~ExecutorStat() throw() {}
+
+  std::string GetFramework() const {
+    return fr_name;
+  }
 
   std::string fr_name;
   double used_cpu;

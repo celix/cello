@@ -1,6 +1,8 @@
 #ifndef SRC_CELLET_SYS_API_H
 #define SRC_CELLET_SYS_API_H
 
+#include <stdint.h>
+
 class System {
 public:
     /// @brief: get cpu core number
@@ -23,6 +25,9 @@ public:
 
     /// @brief: get cpu usage
     static double CpuUsage();
+
+    /// @brief: get total cpu time in USER_HZ unit
+    static uint64_t CpuTime();
 
     /// @brief: remove the directory
     static void RemoveDir(const char* path);

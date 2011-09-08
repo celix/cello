@@ -20,6 +20,8 @@ public:
                                              &candidate_machine);
         Pool::Instance()->MapToDo(func);
         if (candidate_machine.size() > 0) {
+            // sort the machine list with rank
+            candidate_machine.sort(Filter::MachineCompare);
             result = candidate_machine.front().GetMachine()->GetEndpoint();
             LOG(WARNING) << "Match Task Success. Machine: " << result;
         } else {
