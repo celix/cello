@@ -15,6 +15,9 @@ public:
 
     /// block the thread, waitting to be woken up
     void Wait(Mutex& mutex);
+    
+    /// block the thread with timeout
+    void Wait(Mutex& mutex, size_t timeout);
 
 private:
     void CheckError(const char* info, int code);

@@ -28,6 +28,9 @@ public:
 
     /// @brief: delete a machine from the pool
     void Delete(const string& endpoint);
+
+    /// @brief: map size
+    int Size();
 private:
 
     RWLock m_lock;

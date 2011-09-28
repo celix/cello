@@ -17,3 +17,8 @@ void MachinePool::Delete(const string& endpoint) {
     WriteLocker locker(m_lock);
     m_pool.erase(endpoint);
 }
+
+int MachinePool::Size() {
+    ReadLocker locker(m_lock);
+    return m_pool.size();
+}

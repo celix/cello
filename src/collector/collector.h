@@ -5,6 +5,7 @@
 #include "collector/machine.h"
 #include "collector/rank_machine.h"
 #include "collector/filter.h"
+#include "collector/monitorr.h"
 
 #include "classad/classad.h"
 #include "classad/matchClassad.h"
@@ -33,6 +34,7 @@ public:
         MachinePtr ptr(new Machine(info));
         ptr->LogInfo();
         Pool::Instance()->Insert(ptr);
+        // add event to Monitor
     }
 
 };
