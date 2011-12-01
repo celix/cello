@@ -1,7 +1,6 @@
 #include <iostream>
 
-#include "proxy/collector/gen-cpp/Collector.h"
-
+#include "include/proxy.h"
 #include "common/rpc.h"
 
 using std::cout;

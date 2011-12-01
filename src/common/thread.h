@@ -10,36 +10,42 @@ using std::tr1::function;
 using std::tr1::placeholders::_1;
 using std::tr1::placeholders::_2;
 
-class Thread {
-public:
-    typedef function<void*(void* context, unsigned long long param)> ThreadFunc;
+namespace cello {
 
-public:
-    Thread(): m_entry(NULL),
-              m_context(NULL),
-              m_param(0),
-              m_is_running(false) {}
-    
-    Thread(ThreadFunc entry, void* context = NULL, unsigned long long param = 0):
-        m_entry(entry) {}
+    class Thread {
+        public:
+            typedef function<void()> ThreadFunc;
 
-    virtual ~Thread() {}
-   
-    void Init(ThreadFunc entry, void* context = NULL; unsigned long long param = 0);
-    bool Start();
-    bool Join();
-    bool IsRunning() {
-        return m_is_running;
-    }
-    
-private:
-    static void Entry(void* unused);
-private:
-    pthread_t m_id;
-    bool m_is_running;
-    ThreadFunc m_entry;
-    void* m_context;
-    unsigned long long m_param;
-};
+        public:
+            Thread(): m_entry(NULL),
+            m_context(NULL),
+            m_param(0),
+            m_is_running(false) {}
 
+            Thread(ThreadFunc entry, void* context = NULL, unsigned long long param = 0):
+                m_entry(entry),
+                m_context(context),
+                m_param(param),
+                m_is_running(false) {}
+
+            virtual ~Thread() {}
+
+            //void Init(ThreadFunc entry, void* context = NULL, unsigned long long param = 0);
+            bool Start();
+            bool Join();
+            bool IsRunning() {
+                return m_is_running;
+            }
+
+        private:
+            static void Entry(void* unused);
+        private:
+            pthread_t m_id;
+            ThreadFunc m_entry;
+            void* m_context;
+            unsigned long long m_param;
+            bool m_is_running;
+    };
+
+}
 #endif

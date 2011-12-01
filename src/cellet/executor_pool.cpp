@@ -2,6 +2,9 @@
 
 #include "cellet/executor_pool.h"
 
+using cello::ReadLocker;
+using cello::WriteLocker;
+
 bool ExecutorPool::Find(const ExecutorPtr& ptr) {
     ReadLocker locker(m_lock);
     map<int64_t, ExecutorPtr>::iterator it = m_executor_map.find(ptr->GetId());

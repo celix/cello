@@ -5,11 +5,14 @@
 #include "common/rwlock.h"
 #include "common/message_queue.h"
 #include "include/type.h"
-#include "proxy/cellet/gen-cpp/scheduler_types.h"
+#include "include/proxy.h"
 #include "boost/shared_ptr.hpp"
 
 using std::string;
 using boost::shared_ptr;
+using cello::RWLock;
+using cello::MessageQueue;
+
 
 class Executor {
 public:

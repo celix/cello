@@ -3,11 +3,19 @@ SET(COLLECTOR_RPC_SOURCE
     ${COLLECTOR_PROXY}/Collector.cpp
     ${COLLECTOR_PROXY}/collector_types.cpp
     ${COLLECTOR_PROXY}/collector_constants.cpp)
+SET(COMMON_SOURCE
+    ../common/block_queue.cpp
+    ../common/cond.cpp
+    ../common/thread.cpp)
 
 SET(SRC
     ${COLLECTOR_RPC_SOURCE}
+    ${COMMON_SOURCE}
     machine_pool.cpp
     machine.cpp
+    monitor.cpp
+    framework.cpp
+    trigger.cpp
     main.cpp)
 
 SET(MOCK

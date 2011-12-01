@@ -6,6 +6,7 @@
 #include "common/singleton.h"
 
 using std::map;
+using cello::MessageQueue;
 
 class MessageManager {
 public:

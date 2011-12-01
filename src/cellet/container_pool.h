@@ -13,6 +13,7 @@ using std::map;
 using std::tr1::function;
 using std::tr1::placeholders::_1;
 using std::tr1::placeholders::_2;
+using cello::RWLock;
 
 class ContainerPool {
 public:

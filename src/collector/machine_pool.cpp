@@ -1,5 +1,8 @@
 #include "collector/machine_pool.h"
 
+using cello::ReadLocker;
+using cello::WriteLocker;
+
 void MachinePool::Insert(const MachinePtr& machine) {
     string endpoint = machine->GetEndpoint();
     WriteLocker locker(m_lock);
@@ -21,4 +24,10 @@ void MachinePool::Delete(const string& endpoint) {
 int MachinePool::Size() {
     ReadLocker locker(m_lock);
     return m_pool.size();
+}
+
+bool MachinePool::Find(const string& endpoint) {
+    map<string, MachinePtr>::iterator it = m_pool.find(endpoint);
+    return it != m_pool.end();
+        
 }

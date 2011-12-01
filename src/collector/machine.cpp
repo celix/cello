@@ -21,7 +21,7 @@ void Machine::LogInfo() const {
     LOG(INFO) << "Available cpu cores: " << avail_cpu;
     LOG(INFO) << "Available memory: " << avail_memory;
     LOG(INFO) << "framework resource usage list:";
-    for(vector<ExecutorStat>::const_iterator it = executor_list.begin();
+    for (vector<ExecutorStat>::const_iterator it = executor_list.begin();
         it != executor_list.end(); ++it)
         LOG(INFO) << it->ToString();
     LOG(INFO) << "====================================";
@@ -30,7 +30,7 @@ void Machine::LogInfo() const {
 bool Machine::FrameworkExist(const ClassAd* ptr) {
     string framework;
     ptr->EvaluateAttrString(ATTR_FRAMEWORK, framework);
-    for(vector<ExecutorStat>::iterator it = executor_list.begin();
+    for (vector<ExecutorStat>::iterator it = executor_list.begin();
         it != executor_list.end(); ++it) {
         if (framework == it->GetFramework())
             return true;

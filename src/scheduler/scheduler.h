@@ -1,7 +1,7 @@
 #ifndef SRC_SCHEDULER_SCHEDULER_H
 #define SRC_SCHEDULER_SCHEDULER_H
 
-#include "proxy/scheduler/gen-cpp/Scheduler.h"
+#include "include/proxy.h"
 #include "glog/logging.h"
 #include "scheduler/task.h"
 #include "scheduler/task_pool.h"

@@ -3,6 +3,9 @@
 #include "cellet/executor.h"
 #include "cellet/message_manager.h"
 
+using cello::WriteLocker;
+using cello::ReadLocker;
+
 void Executor::LogInfo() {
     LOG(INFO) << "Executor info";
     LOG(INFO) << "task id: " << m_info.id;

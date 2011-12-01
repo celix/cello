@@ -5,25 +5,28 @@
 
 #include "common/mutex.h"
 
-class Cond {
-public:
-    Cond();
-    ~Cond();
-    
-    /// send signal to wake up the thread
-    void Signal();
+namespace cello {
 
-    /// block the thread, waitting to be woken up
-    void Wait(Mutex& mutex);
-    
-    /// block the thread with timeout
-    void Wait(Mutex& mutex, size_t timeout);
+    class Cond {
+        public:
+            Cond();
+            ~Cond();
 
-private:
-    void CheckError(const char* info, int code);
+            /// send signal to wake up the thread
+            void Signal();
 
-private:
-    pthread_cond_t m_cond;
-};
+            /// block the thread, waitting to be woken up
+            void Wait(Mutex& mutex);
+
+            /// block the thread with timeout
+            int Wait(Mutex& mutex, size_t timeout);
+
+        private:
+            void CheckError(const char* info, int code);
+
+        private:
+            pthread_cond_t m_cond;
+    };
+}
 
 #endif

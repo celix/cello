@@ -4,8 +4,7 @@
 #include "include/type.h"
 #include "scheduler/task.h"
 #include "common/rpc.h"
-
-#include "proxy/cellet/gen-cpp/Cellet.h"
+#include "include/proxy.h"
 
 class Starter {
 public:

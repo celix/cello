@@ -5,9 +5,8 @@
 
 #include "glog/logging.h"
 
-#include "proxy/collector/gen-cpp/Collector.h"
+#include "include/proxy.h"
 #include "classad/classad.h"
-#include "common/rwlock.h"
 #include "boost/shared_ptr.hpp"
 #include "collector/rank_machine.h"
 

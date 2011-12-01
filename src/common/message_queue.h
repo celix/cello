@@ -10,50 +10,53 @@
 
 using std::string;
 
-class MessageQueue {
-public:
-    enum {MAXLEN = 256};
-    enum {QUEUE_TYPE = 1};
+namespace cello {
 
-    /// message format
-    struct Message {
-        long int type;
-        mutable char content[MAXLEN];
-        
-        Message() : type(QUEUE_TYPE) {
-            memset(content, 0, MAXLEN);
-        }
-        
-        Message(const char* ptr) : type(QUEUE_TYPE) {
-            memset(content, 0, MAXLEN);
-            strncpy(content, ptr, strlen(ptr));
-        }
+    class MessageQueue {
+        public:
+            enum {MAXLEN = 256};
+            enum {QUEUE_TYPE = 1};
 
-        Message(const string& ss) : type(QUEUE_TYPE) {
-            memset(content, 0, MAXLEN);
-            strncpy(content, ss.c_str(), ss.size());
-        }
-        char* Get() const {
-            return content;
-        }
+            /// message format
+            struct Message {
+                long int type;
+                mutable char content[MAXLEN];
+
+                Message() : type(QUEUE_TYPE) {
+                    memset(content, 0, MAXLEN);
+                }
+
+                Message(const char* ptr) : type(QUEUE_TYPE) {
+                    memset(content, 0, MAXLEN);
+                    strncpy(content, ptr, strlen(ptr));
+                }
+
+                Message(const string& ss) : type(QUEUE_TYPE) {
+                    memset(content, 0, MAXLEN);
+                    strncpy(content, ss.c_str(), ss.size());
+                }
+                char* Get() const {
+                    return content;
+                }
+            };
+
+            explicit MessageQueue(key_t key);
+            ~MessageQueue();
+
+            /// send message 
+            void Send(void* data);
+
+            /// receive message
+            void Receive(void* data);
+
+        private:
+            /// check the operation return value, if error then throw an exception
+            void CheckError(const char* info, int code);
+
+        private:
+            key_t m_key;
+            int m_id;
     };
 
-    explicit MessageQueue(key_t key);
-    ~MessageQueue();
-    
-    /// send message 
-    void Send(void* data);
-
-    /// receive message
-    void Receive(void* data);
-    
-private:
-    /// check the operation return value, if error then throw an exception
-    void CheckError(const char* info, int code);
-
-private:
-    key_t m_key;
-    int m_id;
-};
-
+}
 #endif

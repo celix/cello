@@ -15,6 +15,7 @@
 #include "common/message_queue.h"
 #include "common/string_utility.h"
 
+using cello::MessageQueue;
 
 typedef struct _TaskInfo__isset {
   _TaskInfo__isset() : framework_name(false), id(false), cmd(false), arguments(false), candidate_ips(false), need_cpu(false), need_memory(false) {}

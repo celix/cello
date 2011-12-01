@@ -1,5 +1,8 @@
 #include "cellet/container_pool.h"
 
+using cello::ReadLocker;
+using cello::WriteLocker;
+
 void ContainerPool::Insert(const ContainerPtr& ptr) {
     WriteLocker locker(m_lock);
     m_container_pool[ptr->GetPid()] = ptr;

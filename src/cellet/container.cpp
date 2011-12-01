@@ -19,6 +19,8 @@
 
 using std::vector;
 using std::stringstream;
+using cello::ReadLocker;
+using cello::WriteLocker;
 
 DECLARE_string(work_directory);
 
@@ -190,7 +192,9 @@ ExecutorStat Container::GetUsedResource() {
     ReadLocker locker(m_lock);
     int used_memory = GetMemory();
     double cpu_usage = GetCpuUsage();
-    ExecutorStat es(m_info.framework_name, cpu_usage, used_memory);
+    // running tasks in executor
+    int task_num = GetChildrenNum();
+    ExecutorStat es(m_info.framework_name, cpu_usage, used_memory, task_num);
     return es;
 }
 
@@ -261,4 +265,43 @@ uint64_t Container::ParseTime(const char* str) {
     uint64_t user, system;
     sscanf(str, "user %llu\nsystem %llu", &user, &system);
     return user + system;
+}
+
+int Container::GetChildrenNum() {
+    char* res = (char* )malloc(1024);
+    memset(res, 0, 1024);
+    if (Shell(res, "lxc-ps -n %s", m_name.c_str()) < 0)
+        return -1;
+    vector<string> vt;
+    StringUtility::Split(res, '\n', &vt);
+    free(res);
+    // get rid of title and parent process
+    return vt.size() - 2;
+}
+
+int Container::Shell(char* result, const char* format, ...) {
+    char *cmd;
+    FILE *f;
+    int ret;
+    va_list args;
+    va_start(args, format);
+    if (vasprintf(&cmd, format, args) == -1)
+        return -1;
+    if ((f = popen(cmd, "r")) == NULL)
+        return -1;
+    char ch;
+    int i = 0;
+    // get command execute result
+    while ((ch = fgetc(f)) != EOF) {
+        if (i < 1024)
+            result[i++] = ch;
+        else
+            break;
+    }
+    ret = pclose(f);
+    if (ret == -1)
+        LOG(INFO) << "pclose error: " << strerror(errno);
+    free(cmd);
+    va_end(args);
+    return ret;
 }

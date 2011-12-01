@@ -11,6 +11,7 @@
 #include <protocol/TProtocol.h>
 #include <transport/TTransport.h>
 
+
 /// ADD(@chenjing)
 #include <vector>
 #include "common/message_queue.h"
@@ -18,42 +19,40 @@
 #include "glog/logging.h"
 
 using std::vector;
+using cello::MessageQueue;
+
+
 
 typedef struct _ExecutorStat__isset {
-  _ExecutorStat__isset() : fr_name(false), used_cpu(false), used_memory(false) {}
+  _ExecutorStat__isset() : fr_name(false), used_cpu(false), used_memory(false), task_num(false) {}
   bool fr_name;
   bool used_cpu;
   bool used_memory;
+  bool task_num;
 } _ExecutorStat__isset;
 
 class ExecutorStat {
  public:
 
-  static const char* ascii_fingerprint; // = "8C845A3AAF3585B0F962B641E472EE17";
-  static const uint8_t binary_fingerprint[16]; // = {0x8C,0x84,0x5A,0x3A,0xAF,0x35,0x85,0xB0,0xF9,0x62,0xB6,0x41,0xE4,0x72,0xEE,0x17};
+  static const char* ascii_fingerprint; // = "291C6B3CAF59A17F97EAA92611E1087F";
+  static const uint8_t binary_fingerprint[16]; // = {0x29,0x1C,0x6B,0x3C,0xAF,0x59,0xA1,0x7F,0x97,0xEA,0xA9,0x26,0x11,0xE1,0x08,0x7F};
 
-  static const char seperator = '#';
-  ExecutorStat() : fr_name(""), used_cpu(0), used_memory(0) {
-  }
-
-  //ADD(@chenjing)
-  ExecutorStat(const string& ss);
-  ExecutorStat(const string& name, double cpu, int mem): fr_name(name),
-                                                         used_cpu(cpu),
-                                                         used_memory(mem) {
+  ExecutorStat() : fr_name(""), used_cpu(0), used_memory(0), task_num(0) {
   }
 
   virtual ~ExecutorStat() throw() {}
 
-  std::string GetFramework() const {
-    return fr_name;
-  }
-
   std::string fr_name;
   double used_cpu;
   int32_t used_memory;
+  int32_t task_num;
+  static const char seperator = '#';
 
   _ExecutorStat__isset __isset;
+  
+  string GetFramework() {
+    return fr_name;
+  }
 
   bool operator == (const ExecutorStat & rhs) const
   {
@@ -62,6 +61,8 @@ class ExecutorStat {
     if (!(used_cpu == rhs.used_cpu))
       return false;
     if (!(used_memory == rhs.used_memory))
+      return false;
+    if (!(task_num == rhs.task_num))
       return false;
     return true;
   }
@@ -75,7 +76,16 @@ class ExecutorStat {
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
   //ADD(@chenjing)
+  ExecutorStat(const string& ss);
+  ExecutorStat(const string& name, double cpu, int mem, int num):
+      fr_name(name),
+      used_cpu(cpu),
+      used_memory(mem),
+      task_num(num) {
+  }
+ 
   string ToString() const;
+
 };
 
 typedef struct _MachineInfo__isset {
@@ -92,12 +102,14 @@ typedef struct _MachineInfo__isset {
 class MachineInfo {
  public:
 
-  static const char* ascii_fingerprint; // = "C7CB1954092B2778E02081E2D47F8BA4";
-  static const uint8_t binary_fingerprint[16]; // = {0xC7,0xCB,0x19,0x54,0x09,0x2B,0x27,0x78,0xE0,0x20,0x81,0xE2,0xD4,0x7F,0x8B,0xA4};
+  static const char* ascii_fingerprint; // = "F43C5DDE19A104B0F53A8E63C8DA74BB";
+  static const uint8_t binary_fingerprint[16]; // = {0xF4,0x3C,0x5D,0xDE,0x19,0xA1,0x04,0xB0,0xF5,0x3A,0x8E,0x63,0xC8,0xDA,0x74,0xBB};
+
   static const char seperator = '\n';
 
   MachineInfo() : endpoint(""), usage(0), cpu(0), memory(0), avail_cpu(0), avail_memory(0) {
   }
+
   /// ADD(@chenjing)
   MachineInfo(const MessageQueue::Message& msg);
   

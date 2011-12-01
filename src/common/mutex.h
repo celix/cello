@@ -10,52 +10,55 @@
 using std::string;
 using std::runtime_error;
 
-class Mutex {
-public:
-    Mutex() {
-        CheckError("Mutex::Mutex", pthread_mutex_init(&m_lock, NULL));
-    }
+namespace cello {
 
-    ~Mutex() {
-        pthread_mutex_destroy(&m_lock);
-    }
-    
-    void Lock() {
-        CheckError("Mutex::Lock", pthread_mutex_lock(&m_lock));
-    }
+    class Mutex {
+        public:
+            Mutex() {
+                CheckError("Mutex::Mutex", pthread_mutex_init(&m_lock, NULL));
+            }
 
-    void Unlock() {
-        CheckError("Mutex::Unlock", pthread_mutex_unlock(&m_lock));
-    }
+            ~Mutex() {
+                pthread_mutex_destroy(&m_lock);
+            }
 
-private:
-    void CheckError(const char* info, int err_code) {
-        if (err_code != 0) {
-            string msg = info;
-            msg += " error: ";
-            msg += strerror(err_code);
-            throw runtime_error(msg);
-        }
-    }
+            void Lock() {
+                CheckError("Mutex::Lock", pthread_mutex_lock(&m_lock));
+            }
 
-private:
-    pthread_mutex_t m_lock;
-    friend class Cond;
-};
+            void Unlock() {
+                CheckError("Mutex::Unlock", pthread_mutex_unlock(&m_lock));
+            }
+
+        private:
+            void CheckError(const char* info, int err_code) {
+                if (err_code != 0) {
+                    string msg = info;
+                    msg += " error: ";
+                    msg += strerror(err_code);
+                    throw runtime_error(msg);
+                }
+            }
+
+        private:
+            pthread_mutex_t m_lock;
+            friend class Cond;
+    };
 
 
-class MutexLocker {
-public:
-    explicit MutexLocker(Mutex& mutex) : m_mutex(&mutex) {
-        m_mutex->Lock();
-    }
-    
-    ~MutexLocker() {
-        m_mutex->Unlock();
-    }
+    class MutexLocker {
+        public:
+            explicit MutexLocker(Mutex& mutex) : m_mutex(&mutex) {
+                m_mutex->Lock();
+            }
 
-private:
-    Mutex* m_mutex;
-};
+            ~MutexLocker() {
+                m_mutex->Unlock();
+            }
+
+        private:
+            cello::Mutex* m_mutex;
+    };
+}
 
 #endif

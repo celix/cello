@@ -3,6 +3,8 @@
 
 #include "common/mutex.h"
 
+using cello::MutexLocker;
+
 template <typename T>
 class Singleton {
 public:
@@ -14,13 +16,13 @@ public:
     }
 
 private:
-    static Mutex m_lock;
+    static cello::Mutex m_lock;
     static T* m_instance;
 };
 
 template <typename T>
 T* Singleton<T>::m_instance = NULL;
 template <typename T>
-Mutex Singleton<T>::m_lock;
+cello::Mutex Singleton<T>::m_lock;
 
 #endif

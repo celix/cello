@@ -3,7 +3,6 @@
 #include "glog/logging.h"
 #include "gflags/gflags.h"
 
-#include "proxy/scheduler/gen-cpp/Scheduler.h"
 #include "scheduler/scheduler.h"
 #include "scheduler/framework_pool.h"
 #include "common/rpc.h"

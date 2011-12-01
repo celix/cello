@@ -10,68 +10,71 @@
 using std::string;
 using std::runtime_error;
 
-class RWLock {
-public:
-    RWLock() {
-        CheckError("Rwlock::Rwlock", pthread_rwlock_init(&m_lock, NULL));
-    }
+namespace cello {
 
-    ~RWLock() {
-        pthread_rwlock_destroy(&m_lock);
-    }
-    
-    void ReadLock() {
-        CheckError("RWLock::ReadLock", pthread_rwlock_rdlock(&m_lock));
-    }
+    class RWLock {
+        public:
+            RWLock() {
+                CheckError("Rwlock::Rwlock", pthread_rwlock_init(&m_lock, NULL));
+            }
 
-    void WriteLock() {
-        CheckError("RWLock::WriteLock", pthread_rwlock_wrlock(&m_lock));
-    }
+            ~RWLock() {
+                pthread_rwlock_destroy(&m_lock);
+            }
 
-    void Unlock() {
-        CheckError("RWLock::Unlock", pthread_rwlock_unlock(&m_lock));
-    }
+            void ReadLock() {
+                CheckError("RWLock::ReadLock", pthread_rwlock_rdlock(&m_lock));
+            }
 
-private:
-    void CheckError(const char* info, int code) {
-        if (code != 0) {
-            string msg = info;
-            msg += " error: ";
-            msg += strerror(code);
-            throw runtime_error(msg);
-        }
-    }
+            void WriteLock() {
+                CheckError("RWLock::WriteLock", pthread_rwlock_wrlock(&m_lock));
+            }
 
-private:
-    pthread_rwlock_t m_lock;
-};
+            void Unlock() {
+                CheckError("RWLock::Unlock", pthread_rwlock_unlock(&m_lock));
+            }
 
-class ReadLocker {
-public:
-    explicit ReadLocker(RWLock& rwlock) : m_rwlock(&rwlock) {
-        m_rwlock->ReadLock();
-    }
-    
-    ~ReadLocker() {
-        m_rwlock->Unlock();
-    }
+        private:
+            void CheckError(const char* info, int code) {
+                if (code != 0) {
+                    string msg = info;
+                    msg += " error: ";
+                    msg += strerror(code);
+                    throw runtime_error(msg);
+                }
+            }
 
-private:
-    RWLock* m_rwlock;
-};
+        private:
+            pthread_rwlock_t m_lock;
+    };
 
-class WriteLocker {
-public:
-    explicit WriteLocker(RWLock& rwlock) : m_rwlock(&rwlock) {
-        m_rwlock->WriteLock();
-    }
+    class ReadLocker {
+        public:
+            explicit ReadLocker(RWLock& rwlock) : m_rwlock(&rwlock) {
+                m_rwlock->ReadLock();
+            }
 
-    ~WriteLocker() {
-        m_rwlock->Unlock();
-    }
+            ~ReadLocker() {
+                m_rwlock->Unlock();
+            }
 
-private:
-    RWLock* m_rwlock;
-};
+        private:
+            RWLock* m_rwlock;
+    };
+
+    class WriteLocker {
+        public:
+            explicit WriteLocker(RWLock& rwlock) : m_rwlock(&rwlock) {
+                m_rwlock->WriteLock();
+            }
+
+            ~WriteLocker() {
+                m_rwlock->Unlock();
+            }
+
+        private:
+            RWLock* m_rwlock;
+    };
+}
 
 #endif

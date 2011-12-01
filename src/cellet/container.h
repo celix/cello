@@ -2,17 +2,19 @@
 #define SRC_CELLET_CONTAINER_H
 
 #include <sys/types.h>
+#include <stdarg.h>
 #include <string>
 
-#include "proxy/cellet/gen-cpp/scheduler_types.h"
-#include "proxy/collector/gen-cpp/collector_types.h"
 #include "common/message_queue.h"
 #include "common/rwlock.h"
 #include "include/type.h"
+#include "include/proxy.h"
 #include "boost/shared_ptr.hpp"
 
 using boost::shared_ptr;
 using std::string;
+using cello::RWLock;
+using cello::MessageQueue;
 
 class Container {
 public:
@@ -75,8 +77,15 @@ private:
     /// @brief: get used memory
     int GetMemory();
 
+    /// @brief: get executor current task num
+    int GetChildrenNum();
+
+    /// @brief: execute the shell command
+    int Shell(char* result, const char* format, ...);
+
 private:
     static const double DEFAULT_CPU_SHARE = 0.2;
+
 private:
     pid_t m_pid;
     string m_name;                     //container name

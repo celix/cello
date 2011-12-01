@@ -2,6 +2,7 @@ struct ExecutorStat {
     1: string fr_name,
     2: double used_cpu,
     3: i32 used_memory,
+    4: i32 task_num,
 }
 
 struct MachineInfo {

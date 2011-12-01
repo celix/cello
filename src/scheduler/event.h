@@ -8,6 +8,7 @@
 
 
 using boost::shared_ptr;
+using cello::BlockQueue;
 
 class Event {
 public:

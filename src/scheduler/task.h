@@ -10,11 +10,12 @@
 #include "common/rwlock.h"
 #include "scheduler/state.h"
 #include "include/type.h"
-
-#include "proxy/scheduler/gen-cpp/scheduler_types.h"
+#include "include/proxy.h"
 
 using std::string;
 using boost::shared_ptr;
+using cello::RWLock;
+using cello::BlockQueue;
 
 class State;
 

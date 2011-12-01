@@ -1,5 +1,6 @@
 #include "common/message_queue.h"
 #include "common/string_utility.h"
+#include "common/rpc.h"
 #include "gflags/gflags.h"
 #include "cellet/executor_pool.h"
 #include "cellet/container_pool.h"
@@ -7,9 +8,7 @@
 #include "cellet/resource_manager.h"
 #include "cellet/container.h"
 
-#include "proxy/scheduler/gen-cpp/Scheduler.h"
-#include "proxy/collector/gen-cpp/Collector.h"
-#include "common/rpc.h"
+#include "include/proxy.h"
 
 DECLARE_string(scheduler_endpoint);
 DECLARE_string(collector_endpoint);

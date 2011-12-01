@@ -7,6 +7,7 @@
 #include "common/rwlock.h"
 
 using std::list;
+using cello::RWLock;
 
 class TaskQueue {
 public:

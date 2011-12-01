@@ -8,7 +8,7 @@
 #include "classad/matchClassad.h"
 #include "gflags/gflags.h"
 
-#include "proxy/collector/gen-cpp/Collector.h"
+#include "include/proxy.h"
 
 DECLARE_string(collector_endpoint);
 

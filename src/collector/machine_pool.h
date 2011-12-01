@@ -14,6 +14,7 @@ using std::map;
 using std::tr1::function;
 using std::tr1::placeholders::_1;
 using std::tr1::placeholders::_2;
+using cello::RWLock;
 
 class MachinePool {
 public:
@@ -28,6 +29,9 @@ public:
 
     /// @brief: delete a machine from the pool
     void Delete(const string& endpoint);
+
+    /// @brief: find a element
+    bool Find(const string& endpoint);
 
     /// @brief: map size
     int Size();

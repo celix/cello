@@ -4,6 +4,8 @@
 #include "common/mutex.h"
 #include "common/singleton.h"
 
+using cello::Mutex;
+
 class Identity {
 public:
     explicit Identity(int num) : m_id(num) {}

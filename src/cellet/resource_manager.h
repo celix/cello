@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "common/singleton.h"
-#include "proxy/collector/gen-cpp/Collector.h"
+#include "include/proxy.h"
 
 #include "cellet/container.h"
 
