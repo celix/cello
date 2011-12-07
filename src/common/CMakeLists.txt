@@ -20,8 +20,8 @@ ADD_EXECUTABLE(string_utility_test string_utility_test.cpp)
 ADD_EXECUTABLE(pool_test pool_test.cpp)
 
 FOREACH(t ${TEST})
-    TARGET_LINK_LIBRARIES(${t} libgtest.a)
-    TARGET_LINK_LIBRARIES(${t} libglog.a)
+    TARGET_LINK_LIBRARIES(${t} gtest)
+    TARGET_LINK_LIBRARIES(${t} glog)
     TARGET_LINK_LIBRARIES(${t} pthread)
 ENDFOREACH(t ${TEST})
 

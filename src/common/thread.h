@@ -31,14 +31,16 @@ namespace cello {
             virtual ~Thread() {}
 
             //void Init(ThreadFunc entry, void* context = NULL, unsigned long long param = 0);
+            void DoStart();
             bool Start();
             bool Join();
             bool IsRunning() {
                 return m_is_running;
             }
+            void Terminate();
 
         private:
-            static void Entry(void* unused);
+            static void* Entry(void* in_thread);
         private:
             pthread_t m_id;
             ThreadFunc m_entry;

@@ -7,8 +7,8 @@
 #include "collector/filter.h"
 #include "collector/monitor.h"
 
-#include "classad/classad.h"
-#include "classad/matchClassad.h"
+#include <classad/classad.h>
+#include <classad/matchClassad.h>
 
 class Collector : public CollectorIf {
 public:

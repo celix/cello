@@ -1,7 +1,7 @@
 #ifndef SRC_COLLECTOR_TRIGGER_H
 #define SRC_COLLECTOR_TRIGGER_H
 
-#include "boost/shared_ptr.hpp"
+#include <boost/shared_ptr.hpp>
 #include "common/singleton.h"
 #include "include/proxy.h"
 

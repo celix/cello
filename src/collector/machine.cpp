@@ -1,6 +1,6 @@
 #include <vector>
 #include "collector/machine.h"
-#include "classad/classad_distribution.h"
+#include <classad/classad_distribution.h>
 #include "include/attributes.h"
 
 using std::vector;

@@ -11,7 +11,7 @@
 #include <string>
 #include <errno.h>
 
-#include "glog/logging.h"
+#include <glog/logging.h>
 
 #define ETH_NAME    "eth0"
 

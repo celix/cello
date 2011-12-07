@@ -9,7 +9,7 @@
 #include "common/rwlock.h"
 #include "include/type.h"
 #include "include/proxy.h"
-#include "boost/shared_ptr.hpp"
+#include <boost/shared_ptr.hpp>
 
 using boost::shared_ptr;
 using std::string;

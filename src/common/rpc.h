@@ -1,17 +1,17 @@
 #ifndef SRC_COMMON_RPC_H
 #define SRC_COMMON_RPC_H
 
-#include "concurrency/ThreadManager.h"
-#include "concurrency/PosixThreadFactory.h"
-#include "protocol/TBinaryProtocol.h"
-#include "server/TSimpleServer.h"
-#include "server/TThreadPoolServer.h"
-#include "server/TThreadedServer.h"
-#include "transport/TServerSocket.h"
-#include "transport/TTransportUtils.h"
-#include "transport/TSocket.h"
+#include <concurrency/ThreadManager.h>
+#include <concurrency/PosixThreadFactory.h>
+#include <protocol/TBinaryProtocol.h>
+#include <server/TSimpleServer.h>
+#include <server/TThreadPoolServer.h>
+#include <server/TThreadedServer.h>
+#include <transport/TServerSocket.h>
+#include <transport/TTransportUtils.h>
+#include <transport/TSocket.h>
 
-#include "glog/logging.h"
+#include <glog/logging.h>
 #include <string>
 
 using std::string;
@@ -22,7 +22,8 @@ using namespace apache::thrift::transport;
 using namespace apache::thrift::server;
 using namespace apache::thrift::concurrency;
 
-using namespace boost;
+//using namespace boost;
+using boost::shared_ptr;
 
 template <typename T, typename P>
 class Rpc {

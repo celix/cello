@@ -1,5 +1,8 @@
 #include "scheduler/task_queue.h"
 
+using cello::ReadLocker;
+using cello::WriteLocker;
+
 int TaskQueue::Size() {
     ReadLocker locker(m_lock);
     return m_list.size();

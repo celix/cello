@@ -3,11 +3,11 @@
 
 #include <list>
 
-#include "glog/logging.h"
+#include <glog/logging.h>
 
 #include "include/proxy.h"
-#include "classad/classad.h"
-#include "boost/shared_ptr.hpp"
+#include <classad/classad.h>
+#include <boost/shared_ptr.hpp>
 #include "collector/rank_machine.h"
 
 using std::list;

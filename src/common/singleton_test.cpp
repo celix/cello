@@ -1,5 +1,5 @@
 #include "common/singleton.h"
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 struct Str {
     int n;

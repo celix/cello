@@ -3,7 +3,7 @@
 #include <string>
 #include <stdexcept>
 
-#include "glog/logging.h"
+#include <glog/logging.h>
 #include "common/message_queue.h"
 
 using std::string;

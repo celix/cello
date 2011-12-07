@@ -1,0 +1,605 @@
+TServerSocket.lo: src/transport/TServerSocket.cpp \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cstring \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/c++config.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/os_defines.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-32.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/cpu_defines.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cstddef \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/include/stddef.h \
+ /usr/include/string.h /usr/include/xlocale.h /usr/include/sys/types.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/time.h /usr/include/endian.h /usr/include/bits/endian.h \
+ /usr/include/bits/byteswap.h /usr/include/sys/select.h \
+ /usr/include/bits/select.h /usr/include/bits/sigset.h \
+ /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+ /usr/include/bits/pthreadtypes.h /usr/include/sys/socket.h \
+ /usr/include/sys/uio.h /usr/include/bits/uio.h \
+ /usr/include/bits/socket.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/sys/un.h /usr/include/sys/poll.h /usr/include/bits/poll.h \
+ /usr/include/netinet/in.h /usr/include/stdint.h \
+ /usr/include/bits/wchar.h /usr/include/bits/in.h \
+ /usr/include/netinet/tcp.h /usr/include/netdb.h /usr/include/rpc/netdb.h \
+ /usr/include/bits/siginfo.h /usr/include/bits/netdb.h \
+ /usr/include/fcntl.h /usr/include/bits/fcntl.h /usr/include/bits/stat.h \
+ /usr/include/errno.h /usr/include/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/getopt.h src/transport/TSocket.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/string \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stringfwd.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/char_traits.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_algobase.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/functexcept.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/exception_defines.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/cpp_type_traits.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ext/type_traits.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ext/numeric_traits.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_pair.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/move.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/concept_check.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_iterator_base_types.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_iterator_base_funcs.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_iterator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/debug/debug.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/postypes.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cwchar \
+ /usr/include/wchar.h /usr/include/stdio.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/include/stdarg.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/allocator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/c++allocator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ext/new_allocator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/new \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/exception \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/localefwd.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/c++locale.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/clocale \
+ /usr/include/locale.h /usr/include/bits/locale.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/iosfwd \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cctype \
+ /usr/include/ctype.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/ostream_insert.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cxxabi-forced.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_function.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/backward/binders.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/basic_string.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ext/atomicity.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/gthr.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/bits/setjmp.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/atomic_word.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/initializer_list \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/basic_string.tcc \
+ /usr/include/sys/time.h src/transport/TTransport.h src/Thrift.h \
+ ../../config.h /usr/include/libio.h /usr/include/_G_config.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h /usr/include/assert.h /usr/include/inttypes.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/map \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_tree.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_map.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_multimap.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/list \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_list.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/list.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/set \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_set.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_multiset.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/vector \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_construct.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_uninitialized.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_vector.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_bvector.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/vector.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/typeinfo \
+ src/TLogging.h /usr/local/include/boost/shared_ptr.hpp \
+ /usr/local/include/boost/smart_ptr/shared_ptr.hpp \
+ /usr/local/include/boost/config.hpp \
+ /usr/local/include/boost/config/user.hpp \
+ /usr/local/include/boost/config/select_compiler_config.hpp \
+ /usr/local/include/boost/config/compiler/gcc.hpp \
+ /usr/local/include/boost/config/select_stdlib_config.hpp \
+ /usr/local/include/boost/config/no_tr1/utility.hpp \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/utility \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_relops.h \
+ /usr/local/include/boost/config/stdlib/libstdcpp3.hpp \
+ /usr/local/include/boost/config/select_platform_config.hpp \
+ /usr/local/include/boost/config/platform/linux.hpp \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cstdlib \
+ /usr/include/stdlib.h /usr/include/bits/waitflags.h \
+ /usr/include/bits/waitstatus.h /usr/include/alloca.h \
+ /usr/local/include/boost/config/posix_features.hpp \
+ /usr/local/include/boost/config/suffix.hpp \
+ /usr/local/include/boost/config/no_tr1/memory.hpp \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/memory \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_tempbuf.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_raw_storage_iter.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/backward/auto_ptr.h \
+ /usr/local/include/boost/assert.hpp \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/iostream \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ostream \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ios \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/ios_base.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/locale_classes.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/locale_classes.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/streambuf \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/streambuf.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/basic_ios.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/locale_facets.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cwctype \
+ /usr/include/wctype.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/ctype_base.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/streambuf_iterator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/ctype_inline.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/locale_facets.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/basic_ios.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/ostream.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/istream \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/istream.tcc \
+ /usr/local/include/boost/current_function.hpp \
+ /usr/local/include/boost/checked_delete.hpp \
+ /usr/local/include/boost/throw_exception.hpp \
+ /usr/local/include/boost/exception/detail/attribute_noreturn.hpp \
+ /usr/local/include/boost/detail/workaround.hpp \
+ /usr/local/include/boost/exception/exception.hpp \
+ /usr/local/include/boost/smart_ptr/detail/shared_count.hpp \
+ /usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp \
+ /usr/local/include/boost/smart_ptr/detail/sp_counted_base.hpp \
+ /usr/local/include/boost/smart_ptr/detail/sp_has_sync.hpp \
+ /usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp \
+ /usr/local/include/boost/detail/sp_typeinfo.hpp \
+ /usr/local/include/boost/smart_ptr/detail/sp_counted_impl.hpp \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/functional \
+ /usr/local/include/boost/smart_ptr/detail/sp_convertible.hpp \
+ /usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
+ /usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
+ /usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+ /usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
+ /usr/local/include/boost/memory_order.hpp \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/algorithm \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_algo.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/algorithmfwd.h \
+ /usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_heap.h \
+ /usr/local/include/boost/smart_ptr/detail/operator_bool.hpp \
+ src/transport/TTransportException.h src/transport/TVirtualTransport.h \
+ src/transport/TTransport.h src/transport/TServerSocket.h \
+ src/transport/TServerTransport.h src/transport/TTransportException.h
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cstring:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/c++config.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/os_defines.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-32.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/cpu_defines.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cstddef:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/include/stddef.h:
+
+/usr/include/string.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/time.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/sys/socket.h:
+
+/usr/include/sys/uio.h:
+
+/usr/include/bits/uio.h:
+
+/usr/include/bits/socket.h:
+
+/usr/include/bits/sockaddr.h:
+
+/usr/include/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/sys/un.h:
+
+/usr/include/sys/poll.h:
+
+/usr/include/bits/poll.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/include/bits/in.h:
+
+/usr/include/netinet/tcp.h:
+
+/usr/include/netdb.h:
+
+/usr/include/rpc/netdb.h:
+
+/usr/include/bits/siginfo.h:
+
+/usr/include/bits/netdb.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/stat.h:
+
+/usr/include/errno.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/unistd.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/environments.h:
+
+/usr/include/bits/confname.h:
+
+/usr/include/getopt.h:
+
+src/transport/TSocket.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/string:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stringfwd.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/char_traits.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_algobase.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/functexcept.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/exception_defines.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/cpp_type_traits.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ext/type_traits.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ext/numeric_traits.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_pair.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/move.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/concept_check.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_iterator_base_types.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_iterator_base_funcs.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_iterator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/debug/debug.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/postypes.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cwchar:
+
+/usr/include/wchar.h:
+
+/usr/include/stdio.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/include/stdarg.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/allocator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/c++allocator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ext/new_allocator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/new:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/exception:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/localefwd.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/c++locale.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/clocale:
+
+/usr/include/locale.h:
+
+/usr/include/bits/locale.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/iosfwd:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cctype:
+
+/usr/include/ctype.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/ostream_insert.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cxxabi-forced.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_function.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/backward/binders.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/basic_string.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ext/atomicity.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/gthr.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/gthr-default.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/bits/setjmp.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/atomic_word.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/initializer_list:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/basic_string.tcc:
+
+/usr/include/sys/time.h:
+
+src/transport/TTransport.h:
+
+src/Thrift.h:
+
+../../config.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/usr/include/assert.h:
+
+/usr/include/inttypes.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/map:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_tree.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_map.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_multimap.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/list:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_list.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/list.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/set:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_set.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_multiset.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/vector:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_construct.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_uninitialized.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_vector.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_bvector.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/vector.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/typeinfo:
+
+src/TLogging.h:
+
+/usr/local/include/boost/shared_ptr.hpp:
+
+/usr/local/include/boost/smart_ptr/shared_ptr.hpp:
+
+/usr/local/include/boost/config.hpp:
+
+/usr/local/include/boost/config/user.hpp:
+
+/usr/local/include/boost/config/select_compiler_config.hpp:
+
+/usr/local/include/boost/config/compiler/gcc.hpp:
+
+/usr/local/include/boost/config/select_stdlib_config.hpp:
+
+/usr/local/include/boost/config/no_tr1/utility.hpp:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/utility:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_relops.h:
+
+/usr/local/include/boost/config/stdlib/libstdcpp3.hpp:
+
+/usr/local/include/boost/config/select_platform_config.hpp:
+
+/usr/local/include/boost/config/platform/linux.hpp:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cstdlib:
+
+/usr/include/stdlib.h:
+
+/usr/include/bits/waitflags.h:
+
+/usr/include/bits/waitstatus.h:
+
+/usr/include/alloca.h:
+
+/usr/local/include/boost/config/posix_features.hpp:
+
+/usr/local/include/boost/config/suffix.hpp:
+
+/usr/local/include/boost/config/no_tr1/memory.hpp:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/memory:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_tempbuf.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_raw_storage_iter.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/backward/auto_ptr.h:
+
+/usr/local/include/boost/assert.hpp:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/iostream:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ostream:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/ios:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/ios_base.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/locale_classes.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/locale_classes.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/streambuf:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/streambuf.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/basic_ios.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/locale_facets.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/cwctype:
+
+/usr/include/wctype.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/ctype_base.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/streambuf_iterator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/i686-redhat-linux/bits/ctype_inline.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/locale_facets.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/basic_ios.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/ostream.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/istream:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/istream.tcc:
+
+/usr/local/include/boost/current_function.hpp:
+
+/usr/local/include/boost/checked_delete.hpp:
+
+/usr/local/include/boost/throw_exception.hpp:
+
+/usr/local/include/boost/exception/detail/attribute_noreturn.hpp:
+
+/usr/local/include/boost/detail/workaround.hpp:
+
+/usr/local/include/boost/exception/exception.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/shared_count.hpp:
+
+/usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/sp_counted_base.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/sp_has_sync.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp:
+
+/usr/local/include/boost/detail/sp_typeinfo.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/sp_counted_impl.hpp:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/functional:
+
+/usr/local/include/boost/smart_ptr/detail/sp_convertible.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/spinlock.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/yield_k.hpp:
+
+/usr/local/include/boost/memory_order.hpp:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/algorithm:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_algo.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/algorithmfwd.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.4.4/../../../../include/c++/4.4.4/bits/stl_heap.h:
+
+/usr/local/include/boost/smart_ptr/detail/operator_bool.hpp:
+
+src/transport/TTransportException.h:
+
+src/transport/TVirtualTransport.h:
+
+src/transport/TTransport.h:
+
+src/transport/TServerSocket.h:
+
+src/transport/TServerTransport.h:
+
+src/transport/TTransportException.h:

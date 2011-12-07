@@ -1,5 +1,5 @@
+#include <gtest/gtest.h>
 #include "cellet/system.h"
-#include "gtest/gtest.h"
 #include "cellet/container.h"
 
 TEST(TestContainer, All) {

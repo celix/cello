@@ -1,5 +1,5 @@
 #include "cellet/system.h"
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 TEST(TestSystem, All) {
     System::RemoveDir("/tmp/cello");

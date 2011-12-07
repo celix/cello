@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "boost/shared_ptr.hpp"
-#include "classad/classad.h"
+#include <boost/shared_ptr.hpp>
+#include <classad/classad.h>
 #include "common/singleton.h"
 #include "common/block_queue.h"
 #include "common/rwlock.h"

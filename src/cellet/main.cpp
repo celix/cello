@@ -9,8 +9,8 @@
 #include <unistd.h>
 #include <string.h>
 
-#include "glog/logging.h"
-#include "gflags/gflags.h"
+#include <glog/logging.h>
+#include <gflags/gflags.h>
 
 #include "cellet/cellet.h"
 #include "cellet/system.h"

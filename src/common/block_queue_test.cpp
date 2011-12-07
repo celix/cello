@@ -1,11 +1,12 @@
 #include "common/block_queue.h"
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 #include <iostream>
 #include <pthread.h>
 
 using std::cout;
 using std::endl;
+using cello::BlockQueue;
 
 BlockQueue<int> g_queue;
 

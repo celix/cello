@@ -1,7 +1,7 @@
 #ifndef SRC_COLLECTOR_FILTER_H
 #define SRC_COLLECTOR_FILTER_H
 
-#include "classad/classad_distribution.h"
+#include <classad/classad_distribution.h>
 #include "collector/machine_pool.h"
 #include "collector/rank_machine.h"
 

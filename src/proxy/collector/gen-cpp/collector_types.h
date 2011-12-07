@@ -16,7 +16,7 @@
 #include <vector>
 #include "common/message_queue.h"
 #include "common/string_utility.h"
-#include "glog/logging.h"
+#include <glog/logging.h>
 
 using std::vector;
 using cello::MessageQueue;

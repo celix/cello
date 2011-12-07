@@ -1,5 +1,9 @@
 #include "common/rwlock.h"
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
+
+using cello::RWLock;
+using cello::ReadLocker;
+using cello::WriteLocker;
 
 TEST(TestLock, ALl) {
     RWLock lock;

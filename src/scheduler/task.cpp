@@ -4,7 +4,10 @@
 #include "scheduler/starter.h"
 
 #include "include/attributes.h"
-#include "classad/classad_distribution.h"
+#include <classad/classad_distribution.h>
+
+using cello::ReadLocker;
+using cello::WriteLocker;
 
 Task::Task(const TaskInfo& task_info) {
     m_id = TaskIdentity::Instance()->GetTaskId();

@@ -17,7 +17,6 @@ using std::tr1::placeholders::_1;
 using std::tr1::placeholders::_2;
 using cello::RWLock;
 
-
 class FrameworkPool {
 public:
     typedef function<void(Framework*)> FrameworkFunc;

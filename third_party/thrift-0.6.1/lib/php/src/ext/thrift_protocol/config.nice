@@ -1,0 +1,11 @@
+#! /bin/sh
+#
+# Created by configure
+
+LIBS='-lrt -lpthread ' \
+'./configure' \
+'--disable-option-checking' \
+'--prefix=/home/chris/cello/third_party/thrift' \
+'--exec-prefix=/home/chris/cello/third_party/thrift' \
+'--with-boost=/home/chris/cello/third_party/boost/' \
+"$@"

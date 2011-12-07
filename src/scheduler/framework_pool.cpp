@@ -7,8 +7,10 @@
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/util/XMLString.hpp>
 
-#include "glog/logging.h"
+#include <glog/logging.h>
 
+using cello::ReadLocker;
+using cello::WriteLocker;
 using namespace xercesc;
 
 int FrameworkPool::Init(const string& conf_file) {

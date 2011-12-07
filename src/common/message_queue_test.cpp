@@ -1,12 +1,13 @@
 #include <string>
 #include <iostream>
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "common/message_queue.h"
 
 using std::string;
 using std::cout;
 using std::endl;
+using cello::MessageQueue;
 
 MessageQueue g_queue(10001);
 

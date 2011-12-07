@@ -4,9 +4,10 @@
 #include "include/type.h"
 #include "scheduler/task.h"
 #include "common/rpc.h"
-#include "classad/classad.h"
-#include "classad/matchClassad.h"
-#include "gflags/gflags.h"
+#include <classad/classad.h>
+#include <classad/matchClassad.h>
+#include <classad/sink.h>
+#include <gflags/gflags.h>
 
 #include "include/proxy.h"
 
@@ -25,7 +26,10 @@ public:
         try {
             transport->open();
             ClassAd task_ad = task.GetClassAd();
-            string str_ad = adToString(&task_ad);
+            ClassAdUnParser unparser;
+            string str_ad;
+            unparser.Unparse(str_ad, &task_ad);
+            //string str_ad = adToString(&task_ad);
             proxy.Match(*endpoint_str, str_ad);
             transport->close();
             // if the return address is not empty, then return true

@@ -1,5 +1,8 @@
 #include "common/mutex.h"
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
+
+using cello::Mutex;
+using cello::MutexLocker;
 
 TEST(TestLock, All) {
     Mutex mutex;
