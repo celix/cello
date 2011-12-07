@@ -1,0 +1,61 @@
+--- lxc.h.orig	2011-12-07 21:30:39.000000000 +0800
++++ lxc.h	2011-12-07 21:35:56.000000000 +0800
+@@ -165,7 +165,7 @@
+  * Returns the version number of the library
+  */
+ 
+-extern const char const *lxc_version(void);
++extern const char *lxc_version(void);
+ 
+ #ifdef __cplusplus
+ }
+--- conf.h.orig	2011-12-07 21:29:39.000000000 +0800
++++ conf.h	2011-12-07 21:28:46.000000000 +0800
+@@ -212,18 +212,18 @@
+ /*
+  * Initialize the lxc configuration structure
+  */
+-extern struct lxc_conf *lxc_conf_init(void);
++extern "C" struct lxc_conf *lxc_conf_init(void);
+ 
+-extern int lxc_create_network(struct lxc_handler *handler);
+-extern void lxc_delete_network(struct lxc_list *networks);
+-extern int lxc_assign_network(struct lxc_list *networks, pid_t pid);
++extern "C" int lxc_create_network(struct lxc_handler *handler);
++extern "C" void lxc_delete_network(struct lxc_list *networks);
++extern "C" int lxc_assign_network(struct lxc_list *networks, pid_t pid);
+ 
+-extern int lxc_create_tty(const char *name, struct lxc_conf *conf);
+-extern void lxc_delete_tty(struct lxc_tty_info *tty_info);
++extern "C" int lxc_create_tty(const char *name, struct lxc_conf *conf);
++extern "C" void lxc_delete_tty(struct lxc_tty_info *tty_info);
+ 
+ /*
+  * Configure the container from inside
+  */
+ 
+-extern int lxc_setup(const char *name, struct lxc_conf *lxc_conf);
++extern "C" int lxc_setup(const char *name, struct lxc_conf *lxc_conf);
+ #endif
+--- list.h.orig	2011-12-07 21:30:04.000000000 +0800
++++ list.h	2011-12-07 21:36:13.000000000 +0800
+@@ -40,14 +40,14 @@
+ 	return list == list->next;
+ }
+ 
+-static inline void __lxc_list_add(struct lxc_list *new,
++static inline void __lxc_list_add(struct lxc_list *newp,
+ 				  struct lxc_list *prev,
+ 				  struct lxc_list *next)
+ {
+-        next->prev = new;
+-        new->next = next;
+-        new->prev = prev;
+-        prev->next = new;
++        next->prev = newp;
++        newp->next = next;
++        newp->prev = prev;
++        prev->next = newp;
+ }
+ 
+ static inline void lxc_list_add(struct lxc_list *head, struct lxc_list *list)
