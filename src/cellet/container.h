@@ -4,12 +4,13 @@
 #include <sys/types.h>
 #include <stdarg.h>
 #include <string>
+#include <boost/shared_ptr.hpp>
 
 #include "common/message_queue.h"
 #include "common/rwlock.h"
 #include "include/type.h"
 #include "include/proxy.h"
-#include <boost/shared_ptr.hpp>
+#include "proxy/collector_wrapper.h"
 
 using boost::shared_ptr;
 using std::string;
@@ -54,7 +55,7 @@ public:
         return m_info.need_memory;
     }
     /// @brief: get container current used memory and cpu
-    ExecutorStat GetUsedResource();
+    ExecutorStatWrapper GetUsedResource();
 
     ContainerState GetState();
 

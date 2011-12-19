@@ -17,5 +17,5 @@ service Scheduler {
     
     // for cellet
     i32 TaskStarted(1: i64 task_id, 2: bool status),
-    i32 TaskFinished(1: i64 task_id, 2: bool status)
+    i32 TaskFinished(1: i64 task_id, 2: bool status),
 }

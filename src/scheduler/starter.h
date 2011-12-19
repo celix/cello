@@ -9,15 +9,12 @@
 class Starter {
 public:
     static bool StartTask(const string& endpoint, const Task& task) {
-        shared_ptr<TTransport> transport;
-        // get collector proxy
-        CelletClient proxy = Rpc<CelletClient, CelletClient>::GetProxy(
-                endpoint, TIME_OUT, &transport);
         bool ret = false;
         try {
-            transport->open();
-            ret = proxy.StartTask(task.GetTaskInfo());
-            transport->close();
+            // get collector proxy
+            Proxy<CelletClient> proxy = Rpc<CelletClient, CelletClient>::GetProxy(
+                    endpoint, TIME_OUT);
+            ret = proxy().StartTask(task.GetTaskInfo());
         } catch (TException &tx) {
             LOG(ERROR) << "start task error: " << tx.what();
         }

@@ -1,4 +1,7 @@
+#include <vector>
 #include "collector/monitor.h"
+
+using std::vector;
 
 void Monitor::Start() {
     Thread::ThreadFunc func = bind(&Monitor::Entry, this);

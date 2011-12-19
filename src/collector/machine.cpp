@@ -2,6 +2,7 @@
 #include "collector/machine.h"
 #include <classad/classad_distribution.h>
 #include "include/attributes.h"
+#include "proxy/collector_wrapper.h"
 
 using std::vector;
 
@@ -22,8 +23,10 @@ void Machine::LogInfo() const {
     LOG(INFO) << "Available memory: " << avail_memory;
     LOG(INFO) << "framework resource usage list:";
     for (vector<ExecutorStat>::const_iterator it = executor_list.begin();
-        it != executor_list.end(); ++it)
-        LOG(INFO) << it->ToString();
+        it != executor_list.end(); ++it) {
+        ExecutorStatWrapper wrapper(*it);
+        LOG(INFO) << wrapper.ToString();
+    }
     LOG(INFO) << "====================================";
 }
 
@@ -32,7 +35,7 @@ bool Machine::FrameworkExist(const ClassAd* ptr) {
     ptr->EvaluateAttrString(ATTR_FRAMEWORK, framework);
     for (vector<ExecutorStat>::iterator it = executor_list.begin();
         it != executor_list.end(); ++it) {
-        if (framework == it->GetFramework())
+        if (framework == it->fr_name)
             return true;
     }
     return false;

@@ -1,4 +1,4 @@
-SET(SRC cello_add.cpp)
+SET(SRC cello_add.cpp configuration.cpp add_context.cpp)
 
 ADD_EXECUTABLE(cello-add ${SRC})
 

@@ -188,13 +188,13 @@ ContainerState Container::GetState() {
     return m_state;
 }
 
-ExecutorStat Container::GetUsedResource() {
+ExecutorStatWrapper Container::GetUsedResource() {
     ReadLocker locker(m_lock);
     int used_memory = GetMemory();
     double cpu_usage = GetCpuUsage();
     // running tasks in executor
     int task_num = GetChildrenNum();
-    ExecutorStat es(m_info.framework_name, cpu_usage, used_memory, task_num);
+    ExecutorStatWrapper es(m_info.framework_name, cpu_usage, used_memory, task_num);
     return es;
 }
 

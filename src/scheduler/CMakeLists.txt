@@ -1,29 +1,57 @@
-SET(SCHEDULER_PROXY ../proxy/scheduler/gen-cpp)
-SET(SCHEDULER_RPC_SOURCE
-    ${SCHEDULER_PROXY}/Scheduler.cpp
-    ${SCHEDULER_PROXY}/scheduler_types.cpp
-    ${SCHEDULER_PROXY}/scheduler_constants.cpp)
+SET(THRIFT_SOURCE_PREFIX ${CMAKE_SOURCE_DIR}/src/proxy)
+SET(COLLECTOR_THRIFT_SOURCE
+    ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_constants.cpp
+    ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/Collector.h
+    ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_types.h
+    ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_constants.h
+    #    ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/Collector_server.skeleton.cpp  
+    ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/Collector.cpp
+    ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_types.cpp)
 
-SET(COLLECTOR_PROXY ../proxy/collector/gen-cpp)
-SET(COLLECTOR_RPC_SOURCE
-    ${COLLECTOR_PROXY}/Collector.cpp
-    ${COLLECTOR_PROXY}/collector_types.cpp
-    ${COLLECTOR_PROXY}/collector_constants.cpp)
+SET(SCHEDULER_THRIFT_SOURCE
+    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_constants.cpp
+    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler.h
+    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_types.h
+    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_constants.h
+    #    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler_server.skeleton.cpp  
+    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler.cpp
+    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_types.cpp)
 
-SET(CELLET_PROXY ../proxy/cellet/gen-cpp)
-SET(CELLET_RPC_SOURCE
-    ${CELLET_PROXY}/Cellet.cpp
-    ${CELLET_PROXY}/cellet_types.cpp
-    ${CELLET_PROXY}/cellet_constants.cpp)
+SET(CELLET_THRIFT_SOURCE
+    ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/cellet_constants.cpp
+    ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/Cellet.h
+    ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/cellet_types.h
+    ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/cellet_constants.h
+    #    ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/Cellet_server.skeleton.cpp  
+    ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/Cellet.cpp
+    ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/cellet_types.cpp)
+
+ADD_CUSTOM_COMMAND (
+    OUTPUT ${COLLECTOR_THRIFT_SOURCE}
+    COMMAND thrift --gen cpp -r -o ${CMAKE_SOURCE_DIR}/src/proxy/collector
+    ${CMAKE_SOURCE_DIR}/src/proxy/collector/collector.thrift
+)
+
+ADD_CUSTOM_COMMAND (
+    OUTPUT ${SCHEDULER_THRIFT_SOURCE}
+    COMMAND thrift --gen cpp -r -o ${CMAKE_SOURCE_DIR}/src/proxy/scheduler
+    ${CMAKE_SOURCE_DIR}/src/proxy/scheduler/scheduler.thrift
+)
+
+ADD_CUSTOM_COMMAND (
+    OUTPUT ${CELLET_THRIFT_SOURCE}
+    COMMAND thrift --gen cpp -r -o ${CMAKE_SOURCE_DIR}/src/proxy/cellet
+    ${CMAKE_SOURCE_DIR}/src/proxy/cellet/cellet.thrift
+)
 
 SET(COMMON_SOURCE
     ../common/cond.cpp
     ../common/block_queue.cpp)
 
 SET(SRC
-    ${SCHEDULER_RPC_SOURCE}
-    ${COLLECTOR_RPC_SOURCE}
-    ${CELLET_RPC_SOURCE}
+    ${SCHEDULER_THRIFT_SOURCE}
+    ${COLLECTOR_THRIFT_SOURCE}
+    ${CELLET_THRIFT_SOURCE}
     ${COMMON_SOURCE}
     task.cpp
     state.cpp

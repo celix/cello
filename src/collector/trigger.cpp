@@ -1,3 +1,4 @@
+#include <glog/logging.h>
 #include "collector/trigger.h"
 #include "include/proxy.h"
 
@@ -38,7 +39,9 @@ bool SlotTrigger::Condition(const ExecutorStat& stat) {
 }
 
 bool SlotTrigger::Operation() {
-    
+    //add a executor for this framework
+  //  Proxy<> proxy = Rpc::GetProxy(FLAGS_scheduler_endpoint, TIME_OUT);
+   // proxy()->SubmitTask
     return true;
 }
 

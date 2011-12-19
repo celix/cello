@@ -22,8 +22,27 @@ using namespace apache::thrift::transport;
 using namespace apache::thrift::server;
 using namespace apache::thrift::concurrency;
 
-//using namespace boost;
 using boost::shared_ptr;
+
+template <typename T>
+class Proxy {
+public:
+    Proxy(const T& client, const shared_ptr<TTransport>& connector)
+    : m_client(client), m_connector(connector) {
+        m_connector->open();
+    }
+    ~Proxy() {
+        m_connector->close();
+    }
+    
+    /// @brief: overwrite ()
+    T& operator()() {
+        return m_client;
+    }
+private:
+    T m_client;
+    shared_ptr<TTransport> m_connector;
+};
 
 template <typename T, typename P>
 class Rpc {
@@ -50,8 +69,7 @@ public:
         server.serve();
     }
 
-    static T GetProxy(const string& endpoint, int timeout,
-            shared_ptr<TTransport>* connection) {
+    static Proxy<T> GetProxy(const string& endpoint, int timeout) {
         // split endpoint into ip and port
         string ip = endpoint.substr(0, endpoint.find(":"));
         string str_port = endpoint.substr(endpoint.find(":") + 1);
@@ -62,8 +80,8 @@ public:
         shared_ptr<TTransport> transport(new TBufferedTransport(socket));
         shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
         T client(protocol);
-        *connection = transport;
-        return client;
+        Proxy<T> proxy(client, transport);
+        return proxy;
     }
 };
 

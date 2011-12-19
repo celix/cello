@@ -2,7 +2,7 @@
 #define SRC_COLLECTOR_MACHINE_H
 
 #include <list>
-
+#include <string>
 #include <glog/logging.h>
 
 #include "include/proxy.h"
@@ -11,13 +11,14 @@
 #include "collector/rank_machine.h"
 
 using std::list;
+using std::string;
 using boost::shared_ptr;
 
 class Machine : public MachineInfo {
 public:
     
     explicit Machine(const MachineInfo& info);
-    
+    ~Machine() throw() {}
     string GetEndpoint() const {
         return endpoint;
     }

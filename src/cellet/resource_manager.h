@@ -6,6 +6,7 @@
 
 #include "common/singleton.h"
 #include "include/proxy.h"
+#include "proxy/collector_wrapper.h"
 
 #include "cellet/container.h"
 
@@ -18,10 +19,10 @@ public:
     void Init();
     
     /// @brief: compute and get current machine information
-    MachineInfo GetMachineInfo();
+    MachineInfoWrapper GetMachineInfo();
    
     /// @brief: get allocated resource in this machine
-    void GetResource(Container* ptr, vector<ExecutorStat>* vector_ptr);
+    void GetResource(Container* ptr, MachineInfoWrapper* info);
     
     void SendData();
 

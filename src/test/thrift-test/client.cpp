@@ -20,18 +20,13 @@ using std::cout;
 using std::endl;
 
 int main(int argc, char** argv) {
-    shared_ptr<TTransport> transport;
-    EchoClient proxy = Rpc<EchoClient, EchoClient>::GetProxy("10.5.0.174:9999", 10000, &transport);
-
     try {
-        transport->open();
-        cout << proxy.GetInt(10) << endl;
-        
-        cout << proxy.GetIntAsync(10) << endl;
+        Proxy<EchoClient> proxy = Rpc<EchoClient, EchoClient>::GetProxy("10.5.0.174:9999", 10000);
+        cout << proxy().GetInt(10) << endl;
+        cout << proxy().GetIntAsync(10) << endl;
         string ss;
-        proxy.GetString(ss, "test");
+        proxy().GetString(ss, "test");
         cout << ss << endl;
-        transport->close();
     } catch (TException &tx) {
         printf("ERROR: %s\n", tx.what());
     }

@@ -17,27 +17,21 @@ void StateHandler(const ExecutorPtr& ptr, ContainerState state) {
     assert(state == CONTAINER_FINISHED || state == CONTAINER_STARTED);
     if (state == CONTAINER_STARTED) {
         ptr->ExecutorStarted();
-        shared_ptr<TTransport> transport;
         // get scheduler proxy, report task status to scheduler
-        SchedulerClient proxy = Rpc<SchedulerClient, SchedulerClient>::GetProxy(
-                FLAGS_scheduler_endpoint, TIME_OUT, &transport);
+        Proxy<SchedulerClient> proxy = Rpc<SchedulerClient, SchedulerClient>::GetProxy(
+                FLAGS_scheduler_endpoint, TIME_OUT);
         try {
-            transport->open();
-            proxy.TaskStarted(ptr->GetId(), true);
-            transport->close();
+            proxy().TaskStarted(ptr->GetId(), true);
         } catch (TException &tx) {
             LOG(ERROR) << "report executor start error: " << tx.what();
         }
     } else {
         ptr->ExecutorFinshed();
-        shared_ptr<TTransport> transport;
         // get scheduler proxy, report task status to scheduler
-        SchedulerClient proxy = Rpc<SchedulerClient, SchedulerClient>::GetProxy(
-                FLAGS_scheduler_endpoint, TIME_OUT, &transport);
+        Proxy<SchedulerClient> proxy = Rpc<SchedulerClient, SchedulerClient>::GetProxy(
+                FLAGS_scheduler_endpoint, TIME_OUT);
         try {
-            transport->open();
-            proxy.TaskFinished(ptr->GetId(), true);
-            transport->close();
+            proxy().TaskFinished(ptr->GetId(), true);
         } catch (TException &tx) {
             LOG(ERROR) << "report executor finished error: " << tx.what();
         }
@@ -55,7 +49,7 @@ void* ResourceInfoSender(void* unused) {
     }
     return NULL;
 }
-
+#if 0
 void LogInfo(const MachineInfo& info) {
     LOG(INFO) << "Machine Information:";
     LOG(INFO) << "Endpoint: " << info.endpoint;
@@ -65,22 +59,19 @@ void LogInfo(const MachineInfo& info) {
     LOG(INFO) << "Available cpu: " << info.avail_cpu;
     LOG(INFO) << "Available memory: " << info.avail_memory;
 }
-
+#endif
 void* ResourceInfoReceiver(void* unused) {
     while (true) {
         MessageQueue::Message msg;
         MsgQueueMgr::Instance()->Get(RESOURCE_INFO_KEY)->Receive(&msg);
-        MachineInfo info(msg);
+        MachineInfoWrapper info(msg);
         try {
             // send heartbeat
             //LogInfo(info);        
-            shared_ptr<TTransport> transport;
             // get collector proxy, send heartbeat to collector
-            CollectorClient proxy = Rpc<CollectorClient, CollectorClient>::GetProxy(
-                    FLAGS_collector_endpoint, TIME_OUT, &transport);
-            transport->open();
-            proxy.Heartbeat(info);
-            transport->close();
+            Proxy<CollectorClient> proxy = Rpc<CollectorClient, CollectorClient>::GetProxy(
+                    FLAGS_collector_endpoint, TIME_OUT);
+            proxy().Heartbeat(info.Get());
             LOG(INFO) << "Send heartbeat success";
         } catch (TException &tx) {
             LOG(ERROR) << "send heartbeat error: " << tx.what();

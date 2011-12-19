@@ -18,20 +18,17 @@ public:
 
     /// @brief: get proper machine from collector
     static bool MatchTask(const Task& task, string* endpoint_str) {
-        shared_ptr<TTransport> transport;
-        // get collector proxy
-        CollectorClient proxy = Rpc<CollectorClient, CollectorClient>::GetProxy(
-                FLAGS_collector_endpoint, TIME_OUT, &transport);
         bool ret = false;
         try {
-            transport->open();
             ClassAd task_ad = task.GetClassAd();
             ClassAdUnParser unparser;
             string str_ad;
             unparser.Unparse(str_ad, &task_ad);
             //string str_ad = adToString(&task_ad);
-            proxy.Match(*endpoint_str, str_ad);
-            transport->close();
+            // get collector proxy
+            Proxy<CollectorClient> proxy = Rpc<CollectorClient, CollectorClient>::GetProxy(
+                    FLAGS_collector_endpoint, TIME_OUT);
+            proxy().Match(*endpoint_str, str_ad);
             // if the return address is not empty, then return true
             ret = !(*endpoint_str).empty();
             if (!ret)
