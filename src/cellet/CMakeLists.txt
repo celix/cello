@@ -63,7 +63,7 @@ SET(SRC
     container.cpp
     container_pool.cpp
     work_thread.cpp
-    main.cpp)
+    cellet.cpp)
 
 ADD_EXECUTABLE(cellet ${SRC})
 ADD_EXECUTABLE(system_test system.cpp system_test.cpp)

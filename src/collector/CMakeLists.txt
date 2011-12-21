@@ -44,7 +44,7 @@ SET(SRC
     monitor.cpp
     framework.cpp
     trigger.cpp
-    main.cpp)
+    collector.cpp)
 
 SET(MOCK
     ${COLLECTOR_THRIFT_SOURCE}

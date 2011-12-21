@@ -25,7 +25,7 @@ public:
         m_value_threshold = value;
     }
     
-    void Setperiod(int period) {
+    void SetPeriod(int period) {
         m_period_threshold = period;
     }
 
@@ -33,7 +33,8 @@ public:
     virtual bool Condition(const ExecutorStat& stat) = 0;
 
     /// @brief: trigger operation
-    virtual bool Operation() = 0;
+    /// @name: framework name
+    virtual bool Operation(const string& name) = 0;
 protected:
     int m_value_threshold;      /// value threshold
     int m_period_threshold;     /// period threshold
@@ -45,21 +46,21 @@ class CpuTrigger : public Trigger {
 public:
     CpuTrigger(int period = 5, int value = 10) : Trigger(period, value) {}
     bool Condition(const ExecutorStat& stat);
-    bool Operation();
+    bool Operation(const string& name);
 };
 
 class MemoryTrigger : public Trigger {
 public:
     MemoryTrigger(int value = 5, int period = 10) : Trigger(value, period) {}
     bool Condition(const ExecutorStat& stat);
-    bool Operation();
+    bool Operation(const string& name);
 };
 
 class SlotTrigger : public Trigger {
 public:
     SlotTrigger(int value = 4, int period = 10) : Trigger(value, period) {}
     bool Condition(const ExecutorStat& stat);
-    bool Operation();
+    bool Operation(const string& name);
 };
 
 typedef shared_ptr<Trigger> TriggerPtr;

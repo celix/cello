@@ -94,3 +94,27 @@ void FrameworkPool::RemoveTask(const TaskPtr& task) {
                               task->GetQueueType());
     FindToDo(task->GetFrameworkName(), func);
 }
+
+int FrameworkPool::AddFramework(const FrameworkInfoWrapper& info) {
+    Framework fr(info);
+    WriteLocker locker(m_lock);
+    m_framework_pool.push_back(fr);
+    return 0;
+}
+
+bool FrameworkPool::DeleteFramework(const string& name) {
+    WriteLocker locker(m_lock);
+    for (list<Framework>::iterator it = m_framework_pool.begin();
+         it != m_framework_pool.end(); ++it)
+        // name is unique
+        if (name == it->GetName()) {
+            m_framework_pool.erase(it);
+            return true;
+        }
+    return false;
+}
+
+bool FrameworkPool::GetFrameworkExecutor(const string& name, TaskInfo* info) {
+    FrameworkFunc func = bind(&Framework::GetExecutorInfo, _1, info);
+    return FindToDo(name, func);
+}

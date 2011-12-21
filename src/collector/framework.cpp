@@ -30,7 +30,7 @@ void Framework::Entry() {
              it != m_trigger_list.end(); ++it) {
             // check if the triggers are triggered
             if ((*it)->Condition(stat))
-                (*it)->Operation();
+                (*it)->Operation(m_name);
         }
     }
 }

@@ -1,4 +1,10 @@
-SET(SRC cello_add.cpp configuration.cpp add_context.cpp)
+SET(WRAPPER_SOURCE ../proxy/scheduler_wrapper.cpp)
+
+SET(SRC
+    cello_add.cpp
+    configuration.cpp
+    add_context.cpp
+    ${WRAPPER_SOURCE})
 
 ADD_EXECUTABLE(cello-add ${SRC})
 

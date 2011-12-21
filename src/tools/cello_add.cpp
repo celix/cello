@@ -31,8 +31,13 @@ int main(int argc, char ** argv) {
     AddContext context;
     if (context.Parse(config_file) < 0)
         return -1;
-    Proxy<SchedulerClient> proxy = Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_master, TIME_OUT);
-    proxy().AddFramework();
+    Proxy<SchedulerClient> proxy =
+        Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_master, TIME_OUT);
+    if (proxy().AddFramework(context.GetFrameworkInfo() < 0)) {
+        LOG(ERROR) << "Add framework error";
+        cout << "Add framework failed." << endl;
+    }
+    cout << "Add framework succeed." << endl;
     return 0;
 }
 

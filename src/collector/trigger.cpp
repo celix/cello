@@ -1,12 +1,16 @@
 #include <glog/logging.h>
+#include <gflags/gflags.h>
 #include "collector/trigger.h"
 #include "include/proxy.h"
+#include "common/rpc.h"
+
+DECLARE_string(scheduler_endpoint);
 
 bool CpuTrigger::Condition(const ExecutorStat& stat) {
     return false;
 }
 
-bool CpuTrigger::Operation() {
+bool CpuTrigger::Operation(const string& name) {
     return true;
 }
 
@@ -14,7 +18,7 @@ bool MemoryTrigger::Condition(const ExecutorStat& stat) {
     return false;
 }
 
-bool MemoryTrigger::Operation() {
+bool MemoryTrigger::Operation(const string& name) {
     return true;
 }
 
@@ -38,11 +42,16 @@ bool SlotTrigger::Condition(const ExecutorStat& stat) {
     return false;
 }
 
-bool SlotTrigger::Operation() {
+bool SlotTrigger::Operation(const string& name) {
     //add a executor for this framework
-  //  Proxy<> proxy = Rpc::GetProxy(FLAGS_scheduler_endpoint, TIME_OUT);
-   // proxy()->SubmitTask
+    try {
+        Proxy<SchedulerClient> proxy =
+            Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_scheduler_endpoint);
+        proxy().AddExecutor(name);
+    } catch (TException &tx) {
+        LOG(ERROR) << "add executor for framework " << name << " failed";
+    }
+    LOG(INFO) << "add executor succeed for " << name;
     return true;
 }
-
 

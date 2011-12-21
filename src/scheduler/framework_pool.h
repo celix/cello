@@ -9,6 +9,7 @@
 #include "scheduler/framework.h"
 #include "scheduler/task.h"
 #include "common/rwlock.h"
+#include "proxy/scheduler_wrapper.h"
 
 using std::string;
 using std::list;
@@ -30,12 +31,19 @@ public:
     /// @brief: remove task from its framework task queue
     void RemoveTask(const TaskPtr& task);
 
+    /// @brief: get executor information of framework
+    bool GetFrameworkExecutor(const string& name, TaskInfo* info);
+
     /// @brief: pick a task
     TaskPtr GetTask();
     
     /// find the framework and do func on it
     /// find the framework return true, else return false
     bool FindToDo(const string& name, FrameworkFunc func);
+
+    int AddFramework(const FrameworkInfoWrapper& info);
+
+    bool DeleteFramework(const string& name);
 
 private:
     RWLock m_lock;

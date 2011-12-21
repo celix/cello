@@ -47,12 +47,15 @@ ADD_CUSTOM_COMMAND (
 SET(COMMON_SOURCE
     ../common/cond.cpp
     ../common/block_queue.cpp)
+SET(WRAPPER_SOURCE ../proxy/scheduler_wrapper.cpp)
 
 SET(SRC
     ${SCHEDULER_THRIFT_SOURCE}
     ${COLLECTOR_THRIFT_SOURCE}
     ${CELLET_THRIFT_SOURCE}
     ${COMMON_SOURCE}
+    ${WRAPPER_SOURCE}
+    scheduler_service.cpp
     task.cpp
     state.cpp
     event.cpp
@@ -61,7 +64,7 @@ SET(SRC
     work_thread.cpp
     task_pool.cpp
     framework_pool.cpp
-    main.cpp)
+    scheduler.cpp)
 
 ADD_EXECUTABLE(scheduler ${SRC})
 

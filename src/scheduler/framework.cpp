@@ -2,6 +2,12 @@
 
 #include "scheduler/framework.h"
 
+Framework::Framework(const FrameworkInfoWrapper& info) {
+    m_framework_name = info.GetName();
+    m_quota = info.GetQuota();
+    m_executor_info = info.GetTaskInfo();
+}
+
 void Framework::PushTask(const TaskPtr& task, queue_type type) {
     assert(type == WAIT_QUEUE || type == RUN_QUEUE);
     if (type == WAIT_QUEUE)

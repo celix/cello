@@ -3,7 +3,7 @@
 #include "glog/logging.h"
 #include "gflags/gflags.h"
 
-#include "scheduler/scheduler.h"
+#include "scheduler/scheduler_service.h"
 #include "scheduler/framework_pool.h"
 #include "common/rpc.h"
 
@@ -41,7 +41,7 @@ int main(int argc, char ** argv) {
     pthread_create(&event_t, NULL, EventProcesseor, NULL);
     pthread_create(&task_t, NULL, TaskProcessor, NULL);
 
-    Rpc<Scheduler, SchedulerProcessor>::Listen(FLAGS_port);
+    Rpc<SchedulerService, SchedulerProcessor>::Listen(FLAGS_port);
     
     return 0;
 }
