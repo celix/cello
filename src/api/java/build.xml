@@ -25,8 +25,8 @@
   <property name="build" location="build" />
 
   <path id="libs.classpath">
-      <pathelement path="../../../third_party/thrift/lib/java/libthrift.jar" />
-      <fileset dir="../../../third_party/thrift/lib/java">
+      <pathelement path="../../../third_party/thrift/libthrift.jar" />
+      <fileset dir="../../../third_party/thrift">
           <include name="*.jar" />
       </fileset>
   </path>

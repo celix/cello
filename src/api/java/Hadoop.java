@@ -7,8 +7,8 @@ public class Hadoop {
         info.framework_name = "Hadoop";
         info.need_cpu = 0.5;
         info.need_memory  = 500;
-        String address = "10.5.0.176:9997";
-        long id = Cello.Submit(address, info);
+        Proxy proxy = Cello.getProxy("10.5.0.176:9997");
+        long id = proxy.submit(info);
         System.out.println("submit Hadoop tasktracker success.\nId is " + id);
     }
 }
