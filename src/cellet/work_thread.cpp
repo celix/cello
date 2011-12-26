@@ -12,6 +12,7 @@
 
 DECLARE_string(scheduler_endpoint);
 DECLARE_string(collector_endpoint);
+DECLARE_string(heartbeat_interval);
 
 void StateHandler(const ExecutorPtr& ptr, ContainerState state) {
     assert(state == CONTAINER_FINISHED || state == CONTAINER_STARTED);
@@ -45,7 +46,7 @@ void* ResourceInfoSender(void* unused) {
         // send information
         ResourceMgr::Instance()->SendData();
         // heartbeat period is 5 sec
-        sleep(5);    
+        sleep(FLAGS_heartbeat_interval);
     }
     return NULL;
 }
