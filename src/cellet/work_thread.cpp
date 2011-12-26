@@ -12,7 +12,7 @@
 
 DECLARE_string(scheduler_endpoint);
 DECLARE_string(collector_endpoint);
-DECLARE_string(heartbeat_interval);
+DECLARE_int32(heartbeat_interval);
 
 void StateHandler(const ExecutorPtr& ptr, ContainerState state) {
     assert(state == CONTAINER_FINISHED || state == CONTAINER_STARTED);

@@ -21,6 +21,9 @@ public:
         return m_framework_name;
     }
 
+    /// @brief: add an executor when initilize
+    void Init();
+
     /// push task into queue
     void PushTask(const TaskPtr& task, queue_type type);
     

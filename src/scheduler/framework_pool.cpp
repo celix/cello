@@ -97,6 +97,8 @@ void FrameworkPool::RemoveTask(const TaskPtr& task) {
 
 int FrameworkPool::AddFramework(const FrameworkInfoWrapper& info) {
     Framework fr(info);
+    // add one executor into framework;
+    fr.Init();
     WriteLocker locker(m_lock);
     m_framework_pool.push_back(fr);
     return 0;
