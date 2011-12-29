@@ -1,11 +1,10 @@
 #include <gflags/gflags.h>
-
-#include "tools/add_context.h"
+#include "tools/submit_context.h"
 #include "common/rpc.h"
-#include "include/proxy.h"
-#include "include/type.h"
 
 DEFINE_string(master, "", "cello master endpoint");
+DEFINE_string(dfs_ip, "", "distributed file system server ip");
+DEFINE_int32(dfs_port, "", "distributed file system server port");
 
 void ErrorMsg() {
     fprintf(stderr, "usage: %s -f [path]\n", argv[0]);
@@ -28,16 +27,11 @@ int main(int argc, char ** argv) {
         return -1;
     }
     google::ReadFromFlagsFile("../conf/master", argv[0], true);
-    AddContext context;
+    SubmitContext context;
     if (context.Parse(config_file) < 0)
         return -1;
     Proxy<SchedulerClient> proxy =
         Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_master);
-    if (proxy().AddFramework(context.GetFrameworkInfo() < 0)) {
-        LOG(ERROR) << "Add framework error";
-        cout << "Add framework failed." << endl;
-    }
-    cout << "Add framework succeed." << endl;
+    
     return 0;
 }
-

@@ -7,8 +7,18 @@
 #include <xercesc/util/XMLString.hpp>
 
 #include <boost/any.hpp>
+#include "tools/framework_configuration.h"
 
 using boost::any;
+
+AddContext::AddContext() {
+    m_conf = new FrameworkConfiguraton;
+    m_conf->Init();
+}
+
+AddContext::~AddContext() {
+    delete m_conf;
+}
 
 int AddContext::Parse() {
     try {
@@ -17,7 +27,6 @@ int AddContext::Parse() {
         LOG(INFO) << "XML initialization error";
         return -1;
     }
-    Configuration configuration;
     XercesDOMParser* parser = new XercesDOMParser();
     parser->parse(conf_file.c_str());
     DOMDocument* pdocument = parser->getDocument();
@@ -30,7 +39,7 @@ int AddContext::Parse() {
         DOMNodeList* child_nodes = node->getChildNodes();
         for (unsigned int j = 0; j < child_nodes->getLength(); ++j)
             // set configuration attr value
-            if (!configuration.SetValue(child_nodes->item(j)))
+            if (!m_conf->SetValue(child_nodes->item(j)))
                 return -1;
     }
     delete parser;
@@ -39,12 +48,12 @@ int AddContext::Parse() {
 }
 
 FramekworkInfoWrapper AddContext::GetFrameworkInfo() {
-    string name = any_cast<string>(m_conf.Get("name"));
-    int quota = any_cast<int>(m_conf.Get("quota"));
-    string command = any_cast<string>(m_conf.Get("commnad"));
-    string arguments = any_cast<string>(m_conf.Get("arguments"));
-    double cpu = any_cast<double>(m_conf.Get("cpu"));
-    int memory = any_cast<int>(m_conf.Get("memory"));
+    string name = any_cast<string>(m_conf->Get("name"));
+    int quota = any_cast<int>(m_conf->Get("quota"));
+    string command = any_cast<string>(m_conf->Get("commnad"));
+    string arguments = any_cast<string>(m_conf->Get("arguments"));
+    double cpu = any_cast<double>(m_conf->Get("cpu"));
+    int memory = any_cast<int>(m_conf->Get("memory"));
     FramekworkInfoWrapper wrapper(name, quota, command, arguments, cpu, memory);
     return wrapper;
 }

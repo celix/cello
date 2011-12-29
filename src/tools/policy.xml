@@ -1,0 +1,19 @@
+<configuration>
+
+  <property>
+    <name>filesystem</name>
+    <value>hdfs</value>
+    <description>Percentage of the number of slots in the cluster that are
+      to be available for jobs in this queue.
+    </description>    
+  </property>
+  
+  <property>
+    <name>scheduler</name>
+    <value>fifo</value>
+    <description>schedule policy for scheduler
+    </description>    
+  </property>
+  
+  
+</configuration>

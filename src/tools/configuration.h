@@ -2,21 +2,28 @@
 #define SRC_TOOLS_CONFIGURATION_H
 
 #include <map>
+#include <string>
 #include <xercesc/dom/DOMNode.hpp>
 #include <boost/any.hpp>
 
 using std::map;
+using std::string;
 using xercesc::DOMNode;
 using boost::any;
 
 class Configuration {
 public:
-    Configuration();
-    
+   
+    virtual ~Configuration() {}
+
     /// @brief: add node for the 
-    bool SetValue(DOMNode* node);
-private:
-    void Init();
+    virtual bool SetValue(DOMNode* node) = 0;
+
+    virtual void Init() = 0;
+    
+    virtual void Dump() = 0;
+
+    any Get(const string& attr);
 private:
     map<string, any> m_attr_map;
 };

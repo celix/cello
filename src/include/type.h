@@ -10,6 +10,8 @@ static const key_t EXECUTOR_STATE_KEY = 7001;
 static const key_t EXECUTOR_CONTROL_KEY = 7002;
 static const key_t RESOURCE_INFO_KEY = 7003;
 
+static const string DFS_PREFIX="/tmp/cello";
+
 enum queue_type {
     WAIT_QUEUE,
     RUN_QUEUE

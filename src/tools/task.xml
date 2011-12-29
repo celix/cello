@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<configuration>
+	<task>
+		<name>echo</name>
+        <framework>Binos</framework>
+        <command>echo</command>
+        <arguments>
+        </arguments>
+        <transfer_file>
+            <file>/home/chris/echo</file>
+        </transfer_file>
+        <cpu_limits>0.5</cpu_limits>
+        <memory_limits>500</memory_limits>
+	</task>
+</configuration>
