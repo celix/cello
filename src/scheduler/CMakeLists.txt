@@ -4,7 +4,6 @@ SET(COLLECTOR_THRIFT_SOURCE
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/Collector.h
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_types.h
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_constants.h
-    #    ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/Collector_server.skeleton.cpp  
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/Collector.cpp
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_types.cpp)
 
@@ -13,7 +12,6 @@ SET(SCHEDULER_THRIFT_SOURCE
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler.h
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_types.h
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_constants.h
-    #    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler_server.skeleton.cpp  
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler.cpp
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_types.cpp)
 
@@ -22,7 +20,6 @@ SET(CELLET_THRIFT_SOURCE
     ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/Cellet.h
     ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/cellet_types.h
     ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/cellet_constants.h
-    #    ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/Cellet_server.skeleton.cpp  
     ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/Cellet.cpp
     ${THRIFT_SOURCE_PREFIX}/cellet/gen-cpp/cellet_types.cpp)
 
