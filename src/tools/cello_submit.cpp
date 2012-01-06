@@ -30,8 +30,10 @@ int main(int argc, char ** argv) {
     SubmitContext context;
     if (context.Parse(config_file) < 0)
         return -1;
+    if (context.TransferFiles() < 0)
+        return -1;
     Proxy<SchedulerClient> proxy =
         Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_master);
-    
+    proxy().Submit(context.GetTaskInfo());
     return 0;
 }

@@ -7,7 +7,8 @@ SET (TEST
      fork_test
      singleton_test
      pool_test
-     string_utility_test)
+     string_utility_test
+     register_test)
 
 ADD_EXECUTABLE(message_queue_test message_queue_test.cpp message_queue.cpp)
 ADD_EXECUTABLE(mutex_test mutex_test.cpp)
@@ -18,6 +19,7 @@ ADD_EXECUTABLE(singleton_test singleton_test.cpp)
 ADD_EXECUTABLE(fork_test fork_test.cpp)
 ADD_EXECUTABLE(string_utility_test string_utility_test.cpp)
 ADD_EXECUTABLE(pool_test pool_test.cpp)
+ADD_EXECUTABLE(register_test register.cpp register_test.cpp)
 
 FOREACH(t ${TEST})
     TARGET_LINK_LIBRARIES(${t} gtest)

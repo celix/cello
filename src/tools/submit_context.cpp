@@ -7,11 +7,16 @@ SubmitContext::SubmitContext() {
     m_conf = new TaskConfiguration;
     m_conf->Init();
     // get the filesystem according to configuration
-    m_filesystem = static_cast<FileSystem* >Class::NewInstance("HdfsFilesystem");
+    m_filesystem = static_cast<FileSystem* >(Class::NewInstance("HdfsFilesystem"));
+    // connect remote distribute file system server
+    m_filesystem->Connect();
 }
 
 SubmitContext::~SubmitContext() {
+    // release all the resources
     delete m_conf;
+    m_filesystem->Disconnect();
+    delete m_filesystem;
 }
 
 int SubmitContext::Parse() {
@@ -41,11 +46,11 @@ int SubmitContext::Parse() {
     return 0;
 }
 
-void SubmitContext::TransferFiles() {
+int SubmitContext::TransferFiles() {
     string files = any_cast<string>(m_conf->Get("transfer_files"));
     if(files.empty()) {
         LOG(INFO) << "no files need to be tranfered";
-        return;
+        return 0;
     }
     LOG(INFO) << "transfer these files ";
     vector<string> vt;
@@ -58,6 +63,11 @@ void SubmitContext::TransferFiles() {
         // reset the file path in dfs
         string new_path = DFS_PREFIX + file_name;
         LOG(INFO) << "new file path: " << new_path;
-        
+        // copy file from local system to dfs
+        if (m_filesystem->CopyFromLocalToDfs(*it,new_path) < 0) {
+            LOG(ERROR) << "copy file error: " << *it << " to " << new_path;
+            return -1;
+        }
     }
+    return 0;
 }
