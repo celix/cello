@@ -4,9 +4,9 @@ struct TaskInfo {
     3: string cmd,
     4: string arguments,
     5: string candidate_ips, 
-    6: double need_cpu,
-    7: i32 need_memory,
-    8: string transfer_files
+    6: string transfer_files,
+    7: double need_cpu,
+    8: i32 need_memory
 }
 
 struct FrameworkInfo {

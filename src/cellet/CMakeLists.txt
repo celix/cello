@@ -47,6 +47,8 @@ ADD_CUSTOM_COMMAND (
 
 SET(COMMON_SOURCE
     ../common/message_queue.cpp
+    ../common/hdfs_filesystem.cpp
+    ../common/register.cpp
     ../proxy/collector_wrapper.cpp)
 
 SET(SRC
@@ -76,10 +78,11 @@ TARGET_LINK_LIBRARIES(cellet thrift)
 TARGET_LINK_LIBRARIES(cellet gflags)
 TARGET_LINK_LIBRARIES(cellet classad)
 TARGET_LINK_LIBRARIES(cellet lxc)
+TARGET_LINK_LIBRARIES(cellet hdfs)
 
 TARGET_LINK_LIBRARIES(system_test gtest pthread)
 
-TARGET_LINK_LIBRARIES(container_test gtest pthread glog lxc gflags)
+TARGET_LINK_LIBRARIES(container_test gtest pthread glog lxc gflags hdfs)
 
 INSTALL(TARGETS cellet RUNTIME DESTINATION bin)
 INSTALL(TARGETS system_test RUNTIME DESTINATION test/cellet)

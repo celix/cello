@@ -1,12 +1,14 @@
 #include <gflags/gflags.h>
+#include <glog/logging.h>
 #include "tools/submit_context.h"
 #include "common/rpc.h"
+#include "include/proxy.h"
 
 DEFINE_string(master, "", "cello master endpoint");
 DEFINE_string(dfs_ip, "", "distributed file system server ip");
-DEFINE_int32(dfs_port, "", "distributed file system server port");
+DEFINE_int32(dfs_port, 0, "distributed file system server port");
 
-void ErrorMsg() {
+void ErrorMsg(char ** argv) {
     fprintf(stderr, "usage: %s -f [path]\n", argv[0]);
     fprintf(stderr, "\t-f: configuration file of framework\n");
 }
@@ -16,14 +18,14 @@ int main(int argc, char ** argv) {
     // set up flags
     if (argc == 3) {
         const char* flag = "-f";
-        if (strcmp(argv[1], flag1) == 0) {
+        if (strcmp(argv[1], flag) == 0) {
             config_file = argv[2];
         } else {
-            ErrorMsg();
+            ErrorMsg(argv);
             return -1;
         }
     } else {
-        ErrorMsg();
+        ErrorMsg(argv);
         return -1;
     }
     google::ReadFromFlagsFile("../conf/master", argv[0], true);
@@ -32,8 +34,19 @@ int main(int argc, char ** argv) {
         return -1;
     if (context.TransferFiles() < 0)
         return -1;
-    Proxy<SchedulerClient> proxy =
-        Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_master);
-    proxy().Submit(context.GetTaskInfo());
-    return 0;
+    int64_t id;
+    try {
+        Proxy<SchedulerClient> proxy =
+            Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_master);
+        id = proxy().Submit(context.GetTaskInfo().Get());
+    } catch (TException &tx) {
+        LOG(ERROR) << "Rpc error: submit task error";
+    }
+    if (id > 0) {
+        fprintf(stderr, "submit task success: id %lld\n", id);
+        return 0;
+    } else {
+        fprintf(stderr, "submit task failed\n");
+        return -1;
+    }
 }

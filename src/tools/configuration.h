@@ -20,11 +20,12 @@ public:
     virtual bool SetValue(DOMNode* node) = 0;
 
     virtual void Init() = 0;
-    
-    virtual void Dump() = 0;
+
+    virtual any GetInfo() = 0;
 
     any Get(const string& attr);
-private:
+
+protected:
     map<string, any> m_attr_map;
 };
 

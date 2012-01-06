@@ -10,7 +10,7 @@ class TaskInfoWrapper {
 public:
     TaskInfoWrapper(const string& name, const string& command,
                     const string& arguments, const string& ips,
-                    double cpu, int memory);
+                    const string& files, double cpu, int memory);
 
     TaskInfo Get() const {
         return m_info;
@@ -36,6 +36,7 @@ public:
         return m_info.quota;
     }
     TaskInfo GetTaskInfo() const;
+    
 private:
     FrameworkInfo m_info;
 };

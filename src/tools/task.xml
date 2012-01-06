@@ -7,6 +7,8 @@
         <command>echo</command>
         <arguments>
         </arguments>
+        <candidate_ips>
+        </candidate_ips>
         <transfer_file>
             <file>/home/chris/echo</file>
         </transfer_file>

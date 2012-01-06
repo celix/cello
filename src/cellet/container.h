@@ -84,6 +84,8 @@ private:
     /// @brief: execute the shell command
     int Shell(char* result, const char* format, ...);
 
+    /// @brief: get remote files
+    int FetchFiles();
 private:
     static const double DEFAULT_CPU_SHARE = 0.2;
 

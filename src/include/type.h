@@ -3,6 +3,9 @@
 
 #include <sys/types.h>
 #include <sys/ipc.h>
+#include <string>
+
+using std::string;
 
 static const int TIME_OUT = 2000;
 static const key_t EXECUTOR_START_KEY = 7000;

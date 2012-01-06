@@ -1,18 +1,23 @@
-#include "tools/add_context.h"
 #include <xercesc/util/PlatformUtils.hpp>
 #include <xercesc/dom/DOMDocument.hpp>
 #include <xercesc/dom/DOMNode.hpp>
 #include <xercesc/dom/DOMNodeList.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/util/XMLString.hpp>
-
-#include <boost/any.hpp>
+#include <glog/logging.h>
+#include "tools/add_context.h"
 #include "tools/framework_configuration.h"
 
-using boost::any;
+using xercesc::DOMNode;
+using xercesc::DOMNodeList;
+using xercesc::DOMDocument;
+using xercesc::XMLPlatformUtils;
+using xercesc::XercesDOMParser;
+using xercesc::XMLException;
+using xercesc::XMLString;
 
-AddContext::AddContext() {
-    m_conf = new FrameworkConfiguraton;
+AddContext::AddContext(): Context() {
+    m_conf = new FrameworkConfiguration;
     m_conf->Init();
 }
 
@@ -20,7 +25,7 @@ AddContext::~AddContext() {
     delete m_conf;
 }
 
-int AddContext::Parse() {
+int AddContext::Parse(const string& conf_file) {
     try {
         XMLPlatformUtils::Initialize();
     } catch(const XMLException& ex) {
@@ -45,15 +50,4 @@ int AddContext::Parse() {
     delete parser;
     XMLPlatformUtils::Terminate();
     return 0;
-}
-
-FramekworkInfoWrapper AddContext::GetFrameworkInfo() {
-    string name = any_cast<string>(m_conf->Get("name"));
-    int quota = any_cast<int>(m_conf->Get("quota"));
-    string command = any_cast<string>(m_conf->Get("commnad"));
-    string arguments = any_cast<string>(m_conf->Get("arguments"));
-    double cpu = any_cast<double>(m_conf->Get("cpu"));
-    int memory = any_cast<int>(m_conf->Get("memory"));
-    FramekworkInfoWrapper wrapper(name, quota, command, arguments, cpu, memory);
-    return wrapper;
 }

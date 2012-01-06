@@ -3,6 +3,9 @@
 
 #include "tools/context.h"
 #include "proxy/scheduler_wrapper.h"
+#include <boost/any.hpp>
+
+using boost::any_cast;
 
 class AddContext : public Context {
 public:
@@ -13,7 +16,9 @@ public:
     /// @return: return 0 if success, -1 otherwise
     int Parse(const string& conf_file);
 
-    FramekworkInfoWrapper GetFrameworkInfo();
+    FrameworkInfoWrapper GetFrameworkInfo() {
+        return any_cast<FrameworkInfoWrapper>(m_conf->GetInfo());
+    }
 };
 
 #endif

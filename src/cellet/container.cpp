@@ -16,6 +16,8 @@
 #include "cellet/system.h"
 #include "cellet/resource_manager.h"
 #include "common/string_utility.h"
+#include "common/filesystem.h"
+#include "common/register.h"
 
 using std::vector;
 using std::stringstream;
@@ -23,6 +25,8 @@ using cello::ReadLocker;
 using cello::WriteLocker;
 
 DECLARE_string(work_directory);
+DECLARE_string(dfs_ip);
+DECLARE_int32(dfs_port);
 
 Container::Container(const MessageQueue::Message& msg) : m_pid(0),
                                                          m_c_args(0),
@@ -81,11 +85,38 @@ int Container::Init() {
     }
     m_work_diectory = path;
     LOG(INFO) << "create work directory: " << path;
+    // get files from dfs to work directory if there is file to download
+    if (FetchFiles() < 0)
+        return -1;
     // switch work directory
     if (chdir(path) < 0) {
         LOG(ERROR) << "change directory error: " << path;
         return -1;
     }
+    return 0;
+}
+
+int Container::FetchFiles() {
+    vector<string> vt;
+    StringUtility::Split(m_info.transfer_files, ' ', &vt);
+    // get the filesystem handler
+    FileSystem* fs_handler = static_cast<FileSystem*>(Class::NewInstance("HdfsFileSystem"));
+    fs_handler->Connect(FLAGS_dfs_ip, FLAGS_dfs_port);
+    for(vector<string>::iterator it = vt.begin(); it != vt.end(); ++it) {
+        // copy file to work directory
+        vector<string> tmp;
+        StringUtility::Split(*it, '/', &tmp);
+        string new_path = m_work_diectory + "/" + tmp[tmp.size() - 1];
+        if (fs_handler->CopyFromDfsToLocal(*it, new_path) < 0) {
+            LOG(ERROR) << "copy file failed: " << *it << " to " << new_path;
+            fs_handler->Disconnect();
+            delete fs_handler;
+            return -1;
+        }
+        LOG(INFO) << "copy file success " << *it << " to " << new_path;
+    }
+    fs_handler->Disconnect();
+    delete fs_handler;
     return 0;
 }
 

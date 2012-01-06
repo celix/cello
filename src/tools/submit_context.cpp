@@ -1,6 +1,29 @@
+#include <gflags/gflags.h>
+#include <glog/logging.h>
+#include <xercesc/util/PlatformUtils.hpp>
+#include <xercesc/dom/DOMDocument.hpp>
+#include <xercesc/dom/DOMNode.hpp>
+#include <xercesc/dom/DOMNodeList.hpp>
+#include <xercesc/parsers/XercesDOMParser.hpp>
+#include <xercesc/util/XMLString.hpp>
 #include "tools/submit_context.h"
 #include "tools/task_configuration.h"
+#include "common/string_utility.h"
+#include "include/type.h"
 #include "common/register.h"
+
+#include <vector>
+
+DECLARE_string(dfs_ip);
+DECLARE_int32(dfs_port);
+using std::vector;
+using xercesc::DOMNode;
+using xercesc::DOMNodeList;
+using xercesc::DOMDocument;
+using xercesc::XMLPlatformUtils;
+using xercesc::XercesDOMParser;
+using xercesc::XMLException;
+using xercesc::XMLString;
 
 SubmitContext::SubmitContext() {
     // new a configuration
@@ -9,7 +32,7 @@ SubmitContext::SubmitContext() {
     // get the filesystem according to configuration
     m_filesystem = static_cast<FileSystem* >(Class::NewInstance("HdfsFilesystem"));
     // connect remote distribute file system server
-    m_filesystem->Connect();
+    m_filesystem->Connect(FLAGS_dfs_ip, FLAGS_dfs_port);
 }
 
 SubmitContext::~SubmitContext() {
@@ -19,7 +42,7 @@ SubmitContext::~SubmitContext() {
     delete m_filesystem;
 }
 
-int SubmitContext::Parse() {
+int SubmitContext::Parse(const string& conf_file) {
     try {
         XMLPlatformUtils::Initialize();
     } catch(const XMLException& ex) {
