@@ -30,7 +30,7 @@ SubmitContext::SubmitContext() {
     m_conf = new TaskConfiguration;
     m_conf->Init();
     // get the filesystem according to configuration
-    m_filesystem = static_cast<FileSystem* >(Class::NewInstance("HdfsFilesystem"));
+    m_filesystem = static_cast<FileSystem* >(Class::NewInstance(PolicyMgr::Instance()->GetFileSystem));
     // connect remote distribute file system server
     m_filesystem->Connect(FLAGS_dfs_ip, FLAGS_dfs_port);
 }
