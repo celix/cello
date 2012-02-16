@@ -18,12 +18,14 @@
 #include "cellet/container_pool.h"
 #include "cellet/resource_manager.h"
 #include "common/rpc.h"
+#include "common/policy.h"
 
 DECLARE_int32(port);
 DECLARE_string(work_directory);
 DECLARE_string(scheduler_endpoint);
 DECLARE_string(collector_endpoint);
 DECLARE_string(log);
+DECLARE_string(policy_file);
 
 extern void* ResourceInfoSender(void* unused);
 extern void* ResourceInfoReceiver(void* unused);
@@ -89,6 +91,10 @@ int main(int argc, char ** argv) {
     string fatal_log = FLAGS_log + "/cellet_fatal_";
     google::SetLogDestination(google::FATAL, fatal_log.c_str());
     LOG(INFO) << "begin cellet";
+
+    // get policy file
+    if (PolicyMgr::Instance()->Parse(FLAGS_policy_file) < 0)
+        return -1;
     // init message queue
     MsgQueueMgr::Instance()->Init();
     int pid = fork();

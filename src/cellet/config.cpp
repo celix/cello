@@ -8,3 +8,4 @@ DEFINE_string(log, "/tmp/log/cellet", "cellet log path");
 DEFINE_string(dfs_ip, "", "distributed file system server ip");
 DEFINE_int32(dfs_port, 0, "distributed file system server port");
 DEFINE_int32(heartbeat_interval, 5, "heartbeat interval");
+DEFINE_string(policy_file, "", "policy configuration file");

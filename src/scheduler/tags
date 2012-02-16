@@ -1,0 +1,162 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+AddExecutor	scheduler_service.cpp	/^int32_t SchedulerService::AddExecutor(const string& name) {$/;"	f	class:SchedulerService
+AddFramework	autoscale_pool.cpp	/^int AutoScalePool::AddFramework(const FrameworkInfoWrapper& info) {$/;"	f	class:AutoScalePool
+AddFramework	scheduler_service.cpp	/^int32_t SchedulerService::AddFramework(const FrameworkInfo& info) {$/;"	f	class:SchedulerService
+AddFramework	standard_pool.cpp	/^int StandardPool::AddFramework(const FrameworkInfoWrapper& info) {$/;"	f	class:StandardPool
+AddTask	framework_pool.cpp	/^void FrameworkPool::AddTask(const TaskPtr& task) {$/;"	f	class:FrameworkPool
+AssignTask	task.cpp	/^bool Task::AssignTask() {$/;"	f	class:Task
+AutoScaleFramework	autoscale_framework.cpp	/^AutoScaleFramework::AutoScaleFramework(const FrameworkInfoWrapper& info) :$/;"	f	class:AutoScaleFramework
+AutoScaleFramework	autoscale_framework.h	/^class AutoScaleFramework : public Framework {$/;"	c
+AutoScalePool	autoscale_pool.h	/^REGISTER_CLASS(AutoScalePool);$/;"	v
+AutoScalePool	autoscale_pool.h	/^class AutoScalePool : public FrameworkPool {$/;"	c
+ChangeState	state.cpp	/^void State::ChangeState(Task* task, State* t) {$/;"	f	class:State
+ChangeState	task.cpp	/^void Task::ChangeState(State* state) {$/;"	f	class:Task
+ComponentsManager	components_manager.h	/^    ComponentsManager() : m_pool(0) {}$/;"	f	class:ComponentsManager
+ComponentsManager	components_manager.h	/^class ComponentsManager {$/;"	c
+ComponentsMgr	components_manager.h	/^typedef Singleton<ComponentsManager> ComponentsMgr;$/;"	t
+CreateComponents	components_manager.cpp	/^void ComponentsManager::CreateComponents(const string& policy_file) {$/;"	f	class:ComponentsManager
+Delete	task_pool.cpp	/^void TaskPool::Delete(int64_t task_id) {$/;"	f	class:TaskPool
+DeleteFramework	framework_pool.cpp	/^bool FrameworkPool::DeleteFramework(const string& name) {$/;"	f	class:FrameworkPool
+DeleteFramework	scheduler_service.cpp	/^bool SchedulerService::DeleteFramework(const string& name) {$/;"	f	class:SchedulerService
+Erase	task_queue.cpp	/^bool TaskQueue::Erase(int64_t task_id) {$/;"	f	class:TaskQueue
+Event	event.h	/^    explicit Event(int64_t id, bool status) : m_task_id(id),$/;"	f	class:Event
+Event	event.h	/^class Event {$/;"	c
+EventProcesseor	work_thread.cpp	/^void* EventProcesseor(void* unused) {$/;"	f
+EventPtr	event.h	/^typedef shared_ptr<Event> EventPtr;$/;"	t
+EventQueue	event.h	/^typedef Singleton<BlockQueue<EventPtr> > EventQueue;$/;"	t
+Find	task_pool.cpp	/^bool TaskPool::Find(int64_t task_id, TaskPtr* ptr) {$/;"	f	class:TaskPool
+FindToDo	framework_pool.cpp	/^bool FrameworkPool::FindToDo(const string& name, FrameworkFunc func) {$/;"	f	class:FrameworkPool
+FindToDo	task_pool.cpp	/^bool TaskPool::FindToDo(int64_t task_id, TaskFunc func) {$/;"	f	class:TaskPool
+FinishEvent	event.h	/^    FinishEvent(int64_t id, bool status) : Event(id, status) {}$/;"	f	class:FinishEvent
+FinishEvent	event.h	/^class FinishEvent : public Event {$/;"	c
+FinishState	state.h	/^class FinishState : public State {$/;"	c
+Framework	framework.cpp	/^Framework::Framework(const FrameworkInfoWrapper& info) :$/;"	f	class:Framework
+Framework	framework.h	/^    Framework(const string& name, int quota) : m_framework_name(name),$/;"	f	class:Framework
+Framework	framework.h	/^class Framework {$/;"	c
+FrameworkFunc	framework_pool.h	/^    typedef function<void(Framework*)> FrameworkFunc;$/;"	t	class:FrameworkPool
+FrameworkMgr	framework_pool.h	/^typedef Singleton<FrameworkPool> FrameworkMgr;$/;"	t
+FrameworkPool	framework_pool.h	/^class FrameworkPool {$/;"	c
+GetClassAd	task.h	/^    ClassAd GetClassAd() const {$/;"	f	class:Task
+GetFrameworkName	task.h	/^    string GetFrameworkName() const {$/;"	f	class:Task
+GetId	event.h	/^    int64_t GetId() const {$/;"	f	class:Event
+GetId	task.h	/^    int64_t GetId() const {$/;"	f	class:Task
+GetName	framework.h	/^    string GetName() const {$/;"	f	class:Framework
+GetPool	components_manager.h	/^    FrameworkPool* GetPool() {$/;"	f	class:ComponentsManager
+GetQueueType	state.cpp	/^queue_type RunState::GetQueueType() {$/;"	f	class:RunState
+GetQueueType	state.cpp	/^queue_type WaitState::GetQueueType() {$/;"	f	class:WaitState
+GetQueueType	task.cpp	/^queue_type Task::GetQueueType() {$/;"	f	class:Task
+GetStatus	event.h	/^    bool GetStatus() const {$/;"	f	class:Event
+GetTask	framework_pool.cpp	/^TaskPtr FrameworkPool::GetTask() {$/;"	f	class:FrameworkPool
+GetTaskId	identity.h	/^    int64_t GetTaskId() {$/;"	f	class:Identity
+GetTaskInfo	task.h	/^    TaskInfo GetTaskInfo() const {$/;"	f	class:Task
+Handle	event.cpp	/^void FinishEvent::Handle() {$/;"	f	class:FinishEvent
+Handle	event.cpp	/^void StartEvent::Handle() {$/;"	f	class:StartEvent
+Identity	identity.h	/^    Identity() : m_id(0) {}$/;"	f	class:Identity
+Identity	identity.h	/^    explicit Identity(int num) : m_id(num) {}$/;"	f	class:Identity
+Identity	identity.h	/^class Identity {$/;"	c
+Init	autoscale_framework.cpp	/^void AutoScaleFramework::Init() {$/;"	f	class:AutoScaleFramework
+Init	autoscale_pool.cpp	/^int AutoScalePool::Init(const string& conf_file) {$/;"	f	class:AutoScalePool
+Init	framework.h	/^    virtual void Init() {}$/;"	f	class:Framework
+Init	standard_pool.cpp	/^int StandardPool::Init(const string& conf_file) {$/;"	f	class:StandardPool
+Insert	task_pool.cpp	/^void TaskPool::Insert(const TaskPtr& task) {$/;"	f	class:TaskPool
+LogInfo	scheduler_service.cpp	/^void SchedulerService::LogInfo(const TaskInfo& task_info) {$/;"	f	class:SchedulerService
+MatchTask	matcher.h	/^    static bool MatchTask(const Task& task, string* endpoint_str) {$/;"	f	class:Matcher
+Matcher	matcher.h	/^class Matcher {$/;"	c
+PlugTask	autoscale_framework.cpp	/^void AutoScaleFramework::PlugTask(TaskPtr& task, queue_type type) {$/;"	f	class:AutoScaleFramework
+PlugTask	autoscale_pool.cpp	/^void AutoScalePool::PlugTask(TaskPtr& task) {$/;"	f	class:AutoScalePool
+PlugTask	standard_pool.cpp	/^void StandardPool::PlugTask(TaskPtr& task) {$/;"	f	class:StandardPool
+Pool	task_pool.h	/^typedef Singleton<TaskPool> Pool;$/;"	t
+PopFront	task_queue.cpp	/^void TaskQueue::PopFront(TaskPtr* ptr) {$/;"	f	class:TaskQueue
+PopTask	framework.cpp	/^bool Framework::PopTask(TaskPtr* ptr, queue_type type) {$/;"	f	class:Framework
+PushBack	task_queue.cpp	/^void TaskQueue::PushBack(const TaskPtr& task) {$/;"	f	class:TaskQueue
+PushTask	framework.cpp	/^void Framework::PushTask(const TaskPtr& task, queue_type type) {$/;"	f	class:Framework
+Query	scheduler_service.cpp	/^void SchedulerService::Query(TaskInfo& result, int64_t task_id) {$/;"	f	class:SchedulerService
+RemoveTask	framework.cpp	/^bool Framework::RemoveTask(int64_t task_id, queue_type type) {$/;"	f	class:Framework
+RemoveTask	framework_pool.cpp	/^void FrameworkPool::RemoveTask(const TaskPtr& task) {$/;"	f	class:FrameworkPool
+RemoveTask	scheduler_service.cpp	/^int32_t SchedulerService::RemoveTask(int64_t task_id) {$/;"	f	class:SchedulerService
+RunState	state.h	/^class RunState : public State {$/;"	c
+SRC_SCHEDULER_AUTOSCALE_FRAMEWORK_H	autoscale_framework.h	2;"	d
+SRC_SCHEDULER_AUTOSCALE_POOL_H	autoscale_pool.h	2;"	d
+SRC_SCHEDULER_COMPONENTS_MANAGER_H	components_manager.h	2;"	d
+SRC_SCHEDULER_EVENT_H	event.h	2;"	d
+SRC_SCHEDULER_FRAMEWORKPOOL_H	framework_pool.h	2;"	d
+SRC_SCHEDULER_FRAMEWORKPOOL_H	standard_pool.h	2;"	d
+SRC_SCHEDULER_FRAMEWORK_H	framework.h	2;"	d
+SRC_SCHEDULER_IDENTITY_H	identity.h	2;"	d
+SRC_SCHEDULER_MATCHER_H	matcher.h	2;"	d
+SRC_SCHEDULER_SCHEDULER_H	scheduler_service.h	2;"	d
+SRC_SCHEDULER_STANDARD_FRAMEWORK_H	standard_framework.h	2;"	d
+SRC_SCHEDULER_STARTER_H	starter.h	2;"	d
+SRC_SCHEDULER_STATE_H	state.h	2;"	d
+SRC_SCHEDULER_TASK_H	task.h	2;"	d
+SRC_SCHEDULER_TASK_POOL_H	task_pool.h	2;"	d
+SRC_SCHEDULER_TASK_QUEUE_H	task_queue.h	2;"	d
+ScheduleProcessor	work_thread.cpp	/^void* ScheduleProcessor(void* unused) {$/;"	f
+SchedulerService	scheduler_service.h	/^class SchedulerService : public SchedulerIf {$/;"	c
+SetInfo	task.cpp	/^void Task::SetInfo(const TaskInfo& info) {$/;"	f	class:Task
+Size	task_queue.cpp	/^int TaskQueue::Size() {$/;"	f	class:TaskQueue
+StandardFramework	standard_framework.h	/^class StandardFramework : public Framework {$/;"	c
+StandardPool	standard_pool.h	/^REGISTER_CLASS(StandardPool);$/;"	v
+StandardPool	standard_pool.h	/^class StandardPool : public FrameworkPool {$/;"	c
+StartEvent	event.h	/^    StartEvent(int64_t id, bool status) : Event(id, status) {}$/;"	f	class:StartEvent
+StartEvent	event.h	/^class StartEvent : public Event {$/;"	c
+StartTask	starter.h	/^    static bool StartTask(const string& endpoint, const Task& task) {$/;"	f	class:Starter
+Starter	starter.h	/^class Starter {$/;"	c
+State	state.h	/^class State {$/;"	c
+Submit	scheduler_service.cpp	/^int64_t SchedulerService::Submit(const TaskInfo& task_info) {$/;"	f	class:SchedulerService
+Task	task.cpp	/^Task::Task(const TaskInfo& task_info) {$/;"	f	class:Task
+Task	task.cpp	/^Task::Task(const string& framework_name) {$/;"	f	class:Task
+Task	task.h	/^    Task() : m_id(0) {}$/;"	f	class:Task
+Task	task.h	/^class Task {$/;"	c
+TaskAssigned	state.cpp	/^void WaitState::TaskAssigned(Task* task) {$/;"	f	class:WaitState
+TaskAssigned	state.h	/^    virtual void TaskAssigned(Task*) {}$/;"	f	class:State
+TaskAssigned	task.cpp	/^void Task::TaskAssigned() {$/;"	f	class:Task
+TaskBuffer	task.h	/^typedef Singleton< BlockQueue<TaskPtr> > TaskBuffer;$/;"	t
+TaskFinished	scheduler_service.cpp	/^int32_t SchedulerService::TaskFinished(int64_t task_id, bool status) {$/;"	f	class:SchedulerService
+TaskFinished	state.h	/^typedef Singleton<FinishState> TaskFinished;$/;"	t
+TaskFunc	task_pool.h	/^    typedef function<void(const TaskPtr&)> TaskFunc;$/;"	t	class:TaskPool
+TaskIdentity	identity.h	/^typedef Singleton<Identity> TaskIdentity;$/;"	t
+TaskPool	task_pool.h	/^class TaskPool {$/;"	c
+TaskProcessor	work_thread.cpp	/^void* TaskProcessor(void* unused) {$/;"	f
+TaskPtr	task.h	/^typedef shared_ptr<Task> TaskPtr;$/;"	t
+TaskQueue	task_queue.h	/^class TaskQueue {$/;"	c
+TaskRunning	state.h	/^typedef Singleton<RunState> TaskRunning;$/;"	t
+TaskStarted	scheduler_service.cpp	/^int32_t SchedulerService::TaskStarted(int64_t task_id, bool status) {$/;"	f	class:SchedulerService
+TaskWaiting	state.h	/^typedef Singleton<WaitState> TaskWaiting;$/;"	t
+WaitState	state.h	/^class WaitState : public State {$/;"	c
+collector_endpoint	matcher.h	/^DECLARE_string(collector_endpoint);$/;"	v
+m_ad	task.h	/^    ClassAd m_ad;$/;"	m	class:Task
+m_executor_info	autoscale_framework.h	/^    TaskInfo m_executor_info;$/;"	m	class:AutoScaleFramework
+m_framework_name	framework.h	/^    string m_framework_name;$/;"	m	class:Framework
+m_framework_name	task.h	/^    string m_framework_name;$/;"	m	class:Task
+m_framework_pool	framework_pool.h	/^    list<Framework*> m_framework_pool;$/;"	m	class:FrameworkPool
+m_id	identity.h	/^    int64_t m_id;$/;"	m	class:Identity
+m_id	task.h	/^    int64_t m_id;$/;"	m	class:Task
+m_list	task_queue.h	/^    list<TaskPtr> m_list; $/;"	m	class:TaskQueue
+m_lock	framework_pool.h	/^    RWLock m_lock;$/;"	m	class:FrameworkPool
+m_lock	identity.h	/^    Mutex m_lock;$/;"	m	class:Identity
+m_lock	task.h	/^    RWLock m_lock;$/;"	m	class:Task
+m_lock	task_pool.h	/^    RWLock m_lock;$/;"	m	class:TaskPool
+m_lock	task_queue.h	/^    RWLock m_lock;$/;"	m	class:TaskQueue
+m_policy	components_manager.h	/^    Policy m_policy;$/;"	m	class:ComponentsManager
+m_pool	components_manager.h	/^    FrameworkPool* m_pool;$/;"	m	class:ComponentsManager
+m_quota	framework.h	/^    int m_quota;                      \/\/ resource quota$/;"	m	class:Framework
+m_run_queue	framework.h	/^    TaskQueue m_run_queue;$/;"	m	class:Framework
+m_state	task.h	/^    State* m_state;$/;"	m	class:Task
+m_status	event.h	/^    bool m_status;$/;"	m	class:Event
+m_submit_time	task.h	/^    time_t m_submit_time;$/;"	m	class:Task
+m_task_id	event.h	/^    int64_t m_task_id;$/;"	m	class:Event
+m_task_info	task.h	/^    TaskInfo m_task_info;$/;"	m	class:Task
+m_task_map	task_pool.h	/^    map<int64_t, TaskPtr> m_task_map ;   $/;"	m	class:TaskPool
+m_wait_queue	framework.h	/^    TaskQueue m_wait_queue;$/;"	m	class:Framework
+main	scheduler.cpp	/^int main(int argc, char ** argv) {$/;"	f
+~ComponentsManager	components_manager.cpp	/^ComponentsManager::~ComponentsManager() {$/;"	f	class:ComponentsManager
+~Event	event.h	/^    virtual ~Event() {}$/;"	f	class:Event
+~Framework	framework.h	/^    virtual ~Framework() {}$/;"	f	class:Framework
+~FrameworkPool	framework_pool.h	/^    virtual ~FrameworkPool() {}$/;"	f	class:FrameworkPool
+~State	state.h	/^    virtual ~State() {}$/;"	f	class:State

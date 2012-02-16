@@ -1,6 +1,7 @@
 #include "scheduler/scheduler_service.h"
 #include "scheduler/framework_pool.h"
 #include "proxy/scheduler_wrapper.h"
+#include "scheduler/components_manager.h"
 
 int64_t SchedulerService::Submit(const TaskInfo& task_info) {
     LogInfo(task_info);
@@ -58,21 +59,17 @@ void SchedulerService::LogInfo(const TaskInfo& task_info) {
 int32_t SchedulerService::AddFramework(const FrameworkInfo& info) {
     LOG(INFO) << "add framework:";
     FrameworkInfoWrapper wrapper(info);
-    return FrameworkMgr::Instance()->AddFramework(wrapper);
+    return (ComponentsMgr::Instance()->GetPool())->AddFramework(wrapper);
 }
 
 bool SchedulerService::DeleteFramework(const string& name) {
     LOG(INFO) << "delete framework with name: " << name;
-    return FrameworkMgr::Instance()->DeleteFramework(name);
+    return (ComponentsMgr::Instance()->GetPool())->DeleteFramework(name);
 }
 
 int32_t SchedulerService::AddExecutor(const string& name) {
     LOG(INFO) << "add a executor for a framework " << name;
-    TaskInfo task_info;
-    // get the framework executor info
-    if (!(FrameworkMgr::Instance()->GetFrameworkExecutor(name, &task_info)))
-        return -1;
-    TaskPtr task(new Task(task_info));
+    TaskPtr task(new Task(name));
     if (task) {
         // insert the task into pool and buffer
         Pool::Instance()->Insert(task);

@@ -2,11 +2,13 @@
 #include <glog/logging.h>
 #include "tools/submit_context.h"
 #include "common/rpc.h"
+#include "common/policy.h"
 #include "include/proxy.h"
 
 DEFINE_string(master, "", "cello master endpoint");
 DEFINE_string(dfs_ip, "", "distributed file system server ip");
 DEFINE_int32(dfs_port, 0, "distributed file system server port");
+DEFINE_string(policy_file, "", "scheduler configuration policy");
 
 void ErrorMsg(char ** argv) {
     fprintf(stderr, "usage: %s -f [path]\n", argv[0]);
@@ -33,6 +35,9 @@ int main(int argc, char ** argv) {
     if (context.Parse(config_file) < 0)
         return -1;
     if (context.TransferFiles() < 0)
+        return -1;
+    // get policy file
+    if (PolicyMgr::Instance()->Parse(FLAGS_policy_file) < 0)
         return -1;
     int64_t id;
     try {

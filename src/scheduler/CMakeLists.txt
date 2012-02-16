@@ -43,7 +43,10 @@ ADD_CUSTOM_COMMAND (
 
 SET(COMMON_SOURCE
     ../common/cond.cpp
-    ../common/block_queue.cpp)
+    ../common/block_queue.cpp
+    ../common/policy.cpp
+    ../common/register.cpp)
+
 SET(WRAPPER_SOURCE ../proxy/scheduler_wrapper.cpp)
 
 SET(SRC
@@ -53,14 +56,18 @@ SET(SRC
     ${COMMON_SOURCE}
     ${WRAPPER_SOURCE}
     scheduler_service.cpp
+    components_manager.cpp
     task.cpp
     state.cpp
     event.cpp
     task_queue.cpp
     framework.cpp
+    autoscale_framework.cpp
     work_thread.cpp
     task_pool.cpp
     framework_pool.cpp
+    autoscale_pool.cpp
+    standard_pool.cpp
     scheduler.cpp)
 
 ADD_EXECUTABLE(scheduler ${SRC})

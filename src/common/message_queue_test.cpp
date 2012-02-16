@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <stdint.h>
 
 #include <gtest/gtest.h>
 #include "common/message_queue.h"
@@ -12,7 +13,7 @@ using cello::MessageQueue;
 MessageQueue g_queue(10001);
 
 void* SendFunc(void* args) {
-    int n = (int) args;
+    intptr_t n = (intptr_t) args;
     while (true) {
         MessageQueue::Message data;
         snprintf(data.content, sizeof(data.content), "Thread%d", n);

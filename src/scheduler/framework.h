@@ -11,6 +11,8 @@ using std::string;
 
 class Framework {
 public:
+    virtual ~Framework() {}
+
     Framework(const string& name, int quota) : m_framework_name(name),
                                                m_quota(quota) {}
 
@@ -20,9 +22,11 @@ public:
     string GetName() const {
         return m_framework_name;
     }
+    
+    virtual void PlugTask(TaskPtr& task, queue_type type) {};
 
     /// @brief: add an executor when initilize
-    void Init();
+    virtual void Init() {}
 
     /// push task into queue
     void PushTask(const TaskPtr& task, queue_type type);
@@ -33,14 +37,9 @@ public:
     /// @brief: remove task by id
     bool RemoveTask(int64_t task_id, queue_type type);
 
-    void GetExecutorInfo(TaskInfo* info) const {
-        *info = m_executor_info;
-    }
-
-private:
+protected:
     string m_framework_name;
     int m_quota;                      // resource quota
-    TaskInfo m_executor_info;
     TaskQueue m_wait_queue;
     TaskQueue m_run_queue;
 };

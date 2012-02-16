@@ -1,15 +1,13 @@
-SET(THIRD_PARTY "../third_party")
 SET(SRC ".")
-
 INCLUDE_DIRECTORIES(
-    /usr/local/include/thrift/
-    /usr/local/jdk1.6.0_03/include/
-    /usr/local/jdk1.6.0_03/include/linux/
+    ${THRIFT_INCLUDE_PATH}
+    ${JNI_INCLUDE_DIRS}
     ${SRC}/)
 
-LINK_DIRECTORIES(
-    /usr/local/jdk1.6.0_03/jre/lib/i386/client
-    ${THIRD_PARTY}/lxc/lib)
+# get jvm library directory
+STRING(REGEX REPLACE "([^\n]+/)[^\n/]+$" "\\1" JVM_LIBRARAY_DIR "${JAVA_JVM_LIBRARY}")
+
+LINK_DIRECTORIES(${JVM_LIBRARAY_DIR})
 
 ADD_SUBDIRECTORY(scheduler)
 ADD_SUBDIRECTORY(cellet)

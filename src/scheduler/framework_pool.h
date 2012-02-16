@@ -1,5 +1,5 @@
-#ifndef SRC_SCHEDULER_FRAMEWORK_POOL_H
-#define SRC_SCHEDULER_FRAMEWORK_POOL_H
+#ifndef SRC_SCHEDULER_FRAMEWORKPOOL_H
+#define SRC_SCHEDULER_FRAMEWORKPOOL_H
 
 #include <list>
 #include <string>
@@ -20,19 +20,22 @@ using cello::RWLock;
 
 class FrameworkPool {
 public:
+    virtual ~FrameworkPool() {}
+
     typedef function<void(Framework*)> FrameworkFunc;
 
     /// @brief: read information from xml file, and init all the framwork
-    int Init(const string& conf_file);
+    virtual int Init(const string& conf_file) = 0;
     
+    virtual void PlugTask(TaskPtr& task) = 0;
+
+    virtual int AddFramework(const FrameworkInfoWrapper& info) = 0;
+
     /// add the task into correspond framework
     void AddTask(const TaskPtr& task);
     
     /// @brief: remove task from its framework task queue
     void RemoveTask(const TaskPtr& task);
-
-    /// @brief: get executor information of framework
-    bool GetFrameworkExecutor(const string& name, TaskInfo* info);
 
     /// @brief: pick a task
     TaskPtr GetTask();
@@ -41,13 +44,11 @@ public:
     /// find the framework return true, else return false
     bool FindToDo(const string& name, FrameworkFunc func);
 
-    int AddFramework(const FrameworkInfoWrapper& info);
-
     bool DeleteFramework(const string& name);
 
-private:
+protected:
     RWLock m_lock;
-    list<Framework> m_framework_pool;
+    list<Framework*> m_framework_pool;
 };
 
 typedef Singleton<FrameworkPool> FrameworkMgr;

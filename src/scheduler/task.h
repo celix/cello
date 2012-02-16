@@ -24,6 +24,7 @@ public:
     Task() : m_id(0) {}
 
     explicit Task(const TaskInfo& task_info);
+    explicit Task(const string& framework_name);
     
     /// @brief: task is assigned
     void TaskAssigned();
@@ -49,6 +50,8 @@ public:
 
     /// @brief: get queue to be inserted from its state
     queue_type GetQueueType();
+    
+    void SetInfo(const TaskInfo& info);
 
     /// @brief: assgin the task
     bool AssignTask();

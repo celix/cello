@@ -18,6 +18,7 @@
 #include "common/string_utility.h"
 #include "common/filesystem.h"
 #include "common/register.h"
+#include "common/policy.h"
 
 using std::vector;
 using std::stringstream;
@@ -85,9 +86,11 @@ int Container::Init() {
     }
     m_work_diectory = path;
     LOG(INFO) << "create work directory: " << path;
-    // get files from dfs to work directory if there is file to download
-    if (FetchFiles() < 0)
-        return -1;
+    if (PolicyMgr::Instance()->Get("Schema") == "Standard") {
+        // get files from dfs to work directory if there is file to download
+        if (FetchFiles() < 0)
+            return -1;
+    }
     // switch work directory
     if (chdir(path) < 0) {
         LOG(ERROR) << "change directory error: " << path;
@@ -100,7 +103,8 @@ int Container::FetchFiles() {
     vector<string> vt;
     StringUtility::Split(m_info.transfer_files, ' ', &vt);
     // get the filesystem handler
-    FileSystem* fs_handler = static_cast<FileSystem*>(Class::NewInstance("HdfsFileSystem"));
+    FileSystem* fs_handler =
+        static_cast<FileSystem*>(Class::NewInstance(PolicyMgr::Instance()->Get("FileSystem")));
     fs_handler->Connect(FLAGS_dfs_ip, FLAGS_dfs_port);
     for(vector<string>::iterator it = vt.begin(); it != vt.end(); ++it) {
         // copy file to work directory

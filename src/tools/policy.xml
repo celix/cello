@@ -3,16 +3,22 @@
   <property>
     <name>filesystem</name>
     <value>hdfs</value>
-    <description>Percentage of the number of slots in the cluster that are
-      to be available for jobs in this queue.
+    <description>filesystem for storing file
     </description>    
   </property>
   
   <property>
     <name>scheduler</name>
-    <value>fifo</value>
-    <description>schedule policy for scheduler
+    <value>FifoScheduler</value>
+    <description>schedule policy for scheduler, the 
     </description>    
+  </property>
+
+  <property>
+    <name>Schema</name>
+    <value>AutoScale</value>
+    <description>schedule schema of scheduler
+    </description>
   </property>
   
   

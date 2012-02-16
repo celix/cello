@@ -5,6 +5,7 @@
 
 #include "scheduler/scheduler_service.h"
 #include "scheduler/framework_pool.h"
+#include "scheduler/components_manager.h"
 #include "common/rpc.h"
 
 extern void* ScheduleProcessor(void* unused);
@@ -14,6 +15,7 @@ extern void* TaskProcessor(void* unused);
 DEFINE_int32(port, 10000, "scheduler port");
 DEFINE_string(framework_file, "", "the configuration file of framework");
 DEFINE_string(collector_endpoint, "", "collector endpoint");
+DEFINE_string(policy_file, "", "scheduler configuration policy");
 
 int main(int argc, char ** argv) {
 
@@ -31,8 +33,12 @@ int main(int argc, char ** argv) {
     google::SetLogDestination(google::FATAL, "../log/scheduler_fatal_");
     LOG(INFO) << "begin scheduler";
    
+    // read configuration to get all the components
+    // TODO
+    ComponentsMgr::Instance()->CreateComponents(FLAGS_policy_file);
+    
     // init framework pool
-    if (FrameworkMgr::Instance()->Init(FLAGS_framework_file) < 0) {
+    if ((ComponentsMgr::Instance()->GetPool())->Init(FLAGS_framework_file) < 0) {
         LOG(ERROR) << "read framework file error";
         return -1;
     }

@@ -5,14 +5,20 @@ SET(SCHEDULER_THRIFT_SOURCE
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler.h
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_types.h
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_constants.h
-    #    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler_server.skeleton.cpp  
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler.cpp
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_types.cpp)
+
+ADD_CUSTOM_COMMAND (
+    OUTPUT ${SCHEDULER_THRIFT_SOURCE}
+    COMMAND thrift --gen cpp -r -o ${CMAKE_SOURCE_DIR}/src/proxy/scheduler
+    ${CMAKE_SOURCE_DIR}/src/proxy/scheduler/scheduler.thrift
+)
 
 SET(WRAPPER_SOURCE ../proxy/scheduler_wrapper.cpp)
 SET(COMMON_SOURCE
     ../common/hdfs_filesystem.cpp
-    ../common/register.cpp)
+    ../common/register.cpp
+    ../common/policy.cpp)
 
 SET(CELLO_ADD
     cello_add.cpp

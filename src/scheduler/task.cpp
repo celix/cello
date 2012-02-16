@@ -14,12 +14,16 @@ Task::Task(const TaskInfo& task_info) {
     m_framework_name = task_info.framework_name;
     m_submit_time = time(NULL);
     m_state = TaskWaiting::Instance();
-    m_task_info = task_info;
+    SetInfo(task_info);
+}
+
+void Task::SetInfo(const TaskInfo& info) {
+    m_task_info = info;
     // set task id
     m_task_info.id = m_id;
     // create classad
-    m_ad.InsertAttr(ATTR_NEED_CPU, task_info.need_cpu);
-    m_ad.InsertAttr(ATTR_NEED_MEMORY, task_info.need_memory);
+    m_ad.InsertAttr(ATTR_NEED_CPU, m_task_info.need_cpu);
+    m_ad.InsertAttr(ATTR_NEED_MEMORY, m_task_info.need_memory);
     // add the rank
     ClassAdParser parser;
     ExprTree* expr = parser.ParseExpression("1-" + ATTR_CPU_USAGE);
@@ -31,6 +35,13 @@ Task::Task(const TaskInfo& task_info) {
     m_ad.Insert(ATTR_TASK_REQUIREMENT, re_expr);
     //insert framework name
     m_ad.InsertAttr(ATTR_FRAMEWORK, m_framework_name);
+}
+
+Task::Task(const string& framework_name) {
+    m_id = TaskIdentity::Instance()->GetTaskId();
+    m_framework_name = framework_name;
+    m_submit_time = time(NULL);
+    m_state = TaskWaiting::Instance();
 }
 
 void Task::ChangeState(State* state) {

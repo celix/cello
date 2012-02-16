@@ -2,17 +2,8 @@
 
 #include "scheduler/framework.h"
 
-Framework::Framework(const FrameworkInfoWrapper& info) {
-    m_framework_name = info.GetName();
-    m_quota = info.GetQuota();
-    m_executor_info = info.GetTaskInfo();
-}
-
-void Framework::Init() {
-    // add an executor in the queue
-    TaskPtr task(new Task(m_executor_info));
-    m_wait_queue.PushBack(task);
-}
+Framework::Framework(const FrameworkInfoWrapper& info) :
+    m_framework_name(info.GetName()), m_quota(info.GetQuota()) {}
 
 void Framework::PushTask(const TaskPtr& task, queue_type type) {
     assert(type == WAIT_QUEUE || type == RUN_QUEUE);
