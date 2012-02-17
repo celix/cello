@@ -104,7 +104,7 @@ int Container::FetchFiles() {
     StringUtility::Split(m_info.transfer_files, ' ', &vt);
     // get the filesystem handler
     FileSystem* fs_handler =
-        static_cast<FileSystem*>(Class::NewInstance(PolicyMgr::Instance()->Get("FileSystem")));
+        static_cast<FileSystem*>(ClassInstance->NewInstance(PolicyMgr::Instance()->Get("FileSystem")));
     fs_handler->Connect(FLAGS_dfs_ip, FLAGS_dfs_port);
     for(vector<string>::iterator it = vt.begin(); it != vt.end(); ++it) {
         // copy file to work directory

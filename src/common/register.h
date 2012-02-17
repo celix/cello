@@ -3,6 +3,8 @@
 
 #include <string>
 #include <map>
+#include "common/singleton.h"
+
 using std::string;
 using std::map;
 
@@ -10,12 +12,13 @@ typedef void* (*ClassFunc)();
 
 class Class {
 public:
-    static void* NewInstance(const string& name);
-    static void RegistClass(const string& name, ClassFunc func);
+    void* NewInstance(const string& name);
+    void RegistClass(const string& name, ClassFunc func);
 private:
-    static map<string, ClassFunc> m_fmap;
+    map<string, ClassFunc> m_fmap;
 };
 
+#define ClassInstance Singleton<Class>::Instance()
 
 class Register {
 public:
@@ -23,7 +26,7 @@ public:
 };
 
 #define REGISTER_CLASS(class_name) \
-    class class_name##Register : public Class { \
+    class class_name##Register { \
         public: \
             static void* Instance() { \
                 return new class_name; \
