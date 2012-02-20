@@ -86,7 +86,7 @@ int Container::Init() {
     }
     m_work_diectory = path;
     LOG(INFO) << "create work directory: " << path;
-    if (PolicyMgr::Instance()->Get("Schema") == "Standard") {
+    if (PolicyMgr::Instance()->Get("PoolSchema") == "StandardPool") {
         // get files from dfs to work directory if there is file to download
         if (FetchFiles() < 0)
             return -1;

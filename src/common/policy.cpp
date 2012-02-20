@@ -32,28 +32,28 @@ int Policy::Parse(const string& conf_file) {
     for (unsigned int i = 0; i < node_list->getLength(); ++i) {
         DOMNode* node = node_list->item(i);
         DOMNodeList* child_nodes = node->getChildNodes();
+        string name, value;
+        XMLCh str_name[8], str_value[8];
+        XMLString::transcode("name", str_name, 7);
+        XMLString::transcode("value", str_value, 7);
         for (unsigned int j = 0; j < child_nodes->getLength(); ++j) {
             DOMNode* fnode = child_nodes->item(j);
-            string name, value;
             // get property name
-            XMLCh str_name[8];
-            XMLString::transcode("name", str_name, 7);
             if (XMLString::compareString(fnode->getNodeName(), str_name) == 0) {
                 char* data = XMLString::transcode(fnode->getTextContent());
                 name = data;
                 XMLString::release(&data);
             }
             // get property value
-            XMLCh str_value[8];
-            XMLString::transcode("value", str_value, 7);
             if (XMLString::compareString(fnode->getNodeName(), str_value) == 0) {
                 char* data = XMLString::transcode(fnode->getTextContent());
                 value = data;
                 XMLString::release(&data);
             }
-            // insert the property map
-            m_attr_map[name] = value;
         }
+        // insert the property map
+        if (!name.empty() && !value.empty())
+            m_attr_map[name] = value;
     }
     delete parser;
     XMLPlatformUtils::Terminate();

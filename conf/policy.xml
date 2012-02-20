@@ -1,0 +1,25 @@
+<configuration>
+
+  <property>
+    <name>FileSystem</name>
+    <value>HdfsFileSytem</value>
+    <description>filesystem for storing file
+    </description>    
+  </property>
+  
+  <property>
+    <name>Scheduler</name>
+    <value>FifoScheduler</value>
+    <description>schedule policy for scheduler, the 
+    </description>    
+  </property>
+
+  <property>
+    <name>PoolSchema</name>
+    <value>AutoScalePool</value>
+    <description>schedule schema of scheduler
+    </description>
+  </property>
+  
+  
+</configuration>
