@@ -3,10 +3,6 @@ INCLUDE_DIRECTORIES(
     ${THRIFT_INCLUDE_PATH}
     ${JNI_INCLUDE_DIRS}
     ${SRC}/)
-
-# get jvm library directory
-STRING(REGEX REPLACE "([^\n]+/)[^\n/]+$" "\\1" JVM_LIBRARAY_DIR "${JAVA_JVM_LIBRARY}")
-
 LINK_DIRECTORIES(${JVM_LIBRARAY_DIR})
 
 ADD_SUBDIRECTORY(scheduler)

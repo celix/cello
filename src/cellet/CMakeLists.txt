@@ -77,11 +77,12 @@ TARGET_LINK_LIBRARIES(cellet gflags)
 TARGET_LINK_LIBRARIES(cellet classad)
 TARGET_LINK_LIBRARIES(cellet lxc)
 TARGET_LINK_LIBRARIES(cellet hdfs)
+TARGET_LINK_LIBRARIES(cellet jvm)
 TARGET_LINK_LIBRARIES(cellet xerces-c)
 
 TARGET_LINK_LIBRARIES(system_test gtest pthread)
 
-TARGET_LINK_LIBRARIES(container_test gtest pthread glog lxc gflags hdfs xerces-c)
+TARGET_LINK_LIBRARIES(container_test gtest pthread glog lxc gflags hdfs xerces-c jvm)
 
 INSTALL(TARGETS cellet RUNTIME DESTINATION bin)
 INSTALL(TARGETS system_test RUNTIME DESTINATION test/cellet)
