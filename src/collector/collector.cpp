@@ -4,9 +4,11 @@
 #include "collector/collector.h"
 #include "collector/monitor.h"
 #include "common/rpc.h"
+#include "common/policy.h"
 
 DEFINE_int32(port, 9998, "collector port");
 DEFINE_string(scheduler_endpoint, "10.5.0.170:9997", "scheduler endpoint");
+DEFINE_string(policy_file, "", "policy configuration file path");
 
 int main(int argc, char ** argv) {
 
@@ -23,8 +25,10 @@ int main(int argc, char ** argv) {
     google::SetLogDestination(google::ERROR, "../log/collector_error_");
     google::SetLogDestination(google::FATAL, "../log/collector_fatal_");
     LOG(INFO) << "begin collector";
-    // start the monitor
-    MonitorMgr::Instance()->Start();
+   
+    if (PolicyMgr::Instance()->Get("PoolSchema") == "AutoScalePool")
+        // start the monitor
+        MonitorMgr::Instance()->Start();
    
     Rpc<Collector, CollectorProcessor>::Listen(FLAGS_port);
     

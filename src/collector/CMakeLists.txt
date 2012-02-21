@@ -4,7 +4,6 @@ SET(COLLECTOR_THRIFT_SOURCE
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/Collector.h
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_types.h
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_constants.h
-    #    ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/Collector_server.skeleton.cpp  
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/Collector.cpp
     ${THRIFT_SOURCE_PREFIX}/collector/gen-cpp/collector_types.cpp)
 
@@ -13,7 +12,6 @@ SET(SCHEDULER_THRIFT_SOURCE
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler.h
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_types.h
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_constants.h
-    #    ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler_server.skeleton.cpp  
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/Scheduler.cpp
     ${THRIFT_SOURCE_PREFIX}/scheduler/gen-cpp/scheduler_types.cpp)
 
@@ -32,7 +30,8 @@ ADD_CUSTOM_COMMAND (
 SET(COMMON_SOURCE
     ../common/block_queue.cpp
     ../common/cond.cpp
-    ../common/thread.cpp)
+    ../common/thread.cpp
+    ../common/policy.cpp)
 
 SET(SRC
     ${COLLECTOR_THRIFT_SOURCE}
@@ -59,6 +58,7 @@ TARGET_LINK_LIBRARIES(collector thrift)
 TARGET_LINK_LIBRARIES(collector gflags)
 TARGET_LINK_LIBRARIES(collector gflags)
 TARGET_LINK_LIBRARIES(collector classad)
+TARGET_LINK_LIBRARIES(collector xerces-c)
 
 TARGET_LINK_LIBRARIES(cellet_mock thrift)
 TARGET_LINK_LIBRARIES(cellet_mock pthread)
