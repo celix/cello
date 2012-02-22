@@ -1,0 +1,209 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+A	fork_test.cpp	/^class A {$/;"	c	file:
+BlockQueue	block_queue.h	/^            BlockQueue() {$/;"	f	class:cello::BlockQueue
+BlockQueue	block_queue.h	/^    class BlockQueue {$/;"	c	namespace:cello
+CheckError	cond.cpp	/^void cello::Cond::CheckError(const char* info, int code) {$/;"	f	class:cello::Cond
+CheckError	message_queue.cpp	/^void cello::MessageQueue::CheckError(const char* info, int code) {$/;"	f	class:cello::MessageQueue
+CheckError	mutex.h	/^            void CheckError(const char* info, int err_code) {$/;"	f	class:cello::Mutex
+CheckError	rwlock.h	/^            void CheckError(const char* info, int code) {$/;"	f	class:cello::RWLock
+Class	register.h	/^class Class {$/;"	c
+ClassFunc	register.h	/^typedef void* (*ClassFunc)();$/;"	t
+Cond	cond.cpp	/^cello::Cond::Cond() {$/;"	f	class:cello::Cond
+Cond	cond.h	/^    class Cond {$/;"	c	namespace:cello
+Connect	hdfs_filesystem.cpp	/^int HdfsFileSytem::Connect(const string& ip, int port) {$/;"	f	class:HdfsFileSytem
+CopyFromDfsToLocal	hdfs_filesystem.cpp	/^int HdfsFileSytem::CopyFromDfsToLocal(const string& src_path,$/;"	f	class:HdfsFileSytem
+CopyFromLocalToDfs	hdfs_filesystem.cpp	/^int HdfsFileSytem::CopyFromLocalToDfs(const string& src_path,$/;"	f	class:HdfsFileSytem
+CreateArgArray	string_utility.h	/^    static char ** CreateArgArray(const vector<string>& source) {$/;"	f	class:StringUtility
+DEFAULT_THREAD_NUM	rpc.h	/^    enum {DEFAULT_THREAD_NUM = 2};$/;"	e	enum:Rpc::__anon3
+Delete	pool.h	/^    virtual void Delete(const Key& name) {$/;"	f	class:Pool
+DestoryArgArray	string_utility.h	/^    static void DestoryArgArray(char ** source) {$/;"	f	class:StringUtility
+Disconnect	hdfs_filesystem.cpp	/^void HdfsFileSytem::Disconnect() {$/;"	f	class:HdfsFileSytem
+DoStart	thread.cpp	/^void cello::Thread::DoStart() {$/;"	f	class:cello::Thread
+ETH_NAME	get_ip.h	16;"	d
+Entry	thread.cpp	/^void* cello::Thread::Entry(void* in_thread) {$/;"	f	class:cello::Thread
+Fetch	block_queue_test.cpp	/^void* Fetch(void* unused) {$/;"	f
+FileSystem	filesystem.h	/^class FileSystem {$/;"	c
+Find	pool.h	/^    virtual bool Find(const Key& key) {$/;"	f	class:Pool
+FindToDo	pool.h	/^    virtual bool FindToDo(const Key& key, PoolFunc func) {$/;"	f	class:Pool
+Foo	register_test.cpp	/^    Foo() : m_value(10) {$/;"	f	class:Foo
+Foo	register_test.cpp	/^REGISTER_CLASS(Foo);$/;"	v
+Foo	register_test.cpp	/^class Foo {$/;"	c	file:
+Func	pool_test.cpp	/^void Func(int n) {$/;"	f
+Get	message_queue.h	/^                char* Get() const {$/;"	f	struct:cello::MessageQueue::Message
+Get	policy.cpp	/^string Policy::Get(const string& name) {$/;"	f	class:Policy
+GetIP	get_ip.h	/^string GetIP() {$/;"	f
+GetProxy	rpc.h	/^    static Proxy<T> GetProxy(const string& endpoint, int timeout = TIME_OUT) {$/;"	f	class:Rpc
+HdfsFileSytem	hdfs_filesystem.h	/^    HdfsFileSytem(): m_handler(0) {}$/;"	f	class:HdfsFileSytem
+HdfsFileSytem	hdfs_filesystem.h	/^REGISTER_CLASS(HdfsFileSytem);$/;"	v
+HdfsFileSytem	hdfs_filesystem.h	/^class HdfsFileSytem : public FileSystem {$/;"	c
+Init	fork_test.cpp	/^    void Init() {$/;"	f	class:Test
+Insert	pool.h	/^    virtual void Insert(const Key& key, const Value& value) {$/;"	f	class:Pool
+Instance	singleton.h	/^    static T* Instance() {$/;"	f	class:Singleton
+IsRunning	thread.h	/^            bool IsRunning() {$/;"	f	class:cello::Thread
+Join	thread.cpp	/^bool cello::Thread::Join() {$/;"	f	class:cello::Thread
+Listen	rpc.h	/^    static void Listen(int port) {$/;"	f	class:Rpc
+Lock	mutex.h	/^            void Lock() {$/;"	f	class:cello::Mutex
+MAXLEN	message_queue.h	/^            enum {MAXLEN = 256};$/;"	e	enum:cello::MessageQueue::__anon1
+MapToDo	pool.h	/^    virtual void MapToDo(PoolFunc func) {$/;"	f	class:Pool
+Message	message_queue.h	/^                Message() : type(QUEUE_TYPE) {$/;"	f	struct:cello::MessageQueue::Message
+Message	message_queue.h	/^                Message(const char* ptr) : type(QUEUE_TYPE) {$/;"	f	struct:cello::MessageQueue::Message
+Message	message_queue.h	/^                Message(const string& ss) : type(QUEUE_TYPE) {$/;"	f	struct:cello::MessageQueue::Message
+Message	message_queue.h	/^            struct Message {$/;"	s	class:cello::MessageQueue
+MessageQueue	message_queue.cpp	/^cello::MessageQueue::MessageQueue(key_t key): m_key(key), m_id(0) {$/;"	f	class:cello::MessageQueue
+MessageQueue	message_queue.h	/^    class MessageQueue {$/;"	c	namespace:cello
+Mgr	fork_test.cpp	/^typedef Singleton<Test> Mgr;$/;"	t	file:
+Mutex	mutex.h	/^            Mutex() {$/;"	f	class:cello::Mutex
+Mutex	mutex.h	/^    class Mutex {$/;"	c	namespace:cello
+MutexLocker	mutex.h	/^            explicit MutexLocker(Mutex& mutex) : m_mutex(&mutex) {$/;"	f	class:cello::MutexLocker
+MutexLocker	mutex.h	/^    class MutexLocker {$/;"	c	namespace:cello
+NewInstance	register.cpp	/^void* Class::NewInstance(const string& name) {$/;"	f	class:Class
+Parse	policy.cpp	/^int Policy::Parse(const string& conf_file) {$/;"	f	class:Policy
+Policy	policy.h	/^class Policy {$/;"	c
+PolicyMgr	policy.h	/^typedef Singleton<Policy> PolicyMgr;$/;"	t
+Pool	pool.h	/^class Pool {$/;"	c
+PoolFunc	pool.h	/^    typedef function<void(Value value)> PoolFunc;$/;"	t	class:Pool
+PopFront	block_queue.h	/^            void PopFront(T* value) {$/;"	f	class:cello::BlockQueue
+PopFront	block_queue.h	/^            void PopFront(T* value, size_t timeout) {$/;"	f	class:cello::BlockQueue
+Proxy	rpc.h	/^    Proxy(const T& client, const shared_ptr<TTransport>& connector)$/;"	f	class:Proxy
+Proxy	rpc.h	/^class Proxy {$/;"	c
+Push	block_queue_test.cpp	/^void* Push(void* unused) {$/;"	f
+PushBack	block_queue.h	/^            void PushBack(const T& element) {$/;"	f	class:cello::BlockQueue
+QUEUE_TYPE	message_queue.h	/^            enum {QUEUE_TYPE = 1};$/;"	e	enum:cello::MessageQueue::__anon2
+REGISTER_CLASS	register.h	25;"	d
+RWLock	rwlock.h	/^            RWLock() {$/;"	f	class:cello::RWLock
+RWLock	rwlock.h	/^    class RWLock {$/;"	c	namespace:cello
+ReadLock	rwlock.h	/^            void ReadLock() {$/;"	f	class:cello::RWLock
+ReadLocker	rwlock.h	/^            explicit ReadLocker(RWLock& rwlock) : m_rwlock(&rwlock) {$/;"	f	class:cello::ReadLocker
+ReadLocker	rwlock.h	/^    class ReadLocker {$/;"	c	namespace:cello
+Receive	message_queue.cpp	/^void cello::MessageQueue::Receive(void* data) {$/;"	f	class:cello::MessageQueue
+RegistClass	register.cpp	/^void Class::RegistClass(const string& name, ClassFunc func) {$/;"	f	class:Class
+Register	register.cpp	/^Register::Register(const string& name, ClassFunc func) {$/;"	f	class:Register
+Register	register.h	/^class Register {$/;"	c
+Rpc	rpc.h	/^class Rpc {$/;"	c
+SRC_COMMON_BLOCK_QUEUE_H	block_queue.h	2;"	d
+SRC_COMMON_COND_H	cond.h	2;"	d
+SRC_COMMON_MESSAGE_QUEUE_H	message_queue.h	2;"	d
+SRC_COMMON_MUTEX_H	mutex.h	2;"	d
+SRC_COMMON_POLICY_H	policy.h	2;"	d
+SRC_COMMON_POOL_H	pool.h	2;"	d
+SRC_COMMON_REGISTER_H	register.h	2;"	d
+SRC_COMMON_RPC_H	rpc.h	2;"	d
+SRC_COMMON_RWLOCK_H	rwlock.h	2;"	d
+SRC_COMMON_STRING_UTILITY_H	string_utility.h	2;"	d
+SRC_COMMON_THREAD_H	thread.h	2;"	d
+SRC_INCLUDE_GET_IP_H	get_ip.h	2;"	d
+SRC_INCLUDE_SINGLETON_H	singleton.h	2;"	d
+SRC_TOOLS_FILESYSTEM_H	filesystem.h	2;"	d
+SRC_TOOLS_HDFS_FILESYSTEM_H	hdfs_filesystem.h	2;"	d
+Send	message_queue.cpp	/^void cello::MessageQueue::Send(void* data) {$/;"	f	class:cello::MessageQueue
+SendFunc	message_queue_test.cpp	/^void* SendFunc(void* args) {$/;"	f
+Signal	cond.cpp	/^void cello::Cond::Signal() {$/;"	f	class:cello::Cond
+Singleton	singleton.h	/^class Singleton {$/;"	c
+Size	block_queue.h	/^            int Size() {$/;"	f	class:cello::BlockQueue
+Size	pool.h	/^    virtual int Size() {$/;"	f	class:Pool
+Split	string_utility.h	/^    static void Split(const string& str, char ch, vector<string>* result) {$/;"	f	class:StringUtility
+Start	thread.cpp	/^bool cello::Thread::Start() {$/;"	f	class:cello::Thread
+Str	singleton_test.cpp	/^struct Str {$/;"	s	file:
+StringUtility	string_utility.h	/^class StringUtility {$/;"	c
+TEST	block_queue_test.cpp	/^TEST(TestQueue, Normal) {$/;"	f
+TEST	get_ip_test.cpp	/^TEST(TestGetIP, All) {$/;"	f
+TEST	hdfs_filesystem_test.cpp	/^TEST(NormalTest, Copy) {$/;"	f
+TEST	message_queue_test.cpp	/^TEST(NormalTest, All) {$/;"	f
+TEST	message_queue_test.cpp	/^TEST(ThreadTest, All) {$/;"	f
+TEST	mutex_test.cpp	/^TEST(TestLock, All) {$/;"	f
+TEST	mutex_test.cpp	/^TEST(TestLocker, All) {$/;"	f
+TEST	pool_test.cpp	/^TEST(FunctionTest, All) {$/;"	f
+TEST	pool_test.cpp	/^TEST(SimpleTest, All) {$/;"	f
+TEST	register_test.cpp	/^TEST(NormalTest, All) {$/;"	f
+TEST	rwlock_test.cpp	/^TEST(TestLock, ALl) {$/;"	f
+TEST	rwlock_test.cpp	/^TEST(TestRead, All) {$/;"	f
+TEST	rwlock_test.cpp	/^TEST(TestWrite, ALl) {$/;"	f
+TEST	singleton_test.cpp	/^TEST(NormalTest, All) {$/;"	f
+TEST	string_utility_test.cpp	/^TEST(ArrayTest, All) {$/;"	f
+TEST	string_utility_test.cpp	/^TEST(TestSplit, All) {$/;"	f
+Terminate	thread.cpp	/^void cello::Thread::Terminate() {$/;"	f	class:cello::Thread
+Test	fork_test.cpp	/^class Test {$/;"	c	file:
+Thread	thread.h	/^            Thread(): m_entry(NULL),$/;"	f	class:cello::Thread
+Thread	thread.h	/^            Thread(ThreadFunc entry, void* context = NULL, unsigned long long param = 0):$/;"	f	class:cello::Thread
+Thread	thread.h	/^    class Thread {$/;"	c	namespace:cello
+ThreadFunc	thread.h	/^            typedef function<void()> ThreadFunc;$/;"	t	class:cello::Thread
+Unlock	mutex.h	/^            void Unlock() {$/;"	f	class:cello::Mutex
+Unlock	rwlock.h	/^            void Unlock() {$/;"	f	class:cello::RWLock
+Value	register_test.cpp	/^    int Value() {$/;"	f	class:Foo
+Wait	cond.cpp	/^int cello::Cond::Wait(Mutex& mutex, size_t timeout) {$/;"	f	class:cello::Cond
+Wait	cond.cpp	/^void cello::Cond::Wait(Mutex& mutex) {$/;"	f	class:cello::Cond
+WriteLock	rwlock.h	/^            void WriteLock() {$/;"	f	class:cello::RWLock
+WriteLocker	rwlock.h	/^            explicit WriteLocker(RWLock& rwlock) : m_rwlock(&rwlock) {$/;"	f	class:cello::WriteLocker
+WriteLocker	rwlock.h	/^    class WriteLocker {$/;"	c	namespace:cello
+cello	block_queue.h	/^namespace cello {$/;"	n
+cello	cond.h	/^namespace cello {$/;"	n
+cello	message_queue.h	/^namespace cello {$/;"	n
+cello	mutex.h	/^namespace cello {$/;"	n
+cello	rwlock.h	/^namespace cello {$/;"	n
+cello	thread.h	/^namespace cello {$/;"	n
+content	message_queue.h	/^                mutable char content[MAXLEN];$/;"	m	struct:cello::MessageQueue::Message
+get_ip	get_ip.h	/^int get_ip(char * ip)$/;"	f
+m	fork_test.cpp	/^    int m;$/;"	m	class:A	file:
+m	singleton_test.cpp	/^    int m;$/;"	m	struct:Str	file:
+m_attr_map	policy.h	/^    map<string, string> m_attr_map;    $/;"	m	class:Policy
+m_client	rpc.h	/^    T m_client;$/;"	m	class:Proxy
+m_cond	cond.h	/^            pthread_cond_t m_cond;$/;"	m	class:cello::Cond
+m_connector	rpc.h	/^    shared_ptr<TTransport> m_connector;$/;"	m	class:Proxy
+m_context	thread.h	/^            void* m_context;$/;"	m	class:cello::Thread
+m_empty	block_queue.h	/^            Cond* m_empty;$/;"	m	class:cello::BlockQueue
+m_entry	thread.h	/^            ThreadFunc m_entry;$/;"	m	class:cello::Thread
+m_fmap	register.cpp	/^map<string, ClassFunc> Class::m_fmap;$/;"	m	class:Class	file:
+m_fmap	register.h	/^    static map<string, ClassFunc> m_fmap;$/;"	m	class:Class
+m_handler	hdfs_filesystem.h	/^    hdfsFS m_handler;$/;"	m	class:HdfsFileSytem
+m_id	message_queue.h	/^            int m_id;$/;"	m	class:cello::MessageQueue
+m_id	thread.h	/^            pthread_t m_id;$/;"	m	class:cello::Thread
+m_instance	singleton.h	/^    static T* m_instance;$/;"	m	class:Singleton
+m_instance	singleton.h	/^T* Singleton<T>::m_instance = NULL;$/;"	m	class:Singleton
+m_is_running	thread.h	/^            bool m_is_running;$/;"	m	class:cello::Thread
+m_key	message_queue.h	/^            key_t m_key;$/;"	m	class:cello::MessageQueue
+m_lock	mutex.h	/^            pthread_mutex_t m_lock;$/;"	m	class:cello::Mutex
+m_lock	pool.h	/^    RWLock m_lock;$/;"	m	class:Pool
+m_lock	rwlock.h	/^            pthread_rwlock_t m_lock;$/;"	m	class:cello::RWLock
+m_lock	singleton.h	/^    static cello::Mutex m_lock;$/;"	m	class:Singleton
+m_lock	singleton.h	/^cello::Mutex Singleton<T>::m_lock;$/;"	m	class:Singleton
+m_mutex	block_queue.h	/^            Mutex* m_mutex;$/;"	m	class:cello::BlockQueue
+m_mutex	mutex.h	/^            cello::Mutex* m_mutex;$/;"	m	class:cello::MutexLocker
+m_param	thread.h	/^            unsigned long long m_param;$/;"	m	class:cello::Thread
+m_pool	pool.h	/^    map<Key, Value> m_pool;$/;"	m	class:Pool
+m_ptr	fork_test.cpp	/^    A* m_ptr;$/;"	m	class:Test	file:
+m_queue	block_queue.h	/^            list<T> m_queue;$/;"	m	class:cello::BlockQueue
+m_rwlock	rwlock.h	/^            RWLock* m_rwlock;$/;"	m	class:cello::ReadLocker
+m_rwlock	rwlock.h	/^            RWLock* m_rwlock;$/;"	m	class:cello::WriteLocker
+m_value	register_test.cpp	/^    int m_value;$/;"	m	class:Foo	file:
+main	block_queue_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+main	fork_test.cpp	/^int main() {$/;"	f
+main	get_ip_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+main	hdfs_filesystem_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+main	hdfs_test.cpp	/^int main () {$/;"	f
+main	message_queue_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+main	mutex_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+main	pool_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+main	register_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+main	rwlock_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+main	singleton_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+main	string_utility_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
+n	singleton_test.cpp	/^    int n;$/;"	m	struct:Str	file:
+operator ()	rpc.h	/^    T& operator()() {$/;"	f	class:Proxy
+strnewcpy	string_utility.h	/^    static char* strnewcpy(const string& src) {$/;"	f	class:StringUtility
+type	message_queue.h	/^                long int type;$/;"	m	struct:cello::MessageQueue::Message
+~BlockQueue	block_queue.h	/^            ~BlockQueue() {$/;"	f	class:cello::BlockQueue
+~Cond	cond.cpp	/^cello::Cond::~Cond() {$/;"	f	class:cello::Cond
+~FileSystem	filesystem.h	/^    virtual ~FileSystem() {}$/;"	f	class:FileSystem
+~MessageQueue	message_queue.cpp	/^cello::MessageQueue::~MessageQueue() {$/;"	f	class:cello::MessageQueue
+~Mutex	mutex.h	/^            ~Mutex() {$/;"	f	class:cello::Mutex
+~MutexLocker	mutex.h	/^            ~MutexLocker() {$/;"	f	class:cello::MutexLocker
+~Proxy	rpc.h	/^    ~Proxy() {$/;"	f	class:Proxy
+~RWLock	rwlock.h	/^            ~RWLock() {$/;"	f	class:cello::RWLock
+~ReadLocker	rwlock.h	/^            ~ReadLocker() {$/;"	f	class:cello::ReadLocker
+~Thread	thread.h	/^            virtual ~Thread() {}$/;"	f	class:cello::Thread
+~WriteLocker	rwlock.h	/^            ~WriteLocker() {$/;"	f	class:cello::WriteLocker

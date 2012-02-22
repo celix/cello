@@ -30,7 +30,9 @@ int main(int argc, char ** argv) {
     AddContext context;
     if (context.Parse(config_file) < 0)
         return -1;
-    int ret;
+    int ret = -1;
+    // dump framework information
+    context.GetFrameworkInfo().Dump();
     try {
         Proxy<SchedulerClient> proxy =
             Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_master);

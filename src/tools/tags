@@ -3,52 +3,44 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.8	//
-AddContext	add_context.cpp	/^AddContext::AddContext() {$/;"	f	class:AddContext
+!_TAG_PROGRAM_VERSION	5.7	//
+AddContext	add_context.cpp	/^AddContext::AddContext(): Context() {$/;"	f	class:AddContext
 AddContext	add_context.h	/^class AddContext : public Context {$/;"	c
 Configuration	configuration.h	/^class Configuration {$/;"	c
-Connect	hdfs_filesystem.cpp	/^int HdfsFileSytem::Connect(const string& ip, int port) {$/;"	f	class:HdfsFileSytem
+Context	context.h	/^    Context(): m_conf(0), m_filesystem(0) {}$/;"	f	class:Context
 Context	context.h	/^class Context {$/;"	c
-CopyFromDfsToLocal	hdfs_filesystem.cpp	/^int HdfsFileSytem::CopyFromDfsToLocal(const string& src_path,$/;"	f	class:HdfsFileSytem
-CopyFromLocalToDfs	hdfs_filesystem.cpp	/^int HdfsFileSytem::CopyFromLocalToDfs(const string& src_path,$/;"	f	class:HdfsFileSytem
-Disconnect	hdfs_filesystem.cpp	/^void HdfsFileSytem::Disconnect() {$/;"	f	class:HdfsFileSytem
-ErrorMsg	cello_add.cpp	/^void ErrorMsg() {$/;"	f
-ErrorMsg	cello_submit.cpp	/^void ErrorMsg() {$/;"	f
-FileSystem	filesystem.h	/^class FileSystem {$/;"	c
+ErrorMsg	cello_add.cpp	/^void ErrorMsg(char ** argv) {$/;"	f
+ErrorMsg	cello_submit.cpp	/^void ErrorMsg(char ** argv) {$/;"	f
 FrameworkConfiguration	framework_configuration.h	/^class FrameworkConfiguration : public Configuration {$/;"	c
 Get	configuration.cpp	/^any Configuration::Get(const string& attr) {$/;"	f	class:Configuration
-GetFrameworkInfo	add_context.cpp	/^FramekworkInfoWrapper AddContext::GetFrameworkInfo() {$/;"	f	class:AddContext
-HdfsFileSytem	hdfs_filesystem.h	/^    HdfsFileSytem(): m_handler(0) {}$/;"	f	class:HdfsFileSytem
-HdfsFileSytem	hdfs_filesystem.h	/^class HdfsFileSytem : public FileSystem {$/;"	c
+GetFrameworkInfo	add_context.h	/^    FrameworkInfoWrapper GetFrameworkInfo() {$/;"	f	class:AddContext
+GetInfo	framework_configuration.cpp	/^any FrameworkConfiguration::GetInfo() {$/;"	f	class:FrameworkConfiguration
+GetInfo	task_configuration.cpp	/^any TaskConfiguration::GetInfo() {$/;"	f	class:TaskConfiguration
+GetTaskInfo	submit_context.h	/^    TaskInfoWrapper GetTaskInfo() {$/;"	f	class:SubmitContext
 Init	framework_configuration.cpp	/^void FrameworkConfiguration::Init() {$/;"	f	class:FrameworkConfiguration
 Init	task_configuration.cpp	/^void TaskConfiguration::Init() {$/;"	f	class:TaskConfiguration
-Parse	add_context.cpp	/^int AddContext::Parse() {$/;"	f	class:AddContext
-Parse	submit_context.cpp	/^int SubmitContext::Parse() {$/;"	f	class:SubmitContext
+Parse	add_context.cpp	/^int AddContext::Parse(const string& conf_file) {$/;"	f	class:AddContext
+Parse	submit_context.cpp	/^int SubmitContext::Parse(const string& conf_file) {$/;"	f	class:SubmitContext
 SRC_TOOLS_ADD_CONTEXT_H	add_context.h	2;"	d
 SRC_TOOLS_CONFIGURATION_H	configuration.h	2;"	d
 SRC_TOOLS_CONTEXT_H	context.h	2;"	d
-SRC_TOOLS_FILESYSTEM_H	filesystem.h	2;"	d
 SRC_TOOLS_FRAMEWORK_CONFIGURATION_H	framework_configuration.h	2;"	d
-SRC_TOOLS_HDFS_FILESYSTEM_H	hdfs_filesystem.h	2;"	d
 SRC_TOOLS_SUBMIT_CONTEXT_H	submit_context.h	2;"	d
 SRC_TOOLS_TASK_CONFIGURATION_H	task_configuration.h	2;"	d
 SetValue	framework_configuration.cpp	/^bool FrameworkConfiguration::SetValue(DOMNode* node) {$/;"	f	class:FrameworkConfiguration
 SetValue	task_configuration.cpp	/^bool TaskConfiguration::SetValue(DOMNode* node) {$/;"	f	class:TaskConfiguration
 SubmitContext	submit_context.cpp	/^SubmitContext::SubmitContext() {$/;"	f	class:SubmitContext
 SubmitContext	submit_context.h	/^class SubmitContext : public Context {$/;"	c
-TEST	hdfs_filesystem_test.cpp	/^TEST(NormalTest, Copy) {$/;"	f
 TaskConfiguration	task_configuration.h	/^class TaskConfiguration : public Configuration {$/;"	c
 TransferFiles	submit_context.cpp	/^int SubmitContext::TransferFiles() {$/;"	f	class:SubmitContext
+dfs_ip	submit_context.cpp	/^DECLARE_string(dfs_ip);$/;"	v
+dfs_port	submit_context.cpp	/^DECLARE_int32(dfs_port);$/;"	v
 m_attr_map	configuration.h	/^    map<string, any> m_attr_map;$/;"	m	class:Configuration
 m_conf	context.h	/^    Configuration* m_conf;$/;"	m	class:Context
 m_filesystem	context.h	/^    FileSystem* m_filesystem;$/;"	m	class:Context
-m_handler	hdfs_filesystem.h	/^    hdfsFS m_handler;$/;"	m	class:HdfsFileSytem
 main	cello_add.cpp	/^int main(int argc, char ** argv) {$/;"	f
 main	cello_submit.cpp	/^int main(int argc, char ** argv) {$/;"	f
-main	hdfs_filesystem_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
-main	hdfs_test.cpp	/^int main () {$/;"	f
 ~AddContext	add_context.cpp	/^AddContext::~AddContext() {$/;"	f	class:AddContext
 ~Configuration	configuration.h	/^    virtual ~Configuration() {}$/;"	f	class:Configuration
 ~Context	context.h	/^    virtual ~Context() {}$/;"	f	class:Context
-~FileSystem	filesystem.h	/^    virtual ~FileSystem() {}$/;"	f	class:FileSystem
 ~SubmitContext	submit_context.cpp	/^SubmitContext::~SubmitContext() {$/;"	f	class:SubmitContext

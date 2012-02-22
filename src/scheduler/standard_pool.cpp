@@ -8,6 +8,7 @@
 #include <glog/logging.h>
 #include "scheduler/standard_pool.h"
 #include "scheduler/standard_framework.h"
+#include "common/xml_handler.h"
 
 using cello::ReadLocker;
 using cello::WriteLocker;
@@ -34,6 +35,8 @@ int StandardPool::Init(const string& conf_file) {
     DOMNodeList* node_list = pdocument->getElementsByTagName(str_frame);
     for (unsigned int i = 0; i < node_list->getLength(); ++i) {
         DOMNode* node = node_list->item(i);
+        // remove all the empty text node
+        XmlHandler::RemoveEmptyTextNode(node);
         DOMNodeList* child_nodes = node->getChildNodes();
         string framework_name;
         int quota;

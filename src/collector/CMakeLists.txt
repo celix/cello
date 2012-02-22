@@ -31,7 +31,8 @@ SET(COMMON_SOURCE
     ../common/block_queue.cpp
     ../common/cond.cpp
     ../common/thread.cpp
-    ../common/policy.cpp)
+    ../common/policy.cpp
+    ../common/xml_handler.cpp)
 
 SET(SRC
     ${COLLECTOR_THRIFT_SOURCE}

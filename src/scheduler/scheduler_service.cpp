@@ -59,6 +59,7 @@ void SchedulerService::LogInfo(const TaskInfo& task_info) {
 int32_t SchedulerService::AddFramework(const FrameworkInfo& info) {
     LOG(INFO) << "add framework:";
     FrameworkInfoWrapper wrapper(info);
+    wrapper.Log();
     return (ComponentsMgr::Instance()->GetPool())->AddFramework(wrapper);
 }
 

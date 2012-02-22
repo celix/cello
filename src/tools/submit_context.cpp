@@ -12,6 +12,7 @@
 #include "include/type.h"
 #include "common/register.h"
 #include "common/policy.h"
+#include "common/xml_handler.h"
 
 #include <vector>
 
@@ -59,6 +60,7 @@ int SubmitContext::Parse(const string& conf_file) {
     DOMNodeList* node_list = pdocument->getElementsByTagName(str_frame);
     for (unsigned int i = 0; i < node_list->getLength(); ++i) {
         DOMNode* node = node_list->item(i);
+        XmlHandler::RemoveEmptyTextNode(node);
         DOMNodeList* child_nodes = node->getChildNodes();
         for (unsigned int j = 0; j < child_nodes->getLength(); ++j)
             // set configuration attr value

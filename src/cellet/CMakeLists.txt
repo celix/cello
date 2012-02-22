@@ -47,6 +47,7 @@ SET(COMMON_SOURCE
     ../common/hdfs_filesystem.cpp
     ../common/register.cpp
     ../common/policy.cpp
+    ../common/xml_handler.cpp
     ../proxy/collector_wrapper.cpp)
 
 SET(SRC

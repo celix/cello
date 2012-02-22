@@ -35,7 +35,11 @@ public:
     int GetQuota() const {
         return m_info.quota;
     }
+    
     TaskInfo GetTaskInfo() const;
+
+    void Dump() const;
+    void Log() const;
     
 private:
     FrameworkInfo m_info;

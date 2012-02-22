@@ -42,6 +42,22 @@ public:
             delete [] source[i];
         delete [] source;
     }
+
+    static string Trim(const string& source) {
+        if (source.empty())
+            return source;
+        int len = source.length();
+        int beg, end;
+        for (beg = 0; beg < len; ++beg)
+            if (!isspace((unsigned char)source[beg]))
+                break;
+        for (end = len - 1; end > 0; --end)
+            if (!isspace((unsigned char)source[end]))
+                break;
+        if (beg > end)
+            return "";
+        return source.substr(beg, end - beg + 1);
+    }
 };
 
 #endif

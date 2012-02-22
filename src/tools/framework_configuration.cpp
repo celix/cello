@@ -29,36 +29,40 @@ bool FrameworkConfiguration::SetValue(DOMNode* node) {
     for(map<string, any>::iterator it = m_attr_map.begin();
         it != m_attr_map.end(); ++it) {
         XMLCh tmp[64];
-        XMLString::transcode((it->first).c_str(), tmp, 64);
-        if (it->first != "arguments") {
-            if (XMLString::compareString(node->getNodeName(), tmp) == 0) {
+        XMLString::transcode((it->first).c_str(), tmp, 63);
+        if (XMLString::compareString(node->getNodeName(), tmp) == 0) {
+            // deal with node without children
+            if (node->getChildNodes()->getLength() == 1) {
                 char* value = XMLString::transcode(node->getTextContent());
-                if (it->second.type() == typeid(string))
-                        it->second = value;
-                else if (it->second.type() == typeid(int))
-                        it->second = atoi(value);
-                else if (it->second.type() == typeid(double))
-                        it->second = atof(value);
-                else
+                if (it->second.type() == typeid(string)) {
+                    string ss = value;
+                    it->second = ss;
+                } else if (it->second.type() == typeid(int)) {
+                    it->second = atoi(value);
+                } else if (it->second.type() == typeid(double)) {
+                    it->second = atof(value);
+                } else {
                     LOG(ERROR) << "invalid type " << it->second.type().name()
                                << " of " << it->first;
+                }
                 // free memory
                 XMLString::release(&value);
                 return true;
+            } else if (node->getChildNodes()->getLength() > 1){
+                string tmp;
+                // deal with arguments in particular
+                DOMNodeList* child_nodes = node->getChildNodes();
+                for (unsigned int j = 0; j < child_nodes->getLength(); ++j) {
+                    DOMNode* fnode = child_nodes->item(j);
+                    char* value = XMLString::transcode(fnode->getTextContent());
+                    tmp += value;
+                    // space as seperator
+                    tmp += " ";
+                    XMLString::release(&value);
+                }
+                it->second = tmp;
+                return true;
             }
-        } else {
-            string tmp;
-            // deal with arguments in particular
-            DOMNodeList* child_nodes = node->getChildNodes();
-            for (unsigned int j = 0; j < child_nodes->getLength(); ++j) {
-                DOMNode* fnode = child_nodes->item(j);
-                char* value = XMLString::transcode(fnode->getTextContent());
-                tmp += value;
-                // space as seperator
-                tmp += " ";
-                XMLString::release(&value);
-            }
-            it->second = tmp;
         }
     }
     return false;

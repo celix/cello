@@ -7,6 +7,7 @@
 #include <glog/logging.h>
 #include "tools/add_context.h"
 #include "tools/framework_configuration.h"
+#include "common/xml_handler.h"
 
 using xercesc::DOMNode;
 using xercesc::DOMNodeList;
@@ -41,6 +42,8 @@ int AddContext::Parse(const string& conf_file) {
     DOMNodeList* node_list = pdocument->getElementsByTagName(str_frame);
     for (unsigned int i = 0; i < node_list->getLength(); ++i) {
         DOMNode* node = node_list->item(i);
+        // remove all the empty text node
+        XmlHandler::RemoveEmptyTextNode(node);
         DOMNodeList* child_nodes = node->getChildNodes();
         for (unsigned int j = 0; j < child_nodes->getLength(); ++j)
             // set configuration attr value

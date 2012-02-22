@@ -7,6 +7,8 @@
 #include <glog/logging.h>
 
 #include "common/policy.h"
+#include "common/xml_handler.h"
+
 using xercesc::DOMNode;
 using xercesc::DOMNodeList;
 using xercesc::DOMDocument;
@@ -31,6 +33,8 @@ int Policy::Parse(const string& conf_file) {
     DOMNodeList* node_list = pdocument->getElementsByTagName(str_frame);
     for (unsigned int i = 0; i < node_list->getLength(); ++i) {
         DOMNode* node = node_list->item(i);
+        // remove all the empty text node
+        XmlHandler::RemoveEmptyTextNode(node);
         DOMNodeList* child_nodes = node->getChildNodes();
         string name, value;
         XMLCh str_name[8], str_value[8];

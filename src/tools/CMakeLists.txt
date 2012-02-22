@@ -18,13 +18,15 @@ SET(WRAPPER_SOURCE ../proxy/scheduler_wrapper.cpp)
 SET(COMMON_SOURCE
     ../common/hdfs_filesystem.cpp
     ../common/register.cpp
-    ../common/policy.cpp)
+    ../common/policy.cpp
+    ../common/xml_handler.cpp)
 
 SET(CELLO_ADD
     cello_add.cpp
     configuration.cpp
     framework_configuration.cpp
     add_context.cpp
+    ../common/xml_handler.cpp
     ${WRAPPER_SOURCE}
     ${SCHEDULER_THRIFT_SOURCE})
 

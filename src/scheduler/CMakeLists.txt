@@ -45,7 +45,8 @@ SET(COMMON_SOURCE
     ../common/cond.cpp
     ../common/block_queue.cpp
     ../common/policy.cpp
-    ../common/register.cpp)
+    ../common/register.cpp
+    ../common/xml_handler.cpp)
 
 SET(WRAPPER_SOURCE ../proxy/scheduler_wrapper.cpp)
 

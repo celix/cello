@@ -32,37 +32,39 @@ bool TaskConfiguration::SetValue(DOMNode* node) {
         it != m_attr_map.end(); ++it) {
         XMLCh tmp[64];
         XMLString::transcode((it->first).c_str(), tmp, 64);
-        if (it->first != "arguments" ||
-            it->first != "transfer_file" ||
-            it->first != "candidate_ips") {
-            if (XMLString::compareString(node->getNodeName(), tmp) == 0) {
+        if (XMLString::compareString(node->getNodeName(), tmp) == 0) {
+            // deal with node without children
+            if (node->getChildNodes()->getLength() == 0) {
                 char* value = XMLString::transcode(node->getTextContent());
-                if (it->second.type() == typeid(string))
-                        it->second = value;
-                else if (it->second.type() == typeid(int))
-                        it->second = atoi(value);
-                else if (it->second.type() == typeid(double))
-                        it->second = atof(value);
-                else
+                if (it->second.type() == typeid(string)) {
+                    string ss = value;
+                    it->second = value;
+                } else if (it->second.type() == typeid(int)) {
+                    it->second = atoi(value);
+                } else if (it->second.type() == typeid(double)) {
+                    it->second = atof(value);
+                } else {
                     LOG(ERROR) << "invalid type " << it->second.type().name()
                                << " of " << it->first;
+                }
                 // free memory
                 XMLString::release(&value);
                 return true;
+            } else {
+                string tmp;
+                // deal with arguments in particular
+                DOMNodeList* child_nodes = node->getChildNodes();
+                for (unsigned int j = 0; j < child_nodes->getLength(); ++j) {
+                    DOMNode* fnode = child_nodes->item(j);
+                    char* value = XMLString::transcode(fnode->getTextContent());
+                    tmp += value;
+                    // space as seperator
+                    tmp += " ";
+                    XMLString::release(&value);
+                }
+                it->second = tmp;
+                return true;
             }
-        } else {
-            string tmp;
-            // deal with arguments in particular
-            DOMNodeList* child_nodes = node->getChildNodes();
-            for (unsigned int j = 0; j < child_nodes->getLength(); ++j) {
-                DOMNode* fnode = child_nodes->item(j);
-                char* value = XMLString::transcode(fnode->getTextContent());
-                tmp += value;
-                // space as seperator
-                tmp += " ";
-                XMLString::release(&value);
-            }
-            it->second = tmp;
         }
     }
     return false;
