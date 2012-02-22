@@ -12,6 +12,6 @@
             <arg>tasktracker</arg>
         </arguments>
         <cpu>0.5</cpu>
-        <memory>500</memory>
+        <memory>300</memory>
 	</framework>
 </configuration>

@@ -1,4 +1,5 @@
 #include "scheduler/autoscale_framework.h"
+#include "scheduler/task_pool.h"
 
 AutoScaleFramework::AutoScaleFramework(const FrameworkInfoWrapper& info) :
     Framework(info.GetName(),
@@ -8,6 +9,8 @@ AutoScaleFramework::AutoScaleFramework(const FrameworkInfoWrapper& info) :
 void AutoScaleFramework::Init() {
     // add an executor in the queue
     TaskPtr task(new Task(m_executor_info));
+    // insert the task into pool and buffer
+    Pool::Instance()->Insert(task);
     m_wait_queue.PushBack(task);
 }
 

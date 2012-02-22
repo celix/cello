@@ -246,8 +246,8 @@ int Container::GetMemory() {
         memory = value / (1024 * 1024);
     else
         memory = 0;
-    DLOG(INFO) << "framework:" << m_info.framework_name
-               << " used memory:" << memory;
+    LOG(INFO) << "framework:" << m_info.framework_name
+              << " used memory:" << memory << "M";
     return memory;
 }
 
@@ -279,8 +279,8 @@ double Container::GetCpuUsage() {
         DLOG(ERROR) << "Get cpu time error";
         cpu_usage = 0.0;
     }
-    DLOG(INFO) << "framework:" << m_info.framework_name
-               << " used cpu usage:" << cpu_usage;
+    LOG(INFO) << "framework:" << m_info.framework_name
+              << " used cpu usage:" << cpu_usage;
     return cpu_usage;
 }
 
