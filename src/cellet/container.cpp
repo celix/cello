@@ -310,6 +310,7 @@ int Container::GetChildrenNum() {
     vector<string> vt;
     StringUtility::Split(res, '\n', &vt);
     free(res);
+    LOG(INFO) << "child process number: " << vt.size() - 2;
     // get rid of title and parent process
     return vt.size() - 2;
 }

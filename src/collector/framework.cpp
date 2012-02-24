@@ -13,9 +13,16 @@ Framework* Framework::CreateFramework() {
     return NULL;
 }
 
+Framework::~Framework() {
+    for (list<Trigger*>::iterator it = m_trigger_list.begin();
+         it != m_trigger_list.end(); ++it)
+        if (*it != NULL)
+            delete *it;
+}
+
 void Framework::Start() {
     // add Slot Trigger by default
-    m_trigger_list.push_back(SLOTTrigger::Instance());
+    m_trigger_list.push_back(new SlotTrigger);
     Thread::ThreadFunc func = bind(&Framework::Entry, this);
     m_thread = new Thread(func);
     m_thread->Start();

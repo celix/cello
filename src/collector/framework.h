@@ -19,6 +19,8 @@ using cello::BlockQueue;
 class Framework {
 public:
     explicit Framework(const string& name): m_name(name) {}  
+    
+    ~Framework();
 
     /// @brief: factory method for creating framework
     static Framework* CreateFramework();

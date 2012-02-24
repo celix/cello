@@ -63,9 +63,4 @@ public:
     bool Operation(const string& name);
 };
 
-typedef shared_ptr<Trigger> TriggerPtr;
-typedef Singleton<CpuTrigger> CPUTrigger;
-typedef Singleton<MemoryTrigger> MEMTrigger;
-typedef Singleton<SlotTrigger> SLOTTrigger;
-
 #endif
