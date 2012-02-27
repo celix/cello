@@ -4,10 +4,11 @@
 
 using std::vector;
 
-ExecutorStatWrapper::ExecutorStatWrapper(const string& name, double cpu,
-                                         int mem, int num) {
+ExecutorStatWrapper::ExecutorStatWrapper(const string& name, int64_t id,
+                                         double cpu, int mem, int num) {
 
         m_stat.fr_name = name,
+        m_stat.task_id = id;
         m_stat.used_cpu = cpu,
         m_stat.used_memory = mem,
         m_stat.task_num = num;
@@ -17,17 +18,18 @@ ExecutorStatWrapper::ExecutorStatWrapper(const string& ss) {
     vector<string> res;
     StringUtility::Split(ss, seperator, &res);
     m_stat.fr_name = res[0];
-    m_stat.used_cpu = atof(res[1].c_str());
-    m_stat.used_memory = atoi(res[2].c_str());
-    m_stat.task_num = atoi(res[3].c_str());
+    m_stat.task_id = atoll(res[1].c_str());
+    m_stat.used_cpu = atof(res[2].c_str());
+    m_stat.used_memory = atoi(res[3].c_str());
+    m_stat.task_num = atoi(res[4].c_str());
 
 }
 
 string ExecutorStatWrapper::ToString() const {
     char data[256] = {0};
-    snprintf(data, sizeof(data), "%s%c%f%c%d%c%d", m_stat.fr_name.c_str(),
-             seperator, m_stat.used_cpu, seperator, m_stat.used_memory,
-             seperator, m_stat.task_num);
+    snprintf(data, sizeof(data), "%s%c%lld%c%f%c%d%c%d", m_stat.fr_name.c_str(),
+             seperator, m_stat.task_id, seperator, m_stat.used_cpu, seperator,
+             m_stat.used_memory, seperator, m_stat.task_num);
     return data;
 }
 

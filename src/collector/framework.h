@@ -6,6 +6,7 @@
 #include <string>
 
 #include "collector/trigger.h"
+#include "collector/trigger_queue.h"
 #include "collector/machine_pool.h"
 #include "common/thread.h"
 #include "common/block_queue.h"
@@ -45,7 +46,7 @@ private:
     Thread* m_thread;                                /// work thread
     MachinePool m_executor_pool;                     /// executor pool
     BlockQueue<ExecutorStat> m_queue;                /// inforamtion queue
-    list<Trigger*> m_trigger_list;                   /// trigger list
+    TriggerQueue m_trigger_list;                   /// trigger list
 };
 
 #endif

@@ -44,6 +44,7 @@ SET(SRC
     monitor.cpp
     framework.cpp
     trigger.cpp
+    trigger_queue.cpp
     collector.cpp)
 
 SET(MOCK

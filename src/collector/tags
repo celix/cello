@@ -3,18 +3,28 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.8	//
-AddEvent	framework.cpp	/^void Framework::AddEvent(const MachinePtr& machine) {$/;"	f	class:Framework
+!_TAG_PROGRAM_VERSION	5.6	//
+Action	trigger.cpp	/^void Trigger::Action(const ExecutorStat& stat) {$/;"	f	class:Trigger
+AddEvent	framework.cpp	/^void Framework::AddEvent(const MachinePtr& machine, const ExecutorStat& stat) {$/;"	f	class:Framework
 AddEvent	monitor.cpp	/^void Monitor::AddEvent(const MachinePtr& machine) {$/;"	f	class:Monitor
+Clear	trigger_queue.cpp	/^void TriggerQueue::Clear() {$/;"	f	class:TriggerQueue
 Collector	collector.h	/^class Collector : public CollectorIf {$/;"	c
-CpuTrigger	trigger.h	/^    CpuTrigger() : Trigger(s_period, s_value) {}$/;"	f	class:CpuTrigger
+Condition	trigger.cpp	/^bool CpuTrigger::Condition(const ExecutorStat& stat) {$/;"	f	class:CpuTrigger
+Condition	trigger.cpp	/^bool IdleTrigger::Condition(const ExecutorStat& stat) {$/;"	f	class:IdleTrigger
+Condition	trigger.cpp	/^bool MemoryTrigger::Condition(const ExecutorStat& stat) {$/;"	f	class:MemoryTrigger
+Condition	trigger.cpp	/^bool SlotTrigger::Condition(const ExecutorStat& stat) {$/;"	f	class:SlotTrigger
+CpuTrigger	trigger.h	/^    CpuTrigger(int period = 5, int value = 10) : Trigger(period, value) {}$/;"	f	class:CpuTrigger
 CpuTrigger	trigger.h	/^class CpuTrigger : public Trigger {$/;"	c
+CreateFramework	framework.cpp	/^Framework* Framework::CreateFramework() {$/;"	f	class:Framework
 Delete	framework_pool.cpp	/^void FrameworkPool::Delete(const string& name) {$/;"	f	class:FrameworkPool
 Delete	machine_pool.cpp	/^void MachinePool::Delete(const string& endpoint) {$/;"	f	class:MachinePool
 Entry	framework.cpp	/^void Framework::Entry() {$/;"	f	class:Framework
 Entry	monitor.cpp	/^void Monitor::Entry() {$/;"	f	class:Monitor
+Erase	trigger_queue.cpp	/^bool TriggerQueue::Erase(const string& name) {$/;"	f	class:TriggerQueue
+EraseMachine	framework.cpp	/^void Framework::EraseMachine(const string& endpoint) {$/;"	f	class:Framework
 Filter	filter.h	/^class Filter {$/;"	c
 Filtration	filter.h	/^    static void Filtration(const MachinePtr& machine,$/;"	f	class:Filter
+Find	machine_pool.cpp	/^bool MachinePool::Find(const string& endpoint) {$/;"	f	class:MachinePool
 FindToDo	framework_pool.cpp	/^void FrameworkPool::FindToDo(const string& name, FrameworkFunc func) {$/;"	f	class:FrameworkPool
 ForwardEvent	monitor.cpp	/^void Monitor::ForwardEvent(const MachinePtr& machine) {$/;"	f	class:Monitor
 Framework	framework.h	/^    explicit Framework(const string& name): m_name(name) {}  $/;"	f	class:Framework
@@ -26,8 +36,12 @@ GetClassAd	machine.h	/^    ClassAd GetClassAd() const {$/;"	f	class:Machine
 GetEndpoint	machine.h	/^    string GetEndpoint() const {$/;"	f	class:Machine
 GetMachine	rank_machine.h	/^    Machine* GetMachine() const {$/;"	f	struct:RankMachine
 GetName	framework.h	/^    string GetName() const {$/;"	f	class:Framework
+GetName	trigger.h	/^    void GetName() const {$/;"	f	class:Trigger
 GetRankValue	rank_machine.h	/^    double GetRankValue() const {$/;"	f	struct:RankMachine
 Heartbeat	collector.h	/^    void Heartbeat(const MachineInfo& info) {$/;"	f	class:Collector
+IdleTrigger	trigger.h	/^    IdleTrigger(int value = 0, int period = 5) : Trigger(value, period),$/;"	f	class:IdleTrigger
+IdleTrigger	trigger.h	/^    IdleTrigger(int64_t id, int value = 0, int period = 5)$/;"	f	class:IdleTrigger
+IdleTrigger	trigger.h	/^class IdleTrigger : public Trigger {$/;"	c
 Insert	framework_pool.cpp	/^void FrameworkPool::Insert(const FrameworkPtr& ptr) {$/;"	f	class:FrameworkPool
 Insert	machine_pool.cpp	/^void MachinePool::Insert(const MachinePtr& machine) {$/;"	f	class:MachinePool
 IsMatch	machine.cpp	/^bool Machine::IsMatch(ClassAd* ptr, RankMachine* rank_ptr) {$/;"	f	class:Machine
@@ -39,12 +53,20 @@ MachineFunc	machine_pool.h	/^    typedef function<void(const MachinePtr&)> Machi
 MachinePool	machine_pool.h	/^class MachinePool {$/;"	c
 MachinePtr	machine.h	/^typedef shared_ptr<Machine> MachinePtr;$/;"	t
 MapToDo	machine_pool.cpp	/^void MachinePool::MapToDo(MachineFunc func) {$/;"	f	class:MachinePool
+MapToDo	trigger_queue.cpp	/^void TriggerQueue::MapToDo(TriggerFunc func) {$/;"	f	class:TriggerQueue
 Match	collector.h	/^    void Match(string& result, const string& str_ad) {$/;"	f	class:Collector
-MemoryTrigger	trigger.h	/^    MemoryTrigger(int value, int period) : Trigger(value, period) {}$/;"	f	class:MemoryTrigger
+MemoryTrigger	trigger.h	/^    MemoryTrigger(int value = 5, int period = 10) : Trigger(value, period) {}$/;"	f	class:MemoryTrigger
 MemoryTrigger	trigger.h	/^class MemoryTrigger : public Trigger {$/;"	c
+Monitor	monitor.h	/^    Monitor(): m_monitor_thread(NULL) {}$/;"	f	class:Monitor
 Monitor	monitor.h	/^class Monitor {$/;"	c
 MonitorMgr	monitor.h	/^typedef Singleton<Monitor> MonitorMgr;$/;"	t
+Operation	trigger.cpp	/^bool CpuTrigger::Operation(const ExecutorStat& stat) {$/;"	f	class:CpuTrigger
+Operation	trigger.cpp	/^bool IdleTrigger::Operation(const ExecutorStat& stat) {$/;"	f	class:IdleTrigger
+Operation	trigger.cpp	/^bool MemoryTrigger::Operation(const ExecutorStat& stat) {$/;"	f	class:MemoryTrigger
+Operation	trigger.cpp	/^bool SlotTrigger::Operation(const ExecutorStat& stat) {$/;"	f	class:SlotTrigger
 Pool	machine_pool.h	/^typedef Singleton<MachinePool> Pool;$/;"	t
+PopFront	trigger_queue.cpp	/^void TriggerQueue::PopFront(TriggerPtr* ptr) {$/;"	f	class:TriggerQueue
+PushBack	trigger_queue.cpp	/^void TriggerQueue::PushBack(const TriggerPtr& trigger) {$/;"	f	class:TriggerQueue
 RankMachine	rank_machine.h	/^    RankMachine() : m_ptr(0), m_rank_value(0.0) {}$/;"	f	struct:RankMachine
 RankMachine	rank_machine.h	/^struct RankMachine {$/;"	s
 SRC_COLLECTOR_COLLECOTR_H	collector.h	2;"	d
@@ -56,36 +78,48 @@ SRC_COLLECTOR_MACHINE_POOL_H	machine_pool.h	2;"	d
 SRC_COLLECTOR_MONITOR_H	monitor.h	2;"	d
 SRC_COLLECTOR_RANK_MACHINE_H	rank_machine.h	2;"	d
 SRC_COLLECTOR_TRIGGER_H	trigger.h	2;"	d
+SRC_COLLECTOR_TRIGGER_QUEUE_H	trigger_queue.h	2;"	d
 SetMachine	rank_machine.h	/^    void SetMachine(Machine* ptr) {$/;"	f	struct:RankMachine
+SetPeriod	trigger.h	/^    void SetPeriod(int period) {$/;"	f	class:Trigger
 SetRankValue	rank_machine.h	/^    void SetRankValue(double value) {$/;"	f	struct:RankMachine
-SetValue	trigger.h	/^    void SetValue(int value) const {$/;"	f	class:Trigger
-Setperiod	trigger.h	/^    void Setperiod(int period) const {$/;"	f	class:Trigger
+SetValue	trigger.h	/^    void SetValue(int value) {$/;"	f	class:Trigger
 Size	machine_pool.cpp	/^int MachinePool::Size() {$/;"	f	class:MachinePool
+Size	trigger_queue.cpp	/^int TriggerQueue::Size() {$/;"	f	class:TriggerQueue
+SlotTrigger	trigger.h	/^    SlotTrigger(int value = 4, int period = 10) : Trigger(value, period) {}$/;"	f	class:SlotTrigger
 SlotTrigger	trigger.h	/^class SlotTrigger : public Trigger {$/;"	c
 Start	framework.cpp	/^void Framework::Start() {$/;"	f	class:Framework
 Start	monitor.cpp	/^void Monitor::Start() {$/;"	f	class:Monitor
-Trigger	trigger.h	/^    Trigger() : m_value_threshold(0), m_period_threshold(0) {}$/;"	f	class:Trigger
-Trigger	trigger.h	/^    Trigger(int value, int period) : m_value_threshold(value),$/;"	f	class:Trigger
+Trigger	trigger.h	/^    Trigger() : m_value_threshold(0),$/;"	f	class:Trigger
+Trigger	trigger.h	/^    Trigger(const string& name, int value, int period) :$/;"	f	class:Trigger
 Trigger	trigger.h	/^class Trigger {$/;"	c
+TriggerFunc	trigger_queue.h	/^    typedef function<void(Trigger*)> TriggerFunc;$/;"	t	class:TriggerQueue
 TriggerPtr	trigger.h	/^typedef shared_ptr<Trigger> TriggerPtr;$/;"	t
+TriggerQueue	trigger_queue.h	/^class TriggerQueue {$/;"	c
 m_ad	machine.h	/^    ClassAd m_ad;$/;"	m	class:Machine
 m_executor_pool	framework.h	/^    MachinePool m_executor_pool;                     \/\/\/ executor pool$/;"	m	class:Framework
 m_framework_pool	monitor.h	/^    map<string, Framework*> m_framework_pool;$/;"	m	class:Monitor
+m_id	trigger.h	/^    int64_t m_id;$/;"	m	class:IdleTrigger
+m_is_ignited	trigger.h	/^    bool m_is_ignited;          \/\/\/ ignite flag$/;"	m	class:Trigger
+m_list	trigger_queue.h	/^    list<TriggerPtr> m_list; $/;"	m	class:TriggerQueue
 m_lock	machine_pool.h	/^    RWLock m_lock;$/;"	m	class:MachinePool
+m_lock	trigger_queue.h	/^    RWLock m_lock;$/;"	m	class:TriggerQueue
 m_map	framework_pool.h	/^    map<string, FramworkPtr> m_map;$/;"	m	class:FrameworkPool
-m_monitor_thread	monitor.h	/^    Thread m_monitor_thread;$/;"	m	class:Monitor
+m_monitor_thread	monitor.h	/^    Thread* m_monitor_thread;$/;"	m	class:Monitor
 m_name	framework.h	/^    string m_name;$/;"	m	class:Framework
+m_name	trigger.h	/^    string m_name;              \/\/\/ trigger name$/;"	m	class:Trigger
 m_period_threshold	trigger.h	/^    int m_period_threshold;     \/\/\/ period threshold$/;"	m	class:Trigger
 m_pool	machine_pool.h	/^    map<string, MachinePtr> m_pool;$/;"	m	class:MachinePool
 m_ptr	rank_machine.h	/^    Machine* m_ptr;$/;"	m	struct:RankMachine
-m_queue	framework.h	/^    BlockQueue<MachinePtr> m_queue;                  \/\/\/ inforamtion queue$/;"	m	class:Framework
+m_queue	framework.h	/^    BlockQueue<ExecutorStat> m_queue;                \/\/\/ inforamtion queue$/;"	m	class:Framework
 m_queue	monitor.h	/^    BlockQueue<MachinePtr> m_queue;$/;"	m	class:Monitor
 m_rank_value	rank_machine.h	/^    double m_rank_value;$/;"	m	struct:RankMachine
-m_thread	framework.h	/^    Thread m_thread;                                 \/\/\/ work thread$/;"	m	class:Framework
-m_trigger_list	framework.h	/^    list<TriggerPtr> m_trigger_list;                    \/\/\/ trigger list$/;"	m	class:Framework
-m_value_threshold	trigger.h	/^    int m_value_threshold;    \/\/\/ value threshold$/;"	m	class:Trigger
+m_start_time	trigger.h	/^    time_t m_start_time;        \/\/\/ trigger begin time$/;"	m	class:Trigger
+m_thread	framework.h	/^    Thread* m_thread;                                \/\/\/ work thread$/;"	m	class:Framework
+m_trigger_list	framework.h	/^    TriggerQueue m_trigger_list;                   \/\/\/ trigger list$/;"	m	class:Framework
+m_value_threshold	trigger.h	/^    int m_value_threshold;      \/\/\/ value threshold$/;"	m	class:Trigger
 main	cellet_mock.cpp	/^int main() {$/;"	f
-main	main.cpp	/^int main(int argc, char ** argv) {$/;"	f
-s_period	trigger.h	/^    static const int s_period = 5; \/\/\/ In minutes$/;"	m	class:CpuTrigger
-s_value	trigger.h	/^    static const int s_value = 10; \/\/\/ In percent    $/;"	m	class:CpuTrigger
+main	collector.cpp	/^int main(int argc, char ** argv) {$/;"	f
+scheduler_endpoint	trigger.cpp	/^DECLARE_string(scheduler_endpoint);$/;"	v
+~Framework	framework.cpp	/^Framework::~Framework() {$/;"	f	class:Framework
+~Machine	machine.h	/^    ~Machine() throw() {}$/;"	f	class:Machine
 ~Trigger	trigger.h	/^    virtual ~Trigger() {}$/;"	f	class:Trigger

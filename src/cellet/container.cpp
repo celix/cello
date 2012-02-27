@@ -229,7 +229,7 @@ ExecutorStatWrapper Container::GetUsedResource() {
     double cpu_usage = GetCpuUsage();
     // running tasks in executor
     int task_num = GetChildrenNum();
-    ExecutorStatWrapper es(m_info.framework_name, cpu_usage, used_memory, task_num);
+    ExecutorStatWrapper es(m_info.framework_name, m_info.id, cpu_usage, used_memory, task_num);
     return es;
 }
 

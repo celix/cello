@@ -43,6 +43,12 @@ public:
     void Handle();
 };
 
+// remove task event
+class RemoveEvent : public FinishEvent {
+public:
+    RemoveEvent(int64_t id) : FinishEvent(id, true) {}
+};
+
 typedef shared_ptr<Event> EventPtr;
 typedef Singleton<BlockQueue<EventPtr> > EventQueue;
 

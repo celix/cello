@@ -25,6 +25,10 @@ int main(int argc, char ** argv) {
     google::SetLogDestination(google::ERROR, "../log/collector_error_");
     google::SetLogDestination(google::FATAL, "../log/collector_fatal_");
     LOG(INFO) << "begin collector";
+
+    // get policy file
+    if (PolicyMgr::Instance()->Parse(FLAGS_policy_file) < 0)
+        return -1;
    
     if (PolicyMgr::Instance()->Get("PoolSchema") == "AutoScalePool")
         // start the monitor

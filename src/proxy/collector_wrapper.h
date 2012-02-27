@@ -14,7 +14,7 @@ public:
 public:
     ExecutorStatWrapper(const ExecutorStat& stat): m_stat(stat) {}
     ExecutorStatWrapper(const string& ss);
-    ExecutorStatWrapper(const string& name, double cpu, int mem, int num);
+    ExecutorStatWrapper(const string& name, int64_t id, double cpu, int mem, int num);
     string GetFramework() const {
         return m_stat.fr_name;
     }

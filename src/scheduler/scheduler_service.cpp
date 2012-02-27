@@ -23,6 +23,7 @@ void SchedulerService::Query(TaskInfo& result, int64_t task_id) {
 
 /// not support now
 int32_t SchedulerService::RemoveTask(int64_t task_id) {
+    LOG(INFO) << "remove task: id " << task_id;
     return 0;
 }
 
@@ -79,4 +80,9 @@ int32_t SchedulerService::AddExecutor(const string& name) {
     } else {
         return -1;
     }
+}
+
+int32_t SchedulerService::DeleteExecutor(int64_t executor_id) {
+    LOG(INFO) << "remove a executor with id: " << executor_id;
+    return RemoveTask(executor_id);
 }

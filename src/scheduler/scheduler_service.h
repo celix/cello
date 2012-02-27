@@ -31,6 +31,9 @@ public:
 
     /// @brief: add a executor for a framework name
     int32_t AddExecutor(const string& name);
+    
+    /// @brief: delete an executor
+    int32_t DeleteExecutor(int64_t executor_id);
 };
 
 #endif
