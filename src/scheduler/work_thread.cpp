@@ -22,6 +22,7 @@ void* ScheduleProcessor(void* unused) {
     return NULL;
 }
 
+#if 0
 void* EventProcesseor(void* unused) {
     while (true) {
         EventPtr event;
@@ -31,6 +32,7 @@ void* EventProcesseor(void* unused) {
     }
     return NULL;
 }
+#endif
 
 void* TaskProcessor(void* unused) {
     while (true) {
@@ -42,3 +44,4 @@ void* TaskProcessor(void* unused) {
     }
     return NULL;
 }
+

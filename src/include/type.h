@@ -20,10 +20,16 @@ enum queue_type {
     RUN_QUEUE
 };
 
+enum event_type {
+    STATE_EVENT,
+    ACTION_EVENT
+};
+
 enum ExecutorState {
     EXECUTOR_WAIT,
     EXECUTOR_RUN,
-    EXECUTOR_FINISHED
+    EXECUTOR_FINISHED,
+    EXECUTOR_KILLED
 };
 
 enum ContainerState {

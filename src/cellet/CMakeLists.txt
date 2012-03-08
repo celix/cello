@@ -64,6 +64,8 @@ SET(SRC
     container.cpp
     container_pool.cpp
     work_thread.cpp
+    event.cpp
+    cellet_service.cpp
     cellet.cpp)
 
 ADD_EXECUTABLE(cellet ${SRC})

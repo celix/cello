@@ -1,7 +1,6 @@
 #ifndef SRC_SCHEDULER_STARTER_H
 #define SRC_SCHEDULER_STARTER_H
 
-#include "include/type.h"
 #include "scheduler/task.h"
 #include "common/rpc.h"
 #include "include/proxy.h"
@@ -12,8 +11,7 @@ public:
         bool ret = false;
         try {
             // get collector proxy
-            Proxy<CelletClient> proxy = Rpc<CelletClient, CelletClient>::GetProxy(
-                    endpoint, TIME_OUT);
+            Proxy<CelletClient> proxy = Rpc<CelletClient, CelletClient>::GetProxy(endpoint);
             ret = proxy().StartTask(task.GetTaskInfo());
         } catch (TException &tx) {
             LOG(ERROR) << "start task error: " << tx.what();

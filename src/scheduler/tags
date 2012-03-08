@@ -3,7 +3,9 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.7	//
+!_TAG_PROGRAM_VERSION	5.8	//
+ActionEvent	event.h	/^    ActionEvent(const string& address): Event(ACTION_EVENT), m_endpoint(address) {}$/;"	f	class:ActionEvent
+ActionEvent	event.h	/^class ActionEvent : public Event {$/;"	c
 AddExecutor	scheduler_service.cpp	/^int32_t SchedulerService::AddExecutor(const string& name) {$/;"	f	class:SchedulerService
 AddFramework	autoscale_pool.cpp	/^int AutoScalePool::AddFramework(const FrameworkInfoWrapper& info) {$/;"	f	class:AutoScalePool
 AddFramework	scheduler_service.cpp	/^int32_t SchedulerService::AddFramework(const FrameworkInfo& info) {$/;"	f	class:SchedulerService
@@ -21,19 +23,22 @@ ComponentsManager	components_manager.h	/^class ComponentsManager {$/;"	c
 ComponentsMgr	components_manager.h	/^typedef Singleton<ComponentsManager> ComponentsMgr;$/;"	t
 CreateComponents	components_manager.cpp	/^void ComponentsManager::CreateComponents(const string& policy_file) {$/;"	f	class:ComponentsManager
 Delete	task_pool.cpp	/^void TaskPool::Delete(int64_t task_id) {$/;"	f	class:TaskPool
+DeleteExecutor	scheduler_service.cpp	/^int32_t SchedulerService::DeleteExecutor(int64_t executor_id) {$/;"	f	class:SchedulerService
 DeleteFramework	framework_pool.cpp	/^bool FrameworkPool::DeleteFramework(const string& name) {$/;"	f	class:FrameworkPool
 DeleteFramework	scheduler_service.cpp	/^bool SchedulerService::DeleteFramework(const string& name) {$/;"	f	class:SchedulerService
+Dispatch	dispatcher.cpp	/^Handler* Dispatcher::Dispatch(event_type type) {$/;"	f	class:Dispatcher
+Dispatcher	dispatcher.h	/^class Dispatcher {$/;"	c
 Erase	task_queue.cpp	/^bool TaskQueue::Erase(int64_t task_id) {$/;"	f	class:TaskQueue
-Event	event.h	/^    explicit Event(int64_t id, bool status) : m_task_id(id),$/;"	f	class:Event
+Event	event.h	/^    Event(event_type type) : m_type(type) {}$/;"	f	class:Event
 Event	event.h	/^class Event {$/;"	c
-EventProcesseor	work_thread.cpp	/^void* EventProcesseor(void* unused) {$/;"	f
+EventDispatcher	dispatcher.h	/^typedef Singleton<Dispatcher> EventDispatcher;$/;"	t
 EventPtr	event.h	/^typedef shared_ptr<Event> EventPtr;$/;"	t
-EventQueue	event.h	/^typedef Singleton<BlockQueue<EventPtr> > EventQueue;$/;"	t
+EventQueue	event.h	/^typedef BlockQueue<EventPtr> EventQueue;$/;"	t
 Find	task_pool.cpp	/^bool TaskPool::Find(int64_t task_id, TaskPtr* ptr) {$/;"	f	class:TaskPool
 FindToDo	framework_pool.cpp	/^bool FrameworkPool::FindToDo(const string& name, FrameworkFunc func) {$/;"	f	class:FrameworkPool
 FindToDo	task_pool.cpp	/^bool TaskPool::FindToDo(int64_t task_id, TaskFunc func) {$/;"	f	class:TaskPool
-FinishEvent	event.h	/^    FinishEvent(int64_t id, bool status) : Event(id, status) {}$/;"	f	class:FinishEvent
-FinishEvent	event.h	/^class FinishEvent : public Event {$/;"	c
+FinishEvent	event.h	/^    FinishEvent(int64_t id, bool status) : StateEvent(id, status) {}$/;"	f	class:FinishEvent
+FinishEvent	event.h	/^class FinishEvent : public StateEvent {$/;"	c
 FinishState	state.h	/^class FinishState : public State {$/;"	c
 Framework	framework.cpp	/^Framework::Framework(const FrameworkInfoWrapper& info) :$/;"	f	class:Framework
 Framework	framework.h	/^    Framework(const string& name, int quota) : m_framework_name(name),$/;"	f	class:Framework
@@ -41,21 +46,28 @@ Framework	framework.h	/^class Framework {$/;"	c
 FrameworkFunc	framework_pool.h	/^    typedef function<void(Framework*)> FrameworkFunc;$/;"	t	class:FrameworkPool
 FrameworkMgr	framework_pool.h	/^typedef Singleton<FrameworkPool> FrameworkMgr;$/;"	t
 FrameworkPool	framework_pool.h	/^class FrameworkPool {$/;"	c
+GetAddress	event.h	/^    string GetAddress() {$/;"	f	class:ActionEvent
+GetAddress	task.h	/^    string GetAddress() const {$/;"	f	class:Task
 GetClassAd	task.h	/^    ClassAd GetClassAd() const {$/;"	f	class:Task
 GetFrameworkName	task.h	/^    string GetFrameworkName() const {$/;"	f	class:Task
-GetId	event.h	/^    int64_t GetId() const {$/;"	f	class:Event
+GetId	event.h	/^    int64_t GetId() const {$/;"	f	class:StateEvent
 GetId	task.h	/^    int64_t GetId() const {$/;"	f	class:Task
 GetName	framework.h	/^    string GetName() const {$/;"	f	class:Framework
 GetPool	components_manager.h	/^    FrameworkPool* GetPool() {$/;"	f	class:ComponentsManager
 GetQueueType	state.cpp	/^queue_type RunState::GetQueueType() {$/;"	f	class:RunState
 GetQueueType	state.cpp	/^queue_type WaitState::GetQueueType() {$/;"	f	class:WaitState
 GetQueueType	task.cpp	/^queue_type Task::GetQueueType() {$/;"	f	class:Task
-GetStatus	event.h	/^    bool GetStatus() const {$/;"	f	class:Event
+GetStatus	event.h	/^    bool GetStatus() const {$/;"	f	class:StateEvent
 GetTask	framework_pool.cpp	/^TaskPtr FrameworkPool::GetTask() {$/;"	f	class:FrameworkPool
+GetTaskAddress	task_queue.cpp	/^string TaskQueue::GetTaskAddress(int64_t task_id) {$/;"	f	class:TaskQueue
 GetTaskId	identity.h	/^    int64_t GetTaskId() {$/;"	f	class:Identity
 GetTaskInfo	task.h	/^    TaskInfo GetTaskInfo() const {$/;"	f	class:Task
 Handle	event.cpp	/^void FinishEvent::Handle() {$/;"	f	class:FinishEvent
+Handle	event.cpp	/^void RemoveEvent::Handle() {$/;"	f	class:RemoveEvent
 Handle	event.cpp	/^void StartEvent::Handle() {$/;"	f	class:StartEvent
+Handle	handler.cpp	/^void Handler::Handle() {$/;"	f	class:Handler
+Handler	handler.h	/^    Handler() : m_work_thread(0) {}$/;"	f	class:Handler
+Handler	handler.h	/^class Handler {$/;"	c
 Identity	identity.h	/^    Identity() : m_id(0) {}$/;"	f	class:Identity
 Identity	identity.h	/^    explicit Identity(int num) : m_id(num) {}$/;"	f	class:Identity
 Identity	identity.h	/^class Identity {$/;"	c
@@ -64,18 +76,25 @@ Init	autoscale_pool.cpp	/^int AutoScalePool::Init(const string& conf_file) {$/;"
 Init	framework.h	/^    virtual void Init() {}$/;"	f	class:Framework
 Init	standard_pool.cpp	/^int StandardPool::Init(const string& conf_file) {$/;"	f	class:StandardPool
 Insert	task_pool.cpp	/^void TaskPool::Insert(const TaskPtr& task) {$/;"	f	class:TaskPool
+KillActionEvent	event.h	/^    KillActionEvent(const string& address, int64_t id) : ActionEvent(address), m_id(id) {}$/;"	f	class:KillActionEvent
+KillActionEvent	event.h	/^class KillActionEvent : public ActionEvent {$/;"	c
 LogInfo	scheduler_service.cpp	/^void SchedulerService::LogInfo(const TaskInfo& task_info) {$/;"	f	class:SchedulerService
 MatchTask	matcher.h	/^    static bool MatchTask(const Task& task, string* endpoint_str) {$/;"	f	class:Matcher
 Matcher	matcher.h	/^class Matcher {$/;"	c
 PlugTask	autoscale_framework.cpp	/^void AutoScaleFramework::PlugTask(TaskPtr& task, queue_type type) {$/;"	f	class:AutoScaleFramework
 PlugTask	autoscale_pool.cpp	/^void AutoScalePool::PlugTask(TaskPtr& task) {$/;"	f	class:AutoScalePool
+PlugTask	framework.h	/^    virtual void PlugTask(TaskPtr& task, queue_type type) {};$/;"	f	class:Framework
 PlugTask	standard_pool.cpp	/^void StandardPool::PlugTask(TaskPtr& task) {$/;"	f	class:StandardPool
 Pool	task_pool.h	/^typedef Singleton<TaskPool> Pool;$/;"	t
 PopFront	task_queue.cpp	/^void TaskQueue::PopFront(TaskPtr* ptr) {$/;"	f	class:TaskQueue
 PopTask	framework.cpp	/^bool Framework::PopTask(TaskPtr* ptr, queue_type type) {$/;"	f	class:Framework
+PushBack	handler.cpp	/^void Handler::PushBack(const EventPtr& ptr) {$/;"	f	class:Handler
 PushBack	task_queue.cpp	/^void TaskQueue::PushBack(const TaskPtr& task) {$/;"	f	class:TaskQueue
 PushTask	framework.cpp	/^void Framework::PushTask(const TaskPtr& task, queue_type type) {$/;"	f	class:Framework
 Query	scheduler_service.cpp	/^void SchedulerService::Query(TaskInfo& result, int64_t task_id) {$/;"	f	class:SchedulerService
+Register	dispatcher.cpp	/^void Dispatcher::Register(event_type type, Handler* handler) {$/;"	f	class:Dispatcher
+RemoveEvent	event.h	/^    RemoveEvent(int64_t id): FinishEvent(id, true) {}$/;"	f	class:RemoveEvent
+RemoveEvent	event.h	/^class RemoveEvent : public FinishEvent {$/;"	c
 RemoveTask	framework.cpp	/^bool Framework::RemoveTask(int64_t task_id, queue_type type) {$/;"	f	class:Framework
 RemoveTask	framework_pool.cpp	/^void FrameworkPool::RemoveTask(const TaskPtr& task) {$/;"	f	class:FrameworkPool
 RemoveTask	scheduler_service.cpp	/^int32_t SchedulerService::RemoveTask(int64_t task_id) {$/;"	f	class:SchedulerService
@@ -83,13 +102,15 @@ RunState	state.h	/^class RunState : public State {$/;"	c
 SRC_SCHEDULER_AUTOSCALE_FRAMEWORK_H	autoscale_framework.h	2;"	d
 SRC_SCHEDULER_AUTOSCALE_POOL_H	autoscale_pool.h	2;"	d
 SRC_SCHEDULER_COMPONENTS_MANAGER_H	components_manager.h	2;"	d
+SRC_SCHEDULER_DISPATCHER_H	dispatcher.h	2;"	d
 SRC_SCHEDULER_EVENT_H	event.h	2;"	d
 SRC_SCHEDULER_FRAMEWORKPOOL_H	framework_pool.h	2;"	d
-SRC_SCHEDULER_FRAMEWORKPOOL_H	standard_pool.h	2;"	d
 SRC_SCHEDULER_FRAMEWORK_H	framework.h	2;"	d
+SRC_SCHEDULER_HANDLER_H	handler.h	2;"	d
 SRC_SCHEDULER_IDENTITY_H	identity.h	2;"	d
 SRC_SCHEDULER_MATCHER_H	matcher.h	2;"	d
 SRC_SCHEDULER_SCHEDULER_H	scheduler_service.h	2;"	d
+SRC_SCHEDULER_STANDARDPOOL_H	standard_pool.h	2;"	d
 SRC_SCHEDULER_STANDARD_FRAMEWORK_H	standard_framework.h	2;"	d
 SRC_SCHEDULER_STARTER_H	starter.h	2;"	d
 SRC_SCHEDULER_STATE_H	state.h	2;"	d
@@ -100,14 +121,21 @@ ScheduleProcessor	work_thread.cpp	/^void* ScheduleProcessor(void* unused) {$/;"	
 SchedulerService	scheduler_service.h	/^class SchedulerService : public SchedulerIf {$/;"	c
 SetInfo	task.cpp	/^void Task::SetInfo(const TaskInfo& info) {$/;"	f	class:Task
 Size	task_queue.cpp	/^int TaskQueue::Size() {$/;"	f	class:TaskQueue
+StandardFramework	standard_framework.h	/^    StandardFramework(const FrameworkInfoWrapper& info) : Framework(info) {}$/;"	f	class:StandardFramework
+StandardFramework	standard_framework.h	/^    StandardFramework(const string& name, int quota) : Framework(name, quota) {}$/;"	f	class:StandardFramework
 StandardFramework	standard_framework.h	/^class StandardFramework : public Framework {$/;"	c
 StandardPool	standard_pool.h	/^REGISTER_CLASS(StandardPool);$/;"	v
 StandardPool	standard_pool.h	/^class StandardPool : public FrameworkPool {$/;"	c
-StartEvent	event.h	/^    StartEvent(int64_t id, bool status) : Event(id, status) {}$/;"	f	class:StartEvent
-StartEvent	event.h	/^class StartEvent : public Event {$/;"	c
+Start	handler.cpp	/^void Handler::Start() {$/;"	f	class:Handler
+StartActionEvent	event.h	/^    StartActionEvent(const string& address) : ActionEvent(address) {}$/;"	f	class:StartActionEvent
+StartActionEvent	event.h	/^class StartActionEvent : public ActionEvent {$/;"	c
+StartEvent	event.h	/^    StartEvent(int64_t id, bool status) : StateEvent(id, status) {}$/;"	f	class:StartEvent
+StartEvent	event.h	/^class StartEvent : public StateEvent {$/;"	c
 StartTask	starter.h	/^    static bool StartTask(const string& endpoint, const Task& task) {$/;"	f	class:Starter
 Starter	starter.h	/^class Starter {$/;"	c
 State	state.h	/^class State {$/;"	c
+StateEvent	event.h	/^    explicit StateEvent(int64_t id, bool status)$/;"	f	class:StateEvent
+StateEvent	event.h	/^class StateEvent : public Event {$/;"	c
 Submit	scheduler_service.cpp	/^int64_t SchedulerService::Submit(const TaskInfo& task_info) {$/;"	f	class:SchedulerService
 Task	task.cpp	/^Task::Task(const TaskInfo& task_info) {$/;"	f	class:Task
 Task	task.cpp	/^Task::Task(const string& framework_name) {$/;"	f	class:Task
@@ -128,13 +156,19 @@ TaskQueue	task_queue.h	/^class TaskQueue {$/;"	c
 TaskRunning	state.h	/^typedef Singleton<RunState> TaskRunning;$/;"	t
 TaskStarted	scheduler_service.cpp	/^int32_t SchedulerService::TaskStarted(int64_t task_id, bool status) {$/;"	f	class:SchedulerService
 TaskWaiting	state.h	/^typedef Singleton<WaitState> TaskWaiting;$/;"	t
+Type	event.h	/^    event_type Type() const {$/;"	f	class:Event
 WaitState	state.h	/^class WaitState : public State {$/;"	c
 collector_endpoint	matcher.h	/^DECLARE_string(collector_endpoint);$/;"	v
 m_ad	task.h	/^    ClassAd m_ad;$/;"	m	class:Task
+m_address	task.h	/^    string m_address;$/;"	m	class:Task
+m_endpoint	event.h	/^    string m_endpoint;     \/\/cellet endpoint$/;"	m	class:ActionEvent
+m_event_queue	handler.h	/^    EventQueue m_event_queue;$/;"	m	class:Handler
 m_executor_info	autoscale_framework.h	/^    TaskInfo m_executor_info;$/;"	m	class:AutoScaleFramework
 m_framework_name	framework.h	/^    string m_framework_name;$/;"	m	class:Framework
 m_framework_name	task.h	/^    string m_framework_name;$/;"	m	class:Task
 m_framework_pool	framework_pool.h	/^    list<Framework*> m_framework_pool;$/;"	m	class:FrameworkPool
+m_handler_map	dispatcher.h	/^    map<event_type, Handler*> m_handler_map;$/;"	m	class:Dispatcher
+m_id	event.h	/^    int64_t m_id;$/;"	m	class:KillActionEvent
 m_id	identity.h	/^    int64_t m_id;$/;"	m	class:Identity
 m_id	task.h	/^    int64_t m_id;$/;"	m	class:Task
 m_list	task_queue.h	/^    list<TaskPtr> m_list; $/;"	m	class:TaskQueue
@@ -148,15 +182,20 @@ m_pool	components_manager.h	/^    FrameworkPool* m_pool;$/;"	m	class:ComponentsM
 m_quota	framework.h	/^    int m_quota;                      \/\/ resource quota$/;"	m	class:Framework
 m_run_queue	framework.h	/^    TaskQueue m_run_queue;$/;"	m	class:Framework
 m_state	task.h	/^    State* m_state;$/;"	m	class:Task
-m_status	event.h	/^    bool m_status;$/;"	m	class:Event
+m_status	event.h	/^    bool m_status;$/;"	m	class:StateEvent
 m_submit_time	task.h	/^    time_t m_submit_time;$/;"	m	class:Task
-m_task_id	event.h	/^    int64_t m_task_id;$/;"	m	class:Event
+m_task_id	event.h	/^    int64_t m_task_id;$/;"	m	class:StateEvent
 m_task_info	task.h	/^    TaskInfo m_task_info;$/;"	m	class:Task
 m_task_map	task_pool.h	/^    map<int64_t, TaskPtr> m_task_map ;   $/;"	m	class:TaskPool
+m_type	event.h	/^    event_type m_type;$/;"	m	class:Event
 m_wait_queue	framework.h	/^    TaskQueue m_wait_queue;$/;"	m	class:Framework
+m_work_thread	handler.h	/^    Thread m_work_thread;$/;"	m	class:Handler
 main	scheduler.cpp	/^int main(int argc, char ** argv) {$/;"	f
+~ActionEvent	event.h	/^    virtual ~ActionEvent() {}$/;"	f	class:ActionEvent
 ~ComponentsManager	components_manager.cpp	/^ComponentsManager::~ComponentsManager() {$/;"	f	class:ComponentsManager
 ~Event	event.h	/^    virtual ~Event() {}$/;"	f	class:Event
 ~Framework	framework.h	/^    virtual ~Framework() {}$/;"	f	class:Framework
 ~FrameworkPool	framework_pool.h	/^    virtual ~FrameworkPool() {}$/;"	f	class:FrameworkPool
+~Handler	handler.cpp	/^Handler::~Handler() {$/;"	f	class:Handler
 ~State	state.h	/^    virtual ~State() {}$/;"	f	class:State
+~StateEvent	event.h	/^    virtual ~StateEvent() {}$/;"	f	class:StateEvent

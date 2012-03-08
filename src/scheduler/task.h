@@ -43,6 +43,10 @@ public:
         return m_framework_name;
     }
 
+    string GetAddress() const {
+        return m_address;
+    }
+    
     /// get resource ad
     ClassAd GetClassAd() const {
         return m_ad;
@@ -66,6 +70,7 @@ private:
     int64_t m_id;
     string m_framework_name;
     time_t m_submit_time;
+    string m_address;
     State* m_state;
     friend class State;
     friend class WaitState;

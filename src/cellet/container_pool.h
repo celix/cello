@@ -27,6 +27,8 @@ public:
     /// @brief: map the container map and do sth
     void MapToDo(ContainerFunc func);
 
+    bool DeleteByTaskId(int64_t task_id);
+
 private:
     RWLock m_lock;
     map<pid_t, ContainerPtr> m_container_pool;

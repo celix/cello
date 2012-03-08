@@ -12,7 +12,7 @@
 #include <glog/logging.h>
 #include <gflags/gflags.h>
 
-#include "cellet/cellet.h"
+#include "cellet/cellet_service.h"
 #include "cellet/system.h"
 #include "cellet/message_manager.h"
 #include "cellet/container_pool.h"
@@ -32,6 +32,7 @@ extern void* ResourceInfoReceiver(void* unused);
 extern void* StartExecutorSender(void* unused);
 extern void* StartExecutorReceiver(void* unused);
 extern void* ExecutorStatusReceiver(void* unused);
+extern void* ExecutorControlReceiver(void* unused);
 
 void CleanUp(int signo) {
     DLOG(WARNING) << "catch SIGINT signal";
@@ -53,10 +54,10 @@ void ResourceManagerEntry(int argc, char ** argv) {
     if (access(FLAGS_work_directory.c_str(), F_OK) < 0)
         mkdir(FLAGS_work_directory.c_str(), S_IRWXU|S_IRWXG|S_IROTH);
     signal(SIGINT, SIG_DFL);
-    pthread_t start_executor_t, resoure_info_t;
+    pthread_t start_executor_t, resoure_info_t, control_executor_t;
     pthread_create(&start_executor_t, NULL, StartExecutorReceiver, NULL);
     pthread_create(&resoure_info_t, NULL, ResourceInfoSender, NULL);
-
+    pthread_create(&control_executor_t, NULL, ExecutorControlReceiver, NULL);
     // wait pid for task execution finished
     pid_t pid;
     int status;
@@ -109,7 +110,7 @@ int main(int argc, char ** argv) {
         pthread_create(&res_info_recv_t, NULL, ResourceInfoReceiver, NULL);
         // receive executor status thread
         pthread_create(&exec_status_recv_t, NULL, ExecutorStatusReceiver, NULL);
-        Rpc<Cellet, CelletProcessor>::Listen(FLAGS_port); 
+        Rpc<CelletService, CelletProcessor>::Listen(FLAGS_port); 
         return 0;
     } else {
         // resource manager process

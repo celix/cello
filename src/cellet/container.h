@@ -47,6 +47,10 @@ public:
         return m_pid;
     }
 
+    int64_t GetId() const {
+        return m_info.id;
+    }
+
     double GetAllocatedCpu() {
         return m_info.need_cpu;
     }
@@ -60,6 +64,9 @@ public:
     ContainerState GetState();
 
     uint64_t ParseTime(const char* str);
+
+    /// @brief: stop and recycle the container with all the resources occupied
+    int Recycle();
 private:
     void RedirectLog();
 

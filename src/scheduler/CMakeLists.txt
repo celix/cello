@@ -46,7 +46,8 @@ SET(COMMON_SOURCE
     ../common/block_queue.cpp
     ../common/policy.cpp
     ../common/register.cpp
-    ../common/xml_handler.cpp)
+    ../common/xml_handler.cpp
+    ../common/thread.cpp)
 
 SET(WRAPPER_SOURCE ../proxy/scheduler_wrapper.cpp)
 
@@ -69,6 +70,8 @@ SET(SRC
     framework_pool.cpp
     autoscale_pool.cpp
     standard_pool.cpp
+    handler.cpp
+    dispatcher.cpp
     scheduler.cpp)
 
 ADD_EXECUTABLE(scheduler ${SRC})

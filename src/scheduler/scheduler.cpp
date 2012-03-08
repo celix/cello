@@ -5,11 +5,11 @@
 
 #include "scheduler/scheduler_service.h"
 #include "scheduler/framework_pool.h"
+#include "scheduler/dispatcher.h"
 #include "scheduler/components_manager.h"
 #include "common/rpc.h"
 
 extern void* ScheduleProcessor(void* unused);
-extern void* EventProcesseor(void* unused);
 extern void* TaskProcessor(void* unused);
 
 DEFINE_int32(port, 10000, "scheduler port");
@@ -42,11 +42,15 @@ int main(int argc, char ** argv) {
         LOG(ERROR) << "read framework file error";
         return -1;
     }
-    pthread_t schedule_t, event_t, task_t;
+    pthread_t schedule_t, task_t;
     pthread_create(&schedule_t, NULL, ScheduleProcessor, NULL);
-    pthread_create(&event_t, NULL, EventProcesseor, NULL);
     pthread_create(&task_t, NULL, TaskProcessor, NULL);
-
+    Handler* state_event_handler = new Handler;
+    state_event_handler->Start();
+    EventDispatcher::Instance()->Register(STATE_EVENT, state_event_handler);
+    Handler* action_event_handler = new Handler;
+    action_event_handler->Start();
+    EventDispatcher::Instance()->Register(ACTION_EVENT, action_event_handler);
     Rpc<SchedulerService, SchedulerProcessor>::Listen(FLAGS_port);
     
     return 0;

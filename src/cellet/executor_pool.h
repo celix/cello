@@ -18,7 +18,7 @@ using cello::RWLock;
 class ExecutorPool {
 public:
     
-    typedef function<void(const ExecutorPtr&)> ExecutorFunc;
+    typedef function<void(Executor*)> ExecutorFunc;
 
     /// @brief: find a executor in process map
     bool Find(const ExecutorPtr& ptr);
@@ -31,6 +31,8 @@ public:
     
     /// @brief: find a waitting executor, and start it
     void StartExecutor();
+
+    bool DeleteExecutor(int64_t task_id);
 
     bool FindToDo(int64_t id, ExecutorFunc func);
 

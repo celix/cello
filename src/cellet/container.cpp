@@ -3,6 +3,7 @@
 #include <sys/unistd.h>
 #include <fcntl.h>
 #include <time.h>
+#include <signal.h>
 
 #include <vector>
 #include <sstream>
@@ -340,4 +341,22 @@ int Container::Shell(char* result, const char* format, ...) {
     free(cmd);
     va_end(args);
     return ret;
+}
+
+int Container::Recycle() {
+    // first stop the container
+    if (lxc_stop(m_name.c_str()) >= 0) {
+        LOG(INFO) << "stop container succeed. container name: " << m_name;
+        // kill the process running starting the container
+        if (kill(m_pid, SIGKILL) >= 0) {
+            LOG(INFO) << "kill process succeed. pid: " << m_pid;
+            return 0;
+        } else {
+            LOG(ERROR) << "kill process failed. pid: " << m_pid;
+            return -2;
+        }
+    } else {
+        LOG(ERROR) << "stop container failed. conatiner name: " << m_name;
+        return -1;
+    }
 }

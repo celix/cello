@@ -30,3 +30,11 @@ bool TaskQueue::Erase(int64_t task_id) {
     // not found return false
     return false;
 }
+
+string TaskQueue::GetTaskAddress(int64_t task_id) {
+    ReadLocker locker(m_lock);
+    for (list<TaskPtr>::iterator it = m_list.begin(); it != m_list.end(); ++it)
+        if (task_id == (*it)->GetId())
+            return (*it)->GetAddress();
+    return string();
+}

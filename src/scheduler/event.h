@@ -5,15 +5,31 @@
 #include "common/block_queue.h"
 #include <boost/shared_ptr.hpp>
 #include "scheduler/task.h"
+#include "include/type.h"
+#include <string>
 
-
+using std::string;
 using boost::shared_ptr;
 using cello::BlockQueue;
 
 class Event {
 public:
-    explicit Event(int64_t id, bool status) : m_task_id(id),
-                                              m_status(status) {}
+    virtual ~Event() {}
+    Event(event_type type) : m_type(type) {}
+    virtual void Handle() = 0;
+    event_type Type() const {
+        return m_type;
+    }
+private:
+    event_type m_type;
+};
+
+class StateEvent : public Event {
+public:
+    virtual ~StateEvent() {}
+    explicit StateEvent(int64_t id, bool status)
+        : Event(STATE_EVENT), m_task_id(id), m_status(status) {}
+
     int64_t GetId() const {
         return m_task_id;
     }
@@ -22,34 +38,57 @@ public:
         return m_status;
     }
 
-    virtual ~Event() {}
-    virtual void Handle() = 0;
-
 private:
     int64_t m_task_id;
     bool m_status;
 };
 
-class StartEvent : public Event {
+class StartEvent : public StateEvent {
 public:
-    StartEvent(int64_t id, bool status) : Event(id, status) {}
+    StartEvent(int64_t id, bool status) : StateEvent(id, status) {}
     void Handle();
 };
 
-class FinishEvent : public Event {
+class FinishEvent : public StateEvent {
 public:
-    FinishEvent(int64_t id, bool status) : Event(id, status) {}
+    FinishEvent(int64_t id, bool status) : StateEvent(id, status) {}
 
     void Handle();
 };
 
-// remove task event
 class RemoveEvent : public FinishEvent {
 public:
-    RemoveEvent(int64_t id) : FinishEvent(id, true) {}
+    RemoveEvent(int64_t id): FinishEvent(id, true) {}
+};
+
+class ActionEvent : public Event {
+public:
+    virtual ~ActionEvent() {}
+
+    ActionEvent(const string& address): Event(ACTION_EVENT), m_endpoint(address) {}
+    
+    string GetAddress() {
+        return m_endpoint;
+    }
+private:
+    string m_endpoint;     //cellet endpoint
+};
+
+class KillActionEvent : public ActionEvent {
+public:
+    KillActionEvent(const string& address, int64_t id) : ActionEvent(address), m_id(id) {}
+    void Handle();
+private:
+    int64_t m_id;
+};
+
+class StartActionEvent : public ActionEvent {
+public:
+    StartActionEvent(const string& address) : ActionEvent(address) {}
+    void Handle();
 };
 
 typedef shared_ptr<Event> EventPtr;
-typedef Singleton<BlockQueue<EventPtr> > EventQueue;
+typedef BlockQueue<EventPtr> EventQueue;
 
 #endif

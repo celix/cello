@@ -16,6 +16,8 @@ Framework* Framework::CreateFramework() {
 Framework::~Framework() {
     // clear the trigger
     m_trigger_list.Clear();
+    // release the thread resource
+    delete m_thread;
 }
 
 void Framework::Start() {

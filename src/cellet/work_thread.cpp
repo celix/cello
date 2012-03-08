@@ -7,6 +7,7 @@
 #include "cellet/message_manager.h"
 #include "cellet/resource_manager.h"
 #include "cellet/container.h"
+#include "cellet/event.h"
 
 #include "include/proxy.h"
 
@@ -14,7 +15,7 @@ DECLARE_string(scheduler_endpoint);
 DECLARE_string(collector_endpoint);
 DECLARE_int32(heartbeat_interval);
 
-void StateHandler(const ExecutorPtr& ptr, ContainerState state) {
+void StateHandler(Executor* ptr, ContainerState state) {
     assert(state == CONTAINER_FINISHED || state == CONTAINER_STARTED);
     if (state == CONTAINER_STARTED) {
         ptr->ExecutorStarted();
@@ -127,6 +128,18 @@ void* ExecutorStatusReceiver(void* unused) {
             if (state == CONTAINER_FINISHED)
                 ExecutorMgr::Instance()->Delete(executor_id);
         }
+    }
+    return NULL;
+}
+
+void* ExecutorControlReceiver(void* unused) {
+    while (true) {
+        MessageQueue::Message msg;
+        MsgQueueMgr::Instance()->Get(EXECUTOR_CONTROL_KEY)->Receive(&msg);
+        // create event by message
+        Event* event_handler = Event::CreateEvent(msg);
+        event_handler->Handle();
+        delete event_handler;
     }
     return NULL;
 }

@@ -27,6 +27,8 @@ public:
 
     void Start();
 
+    void Kill();
+
     void LogInfo();
 
     void ExecutorStarted();

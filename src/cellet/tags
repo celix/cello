@@ -4,8 +4,8 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-Cellet	cellet.h	/^class Cellet : public CelletIf {$/;"	c
-CleanUp	main.cpp	/^void CleanUp(int signo) {$/;"	f
+CelletSevice	cellet_service.h	/^class CelletSevice : public CelletIf {$/;"	c
+CleanUp	cellet.cpp	/^void CleanUp(int signo) {$/;"	f
 CloseInheritedFD	container.cpp	/^void Container::CloseInheritedFD() {$/;"	f	class:Container
 Container	container.cpp	/^Container::Container(const MessageQueue::Message& msg) : m_pid(0),$/;"	f	class:Container
 Container	container.h	/^    Container() : m_pid(0),$/;"	f	class:Container
@@ -19,19 +19,26 @@ ContainerStarted	container.cpp	/^void Container::ContainerStarted() {$/;"	f	clas
 CpuNum	system.cpp	/^int System::CpuNum() {$/;"	f	class:System
 CpuTime	system.cpp	/^uint64_t System::CpuTime() {$/;"	f	class:System
 CpuUsage	system.cpp	/^double System::CpuUsage() {$/;"	f	class:System
+CreateEvent	event.cpp	/^Event* Event::CreateEvent(const MessageQueue::Message& msg) {$/;"	f	class:Event
 DEFAULT_CPU_SHARE	container.h	/^    static const double DEFAULT_CPU_SHARE = 0.2;$/;"	m	class:Container
 Delete	container_pool.cpp	/^void ContainerPool::Delete(pid_t pid) {$/;"	f	class:ContainerPool
 Delete	executor_pool.cpp	/^void ExecutorPool::Delete(int64_t id) {$/;"	f	class:ExecutorPool
+DeleteByTaskId	container_pool.cpp	/^bool ContainerPool::DeleteByTaskId(int64_t task_id) {$/;"	f	class:ContainerPool
+DeleteExecutor	executor_pool.cpp	/^bool ExecutorPool::DeleteExecutor(int64_t task_id) {$/;"	f	class:ExecutorPool
+Event	event.h	/^    Event(int64_t id) : m_id(id) {}$/;"	f	class:Event
+Event	event.h	/^class Event {$/;"	c
 Execute	container.cpp	/^void Container::Execute() {$/;"	f	class:Container
 Executor	executor.h	/^    explicit Executor(const TaskInfo info) : m_info(info),$/;"	f	class:Executor
 Executor	executor.h	/^class Executor {$/;"	c
+ExecutorControlReceiver	work_thread.cpp	/^void* ExecutorControlReceiver(void* unused) {$/;"	f
 ExecutorFinshed	executor.cpp	/^void Executor::ExecutorFinshed() {$/;"	f	class:Executor
-ExecutorFunc	executor_pool.h	/^    typedef function<void(const ExecutorPtr&)> ExecutorFunc;$/;"	t	class:ExecutorPool
+ExecutorFunc	executor_pool.h	/^    typedef function<void(Executor*)> ExecutorFunc;$/;"	t	class:ExecutorPool
 ExecutorMgr	executor_pool.h	/^typedef Singleton<ExecutorPool> ExecutorMgr;$/;"	t
 ExecutorPool	executor_pool.h	/^class ExecutorPool {$/;"	c
 ExecutorPtr	executor.h	/^typedef shared_ptr<Executor> ExecutorPtr;$/;"	t
 ExecutorStarted	executor.cpp	/^void Executor::ExecutorStarted() {$/;"	f	class:Executor
 ExecutorStatusReceiver	work_thread.cpp	/^void* ExecutorStatusReceiver(void* unused) {$/;"	f
+FetchFiles	container.cpp	/^int Container::FetchFiles() {$/;"	f	class:Container
 Find	executor_pool.cpp	/^bool ExecutorPool::Find(const ExecutorPtr& ptr) {$/;"	f	class:ExecutorPool
 FindToDo	container_pool.cpp	/^bool ContainerPool::FindToDo(pid_t pid, ContainerFunc func) {$/;"	f	class:ContainerPool
 FindToDo	executor_pool.cpp	/^bool ExecutorPool::FindToDo(int64_t id, ExecutorFunc func) {$/;"	f	class:ExecutorPool
@@ -41,38 +48,47 @@ GetAllocatedMemory	container.h	/^    int GetAllocatedMemory() {$/;"	f	class:Cont
 GetChildrenNum	container.cpp	/^int Container::GetChildrenNum() {$/;"	f	class:Container
 GetCpuUsage	container.cpp	/^double Container::GetCpuUsage() {$/;"	f	class:Container
 GetCurrentTime	system.cpp	/^void System::GetCurrentTime(char* time_str, int len) {$/;"	f	class:System
+GetId	container.h	/^    int64_t GetId() const {$/;"	f	class:Container
+GetId	event.h	/^    int64_t GetId() const {$/;"	f	class:Event
 GetId	executor.h	/^    int64_t GetId() {$/;"	f	class:Executor
 GetMachineInfo	resource_manager.cpp	/^MachineInfoWrapper ResourceManager::GetMachineInfo() {$/;"	f	class:ResourceManager
 GetMemory	container.cpp	/^int Container::GetMemory() {$/;"	f	class:Container
 GetPid	container.h	/^    pid_t GetPid() {$/;"	f	class:Container
-GetResource	resource_manager.cpp	/^void ResourceManager::GetResource(Container* ptr,$/;"	f	class:ResourceManager
+GetResource	resource_manager.cpp	/^void ResourceManager::GetResource(Container* ptr, MachineInfoWrapper* info) {$/;"	f	class:ResourceManager
 GetState	container.cpp	/^ContainerState Container::GetState() {$/;"	f	class:Container
 GetStatus	executor.cpp	/^ExecutorState Executor::GetStatus() {$/;"	f	class:Executor
 GetTotalCpus	resource_manager.h	/^    int GetTotalCpus() const {$/;"	f	class:ResourceManager
 GetUsedResource	container.cpp	/^ExecutorStatWrapper Container::GetUsedResource() {$/;"	f	class:Container
+Handle	event.cpp	/^void KillEvent::Handle() {$/;"	f	class:KillEvent
 Init	container.cpp	/^int Container::Init() {$/;"	f	class:Container
 Init	message_manager.cpp	/^void MessageManager::Init() {$/;"	f	class:MessageManager
 Init	resource_manager.cpp	/^void ResourceManager::Init() {$/;"	f	class:ResourceManager
 Insert	container_pool.cpp	/^void ContainerPool::Insert(const ContainerPtr& ptr) {$/;"	f	class:ContainerPool
 Insert	executor_pool.cpp	/^void ExecutorPool::Insert(const ExecutorPtr& ptr) {$/;"	f	class:ExecutorPool
+KILL_TASK	event.h	/^        KILL_TASK$/;"	e	enum:Event::event_type
+Kill	executor.cpp	/^void Executor::Kill() {$/;"	f	class:Executor
+KillEvent	event.h	/^    KillEvent(int64_t id) : Event(id) {}$/;"	f	class:KillEvent
+KillEvent	event.h	/^class KillEvent : public Event {$/;"	c
+KillTask	cellet_service.cpp	/^int CelletSevice::KillTask(int64_t task_id) {$/;"	f	class:CelletSevice
 LoadAvg	system.cpp	/^double System::LoadAvg() {$/;"	f	class:System
 LogInfo	executor.cpp	/^void Executor::LogInfo() {$/;"	f	class:Executor
-LogInfo	work_thread.cpp	/^void LogInfo(const MachineInfo& info) {$/;"	f
 MapToDo	container_pool.cpp	/^void ContainerPool::MapToDo(ContainerFunc func) {$/;"	f	class:ContainerPool
 MessageManager	message_manager.h	/^class MessageManager {$/;"	c
 MsgQueueMgr	message_manager.h	/^typedef Singleton<MessageManager> MsgQueueMgr;$/;"	t
 ParseTime	container.cpp	/^uint64_t Container::ParseTime(const char* str) {$/;"	f	class:Container
 PhysicalMemory	system.cpp	/^int System::PhysicalMemory() {$/;"	f	class:System
+Recycle	container.cpp	/^int Container::Recycle() {$/;"	f	class:Container
 RedirectLog	container.cpp	/^void Container::RedirectLog() {$/;"	f	class:Container
 RemoveDir	system.cpp	/^void System::RemoveDir(const char* path) {$/;"	f	class:System
 ResourceInfoReceiver	work_thread.cpp	/^void* ResourceInfoReceiver(void* unused) {$/;"	f
 ResourceInfoSender	work_thread.cpp	/^void* ResourceInfoSender(void* unused) {$/;"	f
 ResourceManager	resource_manager.h	/^class ResourceManager {$/;"	c
-ResourceManagerEntry	main.cpp	/^void ResourceManagerEntry(int argc, char ** argv) {$/;"	f
+ResourceManagerEntry	cellet.cpp	/^void ResourceManagerEntry(int argc, char ** argv) {$/;"	f
 ResourceMgr	resource_manager.h	/^typedef Singleton<ResourceManager> ResourceMgr;$/;"	t
-SRC_CELLET_CELLET_H	cellet.h	2;"	d
+SRC_CELLET_CELLET_H	cellet_service.h	2;"	d
 SRC_CELLET_CONTAINER_H	container.h	2;"	d
 SRC_CELLET_CONTAINER_POOL_H	container_pool.h	2;"	d
+SRC_CELLET_EVENT_H	event.h	2;"	d
 SRC_CELLET_EXECUTOR_H	executor.h	2;"	d
 SRC_CELLET_EXECUTOR_POOL_H	executor_pool.h	2;"	d
 SRC_CELLET_MESSAGE_MANAGER_H	message_manager.h	2;"	d
@@ -86,19 +102,24 @@ Start	executor.cpp	/^void Executor::Start() {$/;"	f	class:Executor
 StartExecutor	executor_pool.cpp	/^void ExecutorPool::StartExecutor() {$/;"	f	class:ExecutorPool
 StartExecutorReceiver	work_thread.cpp	/^void* StartExecutorReceiver(void* unused) {$/;"	f
 StartExecutorSender	work_thread.cpp	/^void* StartExecutorSender(void* unused) {$/;"	f
-StartTask	cellet.h	/^    bool StartTask(const TaskInfo& info) {$/;"	f	class:Cellet
-StateHandler	work_thread.cpp	/^void StateHandler(const ExecutorPtr& ptr, ContainerState state) {$/;"	f
+StartTask	cellet_service.cpp	/^bool CelletSevice::StartTask(const TaskInfo& info) {$/;"	f	class:CelletSevice
+StateHandler	work_thread.cpp	/^void StateHandler(Executor* ptr, ContainerState state) {$/;"	f
 System	system.h	/^class System {$/;"	c
 TEST	container_test.cpp	/^TEST(TestContainer, All) {$/;"	f
 TEST	system_test.cpp	/^TEST(TestSystem, All) {$/;"	f
 ToMessage	container.cpp	/^MessageQueue::Message Container::ToMessage() {$/;"	f	class:Container
+ToMessage	event.cpp	/^MessageQueue::Message KillEvent::ToMessage() const {$/;"	f	class:KillEvent
 ToMessage	executor.cpp	/^MessageQueue::Message Executor::ToMessage() {$/;"	f	class:Executor
 TotalMemory	system.cpp	/^int System::TotalMemory() {$/;"	f	class:System
 UsedMemory	system.cpp	/^int System::UsedMemory() {$/;"	f	class:System
 VirtualMemory	system.cpp	/^int System::VirtualMemory() {$/;"	f	class:System
-collector_endpoint	main.cpp	/^DECLARE_string(collector_endpoint);$/;"	v
+collector_endpoint	cellet.cpp	/^DECLARE_string(collector_endpoint);$/;"	v
 collector_endpoint	work_thread.cpp	/^DECLARE_string(collector_endpoint);$/;"	v
-log	main.cpp	/^DECLARE_string(log);$/;"	v
+dfs_ip	container.cpp	/^DECLARE_string(dfs_ip);$/;"	v
+dfs_port	container.cpp	/^DECLARE_int32(dfs_port);$/;"	v
+event_type	event.h	/^    enum event_type {$/;"	g	class:Event
+heartbeat_interval	work_thread.cpp	/^DECLARE_int32(heartbeat_interval);$/;"	v
+log	cellet.cpp	/^DECLARE_string(log);$/;"	v
 m_avail_cpu	resource_manager.h	/^    double m_avail_cpu;$/;"	m	class:ResourceManager
 m_avail_memory	resource_manager.h	/^    int m_avail_memory;$/;"	m	class:ResourceManager
 m_c_args	container.h	/^    char** m_c_args;$/;"	m	class:Container
@@ -107,6 +128,7 @@ m_cpu_usage	resource_manager.h	/^    double m_cpu_usage;$/;"	m	class:ResourceMan
 m_endpoint	resource_manager.h	/^    string m_endpoint;$/;"	m	class:ResourceManager
 m_executor_map	executor_pool.h	/^    map<int64_t, ExecutorPtr> m_executor_map;$/;"	m	class:ExecutorPool
 m_first	container.h	/^    bool m_first;$/;"	m	class:Container
+m_id	event.h	/^    int64_t m_id;$/;"	m	class:Event
 m_info	container.h	/^    TaskInfo m_info;$/;"	m	class:Container
 m_info	executor.h	/^    TaskInfo m_info;$/;"	m	class:Executor
 m_lock	container.h	/^    RWLock m_lock;$/;"	m	class:Container
@@ -125,14 +147,17 @@ m_total_cpu	resource_manager.h	/^    int m_total_cpu;$/;"	m	class:ResourceManage
 m_total_memory	resource_manager.h	/^    int m_total_memory;$/;"	m	class:ResourceManager
 m_work_diectory	container.h	/^    string m_work_diectory;$/;"	m	class:Container
 main	c.cpp	/^int main() {$/;"	f
+main	cellet.cpp	/^int main(int argc, char ** argv) {$/;"	f
 main	container_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
 main	du.cpp	/^int main() {$/;"	f
-main	main.cpp	/^int main(int argc, char ** argv) {$/;"	f
 main	system_test.cpp	/^int main(int argc, char ** argv) {$/;"	f
 main	test.cpp	/^int main() {$/;"	f
-port	main.cpp	/^DECLARE_int32(port);$/;"	v
+policy_file	cellet.cpp	/^DECLARE_string(policy_file);$/;"	v
+port	cellet.cpp	/^DECLARE_int32(port);$/;"	v
 port	resource_manager.cpp	/^DECLARE_int32(port);$/;"	v
-scheduler_endpoint	main.cpp	/^DECLARE_string(scheduler_endpoint);$/;"	v
+scheduler_endpoint	cellet.cpp	/^DECLARE_string(scheduler_endpoint);$/;"	v
 scheduler_endpoint	work_thread.cpp	/^DECLARE_string(scheduler_endpoint);$/;"	v
-work_directory	main.cpp	/^DECLARE_string(work_directory);$/;"	v
+seperator	event.h	/^    static const char seperator = '#';$/;"	m	class:Event
+work_directory	cellet.cpp	/^DECLARE_string(work_directory);$/;"	v
 ~Container	container.cpp	/^Container::~Container() {$/;"	f	class:Container
+~Event	event.h	/^    virtual ~Event() {}$/;"	f	class:Event

@@ -55,11 +55,10 @@ void Task::TaskAssigned() {
 
 bool Task::AssignTask() {
     WriteLocker locker(m_lock);
-    string cellet_address;
     // if match task success then start task
-    if (Matcher::MatchTask(*this, &cellet_address)) {
+    if (Matcher::MatchTask(*this, &m_address)) {
         // task start success
-        return Starter::StartTask(cellet_address, *this);
+        return Starter::StartTask(m_address, *this);
     }
     return false;
 }

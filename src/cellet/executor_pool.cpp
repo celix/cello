@@ -38,8 +38,18 @@ bool ExecutorPool::FindToDo(int64_t id, ExecutorFunc func) {
     map<int64_t, ExecutorPtr>::iterator it = m_executor_map.find(id);
     // find the executor
     if (it != m_executor_map.end()) {
-        func(it->second);
+        func((it->second).get());
         return true;
     }
     return false;
+}
+
+bool ExecutorPool::DeleteExecutor(int64_t task_id) {
+    ExecutorFunc func = bind(&Executor::Kill, _1);
+    if (FindToDo(task_id, func)) {
+        Delete(task_id);
+        return true;
+    } else {
+        return false;
+    }
 }

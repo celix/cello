@@ -1,6 +1,7 @@
 #include <glog/logging.h>
 
 #include "cellet/executor.h"
+#include "cellet/event.h"
 #include "cellet/message_manager.h"
 
 using cello::WriteLocker;
@@ -53,4 +54,14 @@ void Executor::ExecutorFinshed() {
               << "  Id:" << m_info.id;
     WriteLocker locker(m_lock);
     m_state = EXECUTOR_FINISHED;
+}
+
+void Executor::Kill() {
+    WriteLocker locker(m_lock);
+    // send kill task command to resource manager process
+    KillEvent event(GetId());
+    MessageQueue::Message msg = event.ToMessage();
+    MsgQueueMgr::Instance()->Get(EXECUTOR_CONTROL_KEY)->Send(&msg);
+    // change executor state into killed
+    m_state = EXECUTOR_KILLED;
 }

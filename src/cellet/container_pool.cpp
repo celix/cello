@@ -29,3 +29,19 @@ void ContainerPool::MapToDo(ContainerFunc func) {
          it != m_container_pool.end(); ++it)
         func((it->second).get());
 }
+
+bool ContainerPool::DeleteByTaskId(int64_t task_id) {
+    WriteLocker locker(m_lock);
+    for (map<pid_t, ContainerPtr>::iterator it = m_container_pool.begin();
+            it != m_container_pool.end(); ++it) {
+        if (it->second->GetId() == task_id) {
+            if (it->second->Recycle() >= 0) {
+                m_container_pool.erase(it);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    return false;
+}
