@@ -22,9 +22,9 @@ Framework::~Framework() {
 
 void Framework::Start() {
     // add Slot Trigger by default
-    TriggerPtr ptr(new SlotTrigger);
+    TriggerPtr ptr(new CpuTrigger);
     m_trigger_list.PushBack(ptr);
-    LOG(INFO) << "add a slot trigger for a new framework";
+    LOG(INFO) << "add a over load trigger for a new framework";
     Thread::ThreadFunc func = bind(&Framework::Entry, this);
     m_thread = new Thread(func);
     m_thread->Start();
@@ -37,8 +37,9 @@ void Framework::Entry() {
         ExecutorStat stat;
         m_queue.PopFront(&stat);
         if (m_executor_pool.Size() > 0) {
+            m_executor_pool.Push(stat);
             // trigger begin to work
-            TriggerQueue::TriggerFunc func = bind(&Trigger::Action, _1, stat);
+            TriggerQueue::TriggerFunc func = bind(&Trigger::Action, _1, &m_executor_pool);
             m_trigger_list.MapToDo(func);
         }
     }
@@ -47,7 +48,10 @@ void Framework::Entry() {
 void Framework::AddEvent(const MachinePtr& machine, const ExecutorStat& stat) {
     // whether machine in framework
     if (!m_executor_pool.Find(machine->GetEndpoint())) {
-        m_executor_pool.Insert(machine);
+        ExecutorInMachine* eim = new ExecutorInMachine(stat.fr_name,
+                                                       stat.task_id,
+                                                       machine->GetEndpoint());
+        m_executor_pool.Insert(eim);
         // create a correspond idle trigger
         TriggerPtr ptr(new IdleTrigger(stat.task_id));
         m_trigger_list.PushBack(ptr);

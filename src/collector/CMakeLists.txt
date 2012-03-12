@@ -28,7 +28,6 @@ ADD_CUSTOM_COMMAND (
 )
 
 SET(COMMON_SOURCE
-    ../common/block_queue.cpp
     ../common/cond.cpp
     ../common/thread.cpp
     ../common/policy.cpp
@@ -45,6 +44,9 @@ SET(SRC
     framework.cpp
     trigger.cpp
     trigger_queue.cpp
+    collector_service.cpp
+    framework_in_machine.cpp
+    executor_in_machine.cpp
     collector.cpp)
 
 SET(MOCK

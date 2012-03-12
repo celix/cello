@@ -27,6 +27,7 @@ int MachinePool::Size() {
 }
 
 bool MachinePool::Find(const string& endpoint) {
+    ReadLocker locker(m_lock);
     map<string, MachinePtr>::iterator it = m_pool.find(endpoint);
     return it != m_pool.end();
         

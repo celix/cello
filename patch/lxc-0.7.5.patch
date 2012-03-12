@@ -1,0 +1,56 @@
+--- lxc.h.orig	2012-03-12 17:57:57.995500519 +0800
++++ lxc.h	2012-03-12 17:58:44.541639801 +0800
+@@ -164,7 +164,7 @@
+ /*
+  * Returns the version number of the library
+  */
+-extern const char const *lxc_version(void);
++extern const char *lxc_version(void);
+ 
+ #ifdef __cplusplus
+ }
+--- conf.h.orig	2012-03-12 17:57:57.995500519 +0800
++++ conf.h	2012-03-12 17:59:08.581687160 +0800
+@@ -23,6 +23,10 @@
+ #ifndef _conf_h
+ #define _conf_h
+ 
++#ifdef __cplusplus
++extern "C" {
++#endif
++
+ #include <netinet/in.h>
+ #include <sys/param.h>
+ 
+@@ -226,4 +230,9 @@
+  */
+ 
+ extern int lxc_setup(const char *name, struct lxc_conf *lxc_conf);
++
++#ifdef __cplusplus
++}
++#endif
++
+ #endif
+--- list.h.orig	2012-03-12 19:18:26.716348920 +0800
++++ list.h	2012-03-12 19:17:21.404999241 +0800
+@@ -40,14 +40,14 @@
+ 	return list == list->next;
+ }
+ 
+-static inline void __lxc_list_add(struct lxc_list *new,
++static inline void __lxc_list_add(struct lxc_list *newp,
+ 				  struct lxc_list *prev,
+ 				  struct lxc_list *next)
+ {
+-        next->prev = new;
+-        new->next = next;
+-        new->prev = prev;
+-        prev->next = new;
++        next->prev = newp;
++        newp->next = next;
++        newp->prev = prev;
++        prev->next = newp;
+ }
+ 
+ static inline void lxc_list_add(struct lxc_list *head, struct lxc_list *list)

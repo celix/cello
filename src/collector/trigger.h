@@ -4,6 +4,7 @@
 #include <boost/shared_ptr.hpp>
 #include "common/singleton.h"
 #include "include/proxy.h"
+#include "collector/framework_in_machine.h"
 
 using boost::shared_ptr;
 
@@ -43,14 +44,14 @@ public:
         return m_name;
     }
     
-    void Action(const ExecutorStat& stat);
+    void Action(FrameworkInMachine* fim);
 
     /// @brief: return true, then trigger operates, or does nothing
-    virtual bool Condition(const ExecutorStat& stat) = 0;
+    virtual bool Condition(FrameworkInMachine* fim) = 0;
 
     /// @brief: trigger operation
     /// @name: framework name
-    virtual bool Operation(const ExecutorStat& stat) = 0;
+    virtual bool Operation(FrameworkInMachine* fim) = 0;
 private:
     string m_name;              /// trigger name
     int m_value_threshold;      /// value threshold
@@ -62,23 +63,27 @@ protected:
 
 class CpuTrigger : public Trigger {
 public:
-    CpuTrigger(int value = 10, int period = 5) : Trigger("cpu", value, period) {}
-    bool Condition(const ExecutorStat& stat);
-    bool Operation(const ExecutorStat& stat);
+    CpuTrigger(int value = 50, int period = 1) : Trigger("cpu", value, period),
+                                                 m_proportion(0.80) {}
+
+    bool Condition(FrameworkInMachine* fim);
+    bool Operation(FrameworkInMachine* fim);
+private:
+    double m_proportion;
 };
 
 class MemoryTrigger : public Trigger {
 public:
     MemoryTrigger(int value = 10, int period = 5) : Trigger("Memory", value, period) {}
-    bool Condition(const ExecutorStat& stat);
-    bool Operation(const ExecutorStat& stat);
+    bool Condition(FrameworkInMachine* fim);
+    bool Operation(FrameworkInMachine* fim);
 };
 
 class SlotTrigger : public Trigger {
 public:
     SlotTrigger(int value = 4, int period = 10) : Trigger("Slot", value, period) {}
-    bool Condition(const ExecutorStat& stat);
-    bool Operation(const ExecutorStat& stat);
+    bool Condition(FrameworkInMachine* fim);
+    bool Operation(FrameworkInMachine* fim);
 };
 
 // every executor correspond to a idle trigger
@@ -89,8 +94,8 @@ public:
                                                  m_id(0) {}
     IdleTrigger(int64_t id, int value = 0, int period = 100)
         : Trigger("Idle", value, period), m_id(id) {}
-    bool Condition(const ExecutorStat& stat);
-    bool Operation(const ExecutorStat& stat);
+    bool Condition(FrameworkInMachine* fim);
+    bool Operation(FrameworkInMachine* fim);
 private:
     int64_t m_id;
 };
