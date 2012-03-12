@@ -62,6 +62,8 @@ void Executor::Kill() {
     KillEvent event(GetId());
     MessageQueue::Message msg = event.ToMessage();
     MsgQueueMgr::Instance()->Get(EXECUTOR_CONTROL_KEY)->Send(&msg);
+    LOG(INFO) << "send kill task event to cellet-resource process."
+        << " ID: " << GetId();
     // change executor state into killed
     m_state = EXECUTOR_KILLED;
 }

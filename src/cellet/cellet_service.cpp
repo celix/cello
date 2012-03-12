@@ -16,6 +16,8 @@ bool CelletService::StartTask(const TaskInfo& info) {
  
 int CelletService::KillTask(int64_t task_id) {
     LOG(INFO) << "receive kill task command: id " << task_id;
-    ExecutorMgr::Instance()->DeleteExecutor(task_id);
-    return 0;
+    if (ExecutorMgr::Instance()->DeleteExecutor(task_id))
+        return 0;
+    else
+        return -1;
 }
