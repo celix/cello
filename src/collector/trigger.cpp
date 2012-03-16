@@ -12,10 +12,21 @@ void Trigger::Action(FrameworkInMachine* fim) {
 }
 
 bool CpuTrigger::Condition(FrameworkInMachine* fim) {
-    // calculate all the executor cpu usage in past m_period_threshold time
-    return fim->IsOverLoad(GetPeriod()*60,
-                          static_cast<double>(GetValue())/100,
-                          m_proportion);
+    if (!m_is_triggered) {
+        // calculate all the executor cpu usage in past m_period_threshold time
+        if (fim->IsOverLoad(GetPeriod()*60, static_cast<double>(GetValue())/100, m_proportion)) {
+            m_is_triggered = true;
+            m_trigger_time = time(0);
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        // if triggered then hold on 30s
+        if (time(0) - m_trigger_time > 30)
+            m_is_triggered = false;
+        return false;
+    }
 }
 
 bool CpuTrigger::Operation(FrameworkInMachine* fim) {
@@ -100,7 +111,9 @@ bool IdleTrigger::Operation(FrameworkInMachine* fim) {
                    << "framework " << fim->GetName() << " id " << m_id;
         return false;
     } else {
-        LOG(INFO) << "add executor succeed: "
+        // TODO: delete the trigger since it has finished its task
+        //
+        LOG(INFO) << "shut down executor succeed: "
                   << "framework " << fim->GetName() << " id " << m_id;
         return true;
     }

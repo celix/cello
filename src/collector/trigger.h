@@ -64,12 +64,16 @@ protected:
 class CpuTrigger : public Trigger {
 public:
     CpuTrigger(int value = 50, int period = 1) : Trigger("cpu", value, period),
-                                                 m_proportion(0.70) {}
+                                                 m_proportion(0.70),
+                                                 m_is_triggered(false),
+                                                 m_trigger_time(0) {}
 
     bool Condition(FrameworkInMachine* fim);
     bool Operation(FrameworkInMachine* fim);
 private:
     double m_proportion;
+    bool m_is_triggered;
+    time_t m_trigger_time;
 };
 
 class MemoryTrigger : public Trigger {
