@@ -19,7 +19,7 @@ bool CpuTrigger::Condition(FrameworkInMachine* fim) {
 }
 
 bool CpuTrigger::Operation(FrameworkInMachine* fim) {
-    LOG(INFO) << "framework " << fim->GetName() << " is over load."
+    LOG(WARNING) << "framework " << fim->GetName() << " is over load."
               << " Add executor for it.";
     //add a executor for this framework
     try {
@@ -52,7 +52,7 @@ bool SlotTrigger::Operation(FrameworkInMachine* fim) {
 }
 
 bool IdleTrigger::Condition(FrameworkInMachine* fim) {
-    return fim->IsIdle(GetPeriod()*60, GetValue(), m_id, 1.00);
+    return fim->IsIdle(GetPeriod()*60, GetValue(), 1.00, m_id);
 #if 0
     // executor stat is to this trigger
     if (m_id == stat.task_id) {
@@ -82,7 +82,7 @@ bool IdleTrigger::Condition(FrameworkInMachine* fim) {
 }
 
 bool IdleTrigger::Operation(FrameworkInMachine* fim) {
-    LOG(INFO) << "Idle trigger trigged:";
+    LOG(WARNING) << "Idle trigger trigged:";
     //add a executor for this framework
     int ret = -1;
     try {

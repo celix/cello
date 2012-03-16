@@ -56,9 +56,11 @@ public:
     void Handle();
 };
 
-class RemoveEvent : public FinishEvent {
+class RemoveEvent : public StateEvent {
 public:
-    RemoveEvent(int64_t id): FinishEvent(id, true) {}
+    RemoveEvent(int64_t id): StateEvent(id, true) {}
+
+    void Handle();
 };
 
 class ActionEvent : public Event {

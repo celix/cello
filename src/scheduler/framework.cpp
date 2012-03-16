@@ -35,6 +35,15 @@ bool Framework::RemoveTask(int64_t task_id, queue_type type) {
     if (type == WAIT_QUEUE) {
         return m_wait_queue.Erase(task_id);
     } else {
+        return m_run_queue.Erase(task_id);
+    }
+}
+
+bool Framework::KillTask(int64_t task_id, queue_type type) {
+    assert(type == WAIT_QUEUE || type == RUN_QUEUE);
+    if (type == WAIT_QUEUE) {
+        return m_wait_queue.Erase(task_id);
+    } else {
         string address = m_run_queue.GetTaskAddress(task_id);
         // need to send kill task command to cellet
         // kill the process running in cellet

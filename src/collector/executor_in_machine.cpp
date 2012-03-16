@@ -18,9 +18,11 @@ bool ExecutorInMachine::IsOverLoad(int period, double cpu_usage, double proporti
     // executor run less than a period, ingore it
     if (m_resource_list.size() < len)
         return false;
+#if 0
     unsigned int n = 0, i = 0;
     for (list<ExecutorStat>::reverse_iterator riter = m_resource_list.rbegin();
          riter != m_resource_list.rend() && i < len; ++riter, ++i) {
+        LOG(WARNING) << "!!!!!!!!" << riter->used_cpu;
         // compare to cpu usage
         if (cpu_usage <= riter->used_cpu)
             ++n;
@@ -29,6 +31,19 @@ bool ExecutorInMachine::IsOverLoad(int period, double cpu_usage, double proporti
     LOG(INFO) << "cpu usage high than " << cpu_usage 
               << ". real per: " << per << "over load per: " << proportion;
     return per >= proportion;
+#endif
+    // compute average usage
+    unsigned int i = 0;
+    double sum = 0;
+    for (list<ExecutorStat>::reverse_iterator riter = m_resource_list.rbegin();
+         riter != m_resource_list.rend() && i < len; ++riter, ++i) {
+        LOG(WARNING) << "!!!!!!!!" << riter->used_cpu;
+        sum += riter->used_cpu;
+    }
+    double value = sum / len;
+    LOG(INFO) << "cpu usage high than " << cpu_usage 
+              << ". real per: " << value << "over load per: " << cpu_usage;
+    return value >= cpu_usage;
 }
 
 bool ExecutorInMachine::IsIdle(int period, double value, double proportion) {

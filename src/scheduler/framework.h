@@ -37,6 +37,9 @@ public:
     /// @brief: remove task by id
     bool RemoveTask(int64_t task_id, queue_type type);
 
+    /// @brief: remove task by id
+    bool KillTask(int64_t task_id, queue_type type);
+
 protected:
     string m_framework_name;
     int m_quota;                      // resource quota

@@ -64,7 +64,7 @@ protected:
 class CpuTrigger : public Trigger {
 public:
     CpuTrigger(int value = 50, int period = 1) : Trigger("cpu", value, period),
-                                                 m_proportion(0.80) {}
+                                                 m_proportion(0.70) {}
 
     bool Condition(FrameworkInMachine* fim);
     bool Operation(FrameworkInMachine* fim);

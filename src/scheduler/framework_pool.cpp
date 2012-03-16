@@ -51,6 +51,13 @@ void FrameworkPool::RemoveTask(const TaskPtr& task) {
     FindToDo(task->GetFrameworkName(), func);
 }
 
+void FrameworkPool::KillTask(const TaskPtr& task) {
+    // create the bind function for RemoveTask
+    FrameworkFunc func = bind(&Framework::KillTask, _1, task->GetId(),
+                              task->GetQueueType());
+    FindToDo(task->GetFrameworkName(), func);
+}
+
 bool FrameworkPool::DeleteFramework(const string& name) {
     WriteLocker locker(m_lock);
     for (list<Framework*>::iterator it = m_framework_pool.begin();

@@ -37,6 +37,9 @@ public:
     /// @brief: remove task from its framework task queue
     void RemoveTask(const TaskPtr& task);
 
+    /// @brief: remove task from its framework task queue
+    void KillTask(const TaskPtr& task);
+
     /// @brief: pick a task
     TaskPtr GetTask();
     

@@ -32,9 +32,18 @@ void FinishEvent::Handle() {
         LOG(ERROR) << "cant find task: " << GetId();
     }
 }
+void RemoveEvent::Handle() {
+	TaskPool::TaskFunc func = bind(&FrameworkPool::KillTask,
+			ComponentsMgr::Instance()->GetPool(), _1);
+	if (Pool::Instance()->FindToDo(GetId(), func)) {
+		Pool::Instance()->Delete(GetId());
+	} else {
+		LOG(ERROR) << "cant find task: " << GetId();
+	}
+}
 
 void KillActionEvent::Handle() {
-    int ret = -1;
+	int ret = -1;
     try {
         // get collector proxy
         Proxy<CelletClient> proxy = Rpc<CelletClient, CelletClient>::GetProxy(GetAddress());
