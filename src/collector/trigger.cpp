@@ -1,6 +1,7 @@
 #include <glog/logging.h>
 #include <gflags/gflags.h>
 #include "collector/trigger.h"
+#include "collector/machine_pool.h"
 #include "include/proxy.h"
 #include "common/rpc.h"
 
@@ -23,7 +24,7 @@ bool CpuTrigger::Condition(FrameworkInMachine* fim) {
         }
     } else {
         // if triggered then hold on 30s
-        if (time(0) - m_trigger_time > 30)
+        if (time(0) - m_trigger_time > 30 && fim->Size() <= Pool::Instance()->Size())
             m_is_triggered = false;
         return false;
     }
