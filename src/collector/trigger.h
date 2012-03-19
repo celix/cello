@@ -15,12 +15,12 @@ public:
         m_value_threshold(value),
         m_period_threshold(period),
         m_start_time(0),
-        m_is_ignited(false) {}
+        m_is_triggered(false) {}
 
     Trigger() : m_value_threshold(0),
                 m_period_threshold(0),
                 m_start_time(0),
-                m_is_ignited(false) {}
+                m_is_triggered(false) {}
     
     virtual ~Trigger() {}
     
@@ -43,7 +43,23 @@ public:
     string GetName() const {
         return m_name;
     }
-    
+
+    time_t GetStartTime() const {
+        return m_start_time;
+    }
+
+    bool IsTriggered() const {
+        return m_is_triggered;
+    }
+   
+    void SetTriggerState(bool status) {
+        m_is_triggered = status;
+    }
+
+    void SetStartTime(time_t time) {
+        m_start_time = time;
+    }
+
     void Action(FrameworkInMachine* fim);
 
     /// @brief: return true, then trigger operates, or does nothing
@@ -56,23 +72,20 @@ private:
     string m_name;              /// trigger name
     int m_value_threshold;      /// value threshold
     int m_period_threshold;     /// period threshold
-protected:
     time_t m_start_time;        /// trigger begin time
-    bool m_is_ignited;          /// ignite flag
+    bool m_is_triggered;
 };
 
 class CpuTrigger : public Trigger {
 public:
     CpuTrigger(int value = 50, int period = 1) : Trigger("cpu", value, period),
                                                  m_proportion(0.70),
-                                                 m_is_triggered(false),
                                                  m_trigger_time(0) {}
 
     bool Condition(FrameworkInMachine* fim);
     bool Operation(FrameworkInMachine* fim);
 private:
     double m_proportion;
-    bool m_is_triggered;
     time_t m_trigger_time;
 };
 

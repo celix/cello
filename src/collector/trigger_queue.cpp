@@ -47,3 +47,12 @@ void TriggerQueue::MapToDo(TriggerFunc func) {
         func(it->get());
 }
 
+void TriggerQueue::Flush() {
+    WriteLocker locker(m_lock);
+    for (list<TriggerPtr>::iterator it = m_list.begin();
+         it != m_list.end();)
+        if ((*it)->IsTriggered() && (*it)->GetName() == "Idle")
+            it = m_list.erase(it);
+        else
+            ++it;
+}

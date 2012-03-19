@@ -31,6 +31,8 @@ public:
     
     void MapToDo(TriggerFunc func);
 
+    void Flush();
+
     void Clear();
 private:
     RWLock m_lock;

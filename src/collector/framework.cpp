@@ -41,6 +41,8 @@ void Framework::Entry() {
             // trigger begin to work
             TriggerQueue::TriggerFunc func = bind(&Trigger::Action, _1, &m_executor_pool);
             m_trigger_list.MapToDo(func);
+            // remove useless trigger
+            m_trigger_list.Flush();
         }
     }
 }

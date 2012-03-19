@@ -13,10 +13,10 @@ void Trigger::Action(FrameworkInMachine* fim) {
 }
 
 bool CpuTrigger::Condition(FrameworkInMachine* fim) {
-    if (!m_is_triggered) {
+    if (!IsTriggered()) {
         // calculate all the executor cpu usage in past m_period_threshold time
         if (fim->IsOverLoad(GetPeriod()*60, static_cast<double>(GetValue())/100, m_proportion)) {
-            m_is_triggered = true;
+            SetTriggerState(true);
             m_trigger_time = time(0);
             return true;
         } else {
@@ -25,7 +25,7 @@ bool CpuTrigger::Condition(FrameworkInMachine* fim) {
     } else {
         // if triggered then hold on 30s
         if (time(0) - m_trigger_time > 60 && fim->Size() <= Pool::Instance()->Size())
-            m_is_triggered = false;
+            SetTriggerState(false);
         return false;
     }
 }
@@ -64,7 +64,9 @@ bool SlotTrigger::Operation(FrameworkInMachine* fim) {
 }
 
 bool IdleTrigger::Condition(FrameworkInMachine* fim) {
-    return fim->IsIdle(GetPeriod()*60, GetValue(), 1.00, m_id);
+    bool ret = fim->IsIdle(GetPeriod()*60, GetValue(), 1.00, m_id);
+    SetTriggerState(ret);
+    return ret;
 #if 0
     // executor stat is to this trigger
     if (m_id == stat.task_id) {
