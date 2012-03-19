@@ -21,9 +21,12 @@ public:
     /// @brief: compute and get current machine information
     MachineInfoWrapper GetMachineInfo();
    
-    /// @brief: get allocated resource in this machine
-    void GetResource(Container* ptr, MachineInfoWrapper* info);
+    /// @brief: get available resource in this machine
+    void GetAvailableResource(Container* ptr);
     
+    /// @brief: get used resource of all the executors in cellet
+    void GetExecutorResourceInfo(Container* ptr, MachineInfoWrapper* info,
+                                 double total_used_cpu, int total_used_memory);
     void SendData();
 
     int GetTotalCpus() const {

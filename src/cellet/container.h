@@ -59,7 +59,7 @@ public:
         return m_info.need_memory;
     }
     /// @brief: get container current used memory and cpu
-    ExecutorStatWrapper GetUsedResource();
+    ExecutorStatWrapper GetUsedResource(double used_cpu, int used_memory);
 
     ContainerState GetState();
 
@@ -80,7 +80,7 @@ private:
     void CloseInheritedFD();
 
     /// @brief: get used cpu
-    double GetCpuUsage();
+    double GetCpuUsage(double used_cpu);
 
     /// @brief: get used memory
     int GetMemory();

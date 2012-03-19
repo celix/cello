@@ -224,13 +224,13 @@ ContainerState Container::GetState() {
     return m_state;
 }
 
-ExecutorStatWrapper Container::GetUsedResource() {
+ExecutorStatWrapper Container::GetUsedResource(double used_cpu, int used_memory) {
     ReadLocker locker(m_lock);
-    int used_memory = GetMemory();
-    double cpu_usage = GetCpuUsage();
+    int memory_usage = GetMemory();
+    double cpu_usage = GetCpuUsage(used_cpu);
     // running tasks in executor
     int task_num = GetChildrenNum();
-    ExecutorStatWrapper es(m_info.framework_name, m_info.id, cpu_usage, used_memory, task_num);
+    ExecutorStatWrapper es(m_info.framework_name, m_info.id, cpu_usage, memory_usage, task_num);
     return es;
 }
 
@@ -252,7 +252,7 @@ int Container::GetMemory() {
     return memory;
 }
 
-double Container::GetCpuUsage() {
+double Container::GetCpuUsage(double used_cpu) {
     // get cpu time
     char str_value[256] = {0};
     lxc_cgroup_get(m_name.c_str(), "cpuacct.stat", str_value, sizeof(str_value));
@@ -272,6 +272,8 @@ double Container::GetCpuUsage() {
         uint64_t cur_total = System::CpuTime();
         cpu_usage = static_cast<double>
                     (cur_cpu - m_prev_cpu) / (cur_total - m_prev_total);
+        // we need to multi an modulus of the quota of the cpu divide all used cpu quota
+        cpu_usage *= m_info.need_cpu / used_cpu;
         m_prev_cpu = cur_cpu;
         m_prev_total = cur_total;
         DLOG(WARNING) << "CURRENT CPU : " << m_prev_cpu

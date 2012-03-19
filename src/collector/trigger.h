@@ -94,9 +94,9 @@ public:
 // 5 min has no task children, then shut down the executor
 class IdleTrigger : public Trigger {
 public:
-    IdleTrigger(int value = 0, int period = 100) : Trigger("Idle", value, period),
+    IdleTrigger(int value = 0, int period = 5) : Trigger("Idle", value, period),
                                                  m_id(0) {}
-    IdleTrigger(int64_t id, int value = 0, int period = 100)
+    IdleTrigger(int64_t id, int value = 0, int period = 5)
         : Trigger("Idle", value, period), m_id(id) {}
     bool Condition(FrameworkInMachine* fim);
     bool Operation(FrameworkInMachine* fim);

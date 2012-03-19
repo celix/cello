@@ -28,20 +28,28 @@ MachineInfoWrapper ResourceManager::GetMachineInfo() {
     MachineInfoWrapper info(m_endpoint, m_cpu_usage, m_total_cpu, m_total_memory);
     // get every container current resource usage
     // get free cpu and memory
-    ContainerPool::ContainerFunc func = bind(&ResourceManager::GetResource,
-                                              this, _1, &info);
+    ContainerPool::ContainerFunc func = bind(&ResourceManager::GetAvailableResource,
+                                              this, _1);
+    ContainerMgr::Instance()->MapToDo(func);
+    func = bind(&ResourceManager::GetExecutorResourceInfo, this, _1, &info,
+                m_total_cpu-m_avail_cpu, m_total_memory-m_avail_memory);
     ContainerMgr::Instance()->MapToDo(func);
     info.SetAvailCpu(m_avail_cpu);
     info.SetAvailMemory(m_avail_memory);
     return info;
 }
 
-void ResourceManager::GetResource(Container* ptr, MachineInfoWrapper* info) {
+void ResourceManager::GetAvailableResource(Container* ptr) {
     if (ptr->GetState() == CONTAINER_STARTED) {
         m_avail_cpu -= ptr->GetAllocatedCpu();
         m_avail_memory -= ptr->GetAllocatedMemory();
-        info->AddExecutor(ptr->GetUsedResource());
     }
+}
+
+void ResourceManager::GetExecutorResourceInfo(Container* ptr, MachineInfoWrapper* info,
+                                       double total_used_cpu, int total_used_memory) {
+    if (ptr->GetState() == CONTAINER_STARTED)
+        info->AddExecutor(ptr->GetUsedResource(total_used_cpu, total_used_memory));
 }
 
 void ResourceManager::SendData() {

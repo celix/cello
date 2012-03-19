@@ -24,7 +24,7 @@ bool CpuTrigger::Condition(FrameworkInMachine* fim) {
         }
     } else {
         // if triggered then hold on 30s
-        if (time(0) - m_trigger_time > 30 && fim->Size() <= Pool::Instance()->Size())
+        if (time(0) - m_trigger_time > 60 && fim->Size() <= Pool::Instance()->Size())
             m_is_triggered = false;
         return false;
     }
@@ -95,27 +95,30 @@ bool IdleTrigger::Condition(FrameworkInMachine* fim) {
 
 bool IdleTrigger::Operation(FrameworkInMachine* fim) {
     LOG(WARNING) << "Idle trigger trigged:";
-    //add a executor for this framework
-    int ret = -1;
-    try {
-        Proxy<SchedulerClient> proxy =
-            Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_scheduler_endpoint);
-        ret = proxy().DeleteExecutor(m_id);
-    } catch (TException &tx) {
-        LOG(ERROR) << "rpc error. "
-                   << "shut down executor failed: "
-                   << "framework " << fim->GetName() << " id " << m_id;
-        return false;
-    }
-    if (ret < 0) {
-        LOG(ERROR) << "shut down executor failed: "
-                   << "framework " << fim->GetName() << " id " << m_id;
-        return false;
+    if (fim->Size() > 1) {
+        // shut down the executor
+        int ret = -1;
+        try {
+            Proxy<SchedulerClient> proxy =
+                Rpc<SchedulerClient, SchedulerClient>::GetProxy(FLAGS_scheduler_endpoint);
+            ret = proxy().DeleteExecutor(m_id);
+        } catch (TException &tx) {
+            LOG(ERROR) << "rpc error. "
+                       << "shut down executor failed: "
+                       << "framework " << fim->GetName() << " id " << m_id;
+            return false;
+        }
+        if (ret < 0) {
+            LOG(ERROR) << "shut down executor failed: "
+                       << "framework " << fim->GetName() << " id " << m_id;
+            return false;
+        } else {
+            // TODO: delete the trigger since it has finished its task
+            LOG(INFO) << "shut down executor succeed: "
+                      << "framework " << fim->GetName() << " id " << m_id;
+            return true;
+        }
     } else {
-        // TODO: delete the trigger since it has finished its task
-        //
-        LOG(INFO) << "shut down executor succeed: "
-                  << "framework " << fim->GetName() << " id " << m_id;
         return true;
     }
 }
