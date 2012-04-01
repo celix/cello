@@ -101,9 +101,9 @@ void* StartExecutorReceiver(void* unused) {
         ContainerPtr ptr(new Container(msg));
         // create task execute enviroment
         if (ptr->Init() >= 0) {
-            ptr->Execute();
-            // insert into the container pool
-            ContainerMgr::Instance()->Insert(ptr);
+            if (ptr->Execute() >= 0)
+                // insert into the container pool
+                ContainerMgr::Instance()->Insert(ptr);
         } else {
             // executor init failed report the status to scheduler
             ptr->ContainerFinished();

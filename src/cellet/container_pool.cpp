@@ -1,4 +1,5 @@
 #include "cellet/container_pool.h"
+#include <glog/logging.h>
 
 using cello::ReadLocker;
 using cello::WriteLocker;
@@ -20,6 +21,7 @@ bool ContainerPool::FindToDo(pid_t pid, ContainerFunc func) {
         func((it->second).get());
         return true;
     }
+    LOG(ERROR) << "cant find container with pid: " << pid;
     return false;
 }
 

@@ -6,6 +6,8 @@
 #include <sys/wait.h>
 #include <sys/prctl.h>
 #include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 
@@ -63,6 +65,7 @@ void ResourceManagerEntry(int argc, char ** argv) {
     int status;
     while (true) {
         if ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
+            LOG(ERROR) << "FFF" << pid;
             ContainerPool::ContainerFunc func = bind(&Container::ContainerFinished,
                                                      _1);
             // find the container and deal with the thing
@@ -75,11 +78,20 @@ void ResourceManagerEntry(int argc, char ** argv) {
 } 
 
 int main(int argc, char ** argv) {
+    char* cello_home = getenv("CELLO_HOME");
+    if (!cello_home) {
+        fprintf(stderr, "environment value CELLO_HOME is not set.\n");
+        return -1;
+    }
+
     // set up flags
-    if (argc > 1)
+    if (argc > 1) {
         google::ParseCommandLineFlags(&argc, &argv, true);
-    else
-        google::ReadFromFlagsFile("../conf/cellet.conf", argv[0], true);
+    } else {
+        string config = cello_home;
+        config += "/conf/cellet.conf";
+        google::ReadFromFlagsFile(config.c_str(), argv[0], true);
+    }
     
     // initilize log
     google::InitGoogleLogging(argv[0]);

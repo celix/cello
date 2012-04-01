@@ -32,7 +32,7 @@ MachineInfoWrapper ResourceManager::GetMachineInfo() {
                                               this, _1);
     ContainerMgr::Instance()->MapToDo(func);
     func = bind(&ResourceManager::GetExecutorResourceInfo, this, _1, &info,
-                m_total_cpu-m_avail_cpu, m_total_memory-m_avail_memory);
+                m_total_cpu, m_total_memory);
     ContainerMgr::Instance()->MapToDo(func);
     info.SetAvailCpu(m_avail_cpu);
     info.SetAvailMemory(m_avail_memory);

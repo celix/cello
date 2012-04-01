@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <time.h>
 #include <signal.h>
+#include <assert.h>
 
 #include <vector>
 #include <sstream>
@@ -74,7 +75,7 @@ int Container::Init() {
     if (access(framework_dir.c_str(), F_OK) < 0) {
         if (mkdir(framework_dir.c_str(), S_IRWXU|S_IRWXG|S_IROTH) < 0) {
             LOG(ERROR) << "create framework directory error: " << framework_dir;
-            return -1;
+            //return -1;
         }
         LOG(INFO) << "create framework directory: " << framework_dir;
     }
@@ -83,7 +84,7 @@ int Container::Init() {
     snprintf(path, sizeof(path), "%s/%lld", framework_dir.c_str(), m_info.id);
     if (mkdir(path, S_IRWXU|S_IRWXG|S_IROTH) < 0) {
         LOG(ERROR) << "create work directory error: " << path;
-        return -1;
+        //return -1;
     }
     m_work_diectory = path;
     LOG(INFO) << "create work directory: " << path;
@@ -144,6 +145,7 @@ void Container::RedirectLog() {
 }
 
 void Container::CloseInheritedFD() {
+#if 0
     char path[30] = {0};
     // get proc directory path
     snprintf(path, sizeof(path), "/proc/%d/fd", getpid());
@@ -158,9 +160,13 @@ void Container::CloseInheritedFD() {
         }
     }
     closedir(dp);
+#endif
+    // close all the possible fd in linux
+    for (int i = 3; i < 256; ++i)
+        close(i);
 }
 
-void Container::Execute() {
+int Container::Execute() {
     vector<string> args;
     StringUtility::Split(m_info.arguments, ' ', &args);
     // add cmd as argv[0]
@@ -175,19 +181,26 @@ void Container::Execute() {
     LOG(INFO) << "Start Executor ID:" << m_info.id << " in container:" << m_name;
     // child process
     m_pid = fork();
+    int ret = 0;
     if (m_pid == 0) {
+        LOG(WARNING) << "in child process";
         // close all the fd inherited from parent
         CloseInheritedFD();
         RedirectLog();
         // use lxc api to execute cmd
         lxc_conf* conf = lxc_conf_init();
-        lxc_start(m_name.c_str(), m_c_args, conf);
+        ret = lxc_start(m_name.c_str(), m_c_args, conf);
         free(conf);
-        LOG(INFO) << "execute cmd terminate: " << m_info.cmd;
-        exit(-1);
+        if (ret >= 0) {
+            exit(0);
+        } else {
+            fprintf(stderr, "%dexecute cmd terminate: %s\n", ret, m_info.cmd.c_str());
+            exit(-1);
+        }
     } else {
         sleep(1);
         ContainerStarted();
+        return ret;
     }
 }
 
@@ -199,7 +212,7 @@ MessageQueue::Message Container::ToMessage() {
 }
 
 void Container::ContainerFinished() {
-    LOG(INFO) << "Container Finished  ID:" << m_info.id << " PID:" << m_pid;
+    LOG(WARNING) << "Container Finished  ID:" << m_info.id << " PID:" << m_pid;
     // change status
     WriteLocker locker(m_lock);
     m_state = CONTAINER_FINISHED;
@@ -272,8 +285,10 @@ double Container::GetCpuUsage(double used_cpu) {
         uint64_t cur_total = System::CpuTime();
         cpu_usage = static_cast<double>
                     (cur_cpu - m_prev_cpu) / (cur_total - m_prev_total);
-        // we need to multi an modulus of the quota of the cpu divide all used cpu quota
-        cpu_usage *= m_info.need_cpu / used_cpu;
+        // we need to divide an modulus of the quota of the cpu divide all used cpu quota
+        LOG(WARNING) << "true cpu usage :" << cpu_usage;
+        cpu_usage /= m_info.need_cpu / used_cpu;
+        LOG(WARNING) << "corrected cpu usage:" << cpu_usage;
         m_prev_cpu = cur_cpu;
         m_prev_total = cur_total;
         DLOG(WARNING) << "CURRENT CPU : " << m_prev_cpu
@@ -295,7 +310,7 @@ void Container::SetResourceLimit() {
     memset(data, 0, sizeof(data));
     // set cpu
     snprintf(data, sizeof(data), "%d",
-             static_cast<int>(m_info.need_cpu * 1024 / DEFAULT_CPU_SHARE));
+             static_cast<int>(m_info.need_cpu * 512 / DEFAULT_CPU_SHARE));
     lxc_cgroup_set(m_name.c_str(), "cpu.shares", data);
 }
 

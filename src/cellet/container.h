@@ -32,7 +32,7 @@ public:
     int Init();
 
     /// @brief: fork process and execute cmd
-    void Execute();
+    int Execute();
     
     /// @brief: 
     MessageQueue::Message ToMessage();

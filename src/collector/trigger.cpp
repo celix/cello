@@ -24,7 +24,7 @@ bool CpuTrigger::Condition(FrameworkInMachine* fim) {
         }
     } else {
         // if triggered then hold on 30s
-        if (time(0) - m_trigger_time > 60 && fim->Size() <= Pool::Instance()->Size())
+        if (time(0) - m_trigger_time > 60 && fim->Size() < Pool::Instance()->Size())
             SetTriggerState(false);
         return false;
     }

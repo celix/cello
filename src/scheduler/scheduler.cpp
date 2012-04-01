@@ -1,4 +1,6 @@
 #include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "glog/logging.h"
 #include "gflags/gflags.h"
@@ -18,12 +20,19 @@ DEFINE_string(collector_endpoint, "", "collector endpoint");
 DEFINE_string(policy_file, "", "scheduler configuration policy");
 
 int main(int argc, char ** argv) {
-
+    char* cello_home = getenv("CELLO_HOME");
+    if (!cello_home) {
+        fprintf(stderr, "environment value CELLO_HOME is not set.\n"); 
+        return -1;
+    }
     // set up flags
-    if (argc > 1)
+    if (argc > 1) {
         google::ParseCommandLineFlags(&argc, &argv, true);
-    else
-        google::ReadFromFlagsFile("../conf/scheduler.conf", argv[0], true);
+    } else {
+        string config = cello_home;
+        config += "/conf/scheduler.conf";
+        google::ReadFromFlagsFile(config.c_str(), argv[0], true);
+    }
     
     // initilize log
     google::InitGoogleLogging(argv[0]);
