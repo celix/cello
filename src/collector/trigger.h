@@ -32,11 +32,14 @@ public:
         return m_value_threshold;
     }
 
-    void SetPeriod(int period) {
+    void SetPeriod(double period) {
         m_period_threshold = period;
     }
+    virtual int64_t GetId() {
+        return -1;
+    }
     
-    int GetPeriod() const {
+    double GetPeriod() const {
         return m_period_threshold;
     }
 
@@ -71,14 +74,14 @@ public:
 private:
     string m_name;              /// trigger name
     int m_value_threshold;      /// value threshold
-    int m_period_threshold;     /// period threshold
+    double m_period_threshold;     /// period threshold
     time_t m_start_time;        /// trigger begin time
     bool m_is_triggered;
 };
 
 class CpuTrigger : public Trigger {
 public:
-    CpuTrigger(int value = 50, int period = 1) : Trigger("cpu", value, period),
+    CpuTrigger(int value = 50, double period = 1) : Trigger("cpu", value, period),
                                                  m_proportion(0.70),
                                                  m_trigger_time(0) {}
 
@@ -109,10 +112,13 @@ class IdleTrigger : public Trigger {
 public:
     IdleTrigger(int value = 0, int period = 5) : Trigger("Idle", value, period),
                                                  m_id(0) {}
-    IdleTrigger(int64_t id, int value = 0, int period = 5)
+    IdleTrigger(int64_t id, int value = 0, int period = 6)
         : Trigger("Idle", value, period), m_id(id) {}
     bool Condition(FrameworkInMachine* fim);
     bool Operation(FrameworkInMachine* fim);
+    int64_t GetId() {
+        return m_id;
+    }
 private:
     int64_t m_id;
 };

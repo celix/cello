@@ -7,6 +7,7 @@
 #include <tr1/functional>
 
 #include "collector/trigger.h"
+#include "collector/framework_in_machine.h"
 #include "common/rwlock.h"
 
 using std::list;
@@ -18,9 +19,6 @@ using std::tr1::placeholders::_2;
 
 class TriggerQueue {
 public:
-    typedef function<void(Trigger*)> TriggerFunc;
-
-public:
     void PushBack(const TriggerPtr& trigger);
     
     void PopFront(TriggerPtr* trigger);
@@ -29,9 +27,9 @@ public:
 
     int Size();
     
-    void MapToDo(TriggerFunc func);
+    void Map(FrameworkInMachine* fim);
 
-    void Flush();
+    void Flush(FrameworkInMachine* fim);
 
     void Clear();
 private:

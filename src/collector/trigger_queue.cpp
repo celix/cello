@@ -1,4 +1,5 @@
 #include "collector/trigger_queue.h"
+#include <glog/logging.h>
 
 using cello::ReadLocker;
 using cello::WriteLocker;
@@ -40,19 +41,23 @@ bool TriggerQueue::Erase(const string& name) {
     return false;
 }
 
-void TriggerQueue::MapToDo(TriggerFunc func) {
+void TriggerQueue::Map(FrameworkInMachine* fim) {
     ReadLocker locker(m_lock);
     for (list<TriggerPtr>::iterator it = m_list.begin();
-         it != m_list.end(); ++it)
-        func(it->get());
+         it != m_list.end(); ++it) {
+        LOG(WARNING) << (*it)->GetName() << " Action";
+        (*it)->Action(fim);
+    }
 }
 
-void TriggerQueue::Flush() {
+void TriggerQueue::Flush(FrameworkInMachine* fim) {
     WriteLocker locker(m_lock);
     for (list<TriggerPtr>::iterator it = m_list.begin();
          it != m_list.end();)
-        if ((*it)->IsTriggered() && (*it)->GetName() == "Idle")
+        if ((*it)->IsTriggered() && (*it)->GetName() == "Idle") {
+            fim->Delete((*it)->GetId());
             it = m_list.erase(it);
-        else
+        } else {
             ++it;
+        }
 }

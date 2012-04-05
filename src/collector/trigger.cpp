@@ -15,7 +15,10 @@ void Trigger::Action(FrameworkInMachine* fim) {
 bool CpuTrigger::Condition(FrameworkInMachine* fim) {
     if (!IsTriggered()) {
         // calculate all the executor cpu usage in past m_period_threshold time
-        if (fim->IsOverLoad(GetPeriod()*60, static_cast<double>(GetValue())/100, m_proportion)) {
+        if (fim->IsOverLoad(static_cast<int>(GetPeriod()*60),
+                            static_cast<double>(GetValue())/100,
+                            m_proportion)) {
+            LOG(WARNING) << "cpu trigger triggered";
             SetTriggerState(true);
             m_trigger_time = time(0);
             return true;
@@ -24,7 +27,7 @@ bool CpuTrigger::Condition(FrameworkInMachine* fim) {
         }
     } else {
         // if triggered then hold on 30s
-        if (time(0) - m_trigger_time > 60 && fim->Size() < Pool::Instance()->Size())
+        if (time(0) - m_trigger_time > 30 && fim->Size() < Pool::Instance()->Size())
             SetTriggerState(false);
         return false;
     }
@@ -64,7 +67,7 @@ bool SlotTrigger::Operation(FrameworkInMachine* fim) {
 }
 
 bool IdleTrigger::Condition(FrameworkInMachine* fim) {
-    bool ret = fim->IsIdle(GetPeriod()*60, GetValue(), 1.00, m_id);
+    bool ret = fim->IsIdle(static_cast<int>(GetPeriod()*60), GetValue(), 1.00, m_id);
     SetTriggerState(ret);
     return ret;
 #if 0
@@ -121,6 +124,8 @@ bool IdleTrigger::Operation(FrameworkInMachine* fim) {
             return true;
         }
     } else {
+        LOG(WARNING) << "cant kill the last executor of framework:" << fim->GetName();
+        SetTriggerState(false);
         return true;
     }
 }

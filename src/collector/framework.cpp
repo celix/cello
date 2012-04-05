@@ -39,10 +39,9 @@ void Framework::Entry() {
         if (m_executor_pool.Size() > 0) {
             m_executor_pool.Push(stat);
             // trigger begin to work
-            TriggerQueue::TriggerFunc func = bind(&Trigger::Action, _1, &m_executor_pool);
-            m_trigger_list.MapToDo(func);
+            m_trigger_list.Map(&m_executor_pool);
             // remove useless trigger
-            m_trigger_list.Flush();
+            m_trigger_list.Flush(&m_executor_pool);
         }
     }
 }

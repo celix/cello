@@ -21,6 +21,7 @@ public:
     void Insert(ExecutorInMachine* ptr);
     bool Find(const string& address);
     void Delete(const string& address);
+    void Delete(int64_t id);
     int Size();
     void Push(const ExecutorStat& stat);
 

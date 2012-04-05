@@ -20,6 +20,17 @@ void FrameworkInMachine::Delete(const string& address) {
     m_map.erase(address);
 }
 
+void FrameworkInMachine::Delete(int64_t id) {
+    WriteLocker locker(m_lock);
+    for (map<string, ExecutorInMachine*>::iterator it = m_map.begin();
+         it != m_map.end(); ++it) {
+        if (id == it->second->GetId()) {
+            m_map.erase(it);
+            break;
+        }
+    }
+}
+
 int FrameworkInMachine::Size() {
     ReadLocker locker(m_lock);
     return m_map.size();
@@ -48,15 +59,8 @@ bool FrameworkInMachine::IsIdle(int period, double value, double proportion, int
     WriteLocker locker(m_lock);
     for (map<string, ExecutorInMachine*>::iterator it = m_map.begin();
          it != m_map.end(); ++it) {
-        if (task_id == it->second->GetId()) {
-            bool ret = it->second->IsIdle(period, value, proportion);
-            // if idle delete the executor
-            if (ret) {
-                delete it->second;
-                m_map.erase(it);
-            }
-            return ret;
-        }
+        if (task_id == it->second->GetId())
+            return it->second->IsIdle(period, value, proportion);
     }
     LOG(ERROR) << "can't find executor. id: " << task_id;
     return false;

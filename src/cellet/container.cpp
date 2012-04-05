@@ -304,8 +304,8 @@ double Container::GetCpuUsage(double used_cpu) {
 
 void Container::SetResourceLimit() {
     // set memory
-    char data[32] = {0};
-    snprintf(data, sizeof(data), "%d", m_info.need_memory * 1024 * 1024);
+    char data[64] = {0};
+    snprintf(data, sizeof(data), "%lld", (long long int)m_info.need_memory * 1024 * 1024);
     lxc_cgroup_set(m_name.c_str(), "memory.limit_in_bytes", data);
     memset(data, 0, sizeof(data));
     // set cpu

@@ -24,14 +24,16 @@ void Task::SetInfo(const TaskInfo& info) {
     // create classad
     m_ad.InsertAttr(ATTR_NEED_CPU, m_task_info.need_cpu);
     m_ad.InsertAttr(ATTR_NEED_MEMORY, m_task_info.need_memory);
-    // add the rank
+    // add the rank with best fit
     ClassAdParser parser;
-    ExprTree* expr = parser.ParseExpression("1-" + ATTR_CPU_USAGE);
+    ExprTree* expr = parser.ParseExpression(ATTR_NEED_CPU + "/" + ATTR_AVAIL_CPU +
+            " > 1.0*" + ATTR_NEED_MEMORY + "/" + ATTR_AVAIL_MEMORY + " ? " + 
+            ATTR_NEED_CPU + "/" + ATTR_AVAIL_CPU + ": 1.0*" + ATTR_NEED_MEMORY+ "/" + ATTR_AVAIL_MEMORY);
     m_ad.Insert(ATTR_TASK_RANK, expr);
     // add the requirement
     ExprTree* re_expr = parser.ParseExpression(
-            ATTR_NEED_CPU + "<" + ATTR_AVAIL_CPU + " && " +
-            ATTR_NEED_MEMORY + "<" + ATTR_AVAIL_MEMORY);
+            ATTR_NEED_CPU + "<=" + ATTR_AVAIL_CPU + " && " +
+            ATTR_NEED_MEMORY + "<=" + ATTR_AVAIL_MEMORY);
     m_ad.Insert(ATTR_TASK_REQUIREMENT, re_expr);
     //insert framework name
     m_ad.InsertAttr(ATTR_FRAMEWORK, m_framework_name);

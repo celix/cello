@@ -1,4 +1,5 @@
 #include <vector>
+#include <glog/logging.h>
 #include "collector/machine.h"
 #include <classad/classad_distribution.h>
 #include "include/attributes.h"
@@ -61,6 +62,7 @@ bool Machine::IsMatch(ClassAd* ptr, RankMachine* rank_ptr) {
                 b_value ? d_value = 1.0 : d_value = 0.0;
             
         }
+        LOG(WARNING) << GetEndpoint() << " rank value: " << d_value;
         rank_ptr->SetRankValue(d_value);
         rank_ptr->SetMachine(this);
         return true;

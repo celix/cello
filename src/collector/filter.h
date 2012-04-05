@@ -19,7 +19,7 @@ public:
 
     static bool MachineCompare(const RankMachine& first,
                                const RankMachine& second) {
-        return first.GetRankValue() <= second.GetRankValue();
+        return first.GetRankValue() >= second.GetRankValue();
     }
 };
 
